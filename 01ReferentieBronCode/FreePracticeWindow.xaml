@@ -1,0 +1,133 @@
+<Window x:Class="ModusPractica.FreePracticeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Record Free Practice Session"
+        Height="350"
+        Width="450"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F8F8F8">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Text="Record a general practice session (e.g., warm-up, improvisation, technical exercises) that is NOT tied to a specific music piece or section, it does not infect the planning."
+                   TextWrapping="Wrap"
+                   Margin="0,0,0,15"
+                   Foreground="#555555"/>
+
+        <!-- Timer Display -->
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,10,0,10">
+            <TextBlock x:Name="TxtTimerDisplay"
+                       Text="00:00:00"
+                       FontSize="48"
+                       FontWeight="Bold"
+                       Foreground="#333333"
+                       VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Timer Controls -->
+        <StackPanel Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,20">
+            <Button x:Name="BtnStartTimer"
+                    Content="Start"
+                    Click="BtnStartTimer_Click"
+                    Padding="15,8"
+                    Margin="0,0,10,0"
+                    Background="#4CAF50"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="4"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="BtnPauseTimer"
+                    Content="Pause"
+                    Click="BtnPauseTimer_Click"
+                    Padding="15,8"
+                    Margin="0,0,10,0"
+                    Background="#FFC107"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="4"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="BtnStopTimer"
+                    Content="Stop"
+                    Click="BtnStopTimer_Click"
+                    Padding="15,8"
+                    Background="#F44336"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="4"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,20,0,0">
+            <Button x:Name="BtnSave"
+                    Content="Save Session"
+                    Click="BtnSave_Click"
+                    Padding="15,8"
+                    Margin="0,0,10,0"
+                    Background="#2196F3"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="4"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Content="Cancel"
+                    Click="BtnCancel_Click"
+                    Padding="15,8"
+                    Background="#9E9E9E"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="4"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

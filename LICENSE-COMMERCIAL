@@ -1,0 +1,109 @@
+COMMERCIAL LICENSE AGREEMENT
+ModusPractica - Smart Music Practice Management System
+
+Version 1.0
+Effective Date: December 15, 2025
+
+================================================================================
+LICENSOR & LICENSEE
+
+LICENSOR: Frank De Baere (Partura Music™)
+LICENSE TYPE: Commercial/Proprietary Use License
+PRODUCT: ModusPractica v2.0 and all associated components
+
+================================================================================
+GRANT OF LICENSE
+
+Upon payment of the agreed-upon license fee, Licensor grants Licensee a
+non-exclusive, non-transferable license to:
+
+1. Use the ModusPractica source code and compiled binaries
+2. Create derivative works and modifications
+3. Integrate ModusPractica into commercial products
+4. Distribute ModusPractica without source code disclosure
+5. Use ModusPractica in proprietary SaaS/cloud services
+6. Sublicense to end-users under your own terms
+
+WITHOUT the requirement to:
+
+- Disclose source code
+- Release modifications under AGPL-3.0
+- Provide attribution (optional)
+- Make improvements available to the community
+
+================================================================================
+RESTRICTIONS
+
+1. This license is non-transferable without written permission
+2. Licensee may not:
+
+   - Reverse engineer protected components
+   - Remove copyright notices
+   - Use for patent prosecution against Licensor
+   - Lease, rent, or time-share the software
+
+3. Patent indemnification: Licensor indemnifies Licensee against patent claims
+
+================================================================================
+FEES & TERMS
+
+License Fee: [TO BE NEGOTIATED]
+
+- Annual renewable license
+- Perpetual license option available
+- Volume discounts for multiple installations
+- Support packages available separately
+
+Payment Terms:
+
+- Net 30 days from invoice
+- Annual renewal required (perpetual option available)
+
+================================================================================
+SUPPORT & MAINTENANCE
+
+Commercial licensees receive:
+
+- Email support (24-48 hour response time)
+- Priority bug fixes
+- Custom modifications upon request
+- Access to private bug tracking
+- Quarterly update briefings
+
+================================================================================
+LIABILITY & WARRANTIES
+
+The software is provided "AS IS" without warranty. In no event shall Licensor
+be liable for indirect, incidental, or consequential damages.
+
+For critical business applications, SLA agreements are available separately.
+
+================================================================================
+INTELLECTUAL PROPERTY
+
+All intellectual property rights remain with Frank De Baere (Partura Music™).
+Licensee acquires only the rights specified in this agreement.
+
+================================================================================
+CONTACT & INQUIRIES
+
+For commercial licensing inquiries:
+Email: [YOUR_EMAIL]
+Website: [YOUR_WEBSITE]
+Company: Partura Music™
+
+================================================================================
+DUAL LICENSING NOTICE
+
+ModusPractica is available under dual licensing:
+
+1. AGPL-3.0 (Free for open source projects and research)
+   See LICENSE-AGPL for details
+
+2. Commercial License (Proprietary use and closed-source integration)
+   See this file for details
+
+Choose the license that best fits your use case.
+For questions: contact [YOUR_EMAIL]
+
+================================================================================

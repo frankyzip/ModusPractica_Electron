@@ -1,0 +1,504 @@
+<!--
+╔═══════════════════════════════════════════════════════════════════════════╗
+║  ModusPractica BETA Introduction Page                                     ║
+║  Copyright © 2025 Frank De Baere - All Rights Reserved                    ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModusPractica Web App BETA - Free Smart Music Practice Management</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn how to practice piano effectively with ModusPractica BETA - Science-backed practice management with triple adaptive learning (Ebbinghaus, SM-17+, Bayesian). Free, no installation needed.">
+    <meta name="keywords" content="how to practice piano, piano practice tips, how to practice music, effective practice methods, ModusPractica, music practice app, Ebbinghaus, spaced repetition, practice scheduler, music learning, practice management, free music app, web music app, practice timer, music education">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.parturamusic.be/moduspractica/moduspractica-beta-intro.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.parturamusic.be/moduspractica/moduspractica-beta-intro.html">
+    <meta property="og:title" content="ModusPractica Web App BETA - Free Smart Music Practice Management">
+    <meta property="og:description" content="Science-backed practice management with triple adaptive learning. Based on research by Ebbinghaus, SuperMemo, Dr. Molly Gebrian & colleagues. Free BETA!">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    <meta property="og:site_name" content="Partura Music">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.parturamusic.be/moduspractica/moduspractica-beta-intro.html">
+    <meta name="twitter:title" content="ModusPractica BETA - Free Smart Music Practice Management">
+    <meta name="twitter:description" content="Free web-based music practice app using Ebbinghaus forgetting curves for optimal learning.">
+    <meta name="twitter:image" content="https://www.parturamusic.be/assets/bzt.png">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ModusPractica",
+      "applicationCategory": "EducationalApplication",
+      "applicationSubCategory": "Music Practice Management",
+      "operatingSystem": "Web Browser (Chrome, Edge, Firefox, Safari)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Science-backed music practice management with triple adaptive learning systems (Ebbinghaus forgetting curves, SM-17+ memory stability, Bayesian personalization). Based on research by Dr. Molly Gebrian and colleagues on motor skill consolidation and spaced repetition for musicians.",
+      "author": {
+        "@type": "Person",
+        "name": "Frank De Baere"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "1"
+      },
+      "screenshot": "https://www.parturamusic.be/assets/bzt.png",
+      "softwareVersion": "BETA",
+      "datePublished": "2025-11-17",
+      "inLanguage": "en",
+      "keywords": "music practice, Ebbinghaus, spaced repetition, practice management, music education, practice scheduler"
+    }
+    </script>
+    
+    <!-- CSS styles are inline in this file -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-image:
+                repeating-linear-gradient(12deg,
+                    rgba(255, 255, 255, 0.030) 0px,
+                    rgba(255, 255, 255, 0.030) 3px,
+                    rgba(0, 0, 0, 0.040) 3px,
+                    rgba(0, 0, 0, 0.040) 6px
+                ),
+                radial-gradient(1200px 800px at 0% 0%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%),
+                linear-gradient(135deg, #7a2d17 0%, #9a3b1a 22%, #b45722 48%, #c9782a 72%, #d39e5a 100%);
+            background-blend-mode: overlay, soft-light, normal;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 50px;
+        }
+
+        .beta-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #718096;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            font-size: 1.3em;
+        }
+
+        .section-content {
+            color: #4a5568;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 8px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .warning-box strong {
+            color: #856404;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border-left: 8px solid #17a2b8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .info-box strong {
+            color: #0c5460;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 200px;
+            padding: 18px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #b45722 0%, #c9782a 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(180, 87, 34, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 30px;
+            background: #edf2f7;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .contact-section h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .contact-section p {
+            color: #4a5568;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .email-link {
+            color: #b45722;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .email-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .btn {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="beta-badge">BETA VERSION - 100% FREE FULL FUNCTION</div>
+    <link rel="icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="apple-touch-icon" href="assets/BreinLogo.png">
+        
+        <h1>🎵 Welcome to ModusPractica</h1>
+        <p class="subtitle">Smart Music Practice Management - Now in BETA</p>
+
+        <div class="info-box">
+            <strong>Still in BETA:</strong> ModusPractica continues to evolve, so new updates and refinements roll out regularly. Features may change while we keep improving the experience.
+        </div>
+
+        <div class="button-group" style="margin-bottom: 40px;">
+            <a href="moduspractica-app.html" class="btn btn-primary">
+                🚀 Start Using ModusPractica
+            </a>
+            <a href="moduspractica-quick-start.html" class="btn btn-secondary" target="_blank" rel="noopener">
+                📖 Quick Start Guide
+            </a>
+            <a href="../index.html" class="btn btn-secondary">
+                ← Back to Homepage
+            </a>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">🎯</span>
+                What is ModusPractica?
+            </div>
+            <div class="section-content">
+                ModusPractica is an intelligent practice management tool designed specifically for musicians, built on 
+                <strong>decades of scientific research</strong> about how we learn and remember motor skills. 
+                Using <strong>three adaptive learning systems</strong> (Ebbinghaus forgetting curves, SM-17+ memory stability tracking, 
+                and Bayesian personalized calibration), it creates a practice schedule that's perfectly tuned to YOUR brain.
+                <br><br>
+                <strong>The Result:</strong> You practice exactly what you need, exactly when you need it — no wasted time, 
+                maximum retention, faster progress toward your musical goals.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">🧠</span>
+                How It Works - The Science of Efficient Practice
+            </div>
+            <div class="section-content">
+                <p style="margin-bottom: 20px;">
+                    ModusPractica uses <strong>three powerful adaptive learning systems</strong> working together to create 
+                    the perfect practice schedule for YOU:
+                </p>
+                
+                <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #b45722;">
+                    <h4 style="color: #b45722; margin-bottom: 10px;">🎯 1. Ebbinghaus Forgetting Curve (1885)</h4>
+                    <p style="margin-bottom: 10px;">
+                        Hermann Ebbinghaus discovered that we forget information at a predictable rate. ModusPractica uses 
+                        this principle to schedule reviews at the <strong>exact moment</strong> when you're about to forget — 
+                        maximizing retention while minimizing wasted practice time.
+                    </p>
+                    <p style="font-size: 0.95em; color: #666;">
+                        <em>"The forgetting curve shows that without reinforcement, information is lost over time. 
+                        Optimal review timing dramatically improves long-term retention."</em>
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #48bb78;">
+                    <h4 style="color: #48bb78; margin-bottom: 10px;">📊 2. SM-17+ Memory Stability Tracking</h4>
+                    <p style="margin-bottom: 10px;">
+                        Based on decades of SuperMemo research, this system tracks how <strong>stable</strong> each piece is in your memory. 
+                        As you successfully review passages, they become more "stable" — allowing longer intervals between practice sessions.
+                    </p>
+                    <p style="font-size: 0.95em; color: #666;">
+                        <em>Result: You spend less time on what you already know, more time on what needs work.</em>
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">🎓 3. Bayesian Personalized Calibration</h4>
+                    <p style="margin-bottom: 10px;">
+                        Everyone forgets at different rates. After just <strong>5 practice sessions</strong>, ModusPractica starts learning 
+                        YOUR unique forgetting curve and adapts intervals specifically for you. Advanced users get longer intervals; 
+                        beginners get more frequent reviews.
+                    </p>
+                    <p style="font-size: 0.95em; color: #666;">
+                        <em>The system uses statistical confidence weighting to blend all three approaches seamlessly.</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">🎼</span>
+                Why This Works for Musicians
+            </div>
+            <div class="section-content">
+                <p style="margin-bottom: 15px;">
+                    Musical performance requires both <strong>cognitive memory</strong> (knowing the notes) and 
+                    <strong>motor memory</strong> (muscle memory in your fingers). Research by <strong>Dr. Molly Gebrian</strong> 
+                    (University of Arizona) and colleagues shows that:
+                </p>
+                <ul class="feature-list" style="margin: 20px 0;">
+                    <li>Spaced repetition is MORE effective than massed practice (cramming) for long-term retention</li>
+                    <li>Interleaved practice (switching between pieces) produces better results than blocked practice</li>
+                    <li>Optimal spacing prevents motor patterns from degrading while avoiding wasteful over-practice</li>
+                    <li>Regular, timed reviews build automaticity — freeing your mind for musical expression</li>
+                </ul>
+                <p style="margin-top: 20px; padding: 15px; background: #f7fafc; border-radius: 8px; font-size: 0.95em;">
+                    <strong>Research Foundation:</strong> Gebrian, M. (2014). "Applying Neuroscience to Music Teaching and Learning"; 
+                    Simmons & Duke (2005) on motor skill consolidation; Bjork & Bjork on desirable difficulties in learning.
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">⚡</span>
+                Why ModusPractica is Different
+            </div>
+            <div class="section-content">
+                <p style="margin-bottom: 15px;">
+                    Unlike generic practice apps or simple timers, ModusPractica combines:
+                </p>
+                <ul class="feature-list">
+                    <li><strong>Scientific Precision:</strong> Three adaptive algorithms working together, not just one</li>
+                    <li><strong>Rapid Adaptation:</strong> Starts personalizing after 5 sessions (others need 20-50)</li>
+                    <li><strong>Stage-Aware Mastery:</strong> Gradually expands intervals (7→14→30→60+ days) based on motor skill research</li>
+                    <li><strong>Transparent Logic:</strong> All calculations visible — you understand WHY each piece is scheduled</li>
+                    <li><strong>Built for Musicians:</strong> Designed specifically for instrumental/vocal practice, not generic flashcards</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">✨</span>
+                Key Features
+            </div>
+            <ul class="feature-list">
+                <li><strong>Smart Scheduling:</strong> "Today" view shows exactly what needs practice — the app plans, you play</li>
+                <li><strong>Progress Tracking:</strong> Visual charts show memory stability, success rates, and learning curves</li>
+                <li><strong>Piece Management:</strong> Break pieces into sections (bars/measures) with difficulty levels</li>
+                <li><strong>Practice Timer:</strong> Track focused practice time per session with performance ratings</li>
+                <li><strong>Calendar View:</strong> See upcoming reviews and plan your practice week</li>
+                <li><strong>Multiple Profiles:</strong> Separate data for different instruments or students</li>
+                <li><strong>Local Data Storage:</strong> Your data stays in your browser - complete privacy</li>
+                <li><strong>Export/Import:</strong> Backup all profiles to file, sync across devices via your cloud</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Important - BETA Status:</strong><br><br>
+            This is a BETA version of ModusPractica. While fully functional, I'm still refining some features. 
+            You may encounter minor bugs or limitations.<br><br>
+            <strong>Data Safety:</strong> During the BETA phase, updates may occasionally cause data compatibility issues. 
+            To protect your practice data, I strongly recommend regularly backing up your profiles using the <strong>Export Data</strong> button. 
+            This ensures you always have a backup of your progress!
+        </div>
+
+        <div class="info-box">
+            <strong>💡 Browser Compatibility:</strong><br><br>
+            ModusPractica works on all modern browsers (Chrome, Edge, Firefox, Safari) and on all devices including tablets and phones! 
+            The Export/Import buttons work everywhere to keep your data safe.
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">🔒</span>
+                Your Data is Private
+            </div>
+            <div class="section-content">
+                All your practice data is stored locally in your browser. Nothing is transmitted to or stored on my servers. 
+                You have complete control - use the <strong>Export Data</strong> button to save all your profiles to a backup file. 
+                Back them up as often as you like to your preferred location (computer, USB drive, cloud storage of your choice). 
+                I believe your data belongs to you, not to me.
+            </div>
+        </div>
+
+        <div class="info-box">
+            <strong>💾 Working Across Multiple Devices:</strong><br><br>
+            Use the <strong>Export Data</strong> button to save all your profiles to a file. 
+            Store this file in your cloud storage (Google Drive, OneDrive, Dropbox, iCloud, etc.), 
+            then use <strong>Import Data</strong> on any other device to restore everything. Works on all devices including tablets and phones!
+        </div>
+
+        <div class="contact-section">
+            <h3>📬 I Need Your Feedback!</h3>
+            <p>
+                As a solo developer working on this project out of passion for music and learning, your input as a BETA tester is invaluable to me. 
+                If you encounter any issues, have suggestions for improvements, or simply want to share your experience, 
+                please don't hesitate to reach out. I would be very grateful for your feedback!
+            </p>
+            <a href="mailto:contact@parturamusic.be" class="email-link">contact@parturamusic.be</a>
+            <p style="margin-top: 15px; font-size: 0.95em;">
+                Or use the <a href="../contact.html" style="color: #b45722; text-decoration: none; font-weight: 600;">contact form</a> on my website.
+            </p>
+        </div>
+
+        <div class="button-group">
+            <a href="moduspractica-app.html" class="btn btn-primary">
+                🚀 Start Using ModusPractica
+            </a>
+            <a href="moduspractica-quick-start.html" class="btn btn-secondary" target="_blank" rel="noopener">
+                📖 Quick Start Guide
+            </a>
+            <a href="../index.html" class="btn btn-secondary">
+                ← Back to Homepage
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+

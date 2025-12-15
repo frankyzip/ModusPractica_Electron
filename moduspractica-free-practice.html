@@ -1,0 +1,255 @@
+<!--
++---------------------------------------------------------------------------+
+�  ModusPractica Free Practice - Timer for Unscheduled Practice             �
+�  Copyright � 2025 Frank De Baere - All Rights Reserved                    �
++---------------------------------------------------------------------------+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Practice - ModusPractica | Unscheduled Practice Timer</title>
+    
+    <meta name="description" content="Free practice mode in ModusPractica. Practice any piece with a timer without affecting your scheduled sessions. Perfect for exploring new music.">
+    <meta name="keywords" content="free practice, unscheduled practice, practice timer, ModusPractica free mode">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free Practice - ModusPractica">
+    <meta property="og:description" content="Practice any piece with a timer outside your schedule.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Free Practice">
+    <meta name="twitter:description" content="Unscheduled practice with timer.">
+    
+    <link rel="icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="apple-touch-icon" href="assets/BreinLogo.png">
+    
+    <!-- CSS styles are inline in this file -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --sidebar-bg: #f7f7f5;
+            --border-color: #e0e0e0;
+            --text-primary: #37352f;
+            --text-secondary: #787774;
+            --accent-color: #2eaadc;
+            --hover-bg: #efefef;
+            --danger-color: #eb5757;
+            --success-color: #27ae60;
+            --warning-color: #f2994a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            background-image: none !important;
+            color: var(--text-primary);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .timer-container {
+            background: var(--bg-color);
+            border-radius: 0;
+            padding: 15px;
+            box-shadow: none;
+            border: none;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .timer-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .timer-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .timer-display {
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            line-height: 1;
+        }
+
+        .timer-display:hover {
+            background: var(--hover-bg);
+        }
+
+        .timer-display:focus {
+            outline: 2px solid var(--accent-color);
+            background: #fff;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+
+        .btn-start {
+            background-color: var(--text-primary);
+            color: white;
+        }
+
+        .btn-start:hover {
+            background-color: #000;
+        }
+
+        .btn-pause {
+            background-color: white;
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+
+        .btn-pause:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .btn-reset {
+            background-color: white;
+            color: var(--danger-color);
+            border-color: var(--border-color);
+        }
+
+        .btn-reset:hover {
+            background-color: #fff0f0;
+            border-color: var(--danger-color);
+        }
+
+        .btn-save {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-save:hover {
+            background-color: #219653;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .practice-note {
+            background: #f9f9f9;
+            border-left: 4px solid var(--accent-color);
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .practice-note-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .practice-note-text {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <h1 class="timer-title">🎵 Free Practice</h1>
+        <p class="timer-subtitle">Practice without schedule constraints</p>
+        
+        <div class="timer-display" id="timerDisplay" contenteditable="true" 
+             title="Click to edit time manually">00:00:00</div>
+        <div style="text-align: center; margin-bottom: 10px;">
+            <small style="color: #9b59b6; font-size: 13px;">ℹ️ Click time to edit manually (format: HH:MM:SS)</small>
+        </div>
+        
+        <div class="timer-controls">
+            <button class="btn btn-start" id="btnStart">
+                ▶️ Start
+            </button>
+            <button class="btn btn-pause" id="btnPause" disabled>
+                ⏸️ Pause
+            </button>
+            <button class="btn btn-reset" id="btnReset">
+                🔄 Reset
+            </button>
+            <button class="btn btn-save" id="btnSave">
+                💾 Save & Close
+            </button>
+        </div>
+        
+        <div class="practice-note">
+            <div class="practice-note-title">📖 About Free Practice</div>
+            <div class="practice-note-text">
+                Use this timer for practice sessions outside your scheduled reviews.
+                This is perfect for extra practice, sight-reading, or working on new pieces
+                that aren't yet in your schedule. Your time will be tracked, but won't affect
+                your Ebbinghaus review schedule.
+            </div>
+        </div>
+    </div>
+
+        <!-- Load Storage Quota Manager -->
+    <script src="StorageQuotaManager.js"></script>
+    <script src="moduspractica-utils.js"></script>
+    
+    <!-- Load Main Logic -->
+    <script src="moduspractica-free-practice.js"></script>
+</body>
+</html>
+

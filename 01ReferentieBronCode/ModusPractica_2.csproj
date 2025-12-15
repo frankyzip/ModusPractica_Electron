@@ -1,0 +1,85 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>MP.ico</ApplicationIcon>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo><!-- Verwijder onnodige taal-mappen, behoud alleen Engels -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Assets\Logo.png"/>
+    <None Remove="Fonts\PlayfairDisplay-Black.ttf"/>
+    <None Remove="Fonts\PlayfairDisplay-BlackItalic.ttf"/>
+    <None Remove="Fonts\PlayfairDisplay-Bold.ttf"/>
+    <None Remove="Fonts\PlayfairDisplay-BoldItalic.ttf"/>
+    <None Remove="Fonts\PlayfairDisplay-ExtraBold.ttf"/>
+    <None Remove="Fonts\PlayfairDisplay-ExtraBoldItalic.ttf"/>
+    <None Remove="Fonts\PlayfairDisplay-Italic.ttf"/>
+    <None Remove="Fonts\PlayfairDisplay-Medium.ttf"/>
+    <None Remove="Fonts\PlayfairDisplay-MediumItalic.ttf"/>
+    <None Remove="Fonts\PlayfairDisplay-Regular.ttf"/>
+    <None Remove="Fonts\PlayfairDisplay-SemiBold.ttf"/>
+    <None Remove="Fonts\PlayfairDisplay-SemiBoldItalic.ttf"/>
+    <None Remove="Images\ModusPractica_Splash.png"/>
+    <None Remove="MP.ico"/>
+    <None Remove="Sound\warning.mp3"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sound\warning.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Documentation\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Logging\**"/>
+    <Compile Remove="ModusPractica.Tests\**"/>
+    <EmbeddedResource Remove="Logging\**"/>
+    <EmbeddedResource Remove="ModusPractica.Tests\**"/>
+    <None Remove="Logging\**"/>
+    <None Remove="ModusPractica.Tests\**"/>
+    <Page Remove="Logging\**"/>
+    <Page Remove="ModusPractica.Tests\**"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.15.3"/>
+    <PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0"/>
+    <PackageReference Include="WpfAnalyzers" Version="4.1.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\PlayfairDisplay-Black.ttf"/>
+    <Resource Include="Fonts\PlayfairDisplay-BlackItalic.ttf"/>
+    <Resource Include="Fonts\PlayfairDisplay-Bold.ttf"/>
+    <Resource Include="Fonts\PlayfairDisplay-BoldItalic.ttf"/>
+    <Resource Include="Fonts\PlayfairDisplay-ExtraBold.ttf"/>
+    <Resource Include="Fonts\PlayfairDisplay-ExtraBoldItalic.ttf"/>
+    <Resource Include="Fonts\PlayfairDisplay-Italic.ttf"/>
+    <Resource Include="Fonts\PlayfairDisplay-Medium.ttf"/>
+    <Resource Include="Fonts\PlayfairDisplay-MediumItalic.ttf"/>
+    <Resource Include="Fonts\PlayfairDisplay-Regular.ttf"/>
+    <Resource Include="Fonts\PlayfairDisplay-SemiBold.ttf"/>
+    <Resource Include="Fonts\PlayfairDisplay-SemiBoldItalic.ttf"/>
+    <Resource Include="Images\ModusPractica_Splash.png"/>
+    <Resource Include="MP.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="User_Data_Files\"/>
+  </ItemGroup>
+</Project>

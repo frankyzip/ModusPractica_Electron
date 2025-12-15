@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Charts - ModusPractica | Visual Progress Analytics</title>
+    
+    <meta name="description" content="Visualize your practice progress with interactive charts. Track success rates, memory retention, and performance trends in ModusPractica.">
+    <meta name="keywords" content="practice charts, progress visualization, music practice analytics, success rate tracking, ModusPractica charts">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Practice Charts - ModusPractica">
+    <meta property="og:description" content="Visualize your practice progress with interactive charts and analytics.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Practice Charts - ModusPractica">
+    <meta name="twitter:description" content="Track your practice progress with visual analytics.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="assets/libs/lucide.min.js"></script>
+    
+    <style>
+        :root {
+            --sidebar-width: 240px;
+            --header-height: 50px;
+            --bg-color: #ffffff;
+            --sidebar-bg: #e8e8e6;
+            --border-color: #e0e0e0;
+            --text-primary: #37352f;
+            --text-secondary: #787774;
+            --accent-color: #2eaadc;
+            --hover-bg: #efefef;
+            --selected-bg: #e6f3f7;
+            --danger-color: #eb5757;
+            --success-color: #27ae60;
+            --warning-color: #f2994a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            background-image: none !important;
+            zoom: 1 !important;
+            color: var(--text-primary);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            font-size: 13px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: var(--header-height);
+        }
+
+        .app-logo-img { height: 20px; width: auto; }
+        .app-title { font-size: 13px; font-weight: 600; }
+
+        .sidebar-nav { flex: 1; padding: 8px 0; overflow-y: auto; }
+        
+        .nav-section-title {
+            padding: 8px 12px 4px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            margin: 1px 8px;
+            border-radius: 4px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .nav-item:hover { background-color: var(--hover-bg); }
+        .nav-item.active { background-color: var(--hover-bg); font-weight: 500; }
+        .nav-icon { font-size: 14px; width: 18px; text-align: center; color: var(--text-secondary); }
+
+        .sidebar-footer { padding: 12px; border-top: 1px solid var(--border-color); }
+        .user-profile { display: flex; align-items: center; gap: 8px; padding: 6px; border-radius: 4px; cursor: pointer; }
+        .user-profile:hover { background-color: var(--hover-bg); }
+        .user-avatar { width: 20px; height: 20px; background-color: #e0e0e0; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            align-items: stretch !important;
+            justify-content: flex-start !important;
+            padding: 0 !important;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: #dcdcda;
+            flex-shrink: 0;
+        }
+
+        .breadcrumbs { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-primary); font-weight: 500; }
+        .top-actions { display: flex; align-items: center; gap: 8px; }
+
+        /* Content Scroll Area */
+        .content-scroll { flex: 1; overflow: hidden; padding: 20px; display: flex; flex-direction: column; }
+        .container { width: 100%; margin: 0; display: flex; flex-direction: column; flex: 1; }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 12px;
+        }
+
+        select, .section-list {
+            padding: 6px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: white;
+            font-size: 13px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .section-list {
+            height: 280px;
+            overflow-y: auto;
+            cursor: default;
+        }
+
+        .section-item {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+        }
+
+        .section-item:hover {
+            background: #fef5e7;
+        }
+
+        .section-item.selected {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .line-legend {
+            margin-top: auto;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: white;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+
+        .line-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .line-legend-swatch {
+            width: 40px;
+            height: 4px;
+            border-radius: 999px;
+            position: relative;
+        }
+
+        .line-legend-swatch::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            background: currentColor;
+        }
+
+        .line-success {
+            background: #4a86e8;
+            color: #4a86e8;
+        }
+
+        .line-friction {
+            background: repeating-linear-gradient(90deg, transparent, transparent 6px, #9c27b0 6px, #9c27b0 12px);
+            color: #9c27b0;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow: hidden;
+        }
+
+        .summary-bar {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .summary-item {
+            display: flex;
+            gap: 6px;
+            align-items: baseline;
+        }
+
+        .summary-label {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .summary-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .summary-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 12px;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .friction-low {
+            background: #2e7d32;
+        }
+
+        .friction-moderate {
+            background: #f9a825;
+            color: #4a2c00;
+        }
+
+        .friction-high {
+            background: #c62828;
+        }
+        
+        .summary-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--border-color);
+            margin: 0 5px;
+        }
+
+        .chart-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .sessions-panel {
+            background: white;
+            padding: 16px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sessions-panel h3 {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sessions-list {
+            overflow-y: auto;
+            max-height: calc(100vh - 350px);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .session-card {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 3px solid var(--accent-color);
+            font-size: 12px;
+        }
+
+        .session-date {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .session-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            color: var(--text-secondary);
+        }
+
+        .session-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .session-label {
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+
+        .session-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .session-performance {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .session-performance.excellent {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .session-performance.good {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .session-performance.fair {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .session-performance.poor {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .session-friction {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+            font-size: 13px;
+        }
+
+        /* Modal & Settings Modal */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 0, 0, 0.4); 
+            z-index: 1000; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .modal.active { display: flex; }
+        .modal-content { 
+            background: #fff; 
+            border-radius: 6px; 
+            width: 500px; 
+            max-width: 90%; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15); 
+            display: flex; 
+            flex-direction: column; 
+            max-height: 90vh; 
+            min-height: auto; 
+        }
+        .modal-header { 
+            padding: 12px 16px; 
+            border-bottom: 1px solid var(--border-color); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .modal-header h2 { font-size: 14px; font-weight: 600; }
+        .modal-close { 
+            background: none; 
+            border: none; 
+            font-size: 18px; 
+            color: var(--text-secondary); 
+            cursor: pointer; 
+        }
+        .modal-close:hover { color: var(--text-primary); }
+        .modal-body { padding: 16px; overflow-y: auto; flex: 1; }
+        .modal-footer { 
+            padding: 12px 16px; 
+            border-top: 1px solid var(--border-color); 
+            display: flex; 
+            justify-content: flex-end; 
+            gap: 8px; 
+            background-color: #f9f9f9; 
+            border-bottom-left-radius: 6px; 
+            border-bottom-right-radius: 6px; 
+        }
+        
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 4px; 
+            padding: 4px 10px; 
+            border-radius: 4px; 
+            font-size: 12px; 
+            font-weight: 500; 
+            cursor: pointer; 
+            border: 1px solid transparent; 
+        }
+        .btn-primary { background-color: var(--text-primary); color: #fff; }
+        .btn-primary:hover { background-color: #000; }
+        .btn-secondary { 
+            background-color: transparent; 
+            color: var(--text-secondary); 
+            border: 1px solid var(--border-color); 
+        }
+        .btn-secondary:hover { 
+            background-color: var(--hover-bg); 
+            color: var(--text-primary); 
+        }
+
+        .settings-section h3 { 
+            font-size: 13px; 
+            font-weight: 600; 
+            margin-bottom: 8px; 
+            padding-bottom: 6px; 
+            border-bottom: 1px solid var(--border-color); 
+        }
+        .settings-toggle { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+        }
+        .settings-toggle input { display: none; }
+        .settings-toggle-slider { 
+            width: 32px; 
+            height: 18px; 
+            background: #ccc; 
+            border-radius: 9px; 
+            position: relative; 
+            margin-right: 8px; 
+            transition: background 0.2s; 
+        }
+        .settings-toggle-slider::before { 
+            content: ''; 
+            position: absolute; 
+            width: 14px; 
+            height: 14px; 
+            background: white; 
+            border-radius: 50%; 
+            top: 2px; 
+            left: 2px; 
+            transition: transform 0.2s; 
+        }
+        .settings-toggle input:checked + .settings-toggle-slider { 
+            background: var(--success-color); 
+        }
+        .settings-toggle input:checked + .settings-toggle-slider::before { 
+            transform: translateX(14px); 
+        }
+        .settings-toggle-label { font-size: 13px; font-weight: 500; }
+        .settings-info { 
+            background-color: #f5f5f5; 
+            padding: 10px; 
+            border-radius: 4px; 
+            margin-top: 10px; 
+            font-size: 12px; 
+            color: var(--text-secondary); 
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #bbb;
+        }
+
+        canvas {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .chart-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sessions-panel {
+                max-height: 400px;
+            }
+        }
+        
+        @media (max-width: 1000px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .left-panel {
+                order: 2;
+            }
+            
+            .right-panel {
+                order: 1;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="apple-touch-icon" href="assets/BreinLogo.png">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="assets/BreinLogo.png" alt="Logo" class="app-logo-img">
+            <div class="app-title">ModusPractica <span style="font-weight: 400; color: #999; font-size: 11px;">v2.0.0</span></div>
+        </div>
+        
+        <div class="sidebar-nav">
+            <div class="nav-section-title">Main</div>
+            <a href="moduspractica-app.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="user"></i></span>
+                <span>Profile Selection</span>
+            </a>
+            <a href="moduspractica-dashboard.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="home"></i></span>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item active">
+                <span class="nav-icon"><i data-lucide="trending-up"></i></span>
+                <span>Charts</span>
+            </a>
+            <a href="moduspractica-statistics.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="bar-chart-2"></i></span>
+                <span>Statistics</span>
+            </a>
+            <a href="#" onclick="window.open('moduspractica-free-practice.html', 'FreePractice', 'width=480,height=420'); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="timer"></i></span>
+                <span>Free Practice</span>
+            </a>
+            <a href="moduspractica-dashboard.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="shuffle"></i></span>
+                <span>Interleaved Practice</span>
+            </a>
+
+            <div class="nav-section-title" style="margin-top: 16px;">System</div>
+            <a href="#" onclick="openSettingsModal(); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="settings"></i></span>
+                <span>Settings</span>
+            </a>
+            <a href="moduspractica-quick-start.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="zap"></i></span>
+                <span>Quick Start</span>
+            </a>
+            <a href="#" onclick="window.open('moduspractica-qa.html', 'QA', 'width=900,height=700'); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="help-circle"></i></span>
+                <span>Q&A</span>
+            </a>
+            <a href="#" onclick="window.open('moduspractica-manual.html', 'Manual', 'width=1000,height=800'); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="book-open"></i></span>
+                <span>Manual EN</span>
+            </a>
+            <a href="#" onclick="window.open('moduspractica-manual-nl.html', 'Manual NL', 'width=1000,height=800'); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="book-open"></i></span>
+                <span>Manual NL</span>
+            </a>
+            <a href="moduspractica-about.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="info"></i></span>
+                <span>About</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="user-profile" id="logout-btn" title="Click to switch profile">
+                <div class="user-avatar"><i data-lucide="user-circle" style="width: 20px; height: 20px;"></i></div>
+                <div class="user-name" id="profile-name">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="breadcrumbs">
+                <div class="breadcrumb-item">
+                    <span class="nav-icon">🏠</span>
+                    <span>ModusPractica</span>
+                </div>
+                <span class="breadcrumb-separator">/</span>
+                <div class="breadcrumb-item breadcrumb-current">
+                    <span>Charts</span>
+                </div>
+            </div>
+            <div class="top-actions">
+                <!-- Empty for now, can add actions later -->
+            </div>
+        </div>
+
+        <!-- Scrollable Content Area -->
+        <div class="content-scroll">
+            <div class="container">
+                <div class="main-container">
+                    <!-- Left Panel: Controls -->
+                    <div class="left-panel">
+            <div class="control-group">
+                <label>Music Piece</label>
+                <select id="pieceSelect">
+                    <option value="">Select a piece...</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>Bar Sections</label>
+                <div class="section-list" id="sectionList">
+                    <div class="empty-state" style="padding: 60px 10px;">
+                        Select a piece first
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Last Sessions</label>
+                <select id="maxSessionsSelect">
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="7" selected>7</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+
+            <div class="options-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="includeDeletedCheck">
+                    Include deleted sessions
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="tempoOverlayCheck">
+                    Show tempo overlay
+                </label>
+            </div>
+
+            <div class="line-legend">
+                <div class="line-legend-item">
+                    <span class="line-legend-swatch line-success"></span>
+                    <span>Success ratio trend (cumulative over selected sessions)</span>
+                </div>
+                <div class="line-legend-item">
+                    <span class="line-legend-swatch line-friction"></span>
+                    <span>Start friction trend (0% = instant success, 100% ≥ 5 attempts)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Chart and Summary -->
+        <div class="right-panel">
+            <div class="summary-bar" id="summaryBar" style="display: none;">
+                <div class="summary-item">
+                    <span class="summary-label">Current:</span>
+                    <span class="summary-value" id="currentRatio">--</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Avg (7 sessions):</span>
+                    <span class="summary-value" id="avg7Ratio">--</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Zone:</span>
+                    <span class="summary-value" id="zoneText">--</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Start Friction:</span>
+                    <span class="summary-chip" id="startFrictionChip">--</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-item">
+                    <span class="summary-label">Stage:</span>
+                    <span class="summary-value" id="stageValue">--</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Section Time:</span>
+                    <span class="summary-value" id="sectionDuration">--</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Piece Total:</span>
+                    <span class="summary-value" id="pieceDuration">--</span>
+                </div>
+            </div>
+
+            <div class="chart-content">
+                <div class="chart-container" id="chartContainer">
+                    <div class="empty-state">
+                        <p style="margin-bottom: 10px;">📊 Select a piece and section to view progress chart</p>
+                        <p style="font-size: 14px; color: #bbb;">Charts show your success ratio trend over the last practice sessions</p>
+                    </div>
+                    <canvas id="mainChartCanvas" width="1200" height="700" style="display: none;"></canvas>
+                </div>
+
+                <div class="sessions-panel" id="sessionsPanel" style="display: none;">
+                    <h3>📋 Practice Sessions</h3>
+                    <div class="sessions-list" id="sessionsList">
+                        <!-- Sessions will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close" onclick="closeSettingsModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h3>Practice Intensity</h3>
+                    <label class="settings-toggle">
+                        <input type="checkbox" id="intensityModuleToggle" onchange="toggleIntensityModule()">
+                        <span class="settings-toggle-slider"></span>
+                        <span class="settings-toggle-label">Enable Intensity Module</span>
+                    </label>
+                    <div id="intensityModuleInfo" class="settings-info" style="display: none;">
+                        <p><strong>Enabled:</strong> Guided practice with TDS scores, phases, and Overlearning targets.</p>
+                        <p style="margin-top: 8px;"><strong>Disabled:</strong> Self-directed practice duration.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="openLoggingPage()">View Logs</button>
+                <button class="btn btn-primary" onclick="closeSettingsModal()">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="StorageQuotaManager.js"></script>
+    <script src="logging.js"></script>
+    <script src="moduspractica-utils.js"></script>
+    <script src="SuccessRatioTrendChart.js"></script>
+    <script src="moduspractica-charts.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        /**
+         * Opens the settings modal and loads current Intensity Module settings
+         */
+        function openSettingsModal() {
+            const modal = document.getElementById('settingsModal');
+            if (!modal) {
+                console.error('❌ Settings modal element not found');
+                return;
+            }
+
+            // Load current settings
+            const currentProfile = localStorage.getItem('mp_lastProfile') || localStorage.getItem('mp_currentProfile');
+            if (currentProfile) {
+                const settingsKey = `mp_${currentProfile}_intensitySettings`;
+                const settings = JSON.parse(localStorage.getItem(settingsKey) || '{}');
+                const toggle = document.getElementById('intensityModuleToggle');
+                
+                if (toggle) {
+                    toggle.checked = settings.enabled !== false; // Default: enabled
+                }
+            }
+
+            // Show info box
+            const infoBox = document.getElementById('intensityModuleInfo');
+            if (infoBox) {
+                infoBox.style.display = 'block';
+            }
+
+            modal.style.display = 'flex';
+            console.log('⚙️ Settings modal opened');
+        }
+
+        /**
+         * Closes the settings modal
+         */
+        function closeSettingsModal() {
+            const modal = document.getElementById('settingsModal');
+            if (modal) {
+                modal.style.display = 'none';
+                console.log('⚙️ Settings modal closed');
+            }
+        }
+
+        /**
+         * Opens the logging page from the settings modal
+         */
+        function openLoggingPage() {
+            window.location.href = 'moduspractica-logging.html';
+        }
+
+        /**
+         * Toggles the Intensity Module on/off and saves the setting
+         */
+        function toggleIntensityModule() {
+            const toggle = document.getElementById('intensityModuleToggle');
+            const currentProfile = localStorage.getItem('mp_lastProfile') || localStorage.getItem('mp_currentProfile');
+            
+            if (!toggle || !currentProfile) {
+                console.error('❌ Cannot toggle: missing toggle element or profile');
+                return;
+            }
+
+            const enabled = toggle.checked;
+            const settingsKey = `mp_${currentProfile}_intensitySettings`;
+            
+            // Save the setting
+            const settings = { enabled: enabled };
+            localStorage.setItem(settingsKey, JSON.stringify(settings));
+            
+            console.log(`⚙️ Intensity Module ${enabled ? 'enabled' : 'disabled'} for profile: ${currentProfile}`);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piece Details - ModusPractica | Repertoire Management</title>
+    
+    <meta name="description" content="View and manage detailed information about your music pieces in ModusPractica. Track practice history, memory retention, and performance metrics.">
+    <meta name="keywords" content="piece details, music repertoire, practice history, piece management, ModusPractica">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Piece Details - ModusPractica">
+    <meta property="og:description" content="Manage detailed information about your music pieces.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Piece Details">
+    <meta name="twitter:description" content="Track your music piece practice history and metrics.">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LLHVMF3M0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        const isDeveloper = window.location.hostname === 'localhost' || 
+                           window.location.hostname === '127.0.0.1' ||
+                           window.location.hostname === '';
+        
+        if (!isDeveloper) {
+            gtag('config', 'G-0LLHVMF3M0', {
+                'app_name': 'ModusPractica',
+                'app_version': '1.0.0'
+            });
+        } else {
+            console.log('[GA4] Developer mode - tracking disabled');
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #7a2d17 0%, #a0522d 50%, #d39e5a 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .mp-back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #7a2d17 0%, #a0522d 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .mp-back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-info {
+            flex: 1;
+        }
+
+        .piece-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #7a2d17;
+            margin-bottom: 5px;
+        }
+
+        .piece-composer {
+            font-size: 18px;
+            color: #a0522d;
+            font-style: italic;
+        }
+
+        .edit-piece-btn {
+            background: linear-gradient(135deg, #b45722 0%, #c9782a 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .edit-piece-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(180, 87, 34, 0.4);
+        }
+
+        /* Main Content Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        /* Metadata Card */
+        .metadata-card {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .metadata-card h2 {
+            color: #7a2d17;
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d39e5a;
+        }
+
+        .metadata-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(211, 158, 90, 0.3);
+        }
+
+        .metadata-item:last-child {
+            border-bottom: none;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: #7a2d17;
+        }
+
+        .metadata-value {
+            color: #a0522d;
+        }
+
+        .color-preview {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            border: 2px solid #7a2d17;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Sections Card */
+        .sections-card {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .sections-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d39e5a;
+        }
+
+        .sections-header h2 {
+            color: #7a2d17;
+            font-size: 20px;
+        }
+
+        .sections-count {
+            color: #a0522d;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .add-section-btn {
+            background: linear-gradient(135deg, #4a9d5f 0%, #5db372 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .add-section-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 157, 95, 0.4);
+        }
+
+        .sections-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .section-item {
+            background: linear-gradient(135deg, #fffef9 0%, #fef9f0 100%);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 8px solid #d39e5a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .section-item:hover {
+            transform: translateX(5px);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #7a2d17;
+        }
+
+        .section-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .section-btn {
+            background: transparent;
+            border: 1px solid #b45722;
+            color: #b45722;
+            padding: 5px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .section-btn:hover {
+            background: #b45722;
+            color: white;
+        }
+
+        .section-btn.delete {
+            border-color: #e74c3c;
+            color: #e74c3c;
+        }
+
+        .section-btn.delete:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .section-info {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .section-info-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .section-description {
+            font-size: 13px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Lifecycle state dropdown */
+        .lifecycle-state-selector {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            border: 1px solid #d39e5a;
+            color: #7a2d17;
+            padding: 4px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .lifecycle-state-selector:hover {
+            background: linear-gradient(135deg, #fdebd0 0%, #fce3b8 100%);
+            border-color: #b45722;
+        }
+
+        /* Dimmed style for archived sections */
+        .section-item.inactive {
+            opacity: 0.5;
+            font-style: italic;
+        }
+
+        .section-item.inactive .section-title::after {
+            content: ' (Archive)';
+            font-size: 12px;
+            color: #e74c3c;
+            font-weight: normal;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #a0522d;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .empty-state-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #d39e5a;
+        }
+
+        .modal-header h2 {
+            color: #7a2d17;
+            font-size: 24px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #7a2d17;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #7a2d17;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #d39e5a;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #fffef9 0%, #fef9f0 100%);
+            color: #333;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #b45722;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #b45722 0%, #c9782a 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(180, 87, 34, 0.4);
+        }
+
+        .btn-secondary {
+            background: #ccc;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #bbb;
+        }
+
+        /* Color Picker */
+        .color-picker-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-option {
+            width: 100%;
+            height: 50px;
+            border: 3px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.selected {
+            border-color: #7a2d17;
+            box-shadow: 0 0 0 2px #fef5e7, 0 0 0 4px #7a2d17;
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .color-picker-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+    <link rel="icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="apple-touch-icon" href="assets/BreinLogo.png">
+        <div class="header">
+            <button class="mp-back-button" onclick="goBack()">
+                ← Back to Dashboard
+            </button>
+            <div class="header-info">
+                <div class="piece-title" id="pieceTitle">Loading...</div>
+                <div class="piece-composer" id="pieceComposer"></div>
+            </div>
+            <button class="edit-piece-btn" onclick="openCalendar()" style="margin-right: 10px;">
+                📅 Calendar
+            </button>
+            <button class="edit-piece-btn" onclick="openEditPieceModal()">
+                Edit Piece
+            </button>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Left Column: Sections -->
+            <div class="sections-card">
+                <div class="sections-header">
+                    <h2>Chunks <span class="sections-count" id="sectionsCount"></span></h2>
+                    <button class="add-section-btn" onclick="openAddSectionModal()">
+                        + Add Chunk
+                    </button>
+                </div>
+                <div class="sections-list" id="sectionsList">
+                    <!-- Sections will be populated here -->
+                </div>
+            </div>
+
+            <!-- Right Column: Metadata -->
+            <div class="metadata-card">
+                <h2>Piece Information</h2>
+                <div id="metadataContent">
+                    <!-- Metadata will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Piece Modal -->
+    <div id="editPieceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Piece</h2>
+                <button class="close-btn" onclick="closeEditPieceModal()">&times;</button>
+            </div>
+            <form id="editPieceForm">
+                <div class="form-group">
+                    <label for="editTitle">Title *</label>
+                    <input type="text" id="editTitle" name="mp_edit_title" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+                </div>
+                <div class="form-group">
+                    <label for="editComposer">Composer *</label>
+                    <input type="text" id="editComposer" name="mp_edit_composer" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+                </div>
+                <div class="form-group">
+                    <label for="editCreationDate">Creation Date</label>
+                    <input type="date" id="editCreationDate">
+                </div>
+                <div class="form-group">
+                    <label for="editYouTubeLink">YouTube Link (optional)</label>
+                    <input type="url" id="editYouTubeLink" placeholder="https://youtu.be/… or https://www.youtube.com/watch?v=…">
+                    <small style="color: #a0522d; font-size: 12px; display: block; margin-top: 5px;">Stored with the piece and shown on the details page.</small>
+                </div>
+                <div class="form-group">
+                    <label>Color Theme</label>
+                    <div class="color-picker-grid" id="editColorPicker">
+                        <!-- Colors will be populated here -->
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeEditPieceModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Section Modal -->
+    <div id="addSectionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Chunk</h2>
+                <button class="close-btn" onclick="closeAddSectionModal()">&times;</button>
+            </div>
+            <form id="addSectionForm">
+                <div class="form-group">
+                    <label for="chunkRange">Chunk Range * (e.g., 1-4 or 10-12 RH)</label>
+                    <input type="text" id="chunkRange" placeholder="1-4" required>
+                    <small style="color: #a0522d; font-size: 12px; display: block; margin-top: 5px;">Auto-formats to 2 digits (e.g., 1-2 becomes 01-02)</small>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" placeholder="Optional notes about this chunk">
+                </div>
+                <div class="form-group">
+                    <label for="targetRepetitions">Target Repetitions *</label>
+                    <select id="targetRepetitions" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6" selected>6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddSectionModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Chunk</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Section Modal -->
+    <div id="editSectionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Chunk</h2>
+                <button class="close-btn" onclick="closeEditSectionModal()">&times;</button>
+            </div>
+            <form id="editSectionForm">
+                <input type="hidden" id="editSectionId">
+                <div class="form-group">
+                    <label>Chunk Range</label>
+                    <input type="text" id="editChunkRange" readonly style="background: #e9ecef; cursor: not-allowed;">
+                    <small style="color: #a0522d; font-size: 12px; display: block; margin-top: 5px;">Chunk range cannot be edited</small>
+                </div>
+                <div class="form-group">
+                    <label for="editDescription">Description</label>
+                    <input type="text" id="editDescription" placeholder="Optional notes about this chunk">
+                </div>
+                <div class="form-group">
+                    <label for="editTargetRepetitions">Target Repetitions *</label>
+                    <select id="editTargetRepetitions" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeEditSectionModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Load Storage Quota Manager -->
+    <script src="StorageQuotaManager.js"></script>
+    <script src="moduspractica-utils.js"></script>
+    
+    <script src="moduspractica-piece-detail.js"></script>
+</body>
+</html>

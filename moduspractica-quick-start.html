@@ -1,0 +1,783 @@
+<!--
++---------------------------------------------------------------------------+
+�  ModusPractica Quick Start Guide                                          �
+�  Copyright � 2025 Frank De Baere - All Rights Reserved                    �
++---------------------------------------------------------------------------+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Start Guide - ModusPractica | How to Use Music Practice App</title>
+    
+    <meta name="description" content="Learn how to practice piano and music effectively in 5 minutes. Step-by-step guide for creating profiles, adding music pieces, scheduling practice sessions with Ebbinghaus spaced repetition.">
+    <meta name="keywords" content="how to practice piano, piano practice guide, how to practice music effectively, effective practice techniques, ModusPractica tutorial, music practice guide, how to use ModusPractica, practice app tutorial, Ebbinghaus method guide">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.parturamusic.be/moduspractica/moduspractica-quick-start.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.parturamusic.be/moduspractica/moduspractica-quick-start.html">
+    <meta property="og:title" content="ModusPractica Quick Start Guide - Get Started in 5 Minutes">
+    <meta property="og:description" content="Step-by-step tutorial for using ModusPractica music practice app with Ebbinghaus spaced repetition.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ModusPractica Quick Start Guide">
+    <meta name="twitter:description" content="Learn how to use ModusPractica music practice app in 5 minutes.">
+    
+    <link rel="icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="apple-touch-icon" href="assets/BreinLogo.png">
+    
+    <!-- CSS styles are inline in this file -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="assets/libs/lucide.min.js"></script>
+    
+    <style>
+        :root {
+            --sidebar-width: 240px;
+            --header-height: 50px;
+            --bg-color: #ffffff;
+            --sidebar-bg: #e8e8e6;
+            --border-color: #e0e0e0;
+            --text-primary: #37352f;
+            --text-secondary: #787774;
+            --accent-color: #2eaadc;
+            --hover-bg: #efefef;
+            --selected-bg: #e6f3f7;
+            --danger-color: #eb5757;
+            --success-color: #27ae60;
+            --warning-color: #f2994a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            background-image: none !important;
+            color: var(--text-primary);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            font-size: 13px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: var(--header-height);
+        }
+
+        .app-logo-img { height: 20px; width: auto; }
+        .app-title { font-size: 13px; font-weight: 600; }
+
+        .sidebar-nav { flex: 1; padding: 8px 0; overflow-y: auto; }
+        
+        .nav-section-title {
+            padding: 8px 12px 4px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            margin: 1px 8px;
+            border-radius: 4px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .nav-item:hover { background-color: var(--hover-bg); }
+        .nav-item.active { background-color: var(--hover-bg); font-weight: 500; }
+        .nav-icon { font-size: 14px; width: 18px; text-align: center; color: var(--text-secondary); }
+
+        .sidebar-footer { padding: 12px; border-top: 1px solid var(--border-color); }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            align-items: stretch !important;
+            justify-content: flex-start !important;
+            padding: 0 !important;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: #dcdcda;
+            flex-shrink: 0;
+        }
+
+        .breadcrumbs { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-primary); font-weight: 500; }
+
+        /* Content Scroll Area */
+        .content-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .quick-start-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .step-section {
+            margin-bottom: 32px;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .step-content {
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 13px;
+        }
+
+        .step-content p {
+            margin-bottom: 12px;
+        }
+
+        .step-content ul {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+
+        .step-content li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .highlight-box strong {
+            color: #856404;
+        }
+
+        .tip-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 12px 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .tip-box strong {
+            color: #0c5460;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 12px 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .success-box strong {
+            color: #155724;
+        }
+
+        .key-concept {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 6px;
+            margin: 16px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .key-concept h3 {
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .button-example {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .workflow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .workflow-step {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-size: 12px;
+        }
+
+        .workflow-arrow {
+            font-size: 20px;
+            color: var(--accent-color);
+        }
+
+        .cta-box {
+            text-align: center;
+            padding: 24px;
+            background: var(--selected-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-top: 32px;
+        }
+
+        .cta-box h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .cta-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2694c4;
+            transform: translateY(-1px);
+        }
+
+        .support-box {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            margin-top: 16px;
+        }
+
+        .support-box h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .support-box p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .support-box a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="assets/BreinLogo.png" alt="Logo" class="app-logo-img">
+            <div class="app-title">ModusPractica <span style="font-weight: 400; color: #999; font-size: 11px;">v2.0.0</span></div>
+        </div>
+        
+        <div class="sidebar-nav">
+            <div class="nav-section-title">Main</div>
+            <a href="moduspractica-app.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="user"></i></span>
+                <span>Profile Selection</span>
+            </a>
+            <a href="moduspractica-dashboard.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="home"></i></span>
+                <span>Dashboard</span>
+            </a>
+            <a href="moduspractica-charts.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="trending-up"></i></span>
+                <span>Charts</span>
+            </a>
+            <a href="moduspractica-statistics.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="bar-chart-2"></i></span>
+                <span>Statistics</span>
+            </a>
+            <a href="#" onclick="window.open('moduspractica-free-practice.html', 'FreePractice', 'width=480,height=420'); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="timer"></i></span>
+                <span>Free Practice</span>
+            </a>
+            <a href="moduspractica-dashboard.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="shuffle"></i></span>
+                <span>Interleaved Practice</span>
+            </a>
+
+            <div class="nav-section-title" style="margin-top: 16px;">System</div>
+            <a href="#" onclick="alert('Settings modal would open here'); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="settings"></i></span>
+                <span>Settings</span>
+            </a>
+            <a href="moduspractica-quick-start.html" class="nav-item active">
+                <span class="nav-icon"><i data-lucide="zap"></i></span>
+                <span>Quick Start</span>
+            </a>
+            <a href="#" onclick="window.open('moduspractica-qa.html', 'QA', 'width=900,height=700'); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="help-circle"></i></span>
+                <span>Q&A</span>
+            </a>
+            <a href="#" onclick="window.open('moduspractica-manual.html', 'Manual', 'width=1000,height=800'); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="book-open"></i></span>
+                <span>Manual EN</span>
+            </a>
+            <a href="#" onclick="window.open('moduspractica-manual-nl.html', 'Manual NL', 'width=1000,height=800'); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="book-open"></i></span>
+                <span>Manual NL</span>
+            </a>
+            <a href="moduspractica-about.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="info"></i></span>
+                <span>About</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <div style="padding: 8px; font-size: 11px; color: var(--text-secondary); text-align: center;">
+                Quick Start Guide
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="breadcrumbs">
+                <span>Quick Start Guide</span>
+            </div>
+        </div>
+
+        <!-- Scrollable Content Area -->
+        <div class="content-scroll">
+            <div class="quick-start-container">
+                <div class="page-header">
+                    <h1>⚡ Quick Start Guide</h1>
+                    <p>Get started with ModusPractica in 5 minutes. Learn how to create profiles, add pieces, schedule practice sessions, and track your progress.</p>
+                </div>
+
+        <!-- STEP 1: Create Profile -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <h2 class="step-title">Create Your Profile</h2>
+            </div>
+            <div class="step-content">
+                <p>When you first open ModusPractica, you'll need to create a profile. This keeps your practice data organized and allows multiple musicians to use the same device.</p>
+                
+                <ul>
+                    <li>Click <span class="button-example">➕ Create New Profile</span></li>
+                    <li>Enter your name (required)</li>
+                    <li>Optionally add your age and experience level</li>
+                    <li>Click <span class="button-example">Create Profile</span></li>
+                </ul>
+
+                <div class="highlight-box">
+                    <strong>⚠️ Important:</strong> After creating your profile, you'll see a popup reminder to save it using the 
+                    <strong>"💾 Save Profile To"</strong> button. This creates a backup file on your computer or cloud storage.
+                </div>
+
+                <div class="tip-box">
+                    <strong>💡 Pro Tip:</strong> Save your profile to a cloud folder (Google Drive, OneDrive, Dropbox) so you can access 
+                    it from any device or browser!
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2: Add Your First Piece -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <h2 class="step-title">Add Your First Music Piece</h2>
+            </div>
+            <div class="step-content">
+                <p>After creating your profile, you'll see the Dashboard. Let's add your first piece!</p>
+                
+                <ul>
+                    <li>Click <span class="button-example">+ New Piece</span> button at the top</li>
+                    <li>Fill in the details:
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Title:</strong> e.g., "Moonlight Sonata"</li>
+                            <li><strong>Composer:</strong> e.g., "Ludwig van Beethoven"</li>
+                            <li><strong>Year:</strong> Optional, e.g., "1801"</li>
+                            <li><strong>Color:</strong> Choose a color to easily identify this piece</li>
+                        </ul>
+                    </li>
+                    <li>Click <span class="button-example">Save</span></li>
+                </ul>
+
+                <div class="key-concept">
+                    <h3>🎵 Why Add Pieces?</h3>
+                    <p>Each piece in ModusPractica represents a complete work you're learning. You'll break it down into smaller 
+                    sections in the next step, making complex pieces manageable and trackable.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3: Break Into Sections -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <h2 class="step-title">Break Your Piece Into Sections</h2>
+            </div>
+            <div class="step-content">
+                <p>Now let's divide your piece into practice sections. This is where ModusPractica's smart scheduling really shines!</p>
+                
+                <ul>
+                    <li>Click on your piece in the Dashboard to open the details page</li>
+                    <li>Click <span class="button-example">+ Add Section</span></li>
+                    <li>Define your section:
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Description:</strong> e.g., "Introduction (Bars 1-8)"</li>
+                            <li><strong>Bar Range:</strong> e.g., "1-8" or "A1-A8"</li>
+                            <li><strong>Difficulty:</strong> Choose from Easy, Average, Difficult, or Mastered</li>
+                            <li><strong>Target Repetitions:</strong> How many times to practice per session (default: 3)</li>
+                        </ul>
+                    </li>
+                    <li>Click <span class="button-example">Save Section</span></li>
+                    <li>Repeat for each section of your piece</li>
+                </ul>
+
+                <div class="tip-box">
+                    <strong>💡 Section Tips:</strong><br>
+                    • Keep sections small (4-8 bars for complex passages, 8-16 for easier ones)<br>
+                    • Use descriptive names like "Exposition", "Development", "Left hand arpeggios"<br>
+                    • Start with "Average" difficulty - you can adjust it later based on your progress<br>
+                    • Break difficult passages into even smaller chunks
+                </div>
+
+                <div class="key-concept">
+                    <h3>🧠 The Science Behind Sections</h3>
+                    <p>ModusPractica uses the <strong>Ebbinghaus Forgetting Curve</strong> to schedule each section independently. 
+                    By breaking your piece into manageable chunks, the app can optimize when you review each part, ensuring you 
+                    practice exactly when your memory needs reinforcement - not too early (wasting time) or too late (forgetting).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 4: Practice Sessions -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <h2 class="step-title">Start Your First Practice Session</h2>
+            </div>
+            <div class="step-content">
+                <p>Now the fun begins! ModusPractica will show you which sections are due for practice today.</p>
+
+                <div class="workflow-diagram">
+                    <div class="workflow-step">
+                        <strong>📊 Check Dashboard</strong><br>
+                        See "Due Today" count
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <strong>▶️ Start Session</strong><br>
+                        Click on a scheduled section
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <strong>🎹 Practice</strong><br>
+                        Play the section
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <strong>✓ Complete</strong><br>
+                        Mark as done
+                    </div>
+                </div>
+
+                <p><strong>During a practice session:</strong></p>
+                <ul>
+                    <li><strong>Timer:</strong> Tracks how long you spend on each section</li>
+                    <li><strong>Repetition Counter:</strong> Click <span class="button-example">✓ Attempt Successful</span> each time you play it correctly</li>
+                    <li><strong>Failure Tracking:</strong> Click <span class="button-example">✗ Attempt Failed</span> if you make mistakes (helps the algorithm adjust)</li>
+                    <li><strong>Difficulty Adjustment:</strong> If a section feels too easy or hard, change its difficulty during the session</li>
+                    <li><strong>Notes:</strong> Add notes about what worked or what needs attention</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>✅ What Happens After a Session?</strong><br><br>
+                    ModusPractica automatically calculates when you should practice this section next based on:
+                    <ul style="margin-top: 10px;">
+                        <li>Your performance (successes vs. failures)</li>
+                        <li>The section's difficulty</li>
+                        <li>How many times you've practiced it before</li>
+                        <li>Your personal learning curve (improves over time!)</li>
+                    </ul>
+                    The better you perform, the longer the interval before the next review!
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 5: Track Your Progress -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <h2 class="step-title">Track Your Progress</h2>
+            </div>
+            <div class="step-content">
+                <p>ModusPractica offers powerful tools to visualize and understand your learning progress!</p>
+
+                <p><strong>📈 Practice Charts:</strong></p>
+                <ul>
+                    <li>Click <span class="button-example">Charts</span> in the Dashboard sidebar</li>
+                    <li>Select a piece and section to view your <strong>Success Ratio Trend Chart</strong></li>
+                    <li>See your progress over the last 7 sessions with color-coded learning zones:
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><strong style="color: #C62828;">Too Hard:</strong> Below 60% - Consider breaking into smaller sections</li>
+                            <li><strong style="color: #F57F17;">Exploration:</strong> 60-80% - Normal learning phase</li>
+                            <li><strong style="color: #E65100;">Consolidation:</strong> 80-90% - Ideal practice zone!</li>
+                            <li><strong style="color: #2E7D32;">Mastery:</strong> 90-95% - Nearly perfected</li>
+                            <li><strong style="color: #616161;">Overlearning:</strong> 95-100% - Time to reduce practice frequency</li>
+                        </ul>
+                    </li>
+                    <li>Adjust how many sessions to display (3, 5, 7, 10, or ALL)</li>
+                    <li>Toggle to include or exclude deleted sessions</li>
+                </ul>
+
+                <div class="key-concept">
+                    <h3>📊 Understanding Your Success Ratio</h3>
+                    <p>The chart shows <strong>cumulative rolling average</strong> - not just individual sessions, but your overall trend. 
+                    This gives you a realistic picture of your progress over time. The goal is to stay in the <strong>Consolidation zone (80-90%)</strong> 
+                    for optimal learning - challenging enough to grow, but not so hard that you're frustrated.</p>
+                </div>
+
+                <p style="margin-top: 20px;"><strong>📊 Statistics Page:</strong></p>
+                <ul>
+                    <li>Click <span class="button-example">Statistics</span> in the Dashboard sidebar</li>
+                    <li>View total practice time and session history</li>
+                    <li>See which pieces and sections get the most attention</li>
+                    <li>Track your consistency over weeks and months</li>
+                </ul>
+
+                <div class="tip-box" style="margin-top: 20px;">
+                    <strong>💡 Pro Tip:</strong> Check the Practice Charts after every 3-4 sessions to see if you're in the optimal learning zone. 
+                    If a section is consistently in "Too Hard", consider breaking it into smaller chunks or reducing the target repetitions.
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 6: Free Practice -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">6</div>
+                <h2 class="step-title">Use Free Practice Mode</h2>
+            </div>
+            <div class="step-content">
+                <p>Want to practice something outside your schedule? Use Free Practice mode!</p>
+                
+                <ul>
+                    <li>Click <span class="button-example">Free Practice</span> in the Dashboard sidebar</li>
+                    <li>Use the timer to track unscheduled practice sessions</li>
+                    <li>Perfect for: sight-reading, improvisation, working on new pieces not yet added to your schedule</li>
+                    <li>Your time is still tracked and added to your statistics!</li>
+                </ul>
+
+                <div class="tip-box">
+                    <strong>💡 When to Use Free Practice:</strong><br>
+                    • Exploring new repertoire<br>
+                    • Warming up with scales or exercises<br>
+                    • Sight-reading practice<br>
+                    • Improvisation sessions<br>
+                    • Collaborative playing or ensemble practice
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 7: Save & Backup -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">7</div>
+                <h2 class="step-title">Save Your Progress</h2>
+            </div>
+            <div class="step-content">
+                <p>Don't lose your hard work! ModusPractica stores data locally, but you should regularly create backups.</p>
+
+                <p><strong>Save Options (in Profile Selection page):</strong></p>
+                <ul>
+                    <li><strong>💾 Save Profile To:</strong> Save your current profile to a file of your choice
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Best for: Regular backups to cloud storage</li>
+                            <li>Creates: Single profile file you can share or move</li>
+                        </ul>
+                    </li>
+                    <li><strong>📂 Load Profile From:</strong> Open a previously saved profile file
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Useful for: Switching devices or restoring backups</li>
+                        </ul>
+                    </li>
+                    <li><strong>📦 Export Data:</strong> Backup ALL your profiles at once
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Best for: Complete backup before major updates</li>
+                            <li>Saves to: Downloads folder</li>
+                        </ul>
+                    </li>
+                    <li><strong>📥 Import Data:</strong> Restore all profiles from a backup file</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <strong>💾 Auto-Save Feature:</strong> ModusPractica automatically saves to your last save location every 5 minutes 
+                    and when you close the browser (Chrome/Edge only). However, manual saves are still recommended for safety!
+                </div>
+
+                <div class="tip-box">
+                    <strong>☁️ Cloud Sync Strategy:</strong><br>
+                    1. Create a "ModusPractica" folder in your cloud storage (Google Drive, OneDrive, etc.)<br>
+                    2. Use "Save Profile To" and select this folder<br>
+                    3. On another device, use "Load Profile From" to open the same file<br>
+                    4. Both devices now share the same practice data!
+                </div>
+            </div>
+        </div>
+
+                <!-- Call to Action -->
+                <div class="cta-box">
+                    <h2>Ready to Get Started?</h2>
+                    <p>You now know everything you need to start using ModusPractica effectively!</p>
+                    <a href="moduspractica-app.html" class="btn">🚀 Launch ModusPractica</a>
+                </div>
+
+                <!-- Support Section -->
+                <div class="support-box">
+                    <h3>Need Help?</h3>
+                    <p>Have questions or encountered an issue? We're here to help!</p>
+                    <a href="mailto:contact@parturamusic.be">contact@parturamusic.be</a>
+                    <p style="margin-top: 8px;">
+                        <a href="../contact.html">Contact Form</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+

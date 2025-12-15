@@ -1,0 +1,511 @@
+<Window x:Class="ModusPractica.PlaylistManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Interleaved Practice Manager"
+        Width="900"
+        Height="600"
+        WindowStartupLocation="CenterScreen"
+        Background="#F8F9FA">
+
+    <Window.Resources>
+        <Style x:Key="ModernButtonStyle"
+               TargetType="Button">
+            <Setter Property="Background"
+                    Value="#007ACC"/>
+            <Setter Property="Foreground"
+                    Value="White"/>
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+            <Setter Property="Padding"
+                    Value="12,8"/>
+            <Setter Property="Margin"
+                    Value="5"/>
+            <Setter Property="FontWeight"
+                    Value="Medium"/>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#005A9E"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#004578"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SecondaryButtonStyle"
+               BasedOn="{StaticResource ModernButtonStyle}"
+               TargetType="Button">
+            <Setter Property="Background"
+                    Value="#6C757D"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#5A6268"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#495057"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DangerButtonStyle"
+               BasedOn="{StaticResource ModernButtonStyle}"
+               TargetType="Button">
+            <!-- Rood als basis -->
+            <Setter Property="Background"
+                    Value="#DC3545"/>
+            <Setter Property="BorderBrush"
+                    Value="#DC3545"/>
+            <Setter Property="Foreground"
+                    Value="White"/>
+            <!-- Eigen template met rode hover/pressed/disabled -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Margin="12,6"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#C82333"/>
+                                <Setter Property="BorderBrush"
+                                        Value="#C82333"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#A71D2A"/>
+                                <Setter Property="BorderBrush"
+                                        Value="#A71D2A"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+                                <Setter Property="Background"
+                                        Value="#F5C6CB"/>
+                                <Setter Property="BorderBrush"
+                                        Value="#F5C6CB"/>
+                                <Setter Property="Foreground"
+                                        Value="#842029"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SuccessButtonStyle"
+               BasedOn="{StaticResource ModernButtonStyle}"
+               TargetType="Button">
+            <Setter Property="Background"
+                    Value="#28A745"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#218838"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#1E7E34"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="#343A40"
+                Padding="20,15">
+            <StackPanel>
+                <TextBlock Text="🎼 Interleaved Practice Manager"
+                           Foreground="White"
+                           FontSize="20"
+                           FontWeight="Bold"/>
+                <TextBlock Text="Create focused practice sessions using Dr. Gebrian's interleaved practice principles"
+                           Foreground="#ADB5BD"
+                           FontSize="12"
+                           Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1"
+              Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.8*"/>
+                <ColumnDefinition Width="2.6*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Panel - Existing Interleaved Practices -->
+            <GroupBox Grid.Column="0"
+                      Header="📋 Your Interleaved Practices"
+                      Margin="0,0,10,0"
+                      Background="White"
+                      BorderBrush="#DEE2E6"
+                      BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                                Orientation="Horizontal"
+                                Margin="0,0,0,10">
+                        <Button Name="BtnNewPlaylist"
+                                Content="➕ New"
+                                Style="{StaticResource ModernButtonStyle}"
+                                Padding="18,8"
+                                Click="BtnNewPlaylist_Click"/>
+                        <Button Name="BtnAutoGenerateInterleaved"
+                                Content="🎯 Auto Generate"
+                                Style="{StaticResource ModernButtonStyle}"
+                                Padding="18,8"
+                                Background="#28A745"
+                                Click="BtnAutoGenerateInterleaved_Click"/>
+
+                        <Button Name="BtnDeletePlaylist"
+                                Content="🗑️ Delete"
+                                Style="{StaticResource DangerButtonStyle}"
+                                Click="BtnDeletePlaylist_Click"
+                                IsEnabled="False"/>
+                    </StackPanel>
+
+                    <ListBox Grid.Row="1"
+                             Name="LbPlaylists"
+                             Background="White"
+                             BorderBrush="#DEE2E6"
+                             SelectionChanged="LbPlaylists_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="5">
+                                    <TextBlock Text="{Binding Name}"
+                                               FontWeight="Medium"
+                                               FontSize="14"/>
+                                    <TextBlock Text="{Binding StatusDisplay}"
+                                               FontSize="11"
+                                               Foreground="#6C757D"/>
+                                    <TextBlock Text="{Binding EstimatedDuration}"
+                                               FontSize="10"
+                                               Foreground="#007ACC"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock Grid.Row="1"
+                               Text="No interleaved practices created yet.&#x0a;Click 'New Interleaved Practice' to get started!"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="#6C757D"
+                               FontStyle="Italic"
+                               Name="TxtEmptyPlaylists"
+                               Visibility="Collapsed"/>
+                </Grid>
+            </GroupBox>
+
+            <!-- Right Panel - Interleaved Practice Builder -->
+            <GroupBox Grid.Column="1"
+                      Header="🛠️ Interleaved Practice Builder"
+                      Margin="10,0,0,0"
+                      Background="White"
+                      BorderBrush="#DEE2E6"
+                      BorderThickness="1">
+                <Grid Name="PlaylistBuilderGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Interleaved Practice Info -->
+                    <StackPanel Grid.Row="0"
+                                Margin="0,0,0,10">
+                        <Label Content="Interleaved Practice Name:"
+                               FontWeight="Medium"/>
+                        <TextBox Name="TxtPlaylistName"
+                                 Margin="0,0,0,5"
+                                 Padding="8"
+                                 BorderBrush="#DEE2E6"
+                                 Text="My Practice Session"/>
+
+                        <Label Content="Description (optional):"
+                               FontWeight="Medium"/>
+                        <TextBox Name="TxtPlaylistDescription"
+                                 Margin="0,0,0,10"
+                                 Padding="8"
+                                 BorderBrush="#DEE2E6"
+                                 Text="Focused practice session"/>
+                    </StackPanel>
+
+                    <!-- Section Selector -->
+                    <StackPanel Grid.Row="1"
+                                Margin="0,0,0,10">
+                        <Label Content="Add sections to interleaved practice:"
+                               FontWeight="Medium"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox Name="CbMusicPieces"
+                                      Grid.Column="0"
+                                      Margin="0,0,5,0"
+                                      Padding="8"
+                                      DisplayMemberPath="Title"
+                                      SelectionChanged="CbMusicPieces_SelectionChanged"/>
+
+                            <ComboBox Name="CbBarSections"
+                                      Grid.Column="1"
+                                      Margin="5,0,5,0"
+                                      Padding="8"
+                                      DisplayMemberPath="BarRange"
+                                      IsEnabled="False"/>
+
+                            <StackPanel Grid.Column="2"
+                                        Orientation="Horizontal">
+                                <TextBox Name="TxtDuration"
+                                         Text="2"
+                                         Width="40"
+                                         Margin="5,0,5,0"
+                                         Padding="5"
+                                         VerticalAlignment="Center"/>
+                                <TextBlock Text="min"
+                                           VerticalAlignment="Center"
+                                           Margin="0,0,5,0"/>
+                                <Button Name="BtnAddSection"
+                                        Content="➕ Add"
+                                        Style="{StaticResource ModernButtonStyle}"
+                                        Click="BtnAddSection_Click"
+                                        IsEnabled="False"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- Playlist Items -->
+                    <GroupBox Grid.Row="2"
+                              Header="📝 Playlist Items"
+                              BorderBrush="#DEE2E6">
+                        <Grid>
+                            <ListBox Name="LbPlaylistItems"
+                                     Background="White"
+                                     BorderBrush="#DEE2E6">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#F8F9FA"
+                                                Margin="2"
+                                                Padding="8"
+                                                CornerRadius="4"
+                                                BorderBrush="#DEE2E6"
+                                                BorderThickness="1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0"
+                                                           Text="{Binding StatusDisplay}"
+                                                           VerticalAlignment="Center"
+                                                           Margin="0,0,8,0"/>
+
+                                                <StackPanel Grid.Column="1">
+                                                    <TextBlock Text="{Binding DisplayName}"
+                                                               FontWeight="Medium"
+                                                               FontSize="12"/>
+                                                    <TextBlock Text="{Binding MusicPieceTitle}"
+                                                               FontSize="10"
+                                                               Foreground="#6C757D"/>
+                                                </StackPanel>
+
+                                                <!-- Replace the existing action-buttons panel inside the item template -->
+                                                <StackPanel Grid.Column="2"
+                                                            Orientation="Horizontal"
+                                                            Margin="6,0,0,0"
+                                                            VerticalAlignment="Center">
+                                                    <!-- Duration editor -->
+                                                    <StackPanel Orientation="Horizontal"
+                                                                VerticalAlignment="Center">
+                                                        <!-- Decrease duration -->
+                                                        <Button Width="26"
+                                                                Height="26"
+                                                                Margin="0,0,6,0"
+                                                                ToolTip="Decrease duration"
+                                                                Click="BtnDecDuration_Click"
+                                                                Tag="{Binding}">
+                                                            <TextBlock Text="−"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center"/>
+                                                        </Button>
+
+                                                        <!-- Editable minutes textbox (two-way bound) -->
+                                                        <TextBox Width="42"
+                                                                 Height="26"
+                                                                 HorizontalContentAlignment="Center"
+                                                                 Text="{Binding DurationMinutes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                 PreviewTextInput="DurationNumeric_OnlyDigits"
+                                                                 ToolTip="Minutes (1..60)"/>
+
+                                                        <!-- Increase duration -->
+                                                        <Button Width="26"
+                                                                Height="26"
+                                                                Margin="6,0,0,0"
+                                                                ToolTip="Increase duration"
+                                                                Click="BtnIncDuration_Click"
+                                                                Tag="{Binding}">
+                                                            <TextBlock Text="+"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center"/>
+                                                        </Button>
+                                                    </StackPanel>
+
+                                                    <!-- Keep your remove button (X) as-is next to it -->
+                                                    <Button Width="26"
+                                                            Height="26"
+                                                            Margin="8,0,0,0"
+                                                            ToolTip="Remove from interleaved practice"
+                                                            Click="BtnRemoveItem_Click"
+                                                            Tag="{Binding}">
+                                                        <TextBlock Text="X"
+                                                                   VerticalAlignment="Center"
+                                                                   HorizontalAlignment="Center"/>
+                                                    </Button>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+
+                            <TextBlock Text="No sections added yet.&#x0a;Select a piece and section above to get started!"
+                                       TextAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="#6C757D"
+                                       FontStyle="Italic"
+                                       Name="TxtEmptyItems"
+                                       Visibility="Collapsed"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- Action Buttons -->
+                    <Grid Grid.Row="3"
+                            Margin="0,15,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Left-aligned: Reshuffle -->
+                        <StackPanel Grid.Column="0"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Left">
+                            <Button Name="BtnReshuffleOrder"
+                                    Content="🔀 Reshuffle"
+                                    Style="{StaticResource ModernButtonStyle}"
+                                    Padding="18,8"
+                                    Background="#17A2B8"
+                                    Click="BtnReshuffleOrder_Click"/>
+                        </StackPanel>
+
+                        <!-- Right-aligned: Start/Save -->
+                        <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                            <Button Name="BtnStartPlaylist"
+                                    Content="🎵 Start Practice Session"
+                                    Style="{StaticResource SuccessButtonStyle}"
+                                    Click="BtnStartPlaylist_Click"
+                                    IsEnabled="False"/>
+                            <Button Name="BtnSavePlaylist"
+                                    Content="💾 Save Interleaved Practice"
+                                    Style="{StaticResource ModernButtonStyle}"
+                                    Click="BtnSavePlaylist_Click"
+                                    IsEnabled="False"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+        <!-- Footer -->
+        <Border Grid.Row="2"
+                Background="#F8F9FA"
+                Padding="15,10"
+                BorderBrush="#DEE2E6"
+                BorderThickness="0,1,0,0">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center"
+                           FontSize="11"
+                           Foreground="#6C757D">
+                    💡 **Dr. Gebrian's Tip:** Keep practice blocks short (1-5 minutes) and alternate between different pieces for maximum learning efficiency.
+                </TextBlock>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

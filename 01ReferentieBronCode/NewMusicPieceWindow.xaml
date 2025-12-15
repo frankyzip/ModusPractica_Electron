@@ -1,0 +1,349 @@
+<Window x:Class="ModusPractica.NewMusicPieceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModusPractica"
+        mc:Ignorable="d"
+        Title="New Music Piece"
+        Height="550"
+        Width="450"
+        WindowStartupLocation="CenterOwner"
+        Background="#F8F8F8"
+        ResizeMode="NoResize"
+        FocusManager.FocusedElement="{Binding ElementName=TxtTitle}">
+
+    <Window.Resources>
+        <!-- Drop shadow for borders -->
+        <DropShadowEffect x:Key="MildShadowEffect"
+                          BlurRadius="10"
+                          Direction="270"
+                          Opacity="0.2"
+                          ShadowDepth="3"
+                          Color="#000000"/>
+
+        <local:SelectedColorKeyToBoolConverter x:Key="SelectedColorConverter"/>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="White"
+                BorderBrush="#DDDDDD"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="15"
+                Margin="0,0,0,15"
+                Effect="{StaticResource MildShadowEffect}">
+            <TextBlock Text="Add New Music Piece"
+                       FontSize="20"
+                       FontWeight="SemiBold"
+                       Foreground="#333333"/>
+        </Border>
+
+        <!-- Form content -->
+        <Border Grid.Row="1"
+                Background="White"
+                BorderBrush="#DDDDDD"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Effect="{StaticResource MildShadowEffect}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <!-- Title field -->
+                    <TextBlock Text="Title:"
+                               Margin="0,0,0,5"
+                               FontWeight="SemiBold"/>
+                    <ComboBox x:Name="TxtTitle"
+                              Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
+                              ItemsSource="{Binding TitleSuggestions}"
+                              IsEditable="True"
+                              IsTextSearchEnabled="False"
+                              StaysOpenOnEdit="True"
+                              Padding="8,5"
+                              Margin="0,0,0,15">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="ComboBoxItem">
+                                <!-- Stash the ComboBox DataContext (the ViewModel) in the item container's Tag -->
+                                <Setter Property="Tag"
+                                        Value="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ComboBox}}"/>
+                                <Setter Property="ContextMenu">
+                                    <Setter.Value>
+                                        <!-- ContextMenu is in een aparte logical tree; gebruik PlacementTarget -->
+                                        <ContextMenu>
+                                            <MenuItem Header="Verwijder suggestie"
+                                                      Command="{Binding PlacementTarget.Tag.RemoveTitleSuggestionCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                      CommandParameter="{Binding PlacementTarget.Content, RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+                                        </ContextMenu>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
+
+                    <!-- Composer field -->
+                    <TextBlock Text="Composer:"
+                               Margin="0,0,0,5"
+                               FontWeight="SemiBold"/>
+                    <ComboBox x:Name="TxtComposer"
+                              Text="{Binding Composer, UpdateSourceTrigger=PropertyChanged}"
+                              ItemsSource="{Binding ComposerSuggestions}"
+                              IsEditable="True"
+                              IsTextSearchEnabled="False"
+                              StaysOpenOnEdit="True"
+                              Padding="8,5"
+                              Margin="0,0,0,20">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="Tag"
+                                        Value="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ComboBox}}"/>
+                                <Setter Property="ContextMenu">
+                                    <Setter.Value>
+                                        <ContextMenu>
+                                            <MenuItem Header="Verwijder suggestie"
+                                                      Command="{Binding PlacementTarget.Tag.RemoveComposerSuggestionCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                      CommandParameter="{Binding PlacementTarget.Content, RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+                                        </ContextMenu>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
+
+                    <!-- Color selection -->
+                    <TextBlock Text="Select Color:"
+                               Margin="0,0,0,10"
+                               FontWeight="SemiBold"/>
+
+                    <UniformGrid Columns="2"
+                                 Rows="4"
+                                 Margin="0,0,0,15">
+                        <!-- Blue -->
+                        <RadioButton x:Name="RbPastelBlue"
+                                     Margin="5"
+                                     GroupName="ColorSelection"
+                                     IsChecked="{Binding SelectedColorKey, Converter={StaticResource SelectedColorConverter}, ConverterParameter=PastelBlue}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="24"
+                                        Height="24"
+                                        Background="{StaticResource PastelBlue}"
+                                        BorderBrush="#777777"
+                                        BorderThickness="1"
+                                        CornerRadius="3"
+                                        Margin="0,0,8,0"/>
+                                <TextBlock Text="Blue"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!-- Green -->
+                        <RadioButton x:Name="RbPastelGreen"
+                                     Margin="5"
+                                     GroupName="ColorSelection"
+                                     IsChecked="{Binding SelectedColorKey, Converter={StaticResource SelectedColorConverter}, ConverterParameter=PastelGreen}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="24"
+                                        Height="24"
+                                        Background="{StaticResource PastelGreen}"
+                                        BorderBrush="#777777"
+                                        BorderThickness="1"
+                                        CornerRadius="3"
+                                        Margin="0,0,8,0"/>
+                                <TextBlock Text="Green"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!-- Pink -->
+                        <RadioButton x:Name="RbPastelPink"
+                                     Margin="5"
+                                     GroupName="ColorSelection"
+                                     IsChecked="{Binding SelectedColorKey, Converter={StaticResource SelectedColorConverter}, ConverterParameter=PastelPink}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="24"
+                                        Height="24"
+                                        Background="{StaticResource PastelPink}"
+                                        BorderBrush="#777777"
+                                        BorderThickness="1"
+                                        CornerRadius="3"
+                                        Margin="0,0,8,0"/>
+                                <TextBlock Text="Pink"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!-- Purple -->
+                        <RadioButton x:Name="RbPastelPurple"
+                                     Margin="5"
+                                     GroupName="ColorSelection"
+                                     IsChecked="{Binding SelectedColorKey, Converter={StaticResource SelectedColorConverter}, ConverterParameter=PastelPurple}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="24"
+                                        Height="24"
+                                        Background="{StaticResource PastelPurple}"
+                                        BorderBrush="#777777"
+                                        BorderThickness="1"
+                                        CornerRadius="3"
+                                        Margin="0,0,8,0"/>
+                                <TextBlock Text="Purple"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!-- Yellow -->
+                        <RadioButton x:Name="RbPastelYellow"
+                                     Margin="5"
+                                     GroupName="ColorSelection"
+                                     IsChecked="{Binding SelectedColorKey, Converter={StaticResource SelectedColorConverter}, ConverterParameter=PastelYellow}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="24"
+                                        Height="24"
+                                        Background="{StaticResource PastelYellow}"
+                                        BorderBrush="#777777"
+                                        BorderThickness="1"
+                                        CornerRadius="3"
+                                        Margin="0,0,8,0"/>
+                                <TextBlock Text="Yellow"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!-- Orange -->
+                        <RadioButton x:Name="RbPastelOrange"
+                                     Margin="5"
+                                     GroupName="ColorSelection"
+                                     IsChecked="{Binding SelectedColorKey, Converter={StaticResource SelectedColorConverter}, ConverterParameter=PastelOrange}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="24"
+                                        Height="24"
+                                        Background="{StaticResource PastelOrange}"
+                                        BorderBrush="#777777"
+                                        BorderThickness="1"
+                                        CornerRadius="3"
+                                        Margin="0,0,8,0"/>
+                                <TextBlock Text="Orange"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!-- Teal -->
+                        <RadioButton x:Name="RbPastelTeal"
+                                     Margin="5"
+                                     GroupName="ColorSelection"
+                                     IsChecked="{Binding SelectedColorKey, Converter={StaticResource SelectedColorConverter}, ConverterParameter=PastelTeal}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="24"
+                                        Height="24"
+                                        Background="{StaticResource PastelTeal}"
+                                        BorderBrush="#777777"
+                                        BorderThickness="1"
+                                        CornerRadius="3"
+                                        Margin="0,0,8,0"/>
+                                <TextBlock Text="Teal"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!-- Red -->
+                        <RadioButton x:Name="RbPastelRed"
+                                     Margin="5"
+                                     GroupName="ColorSelection"
+                                     IsChecked="{Binding SelectedColorKey, Converter={StaticResource SelectedColorConverter}, ConverterParameter=PastelRed}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="24"
+                                        Height="24"
+                                        Background="{StaticResource PastelRed}"
+                                        BorderBrush="#777777"
+                                        BorderThickness="1"
+                                        CornerRadius="3"
+                                        Margin="0,0,8,0"/>
+                                <TextBlock Text="Red"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </RadioButton>
+                    </UniformGrid>
+
+                    <!-- Preview -->
+                    <TextBlock Text="Preview:"
+                               Margin="0,10,0,5"
+                               FontWeight="SemiBold"/>
+                    <Border x:Name="ColorPreviewBorder"
+                            Height="60"
+                            Background="{Binding SelectedColorBrush}"
+                            CornerRadius="6"
+                            BorderBrush="#AAAAAA"
+                            BorderThickness="1">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock x:Name="PreviewTitle"
+                                       Text="{Binding PreviewTitle}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontWeight="SemiBold"
+                                       FontSize="16"/>
+                            <TextBlock x:Name="PreviewComposer"
+                                       Text="{Binding PreviewComposer}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="12"
+                                       Foreground="#555555"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Footer with buttons -->
+        <Border Grid.Row="2"
+                Background="White"
+                BorderBrush="#DDDDDD"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="15"
+                Margin="0,15,0,0"
+                Effect="{StaticResource MildShadowEffect}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="1"
+                        x:Name="BtnCreate"
+                        Content="Create"
+                        Padding="15,5"
+                        Margin="0,0,10,0"
+                        Command="{Binding CreateCommand}"
+                        Background="#4A86E8"
+                        Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius"
+                                    Value="4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Grid.Column="2"
+                        x:Name="BtnCancel"
+                        Content="Cancel"
+                        Padding="15,5"
+                        Command="{Binding CancelCommand}">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius"
+                                    Value="4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

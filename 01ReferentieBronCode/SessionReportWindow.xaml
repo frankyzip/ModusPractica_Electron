@@ -1,0 +1,367 @@
+﻿<Window x:Class="ModusPractica.SessionReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModusPractica"
+        xmlns:views="clr-namespace:ModusPractica.Views"
+        mc:Ignorable="d"
+        Title="Session Report"
+        Height="690"
+        Width="910"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Background="#F5F5F5"
+        Closing="Window_Closing">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Session Analysis"
+                   FontSize="22"
+                   FontWeight="SemiBold"
+                   Foreground="#333333"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+        <!-- Two-Column Layout -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT COLUMN -->
+            <StackPanel Grid.Column="0">
+                <!-- Score Circle -->
+                <Border x:Name="ScoreBorder"
+                        Width="100"
+                        Height="100"
+                        CornerRadius="50"
+                        Background="LightGray"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock x:Name="TxtScore"
+                                   Text="8.2"
+                                   FontSize="36"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="/ 10"
+                                   FontSize="12"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,-5,0,0"/>
+                    </StackPanel>
+                </Border>
+                <TextBlock x:Name="TxtRating"
+                           Text="EXCELLENT"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="#555"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,15"/>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="0,0,0,10">
+                    <TextBlock x:Name="TxtCoachingMessage"
+                               HorizontalAlignment="Center"
+                               Margin="0,8,0,0"
+                               FontStyle="Italic"
+                               Foreground="Gray"
+                               TextWrapping="Wrap"
+                               MaxWidth="380"
+                               Visibility="Collapsed"/>
+                </StackPanel>
+
+                <!-- Performance Breakdown -->
+                <GroupBox Header="Performance Breakdown"
+                          Margin="0,10,0,10"
+                          Padding="10">
+                    <StackPanel>
+                        <TextBlock x:Name="TxtAnalysis"
+                                   TextWrapping="Wrap"
+                                   LineHeight="20"
+                                   FontSize="13"/>
+
+                        <!-- Success Ratio Information -->
+                        <StackPanel x:Name="SuccessRatioPanel"
+                                    Margin="0,8,0,0"
+                                    Visibility="Collapsed">
+                            <!-- Success Ratio Numbers -->
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,0,0,4">
+                                <TextBlock Text="• Success Ratio: "
+                                           FontSize="13"/>
+                                <TextBlock x:Name="TxtSuccessRatioInfo"
+                                           FontSize="13"
+                                           FontWeight="SemiBold"
+                                           Text="Current: 70%, 7-Session Avg: 89%"/>
+                            </StackPanel>
+
+                            <!-- Learning Zone with colored indicator -->
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="16,0,0,0">
+                                <Ellipse x:Name="LearningZoneIndicator"
+                                         Width="12"
+                                         Height="12"
+                                         Fill="Green"
+                                         Margin="0,0,6,0"
+                                         VerticalAlignment="Center"/>
+                                <TextBlock x:Name="TxtLearningZoneInfo"
+                                           FontSize="12"
+                                           FontWeight="Medium"
+                                           Text="Consolidation Zone"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Overlearning Recommendations -->
+                <GroupBox x:Name="OverlearningRecommendationsGroupBox"
+                          Header="Overlearning Recommendations"
+                          Margin="0,5,0,10"
+                          Padding="10"
+                          Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock x:Name="TxtOverlearningInfo"
+                                   FontSize="12"
+                                   Foreground="#666666"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,0,8"
+                                   Text="Based on your learning pattern:"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="50% Overlearning:"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,10,5"/>
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="1"
+                                       x:Name="Txt50OverlearningRecommendation"
+                                       Text="8 repetitions"
+                                       Margin="0,0,0,5"/>
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="100% Overlearning:"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,10,0"/>
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="1"
+                                       x:Name="Txt100OverlearningRecommendation"
+                                       Text="13 repetitions"/>
+                        </Grid>
+
+                        <TextBlock FontSize="11"
+                                   FontStyle="Italic"
+                                   Foreground="#888888"
+                                   TextWrapping="Wrap"
+                                   Margin="0,8,0,0"
+                                   Text="Dr. Molly Gebrian's research guidelines"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+
+            <!-- RIGHT COLUMN -->
+            <StackPanel Grid.Column="2">
+                <!-- Result & Next Step -->
+                <GroupBox Header="Result &amp; Next Step"
+                          Margin="0,0,0,10"
+                          Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="Next practice scheduled for:"
+                                   FontSize="13"
+                                   Foreground="Gray"/>
+                        <TextBlock x:Name="TxtNextPracticeDate"
+                                   Text="Saturday, June 28, 2025"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   Margin="0,2,0,8"
+                                   Foreground="#4A86E8"/>
+                        <TextBlock x:Name="TxtSchedulingReason"
+                                   FontSize="13"
+                                   TextWrapping="Wrap"
+                                   FontStyle="Italic"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Success Ratio Trend Chart -->
+                <GroupBox x:Name="SuccessRatioChartGroupBox"
+                          Header="Success Ratio Trend"
+                          Margin="0,0,0,10"
+                          Padding="10"
+                          Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Chart Legend (kept for visual consistency) -->
+                        <StackPanel Grid.Row="0"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,0,0,8">
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,0,15,0">
+                                <Ellipse Width="8"
+                                         Height="8"
+                                         Fill="#4A86E8"
+                                         VerticalAlignment="Center"/>
+                                <TextBlock Text="Avg. Success Rate"
+                                           FontSize="10"
+                                           Foreground="#666"
+                                           Margin="4,0,0,0"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="12"
+                                           Height="2"
+                                           Fill="#E0E0E0"
+                                           VerticalAlignment="Center"/>
+                                <TextBlock Text="Target Zones"
+                                           FontSize="10"
+                                           Foreground="#666"
+                                           Margin="4,0,0,0"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Reusable Chart Control -->
+                        <views:SuccessRatioTrendChartControl Grid.Row="1"
+                                                             x:Name="SuccessRatioChart"
+                                                             MaxSessions="7"
+                                                             IncludeDeleted="True"
+                                                             Height="300"
+                                                             Width="380"/>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Interval Override Section -->
+                <GroupBox x:Name="IntervalOverrideGroupBox"
+                          Header="Advanced: Override Next Interval"
+                          Margin="0,0,0,0"
+                          Padding="10"
+                          Visibility="Collapsed">
+                    <StackPanel>
+                        <Border Background="#F8F9FA"
+                                BorderBrush="#E0E0E0"
+                                BorderThickness="1"
+                                CornerRadius="4"
+                                Padding="12">
+
+                            <StackPanel>
+                                <TextBlock x:Name="AlgorithmSuggestionText"
+                                           Text="Algorithm suggests: 6.0 days"
+                                           FontSize="12"
+                                           Foreground="#666666"
+                                           Margin="0,0,0,8"/>
+
+                                <CheckBox x:Name="EnableOverrideCheckBox"
+                                          Content="Override interval"
+                                          Margin="0,0,0,8"
+                                          Checked="EnableOverrideCheckBox_Checked"
+                                          Unchecked="EnableOverrideCheckBox_Unchecked"/>
+
+                                <StackPanel x:Name="OverrideInputPanel"
+                                            Orientation="Horizontal"
+                                            IsEnabled="False"
+                                            Margin="0,0,0,8">
+
+                                    <TextBlock Text="Practice again in"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,5,0"/>
+
+                                    <TextBox x:Name="OverrideIntervalTextBox"
+                                             Width="60"
+                                             TextAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             TextChanged="OverrideIntervalTextBox_TextChanged"/>
+
+                                    <TextBlock Text="days (1-365)"
+                                               VerticalAlignment="Center"
+                                               Margin="5,0,0,0"/>
+                                </StackPanel>
+
+                                <TextBox x:Name="OverrideReasonTextBox"
+                                         AcceptsReturn="False"
+                                         MaxLength="100"
+                                         IsEnabled="False"
+                                         Margin="0,0,0,8">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Style.Triggers>
+                                                <Trigger Property="Text"
+                                                         Value="">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <VisualBrush AlignmentX="Left"
+                                                                         AlignmentY="Center"
+                                                                         Stretch="None">
+                                                                <VisualBrush.Visual>
+                                                                    <Label Content="Optional: Why override?"
+                                                                           Foreground="LightGray"
+                                                                           FontStyle="Italic"/>
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+
+                                <TextBlock x:Name="OverrideWarningText"
+                                           FontSize="11"
+                                           Foreground="#FF6B35"
+                                           FontStyle="Italic"
+                                           Visibility="Collapsed"
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0,0">
+            <Button x:Name="BtnOk"
+                    Content="OK"
+                    MinWidth="120"
+                    Height="32"
+                    IsDefault="True"
+                    Click="BtnOk_Click"
+                    Margin="0,0,10,0"/>
+            <Button x:Name="BtnCancel"
+                    Content="Cancel"
+                    MinWidth="120"
+                    Height="32"
+                    IsCancel="True"
+                    Click="BtnCancel_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="ModusPractica.PracticeOutcomeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModusPractica"
+        mc:Ignorable="d"
+        Title="Session Almost Complete" Height="220" Width="470"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" x:Name="TxtCoachingMessage" TextWrapping="Wrap" FontSize="14"
+                   Text="Good work! You've already completed X repetitions. To truly learn this passage, aiming for Y is ideal. You're almost there!"/>
+
+        <TextBlock Grid.Row="1" Text="What would you like to do now?" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+            <Button x:Name="BtnContinue" Content="Continue Practicing" Width="130" Height="32" Margin="5" Click="BtnContinue_Click"/>
+            <Button x:Name="BtnSaveFrustration" Content="Frustration" Width="130" Height="32" Margin="5" Click="BtnSaveFrustration_Click"/>
+            <Button x:Name="BtnSaveTime" Content="Save (No More Time)" Width="130" Height="32" Margin="5" Click="BtnSaveTime_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

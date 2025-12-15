@@ -1,0 +1,255 @@
+﻿<Window
+    x:Class="ModusPractica.CalendarWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Practice Calendar - Modus Practica"
+    Width="900"
+    Height="600"
+    Background="#F8F8F8"
+    WindowStartupLocation="CenterOwner"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <!--  Drop shadow for borders  -->
+        <DropShadowEffect
+            x:Key="MildShadowEffect"
+            BlurRadius="10"
+            Direction="270"
+            Opacity="0.2"
+            ShadowDepth="3"
+            Color="#000000" />
+
+        <!--  Style for calendar day cells  -->
+        <Style x:Key="CalendarDayCellStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#DDDDDD" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="5" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F0F8FF" />
+                    <!-- Lichtblauw bij hover -->
+                    <Setter Property="BorderBrush" Value="#4A86E8" />
+                    <!-- Blauw border bij hover -->
+                    <Setter Property="BorderThickness" Value="1.5" />
+                    <!-- Dikker border bij hover -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--  Style for calendar day headers  -->
+        <Style x:Key="CalendarDayHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Background" Value="#F0F8FF" />
+            <!--  Subtiele lichtblauwe achtergrond  -->
+            <Setter Property="Foreground" Value="#333333" />
+            <!--  Donkere tekst voor contrast  -->
+        </Style>
+
+        <!--  Style for practice session items  -->
+        <Style x:Key="PracticeSessionItemStyle" TargetType="Border">
+            <Setter Property="Margin" Value="0,2,0,2" />
+            <Setter Property="Padding" Value="5,3" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="Background" Value="#E3F2FD" />
+            <Setter Property="BorderBrush" Value="#BBDEFB" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Header with title and controls  -->
+        <Border
+            Grid.Row="0"
+            Margin="0,0,0,15"
+            Padding="15"
+            Background="White"
+            BorderBrush="#DDDDDD"
+            BorderThickness="1"
+            CornerRadius="8"
+            Effect="{StaticResource MildShadowEffect}">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    FontSize="24"
+                    FontWeight="SemiBold"
+                    Foreground="#333333"
+                    Text="Practice Overview (All Music Pieces)" />
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <!--  Combobox voor muziekstukfiltering  -->
+                    <ComboBox
+                        x:Name="CmbMusicPieceFilter"
+                        Width="200"
+                        Margin="0,0,10,0"
+                        SelectionChanged="CmbMusicPieceFilter_SelectionChanged">
+                        <ComboBoxItem Content="All Music Pieces" IsSelected="True" />
+                        <!--  Muziekstukken worden hier dynamisch toegevoegd  -->
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!--  Month navigation controls  -->
+        <Border
+            Grid.Row="1"
+            Margin="0,0,0,10"
+            Padding="10"
+            Background="White"
+            BorderBrush="#DDDDDD"
+            BorderThickness="1"
+            CornerRadius="8"
+            Effect="{StaticResource MildShadowEffect}">
+            <Grid x:Name="MonthNavigationGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    x:Name="BtnPreviousMonth"
+                    Grid.Column="0"
+                    Padding="10,5"
+                    Click="BtnPreviousMonth_Click"
+                    Content="◀ Previous" />
+
+                <TextBlock
+                    x:Name="TxtCurrentMonth"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Text="May 2025" />
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button
+                        x:Name="BtnToday"
+                        Margin="0,0,10,0"
+                        Padding="10,5"
+                        Click="BtnToday_Click"
+                        Content="Today" />
+                    <Button
+                        x:Name="BtnNextMonth"
+                        Padding="10,5"
+                        Click="BtnNextMonth_Click"
+                        Content="Next ▶" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!--  Day of week headers  -->
+        <Grid Grid.Row="2" Margin="0,0,0,5" Background="#F5F5F5">
+            <!-- Subtiele grijze achtergrond -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Column="0"
+                Style="{StaticResource CalendarDayHeaderStyle}"
+                Text="Monday" />
+            <TextBlock
+                Grid.Column="1"
+                Style="{StaticResource CalendarDayHeaderStyle}"
+                Text="Tuesday" />
+            <TextBlock
+                Grid.Column="2"
+                Style="{StaticResource CalendarDayHeaderStyle}"
+                Text="Wednesday" />
+            <TextBlock
+                Grid.Column="3"
+                Style="{StaticResource CalendarDayHeaderStyle}"
+                Text="Thursday" />
+            <TextBlock
+                Grid.Column="4"
+                Style="{StaticResource CalendarDayHeaderStyle}"
+                Text="Friday" />
+            <TextBlock
+                Grid.Column="5"
+                Style="{StaticResource CalendarDayHeaderStyle}"
+                Text="Saturday" />
+            <TextBlock
+                Grid.Column="6"
+                Style="{StaticResource CalendarDayHeaderStyle}"
+                Text="Sunday" />
+        </Grid>
+
+        <!--  Calendar grid with vertical scrolling  -->
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+            <Grid x:Name="CalendarGrid">
+                <!--  Calendar rows will be generated dynamically  -->
+            </Grid>
+        </ScrollViewer>
+
+        <!--  Footer with buttons  -->
+        <Border
+            Grid.Row="4"
+            Margin="0,15,0,0"
+            Padding="15"
+            Background="White"
+            BorderBrush="#DDDDDD"
+            BorderThickness="1"
+            CornerRadius="8"
+            Effect="{StaticResource MildShadowEffect}">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button
+                        x:Name="BtnGenerateSchedule"
+                        Padding="15,5"
+                        Background="#90ee90"
+                        Click="BtnGenerateSchedule_Click"
+                        Content="Generate Practice Schedule"
+                        Foreground="White"
+                        IsEnabled="True" />
+                    <TextBlock
+                        x:Name="TxtGeneratedSessions"
+                        Margin="15,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="" />
+                </StackPanel>
+
+                <Button
+                    x:Name="BtnClose"
+                    Grid.Column="1"
+                    Width="100"
+                    Click="BtnClose_Click"
+                    Content="Close" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,103 @@
+# NOTICES AND ATTRIBUTION
+
+ModusPractica - Smart Music Practice Management System
+
+## Original Author and Copyright Holder:
+
+Frank De Baere
+Partura Music™
+GitHub: @frankyzip
+Email: 118995966+frankyzip@users.noreply.github.com
+
+Copyright © 2024-2025 Frank De Baere
+All Rights Reserved (except as licensed under AGPL-3.0-or-later)
+
+## Development History:
+
+- Original Concept: 2023-2024
+
+  - Educational music practice software
+  - Based on Ebbinghaus memory curve
+  - Desktop application (C# WPF)
+
+- C# Desktop Version: 2024-2025
+
+  - Windows desktop application
+  - Full feature implementation
+  - Reference code in /01ReferentieBronCode/
+
+- Electron Port: 2024-2025
+
+  - Cross-platform web/desktop app
+  - JavaScript/HTML5 implementation
+  - Modern web technologies
+
+- Open Source Release: December 2025
+  - Dual licensing model (AGPL-3.0 + Commercial)
+  - Public GitHub repository
+  - Community contributions welcome
+
+## Source Code Attribution:
+
+All source code files are developed by Frank De Baere unless explicitly
+marked otherwise within the file headers.
+
+Key Components:
+
+- Ebbinghaus Engine (EbbinghausEngine.js, EbbinghausEngine.cs)
+- Adaptive Tau Manager (AdaptiveTauManager.js, AdaptiveTauManager.cs)
+- Personalized Memory Calibration (PersonalizedMemoryCalibration.js/.cs)
+- Memory Stability Manager (MemoryStabilityManager.js/.cs)
+- Intensity Module (IntensityModule.js/.cs)
+- Interleaved Session Manager (InterleavedSessionManager.js)
+
+All original algorithms, implementations, and designs are by Frank De Baere.
+
+## Third-Party Dependencies:
+
+See package.json and .csproj files for complete list of dependencies.
+All third-party libraries are used in compliance with their respective licenses.
+
+Technologies Used:
+
+- Electron (app shell)
+- JavaScript/HTML5/CSS3 (UI)
+- .NET Framework (reference desktop version)
+- Node.js (development/build)
+
+## License Information:
+
+Primary License: AGPL-3.0-or-later
+
+- Educational and research use: Free
+- Open source projects: Free
+- Proprietary/commercial use: Commercial license required
+
+Secondary License: Commercial (Proprietary)
+
+- Allows closed-source use
+- Removes AGPL copyleft requirements
+- For licensing inquiries, contact Frank De Baere
+
+See LICENSE-AGPL and LICENSE-COMMERCIAL for full details.
+
+## Changes and Modifications:
+
+If you modify this software, you must:
+
+1. Include this notice in modified versions
+2. Clearly mark changes made
+3. Maintain attribution to Frank De Baere as original author
+4. Follow the requirements of the applicable license (AGPL-3.0 or Commercial)
+
+This work is original and not derived from other copyrighted projects.
+It represents independent development and research.
+
+================================================================================
+
+For licensing inquiries or to report copyright concerns:
+Frank De Baere
+Partura Music™
+[Contact information to be added]
+
+Last Updated: December 15, 2025

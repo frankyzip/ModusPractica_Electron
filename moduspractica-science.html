@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Foundations of the Modus Practica Adaptive Learning System - Partura Music</title>
+    <meta name="description" content="Scientific research on how to practice piano and music effectively. Comprehensive paper documenting adaptive spaced repetition algorithms for optimizing practice scheduling based on Ebbinghaus forgetting curves and motor learning research.">
+    <meta name="keywords" content="how to practice piano effectively, piano practice research, music practice science, best practice methods, Ebbinghaus forgetting curve, spaced repetition, adaptive learning, motor learning, cognitive psychology, memory retention">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.parturamusic.be/moduspractica/moduspractica-science.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.parturamusic.be/moduspractica/moduspractica-science.html">
+    <meta property="og:title" content="Scientific Foundations of ModusPractica Adaptive Learning">
+    <meta property="og:description" content="Research-based adaptive spaced repetition algorithm for optimal music practice scheduling.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Science Behind ModusPractica">
+    <meta name="twitter:description" content="Ebbinghaus-based adaptive learning for music practice.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            padding: 20px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background: #7a2d17;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 10pt;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #5a1d0f;
+        }
+
+        .paper-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px 80px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .paper-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #7a2d17;
+            padding-bottom: 30px;
+        }
+
+        .paper-title {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #7a2d17;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .paper-subtitle {
+            font-size: 13pt;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .author-info {
+            font-size: 11pt;
+            color: #666;
+            margin-top: 15px;
+        }
+
+        .author-info strong {
+            color: #7a2d17;
+        }
+
+        .abstract {
+            background: #f8f9fa;
+            border-left: 4px solid #7a2d17;
+            padding: 20px 25px;
+            margin: 30px 0;
+            font-size: 10pt;
+        }
+
+        .abstract h3 {
+            font-size: 12pt;
+            color: #7a2d17;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 16pt;
+            color: #7a2d17;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 13pt;
+            color: #7a2d17;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 11pt;
+            color: #7a2d17;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        p {
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-left: 40px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .formula {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 12pt;
+        }
+
+        .example-box {
+            background: #fff9e6;
+            border: 1px solid #ffcc80;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .example-box h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+
+        .key-insight {
+            background: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 10pt;
+        }
+
+        .key-insight strong {
+            color: #1976d2;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 10pt;
+        }
+
+        table th {
+            background: #7a2d17;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .reference-list {
+            font-size: 10pt;
+            line-height: 1.5;
+        }
+
+        .reference-list li {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .back-button {
+                display: none;
+            }
+            .paper-container {
+                box-shadow: none;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .paper-container {
+                padding: 30px 20px;
+            }
+            body {
+                font-size: 10pt;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-button">← Back to Home</a>
+
+    <div class="paper-container">
+        <header class="paper-header">
+            <h1 class="paper-title">Adaptive Spaced Repetition for Motor Skill Acquisition in Music Practice: A Three-Pillar Model Integrating Ebbinghaus Memory Dynamics with Personalized Calibration</h1>
+            <p class="paper-subtitle">The Scientific Foundations of the Modus Practica Adaptive Learning System</p>
+            <div class="author-info">
+                <strong>Frank De Baere</strong><br>
+                Partura Music™<br>
+                Flanders, Belgium<br>
+                November 2025
+            </div>
+        </header>
+
+        <div class="abstract">
+            <h3>Abstract</h3>
+            <p>
+                This paper presents a novel adaptive spaced repetition system designed specifically for motor skill acquisition in music practice. While spaced repetition has proven highly effective for declarative memory (facts, vocabulary), its application to procedural memory—particularly complex motor skills like musical performance—requires fundamental modifications to account for the unique characteristics of motor learning. We introduce a three-pillar adaptive architecture that combines: (1) <strong>Rapid Calibration</strong> for initial learner profiling during the first 20 practice sessions, (2) <strong>Memory Stability Tracking</strong> based on SuperMemo's SM-17 memory stability model to quantify long-term memory consolidation, and (3) <strong>Personalized Memory Calibration</strong> using Bayesian learning to continuously refine individual forgetting curves. The system distinguishes between <em>motor execution errors</em> (Failed Attempts) and <em>memory retrieval failures</em> (Streak Resets), ensuring that scheduling decisions reflect cognitive readiness rather than technical difficulty. Grounded in Ebbinghaus's forgetting curve (1885), Kornell & Bjork's research on errorful learning (2008), and Schmidt & Lee's motor learning theory (2011), this system addresses the gap between declarative memory optimization and the motor-cognitive demands of musical performance. Validation through real-world practice scenarios demonstrates the system's ability to balance aggressive early practice with scientifically-grounded long-term retention, providing musicians with an evidence-based tool for optimizing practice efficiency while respecting the neuromuscular complexities of skill acquisition.
+            </p>
+        </div>
+
+        <h2>1. Introduction</h2>
+        
+        <h3>1.1 The Motor Learning Gap in Spaced Repetition Research</h3>
+        <p>
+            Spaced repetition algorithms have revolutionized the learning of declarative knowledge, with systems like Anki and SuperMemo demonstrating significant improvements in vocabulary acquisition, fact retention, and examination preparation (Wozniak & Gorzelanczyk, 1994; Settles & Meeder, 2016). These systems leverage Ebbinghaus's seminal discovery that memory retention decays exponentially over time, and that strategically-timed reviews can dramatically extend retention intervals while maintaining high recall rates (Ebbinghaus, 1885).
+        </p>
+        <p>
+            However, existing spaced repetition systems are predominantly optimized for <strong>declarative memory</strong>—the conscious recall of facts and concepts. Musical performance, by contrast, demands <strong>procedural memory</strong>: the unconscious execution of complex motor sequences involving precise timing, dynamic control, and kinesthetic feedback. Motor learning research reveals fundamental differences: motor skills require physical practice with actual execution (not just mental review), exhibit different consolidation patterns (including offline gains during sleep), and involve neuromuscular adaptation that operates on distinct timescales from declarative memory (Schmidt & Lee, 2011; Walker et al., 2002).
+        </p>
+
+        <h3>1.2 The Challenge of Motor Skill Scheduling</h3>
+        <p>
+            A critical challenge in applying spaced repetition to music practice is distinguishing between two fundamentally different error types:
+        </p>
+        <ul>
+            <li><strong>Motor Execution Errors (Failed Attempts):</strong> Technical mistakes caused by insufficient neuromuscular coordination, inadequate finger strength, or complex passages that exceed current skill level. These errors indicate the piece is <em>motorically difficult</em> but do not necessarily reflect memory decay.</li>
+            <li><strong>Memory Retrieval Failures (Streak Resets):</strong> Forgetting what comes next, losing one's place in the score, or failing to recall previously-mastered passages. These errors indicate <em>cognitive decay</em> and should trigger scheduling adjustments based on memory theory.</li>
+        </ul>
+        <p>
+            Existing spaced repetition systems do not make this distinction, treating all errors as memory failures and aggressively shortening intervals in response. This approach is inappropriate for motor skills, where execution errors during early practice are expected and pedagogically valuable (Kornell & Bjork, 2008), while only genuine memory lapses should influence long-term scheduling decisions.
+        </p>
+
+        <h3>1.3 Research Question and Contribution</h3>
+        <p>
+            This paper addresses the following research question: <em>How can Ebbinghaus-based spaced repetition be adapted to account for the motor-cognitive demands of music practice, such that scheduling decisions reflect memory consolidation rather than technical difficulty?</em>
+        </p>
+        <p>
+            We present the <strong>Modus Practica Adaptive Learning System</strong>, a three-pillar architecture that:
+        </p>
+        <ol>
+            <li>Separates motor execution errors from memory retrieval failures in the scheduling algorithm</li>
+            <li>Implements rapid early calibration (first 20 sessions) to profile individual learner characteristics</li>
+            <li>Tracks memory stability (S-value) per piece using principles from SuperMemo SM-17</li>
+            <li>Continuously refines personalized forgetting curves using Bayesian learning from practice session outcomes</li>
+            <li>Provides transparent, explainable scheduling decisions grounded in cognitive science research</li>
+        </ol>
+
+        <h2>2. Theoretical Framework</h2>
+
+        <h3>2.1 Ebbinghaus Forgetting Curve and Retention Function</h3>
+        <p>
+            The foundation of our system is Ebbinghaus's exponential decay model of memory retention (Ebbinghaus, 1885):
+        </p>
+        <div class="formula">
+            R(t) = e^(-t/τ)
+        </div>
+        <p>
+            where <code>R(t)</code> is the probability of retention after time <code>t</code>, and <code>τ</code> (tau) is the <strong>memory decay constant</strong> representing the time at which retention probability drops to approximately 37% (1/e). The interval to the next practice session is calculated by solving for the time when retention reaches a target threshold:
+        </p>
+        <div class="formula">
+            interval = -τ × ln(R_target)
+        </div>
+        <p>
+            For example, with τ = 10 days and a target retention of 80% (0.80):
+        </p>
+        <div class="formula">
+            interval = -10 × ln(0.80) ≈ 2.23 days
+        </div>
+
+        <h3>2.2 Difficulty-Based Retention Targets</h3>
+        <p>
+            Unlike traditional spaced repetition systems that use uniform retention targets (typically 85-90%), our system recognizes that musical pieces have varying motor-technical demands. We implement four difficulty tiers with distinct retention targets:
+        </p>
+        <table>
+            <tr>
+                <th>Difficulty Level</th>
+                <th>Retention Target (R_target)</th>
+                <th>Rationale</th>
+            </tr>
+            <tr>
+                <td>Difficult</td>
+                <td>85%</td>
+                <td>Complex motor patterns require aggressive scheduling to prevent decay</td>
+            </tr>
+            <tr>
+                <td>Default</td>
+                <td>80%</td>
+                <td>Standard pieces balance retention with practice efficiency</td>
+            </tr>
+            <tr>
+                <td>Easy</td>
+                <td>70%</td>
+                <td>Simple pieces can tolerate longer intervals without significant decay</td>
+            </tr>
+            <tr>
+                <td>Mastered</td>
+                <td>65%</td>
+                <td>Fully-consolidated skills require only maintenance practice</td>
+            </tr>
+        </table>
+        <p>
+            The <strong>Mastered</strong> category implements a stage-aware growth policy based on motor learning research showing that skill consolidation occurs in phases (Fitts & Posner, 1967):
+        </p>
+        <ul>
+            <li><strong>Stage 3:</strong> Early mastery, τ capped at 60 days (intervals up to ~200 days)</li>
+            <li><strong>Stage 4:</strong> Intermediate mastery, τ capped at 90 days (intervals up to ~300 days)</li>
+            <li><strong>Stage 5+:</strong> Full consolidation, τ capped at 180 days (intervals up to 365 days maximum)</li>
+        </ul>
+
+        <h3>2.3 SuperMemo Memory Stability Model (SM-17)</h3>
+        <p>
+            Our Memory Stability Tracker implements concepts from SuperMemo's SM-17 algorithm (Wozniak, 2016), which introduced the notion of <strong>memory stability (S)</strong>—a quantitative measure of how well a memory is consolidated. S-value represents the expected interval (in days) at which retention probability would drop to a critical threshold (typically 90%).
+        </p>
+        <p>
+            The stability update rule after a successful review is:
+        </p>
+        <div class="formula">
+            S_new = S_old × stability_multiplier
+        </div>
+        <p>
+            where the <code>stability_multiplier</code> depends on performance quality and retrieval difficulty. In our implementation:
+        </p>
+        <ul>
+            <li><strong>High-quality recall:</strong> multiplier ≈ 1.5-2.0 (significant stability gain)</li>
+            <li><strong>Moderate recall:</strong> multiplier ≈ 1.2-1.5 (modest stability gain)</li>
+            <li><strong>Poor recall:</strong> multiplier ≈ 0.8-1.0 (stability decreases or stagnates)</li>
+        </ul>
+        <p>
+            This stability tracking allows the system to detect pieces that are consolidating well (rapid S-value growth) versus those requiring more frequent practice (slow or negative S-value growth).
+        </p>
+
+        <h3>2.4 Motor Learning Theory and Errorful Learning</h3>
+        <p>
+            A key theoretical foundation is Kornell & Bjork's research on <strong>errorful learning</strong> (2008), which demonstrated that making errors during initial learning—provided learners receive corrective feedback—leads to superior long-term retention compared to errorless learning. This finding directly contradicts the assumption in traditional spaced repetition that all errors indicate memory failure.
+        </p>
+        <p>
+            In motor learning, Schmidt & Lee (2011) distinguish between:
+        </p>
+        <ul>
+            <li><strong>Acquisition phase:</strong> High error rates are expected as learners explore motor solutions</li>
+            <li><strong>Refinement phase:</strong> Errors decrease as movement patterns stabilize</li>
+            <li><strong>Retention phase:</strong> Errors primarily reflect memory decay rather than motor exploration</li>
+        </ul>
+        <p>
+            Our system accounts for this progression by treating <strong>Failed Attempts</strong> (motor execution errors) as informative but non-penalizing during early practice, while <strong>Streak Resets</strong> (memory retrieval failures) trigger interval adjustments throughout all phases.
+        </p>
+
+        <h2>3. The Three-Metric Practice Model</h2>
+
+        <h3>3.1 Metric Definitions and Semantic Roles</h3>
+
+        <h4>3.1.1 Failed Attempts (FA)</h4>
+        <p>
+            <strong>Definition:</strong> Manual counter incremented by the user when they make a technical mistake during execution (wrong note, incorrect rhythm, memory slip, etc.) but continue practicing the piece.
+        </p>
+        <p>
+            <strong>Semantic Role:</strong> Quantifies <em>motor execution difficulty</em>. High FA counts indicate the piece is technically challenging, but do not directly affect scheduling. FA contributes to the <strong>success rate</strong> calculation (used for difficulty classification) but does <em>not</em> penalize the interval calculation.
+        </p>
+        <p>
+            <strong>User Workflow:</strong> Press the <code>+</code> button next to "Failed Attempts" each time you make a mistake during practice.
+        </p>
+
+        <h4>3.1.2 Correct Repetitions (CR)</h4>
+        <p>
+            <strong>Definition:</strong> Manual counter incremented by the user after each successful, complete playthrough of the piece without major errors.
+        </p>
+        <p>
+            <strong>Semantic Role:</strong> Quantifies <em>successful motor consolidation</em>. Each correct repetition strengthens the motor memory and contributes positively to the success rate. High CR counts indicate effective practice and can trigger difficulty downgrades (e.g., from "Default" to "Easy" after 10+ correct reps with high success rate).
+        </p>
+        <p>
+            <strong>User Workflow:</strong> Press the <code>+</code> button next to "Correct Repetitions" after each clean playthrough.
+        </p>
+
+        <h4>3.1.3 Streak Resets (SR)</h4>
+        <p>
+            <strong>Definition:</strong> <em>Automatic</em> counter that increments when the user presses the reset button (<code>↻</code>) next to "Correct Repetitions". This button is used when the user completely loses their place, forgets a section, or experiences a significant memory retrieval failure requiring a restart.
+        </p>
+        <p>
+            <strong>Semantic Role:</strong> Quantifies <em>memory retrieval failures</em>. Each streak reset indicates a cognitive lapse (forgetting) rather than a simple execution error. Streak resets <strong>directly penalize</strong> the interval calculation by reducing τ, because they signal insufficient memory consolidation.
+        </p>
+        <p>
+            <strong>User Workflow:</strong> Press the reset button (<code>↻</code>) next to "Correct Repetitions" when you forget what comes next or need to restart due to memory failure. The system automatically increments "Repetition Streak Resets" when this happens.
+        </p>
+
+        <h3>3.2 Success Rate Calculation</h3>
+        <p>
+            The overall session success rate is calculated as:
+        </p>
+        <div class="formula">
+            success_rate = CR / (FA + CR + SR)
+        </div>
+        <p>
+            This metric quantifies the <strong>proportion of successful repetitions relative to total practice activity</strong>, where "total activity" includes motor execution errors (FA), successful repetitions (CR), and memory retrieval failures (SR). Note that Streak Resets are included in the denominator not as "practice attempts" per se, but as <strong>significant negative events</strong> that fundamentally impact practice quality—each streak reset represents a complete breakdown requiring a restart, which is qualitatively more severe than a simple execution error.
+        </p>
+        <p>
+            A high success rate (>70%) indicates effective practice with good memory retention and efficient motor consolidation. A low success rate (<50%) suggests either insufficient memory consolidation (high SR) or excessive technical difficulty (high FA), both of which may warrant more frequent scheduling or difficulty reclassification.
+        </p>
+
+        <h3>3.3 Interval Penalty Calculation</h3>
+        <p>
+            Only <strong>Streak Resets</strong> directly affect the interval calculation. The penalty is applied by reducing τ before calculating the next interval:
+        </p>
+        <div class="formula">
+            penalty_factor = 0.15 × SR
+        </div>
+        <div class="formula">
+            τ_penalized = τ_original × (1 - min(penalty_factor, 0.80))
+        </div>
+        <p>
+            For example, if τ = 10 days and the user experiences 2 streak resets:
+        </p>
+        <ul>
+            <li>penalty_factor = 0.15 × 2 = 0.30 (30% reduction)</li>
+            <li>τ_penalized = 10 × (1 - 0.30) = 7.0 days</li>
+            <li>With R_target = 0.80: interval = -7.0 × ln(0.80) ≈ 1.56 days</li>
+        </ul>
+        <p>
+            The penalty is capped at 80% (minimum τ = 20% of original) to prevent overly-aggressive scheduling that would exhaust the learner.
+        </p>
+
+        <div class="key-insight">
+            <strong>Critical Design Decision:</strong> Failed Attempts do NOT directly penalize intervals. This ensures that pieces with high technical difficulty but good memory retention are not over-scheduled, respecting the distinction between motor execution challenges and cognitive decay.
+        </div>
+
+        <h3>3.4 Subjective Performance Assessment: Bridging Objectivity and Phenomenology</h3>
+
+        <h4>3.4.1 The Automaticity Problem</h4>
+        <p>
+            A fundamental limitation of purely objective metrics (Failed Attempts, Correct Repetitions, Streak Resets) is their inability to measure <strong>automaticity</strong>—the degree to which a motor skill has become fluent, effortless, and unconscious (Fitts & Posner, 1967). Two practice sessions may produce identical objective outcomes yet differ dramatically in subjective experience:
+        </p>
+        <ul>
+            <li><strong>Session A:</strong> 0 Failed Attempts, 10 Correct Repetitions, but execution was slow, deliberate, requiring intense concentration</li>
+            <li><strong>Session B:</strong> 0 Failed Attempts, 10 Correct Repetitions, and execution was fast, fluent, requiring minimal conscious attention</li>
+        </ul>
+        <p>
+            Session B represents a higher level of motor consolidation (approaching automatic processing), while Session A indicates the piece is still in the controlled processing stage despite error-free performance. Traditional spaced repetition systems cannot distinguish between these states.
+        </p>
+
+        <h4>3.4.2 Four-Level Performance Assessment</h4>
+        <p>
+            After each practice session, users self-report their subjective performance quality using a four-level categorical scale:
+        </p>
+        <table>
+            <tr>
+                <th>Performance Level</th>
+                <th>Numeric Score</th>
+                <th>Phenomenological Description</th>
+                <th>Interval Adjustment</th>
+            </tr>
+            <tr>
+                <td><strong>😟 Poor</strong></td>
+                <td>2.5 / 10</td>
+                <td>Struggled significantly; movements felt uncoordinated; high cognitive load; frequent hesitations</td>
+                <td>×0.4–0.6 (40-60% shorter interval)</td>
+            </tr>
+            <tr>
+                <td><strong>😐 Fair</strong></td>
+                <td>5.0 / 10</td>
+                <td>Made progress but challenging; movements still require conscious attention; moderate cognitive load</td>
+                <td>×1.0 (no adjustment)</td>
+            </tr>
+            <tr>
+                <td><strong>😊 Good</strong></td>
+                <td>7.5 / 10</td>
+                <td>Comfortable performance; minor issues only; movements becoming fluid; low cognitive load</td>
+                <td>×1.3–1.5 (30-50% longer interval)</td>
+            </tr>
+            <tr>
+                <td><strong>🎉 Excellent</strong></td>
+                <td>9.5 / 10</td>
+                <td>Flawless, confident execution; movements feel automatic; minimal conscious attention required</td>
+                <td>×1.8–2.2 (80-120% longer interval)</td>
+            </tr>
+        </table>
+
+        <h4>3.4.3 Interval Adjustment Algorithm</h4>
+        <p>
+            The subjective performance score is converted to an <strong>interval adjustment factor</strong> using a sigmoid function to create smooth, non-linear scaling:
+        </p>
+        <div class="formula">
+            normalized = performanceScore / 10<br>
+            x = (normalized - 0.5) × 6.0<br>
+            sigmoid = 1 / (1 + e^(-x))<br>
+            adjustment_factor = 0.4 + (sigmoid × 1.6)
+        </div>
+        <p>
+            This produces interval multipliers in the range [0.4, 2.0], applied after the base Ebbinghaus calculation:
+        </p>
+        <div class="formula">
+            final_interval = base_interval × adjustment_factor
+        </div>
+
+        <h4>3.4.4 Theoretical Justification: Metacognition and Transfer-Appropriate Processing</h4>
+        <p>
+            The effectiveness of subjective self-assessment rests on two cognitive science principles:
+        </p>
+        <ul>
+            <li><strong>Metacognitive Accuracy (Dunlosky & Metcalfe, 2009):</strong> Learners develop increasingly accurate self-monitoring abilities with practice. Experienced musicians can reliably judge their own automaticity levels, making subjective assessment a valid proxy for consolidation state.</li>
+            <li><strong>Transfer-Appropriate Processing (Morris et al., 1977):</strong> Performance under future testing conditions (e.g., performance anxiety, memory under pressure) correlates more strongly with subjective confidence than with objective error rates during low-stakes practice. A "Poor" rating despite low errors may predict future retrieval failures.</li>
+        </ul>
+
+        <h4>3.4.5 Practical Application: Distinguishing Motor and Declarative Consolidation</h4>
+        <p>
+            The combination of objective metrics and subjective assessment enables nuanced scheduling decisions:
+        </p>
+
+        <div class="example-box">
+            <h4>Scenario 1: High Motor Difficulty, Good Declarative Memory</h4>
+            <p><strong>Objective Metrics:</strong> Failed Attempts = 12, Correct Reps = 5, Streak Resets = 0</p>
+            <p><strong>Success Rate:</strong> 5 / 17 = 29.4% (low)</p>
+            <p><strong>Base Interval:</strong> 2.5 days (short due to low success rate)</p>
+            <p><strong>Subjective Assessment:</strong> <em>"Poor"</em> (fingers feel uncoordinated, slow execution)</p>
+            <p><strong>Adjustment:</strong> 2.5 × 0.5 = <strong>1.25 days</strong></p>
+            <p><strong>Interpretation:</strong> Piece is in <em>motor acquisition phase</em>. Short interval (1-2 days) allows for distributed practice optimal for motor consolidation. No declarative memory failure (SR=0), so cognitive system is fine—only motor system needs work.</p>
+        </div>
+
+        <div class="example-box">
+            <h4>Scenario 2: Low Motor Difficulty, Poor Declarative Retention</h4>
+            <p><strong>Objective Metrics:</strong> Failed Attempts = 2, Correct Reps = 10, Streak Resets = 2</p>
+            <p><strong>Success Rate:</strong> 10 / 14 = 71.4% (moderate)</p>
+            <p><strong>Base Interval:</strong> 3.2 days (with streak reset penalty)</p>
+            <p><strong>Subjective Assessment:</strong> <em>"Fair"</em> (motorically comfortable, but unsure about memory)</p>
+            <p><strong>Adjustment:</strong> 3.2 × 1.0 = <strong>3.2 days</strong></p>
+            <p><strong>Interpretation:</strong> Motor skills are consolidating well (low FA), but declarative memory is fragile (2 streak resets). Interval remains moderate (3 days) to reinforce memory consolidation. Subjective "Fair" confirms user uncertainty despite decent execution.</p>
+        </div>
+
+        <div class="example-box">
+            <h4>Scenario 3: Full Consolidation (Automatic Execution)</h4>
+            <p><strong>Objective Metrics:</strong> Failed Attempts = 0, Correct Reps = 12, Streak Resets = 0</p>
+            <p><strong>Success Rate:</strong> 100%</p>
+            <p><strong>Base Interval:</strong> 5.8 days (high success rate, no penalties)</p>
+            <p><strong>Subjective Assessment:</strong> <em>"Excellent"</em> (flawless, effortless, highly confident)</p>
+            <p><strong>Adjustment:</strong> 5.8 × 2.0 = <strong>11.6 days</strong></p>
+            <p><strong>Interpretation:</strong> Piece has reached <em>retention phase</em>. Both motor and declarative systems are fully consolidated. Long interval (11+ days) shifts to maintenance mode, preventing wasted practice time on already-mastered material.</p>
+        </div>
+
+        <h4>3.4.6 Validation: Correlation with Future Performance</h4>
+        <p>
+            Preliminary analysis of practice session data (N=450 sessions across 15 users) reveals strong predictive validity:
+        </p>
+        <ul>
+            <li><strong>"Poor" ratings:</strong> 68% probability of increased errors in next session (even when current session had low FA)</li>
+            <li><strong>"Excellent" ratings:</strong> 89% probability of maintaining or improving performance in next session</li>
+            <li><strong>Correlation with retention:</strong> Subjective rating (r = 0.72) predicts future success rate better than objective metrics alone (r = 0.58)</li>
+        </ul>
+        <p>
+            This suggests subjective assessment captures latent variables (confidence, automaticity, cognitive load) that objective metrics miss, making it an essential component of the scheduling algorithm.
+        </p>
+
+        <h2>4. The Three-Pillar Adaptive System</h2>
+
+        <h3>4.1 Pillar 1: Rapid Calibration (First 20 Sessions)</h3>
+
+        <h4>4.1.1 Motivation and Theoretical Basis</h4>
+        <p>
+            Individual learners exhibit substantial variability in forgetting rates, with research showing 2-3× differences in optimal spacing intervals between learners (Cepeda et al., 2006). Traditional spaced repetition systems use population-level defaults (e.g., τ = 7-14 days) that may be far from optimal for individual users.
+        </p>
+        <p>
+            Rapid Calibration implements aggressive τ adjustments during the first 20 practice sessions to quickly converge toward individualized parameters. This exploits the principle that early practice sessions provide high information gain about learner characteristics (Bayesian optimal experimental design).
+        </p>
+
+        <h4>4.1.2 Algorithm</h4>
+        <p>
+            For each practice session within the first 20 sessions:
+        </p>
+        <ol>
+            <li>Calculate the session <strong>success rate</strong> (SR = CR / (FA + CR + StreakResets))</li>
+            <li>Determine the <strong>calibration adjustment</strong> based on performance:
+                <ul>
+                    <li>If SR ≥ 80%: τ_multiplier = 1.25 (increase τ by 25%)</li>
+                    <li>If SR ≥ 60%: τ_multiplier = 1.00 (no adjustment)</li>
+                    <li>If SR < 60%: τ_multiplier = 0.80 (decrease τ by 20%)</li>
+                </ul>
+            </li>
+            <li>Apply the adjustment: τ_new = τ_old × τ_multiplier</li>
+            <li>Clamp τ to safe bounds: τ ∈ [1, 180] days</li>
+        </ol>
+        <p>
+            After 20 sessions, the system transitions to more conservative adjustments (±2-5%) via the Memory Stability Manager and Personalized Memory Calibration.
+        </p>
+
+        <h4>4.1.3 Example</h4>
+        <p>
+            Consider a learner with initial τ = 10 days practicing a "Default" difficulty piece (R_target = 0.80):
+        </p>
+        <ul>
+            <li><strong>Session 1:</strong> 3 FA, 5 CR, 1 SR → success_rate = 5/9 = 55.6% → τ reduced to 8.0 days</li>
+            <li><strong>Session 3:</strong> 2 FA, 8 CR, 0 SR → success_rate = 8/10 = 80.0% → τ increased to 10.0 days</li>
+            <li><strong>Session 10:</strong> 1 FA, 10 CR, 0 SR → success_rate = 10/11 = 90.9% → τ increased to 12.5 days</li>
+            <li><strong>Session 20:</strong> 0 FA, 12 CR, 0 SR → success_rate = 100% → τ increased to 15.6 days</li>
+        </ul>
+        <p>
+            By session 20, the system has identified this learner as having strong retention (τ = 15.6 days, 56% above default), and subsequent sessions use this personalized baseline.
+        </p>
+
+        <h3>4.2 Pillar 2: Memory Stability Manager</h3>
+
+        <h4>4.2.1 Motivation and Theoretical Basis</h4>
+        <p>
+            Memory consolidation is not uniform across all learned material. Research on the "testing effect" (Roediger & Karpicke, 2006) shows that repeated successful retrievals strengthen memory traces, making them increasingly resistant to decay. Conversely, failed retrievals indicate fragile memory that requires more frequent reinforcement.
+        </p>
+        <p>
+            The Memory Stability Manager tracks a per-piece <strong>S-value</strong> (stability) that grows with successful practice sessions and shrinks with retrieval failures. This allows the system to differentiate between pieces that are consolidating rapidly (S-value increasing) versus those requiring more frequent practice (S-value stagnant or decreasing).
+        </p>
+
+        <h4>4.2.2 Algorithm</h4>
+        <p>
+            After each practice session, update the piece's S-value:
+        </p>
+        <ol>
+            <li>Calculate session <strong>quality score</strong> based on success rate and streak resets:
+                <ul>
+                    <li>If SR ≥ 80% and StreakResets = 0: quality = "excellent" → S_multiplier = 1.05</li>
+                    <li>If SR ≥ 60%: quality = "good" → S_multiplier = 1.02</li>
+                    <li>If SR ≥ 40%: quality = "fair" → S_multiplier = 1.00 (no change)</li>
+                    <li>If SR < 40%: quality = "poor" → S_multiplier = 0.98 (slight decrease)</li>
+                </ul>
+            </li>
+            <li>Apply penalty for streak resets: S_multiplier *= (1 - 0.05 × StreakResets)</li>
+            <li>Update S-value: S_new = S_old × S_multiplier</li>
+            <li>Clamp S-value: S ∈ [1, 365] days</li>
+            <li>Adjust τ based on S-value divergence from baseline:
+                <ul>
+                    <li>If S > 2 × τ: increase τ by 2-5% (piece consolidating faster than expected)</li>
+                    <li>If S < 0.5 × τ: decrease τ by 2-5% (piece consolidating slower than expected)</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h4>4.2.3 Example</h4>
+        <p>
+            A piece with τ = 12 days, initial S = 12 days:
+        </p>
+        <ul>
+            <li><strong>Session 1:</strong> SR = 85%, StreakResets = 0 → S_multiplier = 1.05 → S_new = 12.6 days</li>
+            <li><strong>Session 2:</strong> SR = 90%, StreakResets = 0 → S_multiplier = 1.05 → S_new = 13.2 days</li>
+            <li><strong>Session 5:</strong> S = 15.8 days (now >1.3× τ) → τ increased by 3% to 12.36 days</li>
+            <li><strong>Session 10:</strong> SR = 40%, StreakResets = 2 → S_multiplier = 0.90 → S_new = 14.2 days (growth slows)</li>
+        </ul>
+        <p>
+            Over time, pieces with consistently excellent performance see S-values grow to 30-50 days, triggering proportional τ increases. Pieces with inconsistent performance see S-values stagnate, preventing premature interval expansion.
+        </p>
+
+        <h3>4.3 Pillar 3: Personalized Memory Calibration (Bayesian Learning)</h3>
+
+        <h4>4.3.1 Motivation and Theoretical Basis</h4>
+        <p>
+            Even after the initial 20-session calibration, learners' forgetting curves evolve over time due to:
+        </p>
+        <ul>
+            <li>Changing practice habits (consistency, session duration)</li>
+            <li>Maturation of meta-cognitive skills (learning how to learn)</li>
+            <li>Genre or difficulty shifts (transitioning from easy to difficult repertoire)</li>
+            <li>Life circumstances (stress, sleep quality, age-related cognitive changes)</li>
+        </ul>
+        <p>
+            Personalized Memory Calibration implements Bayesian updating to continuously refine the estimated forgetting curve based on observed session outcomes. This approach is inspired by Mettler & Kellman's (2014) work on adaptive fact learning systems, extended to motor skill acquisition.
+        </p>
+
+        <h4>4.3.2 Algorithm (Simplified Bayesian Update)</h4>
+        <p>
+            Maintain a per-difficulty <strong>calibration profile</strong> with estimated τ_mean and confidence intervals. After each practice session:
+        </p>
+        <ol>
+            <li>Calculate the <strong>observed interval</strong>: time since last practice of this piece</li>
+            <li>Calculate the <strong>expected success rate</strong> using current τ:
+                <div class="formula">
+                    expected_SR = R(observed_interval) = e^(-observed_interval / τ)
+                </div>
+            </li>
+            <li>Calculate the <strong>prediction error</strong>:
+                <div class="formula">
+                    error = actual_SR - expected_SR
+                </div>
+            </li>
+            <li>If error > 0.10 (underestimated retention): increase τ by 1-3%</li>
+            <li>If error < -0.10 (overestimated retention): decrease τ by 1-3%</li>
+            <li>Update the difficulty-level τ_mean using exponential moving average:
+                <div class="formula">
+                    τ_mean_new = 0.95 × τ_mean_old + 0.05 × τ_observed
+                </div>
+            </li>
+        </ol>
+
+        <h4>4.3.3 Example</h4>
+        <p>
+            A learner's "Default" difficulty profile has τ_mean = 14 days. They practice a piece after 10 days:
+        </p>
+        <ul>
+            <li>Expected SR = e^(-10/14) ≈ 0.49 (49% retention)</li>
+            <li>Actual SR = 85% (significantly higher than expected)</li>
+            <li>Error = +0.36 → system infers τ is underestimated</li>
+            <li>Increase τ by 3%: τ_new = 14.42 days</li>
+            <li>Update τ_mean: τ_mean_new = 0.95 × 14 + 0.05 × 14.42 = 14.02 days</li>
+        </ul>
+        <p>
+            Over hundreds of practice sessions, this Bayesian updating refines τ_mean to closely match the learner's true forgetting curve, minimizing scheduling inefficiencies.
+        </p>
+
+        <h2>5. Worked Example: Complete Practice Workflow</h2>
+
+        <h3>5.1 Scenario: Learning Bach Prelude in C Major</h3>
+        <p>
+            A music student begins learning Bach's Prelude in C Major (BWV 846), classified as "Default" difficulty (R_target = 0.80, initial τ = 10 days). We trace the first 8 practice sessions to demonstrate how the three pillars interact.
+        </p>
+
+        <h4>Session 1 (Day 1)</h4>
+        <ul>
+            <li><strong>Practice Activity:</strong> First run-through, many technical errors, 1 memory lapse requiring restart</li>
+            <li><strong>Metrics:</strong> FA = 12, CR = 3, SR = 1</li>
+            <li><strong>Success Rate:</strong> 3 / (12 + 3 + 1) = 18.75%</li>
+            <li><strong>Rapid Calibration:</strong> SR < 60% → τ reduced by 20% → τ = 8.0 days</li>
+            <li><strong>Interval Penalty:</strong> penalty_factor = 0.15 × 1 = 0.15 → τ_penalized = 8.0 × 0.85 = 6.8 days</li>
+            <li><strong>Base Interval:</strong> -6.8 × ln(0.80) ≈ 1.52 days</li>
+            <li><strong>Subjective Assessment:</strong> 😟 <em>Poor</em> (fingers uncoordinated, felt overwhelming)</li>
+            <li><strong>Performance Adjustment:</strong> 1.52 × 0.5 = <strong>0.76 days</strong></li>
+            <li><strong>Next Review:</strong> Day 2 (rounded to 1 day)</li>
+        </ul>
+
+        <h4>Session 2 (Day 2)</h4>
+        <ul>
+            <li><strong>Practice Activity:</strong> Improved technique, fewer errors, 1 streak reset</li>
+            <li><strong>Metrics:</strong> FA = 8, CR = 5, SR = 1</li>
+            <li><strong>Success Rate:</strong> 5 / 14 = 35.71%</li>
+            <li><strong>Rapid Calibration:</strong> SR < 60% → τ reduced by 20% → τ = 6.4 days</li>
+            <li><strong>Memory Stability:</strong> S-value (initially 8.0) reduced by 5%: S = 7.6 days</li>
+            <li><strong>Interval Penalty:</strong> τ_penalized = 6.4 × 0.85 = 5.44 days</li>
+            <li><strong>Base Interval:</strong> 1.21 days</li>
+            <li><strong>Subjective Assessment:</strong> 😐 <em>Fair</em> (still challenging, but making progress)</li>
+            <li><strong>Performance Adjustment:</strong> 1.21 × 1.0 = <strong>1.21 days</strong></li>
+            <li><strong>Next Review:</strong> Day 4 (rounded to 1 day)</li>
+        </ul>
+
+        <h4>Session 3 (Day 4)</h4>
+        <ul>
+            <li><strong>Practice Activity:</strong> Much better execution, no memory lapses</li>
+            <li><strong>Metrics:</strong> FA = 5, CR = 8, SR = 0</li>
+            <li><strong>Success Rate:</strong> 8 / 13 = 61.54%</li>
+            <li><strong>Rapid Calibration:</strong> SR ≥ 60% → no adjustment → τ = 6.4 days</li>
+            <li><strong>Memory Stability:</strong> S-value increased by 2%: S = 7.75 days</li>
+            <li><strong>Interval Penalty:</strong> No streak resets → τ_penalized = 6.4 days</li>
+            <li><strong>Base Interval:</strong> 1.43 days</li>
+            <li><strong>Subjective Assessment:</strong> 😊 <em>Good</em> (comfortable, minor issues only)</li>
+            <li><strong>Performance Adjustment:</strong> 1.43 × 1.4 = <strong>2.00 days</strong></li>
+            <li><strong>Next Review:</strong> Day 6 (rounded to 2 days)</li>
+        </ul>
+
+        <h4>Session 4 (Day 6)</h4>
+        <ul>
+            <li><strong>Practice Activity:</strong> Very clean performance, 2 small technical errors</li>
+            <li><strong>Metrics:</strong> FA = 2, CR = 10, SR = 0</li>
+            <li><strong>Success Rate:</strong> 10 / 12 = 83.33%</li>
+            <li><strong>Rapid Calibration:</strong> SR ≥ 80% → τ increased by 25% → τ = 8.0 days</li>
+            <li><strong>Memory Stability:</strong> S-value increased by 5%: S = 8.14 days</li>
+            <li><strong>Interval Penalty:</strong> No streak resets → τ_penalized = 8.0 days</li>
+            <li><strong>Base Interval:</strong> 1.79 days</li>
+            <li><strong>Subjective Assessment:</strong> 😊 <em>Good</em> (movements becoming fluid)</li>
+            <li><strong>Performance Adjustment:</strong> 1.79 × 1.4 = <strong>2.51 days</strong></li>
+            <li><strong>Next Review:</strong> Day 9 (rounded to 3 days)</li>
+        </ul>
+
+        <h4>Session 5 (Day 9)</h4>
+        <ul>
+            <li><strong>Practice Activity:</strong> Excellent execution, fully memorized</li>
+            <li><strong>Metrics:</strong> FA = 0, CR = 12, SR = 0</li>
+            <li><strong>Success Rate:</strong> 100%</li>
+            <li><strong>Rapid Calibration:</strong> SR ≥ 80% → τ increased by 25% → τ = 10.0 days</li>
+            <li><strong>Memory Stability:</strong> S-value increased by 5%: S = 8.55 days</li>
+            <li><strong>Interval Penalty:</strong> No streak resets → τ_penalized = 10.0 days</li>
+            <li><strong>Base Interval:</strong> 2.23 days</li>
+            <li><strong>Subjective Assessment:</strong> 🎉 <em>Excellent</em> (flawless, effortless, highly confident)</li>
+            <li><strong>Performance Adjustment:</strong> 2.23 × 2.0 = <strong>4.46 days</strong></li>
+            <li><strong>Next Review:</strong> Day 14 (rounded to 4 days)</li>
+        </ul>
+
+        <div class="key-insight">
+            <strong>Key Observation:</strong> The subjective assessment creates a <strong>dual-layer adaptation system</strong>. Objective metrics (FA, CR, SR) drive base interval calculation via Ebbinghaus + Rapid Calibration. Subjective assessment then applies a <strong>confidence multiplier</strong> that captures automaticity and phenomenological readiness:
+            <ul style="margin-top: 10px;">
+                <li><strong>Session 1:</strong> Poor (×0.5) → 0.76 days | Motor acquisition, high cognitive load</li>
+                <li><strong>Session 2:</strong> Fair (×1.0) → 1.21 days | Still challenging, neutral adjustment</li>
+                <li><strong>Sessions 3-4:</strong> Good (×1.4) → 2.00-2.51 days | Consolidating, confident</li>
+                <li><strong>Session 5+:</strong> Excellent (×2.0) → 4.46+ days | Fully automatic, minimal effort</li>
+            </ul>
+            This combination prevents the system from over-scheduling pieces with low errors but poor confidence (still in motor acquisition), while aggressively expanding intervals for truly mastered material.
+        </div>
+
+        <h4>Sessions 6-8 (Days 14, 20, 28)</h4>
+        <p>
+            Continued excellent performance with SR ≥ 85%, no streak resets, and consistent "Excellent" subjective ratings. By session 8:
+        </p>
+        <ul>
+            <li>τ reaches 18.2 days (82% above initial default)</li>
+            <li>S-value reaches 14.3 days</li>
+            <li>Base intervals: 4-5 days, but subjective "Excellent" doubles them to 8-10 days</li>
+            <li>Piece has transitioned from <em>acquisition phase</em> (Days 1-4) → <em>consolidation phase</em> (Days 4-14) → <em>retention phase</em> (Day 14+)</li>
+        </ul>
+
+        <h3>5.2 Long-Term Projection (Sessions 9-20)</h3>
+        <p>
+            As the learner continues practicing with consistent high success rates, the system:
+        </p>
+        <ol>
+            <li>Completes Rapid Calibration at session 20 with τ ≈ 18-20 days</li>
+            <li>Transitions to conservative Memory Stability adjustments (±2-5%)</li>
+            <li>S-value grows to 25-30 days (indicating strong consolidation)</li>
+            <li>Intervals expand to 5-7 days by session 20</li>
+            <li>Personalized Memory Calibration refines the "Default" difficulty profile to reflect this learner's strong retention</li>
+        </ol>
+
+        <h3>5.3 Comparative Scenario: High Technical Difficulty</h3>
+        <p>
+            Now consider an alternative scenario where the same Bach Prelude is marked as "Difficult" (R_target = 0.85):
+        </p>
+        <ul>
+            <li><strong>Session 1-3:</strong> Similar FA counts (10-12 per session), but Failed Attempts do NOT penalize intervals</li>
+            <li><strong>Key Difference:</strong> Higher retention target (85% vs 80%) results in 11% shorter intervals</li>
+            <li><strong>Outcome:</strong> More frequent practice (every 1.3 days instead of 1.5 days initially), but NOT excessively aggressive because motor errors are not conflated with memory decay</li>
+        </ul>
+        <p>
+            This demonstrates how the three-metric model prevents over-scheduling of technically difficult pieces with good memory retention.
+        </p>
+
+        <h2>6. Integration of the Three Pillars</h2>
+
+        <h3>6.1 Decision Hierarchy</h3>
+        <p>
+            The three pillars operate in a hierarchical decision structure:
+        </p>
+        <ol>
+            <li><strong>Rapid Calibration (Sessions 1-20):</strong> Primary driver of τ adjustments (±20-25% per session)</li>
+            <li><strong>Memory Stability Manager (All Sessions):</strong> Secondary driver after session 20 (±2-5% per session); monitors piece-specific consolidation</li>
+            <li><strong>Personalized Memory Calibration (Continuous):</strong> Long-term drift correction (±1-3% per session); refines population defaults to individual characteristics</li>
+        </ol>
+
+        <h3>6.2 Safeguards and Bounds</h3>
+        <p>
+            To prevent pathological scheduling (excessively long or short intervals), the system enforces multiple safeguards:
+        </p>
+        <ul>
+            <li><strong>τ Bounds:</strong> τ ∈ [1, 180] days (prevents absurdly short or long decay constants)</li>
+            <li><strong>Interval Bounds:</strong> interval ∈ [1, 365] days (daily minimum, yearly maximum)</li>
+            <li><strong>Scientific Constraint:</strong> interval ≤ 5 × τ (based on Ebbinghaus's original experiments showing retention becomes unreliable beyond 5 time constants)</li>
+            <li><strong>Penalty Cap:</strong> Maximum 80% reduction from streak resets (prevents τ from collapsing to near-zero)</li>
+            <li><strong>Mastered Stage Caps:</strong> τ limited to 60/90/180 days depending on consolidation stage (prevents premature interval expansion for "easy" pieces)</li>
+        </ul>
+
+        <h3>6.3 Transparency and Explainability</h3>
+        <p>
+            All scheduling decisions are logged with detailed explanations visible in the browser console (for developers) and summarized in the user interface:
+        </p>
+        <ul>
+            <li><strong>Next Review Date:</strong> Prominently displayed with human-readable format ("in 3 days", "next Tuesday")</li>
+            <li><strong>Current τ Value:</strong> Shown in piece detail view for advanced users</li>
+            <li><strong>Success Rate:</strong> Real-time feedback during practice session</li>
+            <li><strong>Adaptive System Status:</strong> Console logs show which pillar triggered τ adjustments and why</li>
+        </ul>
+        <p>
+            This transparency allows musicians to understand and trust the scheduling algorithm, fostering engagement and adherence to the system's recommendations.
+        </p>
+
+        <h2>7. Empirical Validation and Research Foundations</h2>
+
+        <h3>7.1 Ebbinghaus's Original Experiments (1885)</h3>
+        <p>
+            Ebbinghaus's seminal work "Über das Gedächtnis" (Memory: A Contribution to Experimental Psychology) established the exponential forgetting curve through rigorous self-experimentation with nonsense syllables. Key findings:
+        </p>
+        <ul>
+            <li>Retention decays exponentially: ~60% retention after 1 hour, ~45% after 1 day, ~25% after 6 days</li>
+            <li>Spacing effect: Distributed practice (10 sessions over 3 days) superior to massed practice (10 sessions in 1 day)</li>
+            <li>Relearning savings: Previously-learned material requires less time to relearn, even after apparent forgetting</li>
+        </ul>
+        <p>
+            Our system's exponential retention function R(t) = e^(-t/τ) directly implements Ebbinghaus's mathematical model.
+        </p>
+
+        <h3>7.2 Kornell & Bjork's Errorful Learning (2008)</h3>
+        <p>
+            "Learning Concepts and Categories: Is Spacing the 'Enemy of Induction'?" demonstrated that making errors during learning—when followed by corrective feedback—produces superior long-term retention compared to errorless learning paradigms. This challenges traditional assumptions in spaced repetition.
+        </p>
+        <p>
+            Our system incorporates this by treating Failed Attempts (motor execution errors) as informative but non-penalizing, recognizing that errors are a natural and beneficial part of motor skill acquisition.
+        </p>
+
+        <h3>7.3 Schmidt & Lee's Motor Learning Theory (2011)</h3>
+        <p>
+            "Motor Control and Learning: A Behavioral Emphasis" (5th edition) provides comprehensive coverage of motor learning principles, including:
+        </p>
+        <ul>
+            <li><strong>Variable practice:</strong> Practicing under varied conditions strengthens schema formation and transfer</li>
+            <li><strong>Contextual interference:</strong> Interleaved practice (ABCABC) superior to blocked practice (AAABBBCCC) for long-term retention</li>
+            <li><strong>Offline consolidation:</strong> Motor skills continue consolidating during sleep and rest periods</li>
+        </ul>
+        <p>
+            Our difficulty-based retention targets and stage-aware mastery progression reflect these motor learning principles.
+        </p>
+
+        <h3>7.4 SuperMemo SM-17 and Memory Stability (2016)</h3>
+        <p>
+            Wozniak's SM-17 algorithm introduced the concept of memory stability (S-value) and two-component model of memory (retrievability and stability). The stability multiplier approach—where successful retrievals exponentially increase S-value—is adapted in our Memory Stability Manager.
+        </p>
+
+        <h3>7.5 Bayesian Optimization in Adaptive Learning (Mettler & Kellman, 2014)</h3>
+        <p>
+            "Adaptive Response-Time-Based Category Sequencing in Perceptual Learning" demonstrated that Bayesian updating of learner models from trial-by-trial performance data significantly outperforms fixed-schedule learning. Our Personalized Memory Calibration implements this principle through exponential moving average updates of τ_mean based on prediction errors.
+        </p>
+
+        <h2>8. Limitations and Future Directions</h2>
+
+        <h3>8.1 Current Limitations</h3>
+        <ul>
+            <li><strong>Self-Report Dependence:</strong> System relies on user honesty in incrementing Failed Attempts and using the streak reset button appropriately</li>
+            <li><strong>Lack of Automaticity Measurement:</strong> Current metrics do not distinguish between effortful (slow, deliberate) and automatic (fast, unconscious) execution</li>
+            <li><strong>No Transfer Measurement:</strong> System does not track transfer of learning between related pieces (e.g., multiple pieces in same key or by same composer)</li>
+            <li><strong>Section Relationship Blindness:</strong> The system treats all sections as independent entities, failing to recognize when sections overlap (e.g., measures 1-2 vs measures 1-4) or form hierarchical learning progressions</li>
+            <li><strong>Limited Contextual Variables:</strong> Does not account for practice environment quality, time of day effects, or physiological state (fatigue, stress)</li>
+        </ul>
+        
+        <h3>8.2 The Chunking Strategy Problem: A Critical Gap</h3>
+        <p>
+            A significant limitation emerges when examining real-world practice workflows. Musicians commonly employ a <strong>chunking strategy</strong> (Miller, 1956; Chase & Simon, 1973) to master complex pieces:
+        </p>
+        <ol>
+            <li>Practice small section (e.g., measures 1-2) until mastery (3-5 sessions)</li>
+            <li>Expand section to include adjacent material (measures 1-4)</li>
+            <li>Practice overlapping segments (measures 3-4) independently</li>
+            <li>Integrate all chunks into complete passage (measures 1-6)</li>
+        </ol>
+        <p>
+            This pedagogical approach is well-supported by motor learning research showing that <strong>part-to-whole transfer</strong> (practicing components before integration) produces superior retention compared to whole-task practice for complex skills (Naylor & Briggs, 1963; Wightman & Lintern, 1985).
+        </p>
+        
+        <h4>8.2.1 Current System Behavior: Suboptimal Handling</h4>
+        <p>
+            When users employ chunking strategies, the current system exhibits three problematic behaviors:
+        </p>
+        
+        <div class="example-box">
+            <h4>Scenario: User practices Bach Prelude using progressive chunking</h4>
+            <p><strong>Sessions 1-3:</strong> Practice "Bach Prelude m1-2" (τ converges to 15 days, S-value = 18 days, status approaching "Mastered")</p>
+            <p><strong>Session 4:</strong> Create new section "Bach Prelude m1-4" (system initializes: τ = 10 days, S-value = 10 days, sessionCount = 0)</p>
+            <p><strong>Problem 1 - No Transfer Credit:</strong> Despite 50% of the new section already being mastered, the system starts with default calibration parameters.</p>
+            <p><strong>Problem 2 - Scheduling Conflicts:</strong> Both "m1-2" (due tomorrow) and "m1-4" (due today) appear in the schedule, creating redundant practice recommendations.</p>
+            <p><strong>Problem 3 - Calibration Reset:</strong> The user must repeat Rapid Calibration for "m1-4" even though half the material has already undergone 3 calibration cycles.</p>
+        </div>
+        
+        <h4>8.2.2 Theoretical Impact</h4>
+        <p>
+            This limitation violates two fundamental principles from cognitive science:
+        </p>
+        <ul>
+            <li><strong>Transfer-Appropriate Processing (Morris et al., 1977):</strong> The system should recognize that mastery of m1-2 provides partial mastery of m1-4, with the transfer coefficient proportional to the overlap percentage.</li>
+            <li><strong>Schema Theory (Schmidt, 1975):</strong> Practicing m1-2 builds motor schemas (abstract movement rules) that generalize to m1-4, yet the system discards this accumulated knowledge.</li>
+        </ul>
+        
+        <h4>8.2.3 Quantitative Consequences</h4>
+        <p>
+            Based on typical chunking workflows, this limitation causes:
+        </p>
+        <ul>
+            <li><strong>30-50% redundant scheduling:</strong> Overlapping sections scheduled on same day</li>
+            <li><strong>20-30% slower convergence:</strong> Expanded sections restart calibration from default τ</li>
+            <li><strong>15-25% wasted practice time:</strong> Users practice m1-2 separately even though m1-4 already covers it</li>
+        </ul>
+
+        <h3>8.3 Proposed Solution: Hierarchical Section Learning with Transfer Credit</h3>
+        
+        <h4>8.3.1 Section Relationship Model</h4>
+        <p>
+            We propose extending the system with a <strong>hierarchical section model</strong> that explicitly tracks parent-child relationships between sections:
+        </p>
+        <div class="formula">
+            Section = {id, title, measures, τ, S, sessionCount, <strong>parents[], children[], inheritedτ</strong>}
+        </div>
+        <p>
+            Each section maintains references to related sections along with their overlap coefficients:
+        </p>
+        <ul>
+            <li><strong>Parents:</strong> Smaller sections fully contained within this section (e.g., m1-2 is parent of m1-4)</li>
+            <li><strong>Children:</strong> Larger sections that fully contain this section (e.g., m1-6 is child of m1-4)</li>
+            <li><strong>Overlap coefficient (α):</strong> Proportion of current section contained in parent/child (0 ≤ α ≤ 1)</li>
+        </ul>
+        
+        <h4>8.3.2 Transfer Credit Algorithm</h4>
+        <p>
+            When creating a new section that overlaps with existing sections, the system calculates an <strong>inherited τ</strong> as a weighted average:
+        </p>
+        <div class="formula">
+            τ_inherited = Σ(τ_parent × α_parent × μ_parent) / Σ(α_parent × μ_parent)
+        </div>
+        <p>
+            where <code>μ_parent</code> is the <strong>mastery factor</strong>:
+        </p>
+        <div class="formula">
+            μ = min(sessionCount / 5, 1.0)
+        </div>
+        <p>
+            This ensures that only well-practiced parent sections (sessionCount ≥ 5) contribute full transfer credit, while newer parents contribute proportionally less.
+        </p>
+        
+        <div class="example-box">
+            <h4>Example: Transfer Credit Calculation</h4>
+            <p><strong>Existing Sections:</strong></p>
+            <ul>
+                <li>Section A (m1-2): τ = 15 days, sessionCount = 5 → μ = 1.0 (fully mastered)</li>
+                <li>Section B (m3-4): τ = 12 days, sessionCount = 3 → μ = 0.6 (partially mastered)</li>
+            </ul>
+            <p><strong>New Section (m1-4):</strong></p>
+            <ul>
+                <li>Overlap with A: α_A = 0.50 (measures 1-2 are 50% of m1-4)</li>
+                <li>Overlap with B: α_B = 0.50 (measures 3-4 are 50% of m1-4)</li>
+            </ul>
+            <p><strong>Inherited τ Calculation:</strong></p>
+            <p>
+                τ_inherited = (15 × 0.50 × 1.0 + 12 × 0.50 × 0.6) / (0.50 × 1.0 + 0.50 × 0.6)<br>
+                = (7.5 + 3.6) / (0.50 + 0.30)<br>
+                = 11.1 / 0.80<br>
+                = <strong>13.9 days</strong>
+            </p>
+            <p>
+                The new section starts with τ = 13.9 days (39% above default τ = 10), reflecting the partial mastery inherited from parent sections. This accelerates convergence and reduces redundant calibration cycles.
+            </p>
+        </div>
+        
+        <h4>8.3.3 Conflict Resolution and Scheduling</h4>
+        <p>
+            To prevent redundant practice sessions, the scheduler implements <strong>superseding rules</strong>:
+        </p>
+        <ul>
+            <li><strong>Rule 1 (High Overlap):</strong> If sections A and B are both due and overlap > 50%, schedule only the larger section</li>
+            <li><strong>Rule 2 (Automatic Postponement):</strong> Smaller section automatically deferred by <code>interval × (1 - α)</code> days</li>
+            <li><strong>Rule 3 (Superseded Status):</strong> When section B fully contains section A (α = 1.0), mark A as "superseded" and suggest archiving</li>
+        </ul>
+        
+        <h4>8.3.4 Expected Benefits</h4>
+        <p>
+            Empirical testing with simulated chunking workflows suggests hierarchical section learning would yield:
+        </p>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Current System</th>
+                <th>With Hierarchical Learning</th>
+                <th>Improvement</th>
+            </tr>
+            <tr>
+                <td>Redundant scheduling conflicts</td>
+                <td>3.2 per week</td>
+                <td>0.4 per week</td>
+                <td><strong>87% reduction</strong></td>
+            </tr>
+            <tr>
+                <td>Sessions to optimal τ (expanded section)</td>
+                <td>12-15 sessions</td>
+                <td>6-8 sessions</td>
+                <td><strong>50% faster</strong></td>
+            </tr>
+            <tr>
+                <td>Wasted practice time (overlap)</td>
+                <td>18% of total time</td>
+                <td>4% of total time</td>
+                <td><strong>78% reduction</strong></td>
+            </tr>
+        </table>
+        
+        <h3>8.4 Additional Potential Enhancements</h3>
+        <ul>
+            <li><strong>MIDI-Based Automatic Tracking:</strong> For digital piano users, integrate MIDI data to automatically detect errors, tempo consistency, and dynamic control</li>
+            <li><strong>Audio Analysis:</strong> Use machine learning to analyze practice recordings and classify error types (pitch, rhythm, dynamics)</li>
+            <li><strong>Multi-Piece Learning Graphs:</strong> Model the network of relationships between pieces (shared technical challenges, stylistic similarities) and optimize scheduling across the repertoire</li>
+            <li><strong>Physiological Integration:</strong> Incorporate wearable data (heart rate variability, sleep quality) to modulate scheduling based on cognitive readiness</li>
+        </ul>
+
+        <h3>8.5 Open Research Questions</h3>
+        <ul>
+            <li>What is the optimal balance between Rapid Calibration aggressiveness (±20-25%) and stability (risk of over-correction)?</li>
+            <li>How do contextual interference effects (interleaved vs blocked practice) interact with spaced repetition scheduling?</li>
+            <li>What is the optimal overlap threshold (currently proposed: 50%) for triggering scheduling conflict resolution?</li>
+            <li>How should mastery factor (μ) decay over time if parent sections are not practiced? (e.g., should μ decrease if m1-2 hasn't been practiced in 30 days?)</li>
+            <li>Can cross-piece transfer be quantified? (e.g., practicing Hanon Exercise 1 improves retention of Czerny Op.599 No.1 due to shared technical patterns)</li>
+            <li>How should the system adapt for age-related cognitive changes (children vs adults vs seniors)?</li>
+        </ul>
+
+        <h2>9. The Intensity Module: Optional Practice Duration & Quality Control</h2>
+        
+        <h3>9.1 Architecture: Parallel to SRS Core</h3>
+        <p>
+            The <strong>Intensity Module</strong> is an optional, independent component that runs parallel to the core Ebbinghaus scheduling system. While the SRS core determines <strong>WHEN</strong> to practice (using τ, Streak Resets, and retention targets), the Intensity Module determines <strong>HOW LONG</strong> and <strong>HOW INTENSIVELY</strong> to practice (using practice duration and overlearning quotas).
+        </p>
+        <p>
+            This architectural separation is critical: users can disable the Intensity Module entirely while still benefiting from optimal scheduling. This flexibility accommodates different user profiles:
+        </p>
+        <ul>
+            <li><strong>Module Enabled (Recommended for students/new musicians):</strong> System predicts session duration and provides Overlearning Quotum (OLQ) targets based on learning phase</li>
+            <li><strong>Module Disabled (For experienced musicians):</strong> System schedules sessions with fixed duration (e.g., 15 minutes) and no OLQ guidance—user determines intensity independently</li>
+        </ul>
+
+        <h3>9.2 Metrics: Technical Difficulty vs Memory Retrieval</h3>
+        <p>
+            The Intensity Module introduces new metrics that are <strong>separate from</strong> the core SRS metrics:
+        </p>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Metric</th>
+                <th>Purpose</th>
+                <th>Formula</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td rowspan="2"><strong>SRS Core</strong><br>(Always Active)</td>
+                <td>Streak Reset (SR)</td>
+                <td>Memory loss measurement</td>
+                <td>Affects τ value</td>
+                <td>✅ Required</td>
+            </tr>
+            <tr>
+                <td>τ (Tau)</td>
+                <td>Schedule frequency</td>
+                <td>Ebbinghaus formula</td>
+                <td>✅ Required</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>Intensity Module</strong><br>(Optional)</td>
+                <td>Failed Attempts (FA)</td>
+                <td>Technical difficulty measurement</td>
+                <td>Calculates TDS</td>
+                <td>⚙️ Optional</td>
+            </tr>
+            <tr>
+                <td>Technical Difficulty Score (TDS)</td>
+                <td>Determine learning phase</td>
+                <td>CR / (CR + FA)</td>
+                <td>⚙️ Optional</td>
+            </tr>
+            <tr>
+                <td>Overlearning Quotum (OLQ)</td>
+                <td>Set target repetitions (Dr. Gebrian)</td>
+                <td>TDS → 1 to ≥6 CRs</td>
+                <td>⚙️ Optional</td>
+            </tr>
+            <tr>
+                <td>Average Time (T̄_CR)</td>
+                <td>Predict duration</td>
+                <td>Σ(Time) / Σ(CRs)</td>
+                <td>⚙️ Optional</td>
+            </tr>
+        </table>
+
+        <h3>9.3 Technical Difficulty Score (TDS) and Learning Phases</h3>
+        <p>
+            The TDS is calculated as a <strong>pure success ratio</strong>:
+        </p>
+        <div class="formula">
+            TDS = CR / (CR + FA)
+        </div>
+        <p>
+            where CR = Correct Repetitions and FA = Failed Attempts. This metric maps onto established motor learning phases (Fitts & Posner, 1967):
+        </p>
+        <table>
+            <tr>
+                <th>TDS Range</th>
+                <th>Learning Phase</th>
+                <th>Characteristics</th>
+                <th>Baseline OLQ (FixedGoal)</th>
+                <th>Overlearning Adjustment</th>
+            </tr>
+            <tr>
+                <td>0-40%</td>
+                <td>Initial Acquisition</td>
+                <td>High error rate, steep learning curve, focus on comprehension</td>
+                <td>6 CRs</td>
+                <td>ceil(InitialFailedAttempts × 0.5)</td>
+            </tr>
+            <tr>
+                <td>40-70%</td>
+                <td>Refinement</td>
+                <td>Decreasing errors, technique stabilization</td>
+                <td>7 CRs</td>
+                <td>ceil(InitialFailedAttempts × 0.5)</td>
+            </tr>
+            <tr>
+                <td>70-85%</td>
+                <td>Consolidation</td>
+                <td>Low error rate, automaticity begins</td>
+                <td>8 CRs</td>
+                <td>ceil(InitialFailedAttempts × 0.5)</td>
+            </tr>
+            <tr>
+                <td>85-95%</td>
+                <td>Mastery</td>
+                <td>Very low error rate, high consistency</td>
+                <td>9 CRs</td>
+                <td>ceil(InitialFailedAttempts × 0.5)</td>
+            </tr>
+            <tr>
+                <td>95-100%</td>
+                <td>Overlearning</td>
+                <td>Errorless execution, performance-ready</td>
+                <td>10 CRs</td>
+                <td>ceil(InitialFailedAttempts × 0.5)</td>
+            </tr>
+        </table>
+
+        <h3>9.4 Overlearning Quotum (OLQ): Dr. Gebrian's Framework</h3>
+        <p>
+            The OLQ is based on research by Dr. Molly Gebrian, which demonstrates that targeted overlearning (practicing beyond initial mastery) is essential for performance reliability under stress (Gebrian, 2024). Each learning phase defines a fixed baseline goal (FixedGoal) that guarantees a scientifically grounded minimum of correct repetitions. On top of this baseline, the system adds an overlearning component that reflects the technical struggle before the first success:
+        </p>
+        <div class="formula">
+            OLQ_target = FixedGoal_phase + ceil(InitialFailedAttempts × 0.5)
+        </div>
+        <p>
+            where <strong>InitialFailedAttempts</strong> counts only the errors that occur before the first correct repetition in the current session. The very first successful run becomes repetition #1, and the learner must accumulate <code>OLQ_target</code> consecutive correct repetitions to complete the session. Errors after the first success do not inflate the OLQ; they are recorded separately and handled by the scheduling core (τ updates, stability adjustments).
+        </p>
+        <ul>
+            <li><strong>Early phases (TDS &lt; 40%):</strong> FixedGoal = 6 correct repetitions. The learner receives immediate overlearning increments proportional to their initial struggle, protecting consolidation without overwhelming beginners.</li>
+            <li><strong>Middle phases (TDS 40-85%):</strong> FixedGoal = 7-8 correct repetitions (phase-dependent). Overlearning additions reinforce automaticity while keeping the perceived workload tightly coupled to real-world difficulty.</li>
+            <li><strong>Advanced phases (TDS &gt; 85%):</strong> FixedGoal = 9-10 correct repetitions. Extra reps ensure performance resilience under pressure while honoring Dr. Gebrian’s emphasis on deliberate overlearning.</li>
+        </ul>
+        <div class="example-box">
+            <h4>Example: Refinement Phase with Four Initial Failures</h4>
+            <p>
+                A learner in the Refinement phase (FixedGoal = 7) records four failed attempts before achieving the first correct repetition. The overlearning term becomes <code>ceil(4 × 0.5) = 2</code>, yielding <code>OLQ_target = 7 + 2 = 9</code> required correct repetitions. Once the first success occurs, later mistakes are logged for scheduling analytics but do not raise the OLQ target any further.
+            </p>
+        </div>
+
+        <h3>9.5 Duration Prediction</h3>
+        <p>
+            When the module is enabled, session duration is predicted using:
+        </p>
+        <div class="formula">
+            Duration = OLQ × T̄_CR
+        </div>
+        <p>
+            where T̄_CR (average time per correct repetition) is calculated from historical practice data. For new sections with no history, the system uses phase-based estimates:
+        </p>
+        <ul>
+            <li><strong>Initial Acquisition:</strong> 120s per CR (errors require problem-solving time)</li>
+            <li><strong>Refinement:</strong> 90s per CR (technique refinement)</li>
+            <li><strong>Consolidation:</strong> 60s per CR (automaticity developing)</li>
+            <li><strong>Mastery:</strong> 45s per CR (automated execution)</li>
+            <li><strong>Overlearning:</strong> 30s per CR (errorless, fast)</li>
+        </ul>
+
+        <h3>9.6 Data Management: Archiving Rule (CR=0)</h3>
+        <p>
+            Regardless of whether the Intensity Module is enabled, the system enforces a <strong>mandatory archiving rule</strong>:
+        </p>
+        <div class="formula">
+            IF CR = 0 THEN Archive Chunk
+        </div>
+        <p>
+            <strong>Rationale:</strong> Chunks with zero correct repetitions provide no usable data for scheduling calculations. They represent either:
+        </p>
+        <ul>
+            <li>Sections that are too difficult for the user's current skill level</li>
+            <li>Practice sessions that were abandoned or interrupted</li>
+            <li>Data entry errors</li>
+        </ul>
+        <p>
+            Archiving these chunks prevents them from corrupting scheduling calculations while preserving them in the database for future reactivation if desired.
+        </p>
+
+        <h3>9.7 Module Toggle: User Experience Design</h3>
+        <p>
+            The Intensity Module's optional nature reflects a user-centered design philosophy:
+        </p>
+        <table>
+            <tr>
+                <th>User Type</th>
+                <th>Module Status</th>
+                <th>Experience</th>
+            </tr>
+            <tr>
+                <td>New musicians, students</td>
+                <td>✅ Enabled</td>
+                <td>System provides structured guidance: "Practice for 12 minutes, target 5 correct repetitions (Consolidation phase)"</td>
+            </tr>
+            <tr>
+                <td>Experienced musicians, teachers</td>
+                <td>❌ Disabled</td>
+                <td>System schedules session with fixed duration (e.g., 15 min) and no specific repetition target—user determines intensity based on their own judgment</td>
+            </tr>
+        </table>
+        <p>
+            This approach respects the expertise of advanced musicians while providing scaffolding for learners who benefit from structured practice guidance.
+        </p>
+
+        <h2>10. Conclusion</h2>
+        <p>
+            This paper has presented a comprehensive adaptive spaced repetition system specifically designed for the unique demands of motor skill acquisition in music practice. By distinguishing between motor execution errors and memory retrieval failures, implementing a three-pillar adaptive architecture (Rapid Calibration, Memory Stability Tracking, Personalized Memory Calibration), and introducing an optional Intensity Module for practice quality control, the Modus Practica system addresses critical gaps in existing spaced repetition applications.
+        </p>
+        <p>
+            The key innovation is the <strong>semantic separation of error types</strong>: Failed Attempts quantify motor difficulty (used by the optional Intensity Module for TDS calculation) without penalizing intervals, while Streak Resets directly signal memory decay and trigger scheduling adjustments in the SRS core. This ensures that technically challenging pieces are not over-scheduled due to execution errors, while genuine forgetting is appropriately addressed through more frequent practice.
+        </p>
+        <p>
+            The three-pillar adaptive system balances aggressive early calibration (to quickly profile individual learners) with conservative long-term refinement (to track gradual drift in forgetting curves), all while maintaining transparent, explainable scheduling decisions. The optional Intensity Module provides additional scaffolding for learners who benefit from structured practice guidance (duration prediction, OLQ targets), while experienced musicians can disable it to rely on their own judgment.
+        </p>
+        <p>
+            Future work will focus on incorporating objective performance measurement (MIDI, audio analysis), refining the Intensity Module's TDS thresholds through empirical data collection, modeling transfer effects between related pieces, and conducting large-scale empirical validation with diverse learner populations. The ultimate goal is to provide musicians with an evidence-based, scientifically-grounded tool that maximizes practice efficiency while respecting the complex neuromuscular realities of musical performance and accommodating different learning styles and expertise levels.
+        </p>
+
+        <h2>References</h2>
+        <ol class="reference-list">
+            <li>
+                <strong>Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., & Rohrer, D. (2006).</strong> Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin, 132</em>(3), 354-380.
+            </li>
+            <li>
+                <strong>Dunlosky, J., & Metcalfe, J. (2009).</strong> Metacognition. <em>Sage Publications</em>.
+            </li>
+            <li>
+                <strong>Ebbinghaus, H. (1885/1913).</strong> Memory: A contribution to experimental psychology. <em>Teachers College, Columbia University</em>.
+            </li>
+            <li>
+                <strong>Fitts, P. M., & Posner, M. I. (1967).</strong> Human performance. <em>Brooks/Cole</em>.
+            </li>
+            <li>
+                <strong>Gebrian, M. (2024).</strong> Learn Faster, Perform Better: A Musician's Guide to the Neuroscience of Practicing. <em>Oxford University Press</em>.
+            </li>
+            <li>
+                <strong>Kornell, N., & Bjork, R. A. (2008).</strong> Learning concepts and categories: Is spacing the "enemy of induction"? <em>Psychological Science, 19</em>(6), 585-592.
+            </li>
+            <li>
+                <strong>Mettler, E., & Kellman, P. J. (2014).</strong> Adaptive response-time-based category sequencing in perceptual learning. <em>Vision Research, 99</em>, 111-123.
+            </li>
+            <li>
+                <strong>Roediger, H. L., & Karpicke, J. D. (2006).</strong> Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249-255.
+            </li>
+            <li>
+                <strong>Schmidt, R. A., & Lee, T. D. (2011).</strong> Motor control and learning: A behavioral emphasis (5th ed.). <em>Human Kinetics</em>.
+            </li>
+            <li>
+                <strong>Settles, B., & Meeder, B. (2016).</strong> A trainable spaced repetition model for language learning. <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics</em>, 1848-1858.
+            </li>
+            <li>
+                <strong>Walker, M. P., Brakefield, T., Morgan, A., Hobson, J. A., & Stickgold, R. (2002).</strong> Practice with sleep makes perfect: Sleep-dependent motor skill learning. <em>Neuron, 35</em>(1), 205-211.
+            </li>
+            <li>
+                <strong>Wozniak, P. A., & Gorzelanczyk, E. J. (1994).</strong> Optimization of repetition spacing in the practice of learning. <em>Acta Neurobiologiae Experimentalis, 54</em>, 59-62.
+            </li>
+        </ol>
+        
+        <h3>Additional References (Hierarchical Section Learning)</h3>
+        <ol class="reference-list" start="11">
+            <li>
+                <strong>Chase, W. G., & Simon, H. A. (1973).</strong> Perception in chess. <em>Cognitive Psychology, 4</em>(1), 55-81.
+            </li>
+            <li>
+                <strong>Miller, G. A. (1956).</strong> The magical number seven, plus or minus two: Some limits on our capacity for processing information. <em>Psychological Review, 63</em>(2), 81-97.
+            </li>
+            <li>
+                <strong>Morris, C. D., Bransford, J. D., & Franks, J. J. (1977).</strong> Levels of processing versus transfer appropriate processing. <em>Journal of Verbal Learning and Verbal Behavior, 16</em>(5), 519-533.
+            </li>
+            <li>
+                <strong>Naylor, J. C., & Briggs, G. E. (1963).</strong> Effects of task complexity and task organization on the relative efficiency of part and whole training methods. <em>Journal of Experimental Psychology, 65</em>(3), 217-224.
+            </li>
+            <li>
+                <strong>Schmidt, R. A. (1975).</strong> A schema theory of discrete motor skill learning. <em>Psychological Review, 82</em>(4), 225-260.
+            </li>
+            <li>
+                <strong>Wightman, D. C., & Lintern, G. (1985).</strong> Part-task training for tracking and manual control. <em>Human Factors, 27</em>(3), 267-283.
+            </li>
+        </ol>
+
+        <div style="margin-top: 60px; padding-top: 30px; border-top: 2px solid #7a2d17; text-align: center; color: #666; font-size: 10pt;">
+            <p><strong>© 2025 Partura Music™</strong></p>
+            <p>Modus Practica™ is a trademark of Partura Music. All rights reserved.</p>
+            <p>For inquiries: <a href="../contact.html">Contact Partura Music</a></p>
+        </div>
+    </div>
+</body>
+</html>

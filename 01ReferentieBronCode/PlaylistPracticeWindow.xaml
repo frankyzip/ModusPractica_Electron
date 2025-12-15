@@ -1,0 +1,260 @@
+<Window x:Class="ModusPractica.PlaylistPracticeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Interleaved Practice Session - Dr. Gebrian's Method"
+        Height="500"
+        Width="800"
+        WindowStartupLocation="CenterOwner"
+        Background="#F8F9FA"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="#28A745"
+                Padding="20,15">
+            <StackPanel>
+                <TextBlock Name="TxtPlaylistTitle"
+                           Text="🎵 Practice Session"
+                           Foreground="White"
+                           FontSize="18"
+                           FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,5,0,0">
+                    <TextBlock Name="TxtProgress"
+                               Text="Progress: 0/0 sections complete"
+                               Foreground="#D4EDDA"
+                               FontSize="12"/>
+                    <TextBlock Name="TxtTotalTime"
+                               Text="• Total time: 0 minutes"
+                               Foreground="#D4EDDA"
+                               FontSize="12"
+                               Margin="15,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1"
+              Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Current Section Info -->
+            <GroupBox Grid.Row="0"
+                      Header="🎯 Current Section"
+                      Background="White"
+                      BorderBrush="#DEE2E6"
+                      BorderThickness="2"
+                      Margin="0,0,0,15">
+                <StackPanel Margin="15">
+                    <!-- Information Banner -->
+                    <Border Background="#E7F3FF"
+                            BorderBrush="#B3D9FF"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Padding="10"
+                            Margin="0,0,0,15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="ℹ️"
+                                       FontSize="14"
+                                       Margin="0,0,8,0"/>
+                            <TextBlock Text="Interleaved Practice sessions track practice time only and do not affect your spaced repetition schedule."
+                                       FontSize="12"
+                                       Foreground="#0366D6"
+                                       TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Name="TxtCurrentPiece"
+                                       Text="Select a section to start practicing"
+                                       FontSize="16"
+                                       FontWeight="Medium"/>
+                            <TextBlock Name="TxtCurrentSection"
+                                       Text="No section selected"
+                                       FontSize="14"
+                                       Foreground="#6C757D"
+                                       Margin="0,2,0,0"/>
+                            <TextBlock Name="TxtCurrentDuration"
+                                       Text=""
+                                       FontSize="12"
+                                       Foreground="#007ACC"
+                                       Margin="0,5,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal">
+                            <Button Name="BtnPracticeSection"
+                                    Content="🎵 Practice This Section"
+                                    Background="#007ACC"
+                                    Foreground="White"
+                                    Padding="15,8"
+                                    BorderThickness="0"
+                                    FontWeight="Medium"
+                                    Click="BtnPracticeSection_Click"
+                                    IsEnabled="False"
+                                    ToolTip="Start a timed practice for the selected section. This is disabled if another timer is already running."/>
+                            <Button Name="BtnCompleteSection"
+                                    Content="✅ Mark Complete"
+                                    Background="#28A745"
+                                    Foreground="White"
+                                    Padding="15,8"
+                                    BorderThickness="0"
+                                    FontWeight="Medium"
+                                    Margin="10,0,0,0"
+                                    Click="BtnCompleteSection_Click"
+                                    IsEnabled="False"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Playlist Items -->
+            <GroupBox Grid.Row="1"
+                      Header="📋 Practice Queue"
+                      Background="White"
+                      BorderBrush="#DEE2E6"
+                      BorderThickness="1">
+                <ListBox Name="LbPlaylistItems"
+                         Background="White"
+                         BorderThickness="0"
+                         SelectionChanged="LbPlaylistItems_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="2"
+                                    Padding="15,10"
+                                    CornerRadius="6"
+                                    BorderBrush="#DEE2E6"
+                                    BorderThickness="1">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background"
+                                                Value="White"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsCompleted}"
+                                                         Value="True">
+                                                <Setter Property="Background"
+                                                        Value="#D4EDDA"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding StatusDisplay}"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,15,0"
+                                               FontSize="16"/>
+
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock Text="{Binding MusicPieceTitle}"
+                                                   FontWeight="Bold"
+                                                   FontSize="14"/>
+                                        <TextBlock Text="{Binding BarSectionRange}"
+                                                   FontSize="12"
+                                                   Foreground="#6C757D"
+                                                   Margin="0,2,0,0"/>
+                                    </StackPanel>
+
+                                    <TextBlock Grid.Column="2"
+                                               Text="{Binding DurationMinutes, StringFormat={}{0} min}"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Foreground="#007ACC"
+                                               Margin="10,0"/>
+
+                                    <TextBlock Grid.Column="3"
+                                               Text="{Binding CompletedAt, StringFormat=HH:mm}"
+                                               VerticalAlignment="Center"
+                                               FontSize="10"
+                                               Foreground="#28A745">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility"
+                                                        Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsCompleted}"
+                                                                 Value="True">
+                                                        <Setter Property="Visibility"
+                                                                Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+        </Grid>
+
+        <!-- Footer Controls -->
+        <Border Grid.Row="2"
+                Background="#F8F9FA"
+                Padding="20,15"
+                BorderBrush="#DEE2E6"
+                BorderThickness="0,1,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0"
+                            Orientation="Horizontal">
+                    <Button Name="BtnResetPlaylist"
+                            Content="🔄 Reset Progress"
+                            Background="#6C757D"
+                            Foreground="White"
+                            Padding="12,8"
+                            BorderThickness="0"
+                            Click="BtnResetPlaylist_Click"/>
+
+                    <Button Name="BtnAutoNext"
+                            Content="⚡ Auto-advance to next section"
+                            Background="#FFC107"
+                            Foreground="#212529"
+                            Padding="12,8"
+                            BorderThickness="0"
+                            Margin="10,0,0,0"
+                            Click="BtnAutoNext_Click"/>
+                </StackPanel>
+
+                <Button Grid.Column="1"
+                        Name="BtnClose"
+                        Content="✅ Finish Session"
+                        Background="#28A745"
+                        Foreground="White"
+                        Padding="15,8"
+                        BorderThickness="0"
+                        FontWeight="Medium"
+                        Click="BtnClose_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

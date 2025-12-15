@@ -1,0 +1,417 @@
+﻿<Window x:Class="ModusPractica.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="About Modus Practica Intelligent Practice Planner"
+        Height="600"
+        Width="650"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F8F8F8">
+
+    <Window.Resources>
+        <!-- Shadow effect for borders -->
+        <DropShadowEffect
+            x:Key="MildShadowEffect"
+            BlurRadius="10"
+            Direction="270"
+            Opacity="0.2"
+            ShadowDepth="3"
+            Color="#000000"/>
+
+        <!-- Style for feature items -->
+        <Style x:Key="FeatureItemStyle"
+               TargetType="Border">
+            <Setter Property="Margin"
+                    Value="0,5,0,5"/>
+            <Setter Property="Padding"
+                    Value="10"/>
+            <Setter Property="Background"
+                    Value="White"/>
+            <Setter Property="BorderBrush"
+                    Value="#E0E0E0"/>
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+            <Setter Property="CornerRadius"
+                    Value="6"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header with logo and app name -->
+        <Border Grid.Row="0"
+                Background="White"
+                BorderBrush="#DDDDDD"
+                BorderThickness="1"
+                CornerRadius="10"
+                Padding="20"
+                Margin="0,0,0,15"
+                Effect="{StaticResource MildShadowEffect}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Logo placeholder (replace with actual logo if available) -->
+                <Image Grid.Column="0"
+                       Width="70"
+                       Height="70"
+                       Source="/Assets/logo.png"
+                       Margin="0,0,15,0"/>
+
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Modus Practica"
+                               FontWeight="Bold"
+                               FontSize="24"
+                               Foreground="#333333"/>
+                    <TextBlock Text="Intelligent Music Practice Planner"
+                               FontSize="16"
+                               Foreground="#555555"/>
+                    <TextBlock Text="Version 1.0.0    Copyright ©2025 Frank De Baere"
+                               FontSize="12"
+                               Foreground="#777777"
+                               Margin="0,5,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Tab control for displaying different tabs -->
+        <TabControl Grid.Row="1"
+                    Background="Transparent"
+                    BorderThickness="0">
+
+            <!-- First tab: About -->
+            <TabItem Header="About">
+                <ScrollViewer>
+                    <StackPanel Margin="0,10,0,0">
+                        <Border Background="White"
+                                BorderBrush="#DDDDDD"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="15"
+                                Margin="0,0,0,10"
+                                Effect="{StaticResource MildShadowEffect}">
+                            <TextBlock TextWrapping="Wrap"
+                                       LineHeight="20">
+                                <Run FontWeight="SemiBold"
+                                     FontSize="15">Advanced Practice Management</Run>
+                                <LineBreak/><LineBreak/>
+                                Modus Practica is an intelligent practice management application designed for musicians of all levels. It uses proven learning methods based on Hermann Ebbinghaus's scientific research on memory and learning to optimize your practice routine.
+                                <LineBreak/><LineBreak/>
+                                By applying spaced repetition algorithms and Dr. Gebrian's research on overlearning, Modus Practica helps you achieve better results with less practice time, allowing you to learn music more efficiently and retain it longer.
+                            </TextBlock>
+                        </Border>
+
+                        <!-- Key Features Section -->
+                        <TextBlock Text="Key Features"
+                                   FontWeight="SemiBold"
+                                   FontSize="16"
+                                   Margin="0,10,0,10"/>
+
+                        <Border Style="{StaticResource FeatureItemStyle}"
+                                Background="#E6F3FF">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Grid.Column="0"
+                                         Width="30"
+                                         Height="30"
+                                         Fill="#4A86E8"
+                                         Margin="0,0,10,0"/>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Intelligent Practice Scheduling"
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Text="Adaptive algorithms determine the optimal timing for practicing each section based on your performance and memory patterns."
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <Border Style="{StaticResource FeatureItemStyle}"
+                                Background="#E6FFE6">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Grid.Column="0"
+                                         Width="30"
+                                         Height="30"
+                                         Fill="#4CAF50"
+                                         Margin="0,0,10,0"/>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Progress Tracking"
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Text="Detailed progress metrics for each piece and section help you visualize improvement over time and identify areas needing attention."
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <Border Style="{StaticResource FeatureItemStyle}"
+                                Background="#FFF2E6">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Grid.Column="0"
+                                         Width="30"
+                                         Height="30"
+                                         Fill="#FF9800"
+                                         Margin="0,0,10,0"/>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Advanced Analytics"
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Text="Gain insights into your practice habits with detailed statistics and visualizations of your practice history and retention curves."
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <Border Style="{StaticResource FeatureItemStyle}"
+                                Background="#F2E6FF">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Grid.Column="0"
+                                         Width="30"
+                                         Height="30"
+                                         Fill="#9C27B0"
+                                         Margin="0,0,10,0"/>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Scientific Learning Methods"
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Text="Based on Hermann Ebbinghaus's forgetting curve research and Dr. Molly Gebrian's music practice techniques to optimize retention and performance."
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <!-- Credits Section -->
+                        <TextBlock Text="Credits"
+                                   FontWeight="SemiBold"
+                                   FontSize="16"
+                                   Margin="0,15,0,10"/>
+
+                        <Border Background="White"
+                                BorderBrush="#DDDDDD"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="15"
+                                Effect="{StaticResource MildShadowEffect}">
+                            <StackPanel>
+                                <TextBlock Text="Developed by Frank De Baere"
+                                           FontWeight="SemiBold"/>
+                                <TextBlock Text="© 2025 - All rights reserved."
+                                           Margin="0,5,0,0"/>
+                                <TextBlock TextWrapping="Wrap"
+                                           Margin="0,10,0,0">
+                                    Special thanks to Dr. Molly Gebrian for her research on applying neuroscience to music practice.
+                                </TextBlock>
+                                <TextBlock TextWrapping="Wrap"
+                                           Margin="5,5,0,0">
+                                    Special thanks to Charles Szczepanek for his fantastic contribution on piano practice.
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Second tab: Disclaimer -->
+            <TabItem Header="Legal">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="0,10,0,0">
+                        <Border Background="White"
+                                BorderBrush="#DDDDDD"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="15"
+                                Effect="{StaticResource MildShadowEffect}">
+                            <StackPanel>
+                                <TextBlock Text="SOFTWARE LICENSE AGREEMENT"
+                                           FontWeight="Bold"
+                                           FontSize="16"
+                                           Margin="0,0,0,10"/>
+
+                                <TextBlock TextWrapping="Wrap"
+                                           Margin="0,0,0,15"
+                                           LineHeight="20">
+                                    <Run FontWeight="SemiBold">DISCLAIMER - MODUS PRACTICA</Run>
+                                    <LineBreak/><LineBreak/>
+                                    This software is provided 'as is', without any warranty, express or implied,
+                                    including but not limited to warranties of merchantability, fitness for a particular purpose,
+                                    and non-infringement. In no event shall the authors or copyright holders be liable for any claim,
+                                    damages or other liability, whether in an action of contract, tort or otherwise,
+                                    arising from, out of or in connection with the software or the use or other dealings in the software.
+                                    <LineBreak/><LineBreak/>
+                                    Modus Practica is intended for educational and personal purposes. The practice schedules
+                                    and recommendations offered are based on scientific research, but are only provided as a guideline.
+                                    Results may vary depending on individual circumstances.
+                                    <LineBreak/><LineBreak/>
+                                    The user acknowledges that this software is not a substitute for professional musical guidance
+                                    and that the developers are not responsible for the results obtained through the use
+                                    of the software.
+                                </TextBlock>
+
+                                <TextBlock TextWrapping="Wrap"
+                                           Margin="0,0,0,15"
+                                           LineHeight="20">
+                                    <Run FontWeight="SemiBold">INTELLECTUAL PROPERTY</Run>
+                                    <LineBreak/><LineBreak/>
+                                    All musical works, scores, and materials processed by the user with this
+                                    software remain the full responsibility of the user. The user must ensure
+                                    that they have the necessary rights to use these materials.
+                                    <LineBreak/><LineBreak/>
+                                    The Modus Practica name, logo, and software design are intellectual
+                                    property of Frank De Baere. Unauthorized reproduction, distribution, or modification
+                                    of this software is prohibited.
+                                </TextBlock>
+
+                                <TextBlock TextWrapping="Wrap"
+                                           LineHeight="20">
+                                    <Run FontWeight="SemiBold">FREE SOFTWARE LICENSE</Run>
+                                    <LineBreak/><LineBreak/>
+                                    Modus Practica is offered free of charge without any obligation to purchase or register.
+                                    As free software, this program is provided without technical support. The developers
+                                    reserve the right to modify, add, or remove the software and associated features without
+                                    prior notice. Users are encouraged to check regularly for updates.
+                                    <LineBreak/><LineBreak/>
+                                    By using this software, you agree to be bound by the terms of this agreement.
+                                    <LineBreak/><LineBreak/>
+                                    © 2025 Frank De Baere - All rights reserved.
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Third tab: System Information -->
+            <TabItem Header="System">
+                <ScrollViewer>
+                    <StackPanel Margin="0,10,0,0">
+                        <Border Background="White"
+                                BorderBrush="#DDDDDD"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="15"
+                                Effect="{StaticResource MildShadowEffect}">
+                            <StackPanel>
+                                <TextBlock Text="SYSTEM INFORMATION"
+                                           FontWeight="Bold"
+                                           FontSize="16"
+                                           Margin="0,0,0,15"/>
+
+                                <Grid Margin="0,0,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Text="Application Version:"
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1"
+                                               x:Name="TxtApplicationVersion"
+                                               Text="1.0.0 Build: 20251111-2155"/>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Text="Framework:"
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text=".NET 8.0"/>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Text="Data Directory:"
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="%AppData%\ModusPractica"
+                                               TextWrapping="Wrap"/>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Text="Operating System:"
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1"
+                                               x:Name="TxtOperatingSystem"
+                                               Text="Windows 11"/>
+                                </Grid>
+
+                                <TextBlock Text="THIRD-PARTY COMPONENTS"
+                                           FontWeight="Bold"
+                                           FontSize="16"
+                                           Margin="0,20,0,15"/>
+
+                                <TextBlock TextWrapping="Wrap"
+                                           LineHeight="20">
+                                    <Run FontWeight="SemiBold">JSON.NET</Run> - Popular high-performance JSON framework for .NET.
+                                    <LineBreak/>
+                                    <Run FontWeight="SemiBold">Playfair Display Font</Run> - Designed by Claus Eggers Sørensen.
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <!-- Footer with close button -->
+        <Border Grid.Row="2"
+                Background="White"
+                BorderBrush="#DDDDDD"
+                BorderThickness="1"
+                CornerRadius="10"
+                Padding="15"
+                Margin="0,15,0,0"
+                Effect="{StaticResource MildShadowEffect}">
+            <Grid>
+                <Button Content="Close"
+                        Width="100"
+                        Height="32"
+                        HorizontalAlignment="Right"
+                        Click="OkButton_Click"
+                        Background="#4A86E8"
+                        Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius"
+                                    Value="4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,912 @@
+<!--
++---------------------------------------------------------------------------+
+�  ModusPractica Feedback - Community Feedback & Discussion                �
+�  Copyright � 2025 Frank De Baere - All Rights Reserved                    �
++---------------------------------------------------------------------------+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModusPractica Feedback - Share Your Experience</title>
+    <meta name="description" content="Share your feedback, suggestions, and experiences with ModusPractica. Join the community discussion and help us improve the app.">
+    <meta name="keywords" content="ModusPractica feedback, user feedback, suggestions, community, feature requests, bug reports">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.parturamusic.be/moduspractica/moduspractica-feedback.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.parturamusic.be/moduspractica/moduspractica-feedback.html">
+    <meta property="og:title" content="ModusPractica Feedback - Share Your Experience">
+    <meta property="og:description" content="Share your feedback and help us improve ModusPractica.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ModusPractica Feedback">
+    <meta name="twitter:description" content="Share your suggestions and experiences.">
+    
+    <!-- CSS styles are inline in this file -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image:
+                repeating-linear-gradient(12deg,
+                    rgba(255, 255, 255, 0.030) 0px,
+                    rgba(255, 255, 255, 0.030) 3px,
+                    rgba(0, 0, 0, 0.040) 3px,
+                    rgba(0, 0, 0, 0.040) 6px
+                ),
+                radial-gradient(1200px 800px at 0% 0%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%),
+                linear-gradient(135deg, #7a2d17 0%, #9a3b1a 22%, #b45722 48%, #c9782a 72%, #d39e5a 100%);
+            background-blend-mode: overlay, soft-light, normal;
+            background-attachment: fixed;
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .feedback-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .feedback-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(180, 87, 34, 0.3);
+        }
+
+        .feedback-header h1 {
+            font-size: 2.5em;
+            color: #b45722;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .feedback-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #b45722;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            color: #c9782a;
+            text-decoration: underline;
+        }
+
+        /* Feedback Form */
+        .feedback-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .feedback-form h2 {
+            color: #7a2d17;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #7a2d17;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(180, 87, 34, 0.3);
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Inter', sans-serif;
+            background: #fffef9;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #c9782a;
+            box-shadow: 0 0 0 3px rgba(201, 120, 42, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #b45722 0%, #c9782a 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(180, 87, 34, 0.3);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* Feedback List */
+        .feedback-list {
+            margin-top: 40px;
+        }
+
+        .feedback-list h2 {
+            color: #7a2d17;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .feedback-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid #b45722;
+            background: white;
+            color: #b45722;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            background: #fef5e7;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #b45722 0%, #c9782a 100%);
+            color: white;
+        }
+
+        .feedback-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid #b45722;
+        }
+
+        .feedback-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .feedback-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #b45722 0%, #c9782a 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .feedback-date {
+            font-size: 0.85em;
+            color: #999;
+        }
+
+        .feedback-category {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .category-suggestion {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .category-bug {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .category-praise {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .category-question {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .feedback-content {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .feedback-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-reply {
+            background: none;
+            border: 1px solid #b45722;
+            color: #b45722;
+            padding: 6px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            font-size: 0.9em;
+        }
+
+        .btn-reply:hover {
+            background: #b45722;
+            color: white;
+        }
+
+        .like-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #999;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .like-btn:hover {
+            color: #b45722;
+        }
+
+        .like-btn.liked {
+            color: #b45722;
+        }
+
+        /* Replies Section */
+        .replies-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .reply-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            margin-left: 30px;
+        }
+
+        .reply-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .reply-author {
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.9em;
+        }
+
+        .reply-date {
+            font-size: 0.8em;
+            color: #999;
+        }
+
+        .reply-content {
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+
+        .reply-form {
+            margin-top: 15px;
+            margin-left: 30px;
+        }
+
+        .reply-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(180, 87, 34, 0.3);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9em;
+            min-height: 80px;
+            background: #fffef9;
+        }
+
+        .reply-form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-send-reply {
+            background: #b45722;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-send-reply:hover {
+            background: #c9782a;
+        }
+
+        .btn-cancel-reply {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel-reply:hover {
+            background: #cbd5e0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .empty-state h3 {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .feedback-container {
+                padding: 20px;
+            }
+
+            .feedback-header h1 {
+                font-size: 2em;
+            }
+
+            .feedback-form,
+            .feedback-item {
+                padding: 20px;
+            }
+
+            .reply-item,
+            .reply-form {
+                margin-left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <a href="../index.html#modus-practica" class="back-link">&#8592; Back to Partura Music</a>
+
+        <div class="feedback-header">
+            <h1>&#128172; Community Feedback</h1>
+            <p>Share your experiences, suggestions, and questions about ModusPractica. Your feedback helps me to improve the app.</p>
+        </div>
+
+        <div class="success-message" id="success-message">
+            &#10003; Your feedback has been submitted successfully!
+        </div>
+
+        <!-- Feedback Form -->
+        <div class="feedback-form">
+            <h2>Submit Your Feedback</h2>
+            <form id="feedback-form">
+                <div class="form-group">
+                    <label for="user-name">Your Name *</label>
+                    <input type="text" id="user-name" required placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="user-email">Email (optional)</label>
+                    <input type="email" id="user-email" placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="feedback-category">Category *</label>
+                    <select id="feedback-category" required>
+                        <option value="">Select a category</option>
+                        <option value="suggestion">&#128161; Suggestion / Feature Request</option>
+                        <option value="bug">&#128027; Bug Report</option>
+                        <option value="praise">&#10084; Praise / Success Story</option>
+                        <option value="question">&#9745; Question / Help</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="feedback-content">Your Message *</label>
+                    <textarea id="feedback-content" required placeholder="Share your thoughts, suggestions, or questions..."></textarea>
+                    <div class="char-counter">
+                        <span id="char-count">0</span> / 1000 characters
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Feedback</button>
+            </form>
+        </div>
+
+        <!-- Feedback List -->
+        <div class="feedback-list">
+            <h2>&#128214; Community Feedback</h2>
+
+            <div class="feedback-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="suggestion">&#128161; Suggestions</button>
+                <button class="filter-btn" data-filter="bug">&#128027; Bug Reports</button>
+                <button class="filter-btn" data-filter="praise">&#10084; Praise</button>
+                <button class="filter-btn" data-filter="question">&#9745; Questions</button>
+            </div>
+
+            <div id="feedback-items">
+                <!-- Feedback items will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Feedback storage key
+        const STORAGE_KEY = 'mp_public_feedback';
+
+        // Icon entities to keep markup ASCII-friendly
+        const ICONS = {
+            reply: '&#128172;',
+            likeFilled: '&#10084;',
+            likeOutline: '&#9825;',
+            suggestion: '&#128161;',
+            bug: '&#128027;',
+            praise: '&#10084;',
+            question: '&#9745;'
+        };
+        
+        // Load feedback from localStorage
+        function loadFeedback() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        // Save feedback to localStorage
+        function saveFeedback(feedback) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(feedback));
+        }
+
+        // Get user's liked feedback IDs
+        function getLikedFeedback() {
+            const stored = localStorage.getItem('mp_liked_feedback');
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        // Save liked feedback IDs
+        function saveLikedFeedback(likedIds) {
+            localStorage.setItem('mp_liked_feedback', JSON.stringify(likedIds));
+        }
+
+        // Initialize feedback with sample data if empty
+        function initializeFeedback() {
+            const feedback = loadFeedback();
+            if (feedback.length === 0) {
+                const sampleFeedback = [
+                    {
+                        id: Date.now() + Math.random(),
+                        name: 'Maria',
+                        email: '',
+                        category: 'praise',
+                        content: 'I\'ve been using ModusPractica for three months now, and the Ebbinghaus-based scheduling has transformed my practice routine. I\'m finally seeing consistent progress on difficult passages!',
+                        timestamp: Date.now() - 86400000 * 5,
+                        likes: 12,
+                        replies: [
+                            {
+                                id: Date.now() + Math.random() + 1,
+                                name: 'Frank',
+                                content: 'Thank you so much for sharing your success story, Maria! It\'s wonderful to hear the scientific approach is working for you.',
+                                timestamp: Date.now() - 86400000 * 4
+                            }
+                        ]
+                    },
+                    {
+                        id: Date.now() + Math.random() + 2,
+                        name: 'Thomas',
+                        email: '',
+                        category: 'suggestion',
+                        content: 'Would it be possible to add a practice log export feature? I\'d love to share my progress data with my teacher.',
+                        timestamp: Date.now() - 86400000 * 3,
+                        likes: 8,
+                        replies: []
+                    },
+                    {
+                        id: Date.now() + Math.random() + 3,
+                        name: 'Sophie',
+                        email: '',
+                        category: 'question',
+                        content: 'How exactly does the adaptive tau system work? I noticed my intervals are different for different pieces.',
+                        timestamp: Date.now() - 86400000 * 2,
+                        likes: 5,
+                        replies: [
+                            {
+                                id: Date.now() + Math.random() + 4,
+                                name: 'Frank',
+                                content: 'Great question! The adaptive tau adjusts based on your performance history and the difficulty level you set. Check out the Scientific Paper page for the full mathematical explanation.',
+                                timestamp: Date.now() - 86400000 * 1
+                            }
+                        ]
+                    }
+                ];
+                saveFeedback(sampleFeedback);
+                return sampleFeedback;
+            }
+            return feedback;
+        }
+
+        // Format date
+        function formatDate(timestamp) {
+            const date = new Date(timestamp);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 0) return 'Today';
+            if (diffDays === 1) return 'Yesterday';
+            if (diffDays < 7) return `${diffDays} days ago`;
+            if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        // Get initials from name
+        function getInitials(name) {
+            return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+        }
+
+        // Render feedback items
+        function renderFeedback(filter = 'all') {
+            const feedback = loadFeedback();
+            const container = document.getElementById('feedback-items');
+            const likedIds = getLikedFeedback();
+            
+            let filtered = filter === 'all' ? feedback : feedback.filter(f => f.category === filter);
+            filtered.sort((a, b) => b.timestamp - a.timestamp);
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">&#128221;</div>
+                        <h3>No feedback yet</h3>
+                        <p>Be the first to share your thoughts!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = filtered.map(item => {
+                const isLiked = likedIds.includes(item.id);
+                const repliesHtml = item.replies && item.replies.length > 0 ? `
+                    <div class="replies-section">
+                        ${item.replies.map(reply => `
+                            <div class="reply-item">
+                                <div class="reply-header">
+                                    <span class="reply-author">${escapeHtml(reply.name)}</span>
+                                    <span class="reply-date">${formatDate(reply.timestamp)}</span>
+                                </div>
+                                <div class="reply-content">${escapeHtml(reply.content)}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : '';
+                
+                return `
+                    <div class="feedback-item" data-id="${item.id}">
+                        <div class="feedback-header-row">
+                            <div class="feedback-author">
+                                <div class="author-avatar">${getInitials(item.name)}</div>
+                                <div class="author-info">
+                                    <div class="author-name">${escapeHtml(item.name)}</div>
+                                    <div class="feedback-date">${formatDate(item.timestamp)}</div>
+                                </div>
+                            </div>
+                            <span class="feedback-category category-${item.category}">
+                                ${getCategoryLabel(item.category)}
+                            </span>
+                        </div>
+                        <div class="feedback-content">${escapeHtml(item.content)}</div>
+                        <div class="feedback-actions">
+                            <button class="btn-reply" onclick="showReplyForm(${item.id})">${ICONS.reply} Reply</button>
+                            <button class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${item.id})">
+                                ${isLiked ? ICONS.likeFilled : ICONS.likeOutline} ${item.likes || 0}
+                            </button>
+                        </div>
+                        ${repliesHtml}
+                        <div class="reply-form" id="reply-form-${item.id}" style="display: none;">
+                            <textarea placeholder="Write your reply..." id="reply-text-${item.id}"></textarea>
+                            <div class="reply-form-actions">
+                                <button class="btn-send-reply" onclick="submitReply(${item.id})">Send Reply</button>
+                                <button class="btn-cancel-reply" onclick="hideReplyForm(${item.id})">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Get category label
+        function getCategoryLabel(category) {
+            const labels = {
+                suggestion: `${ICONS.suggestion} Suggestion`,
+                bug: `${ICONS.bug} Bug Report`,
+                praise: `${ICONS.praise} Praise`,
+                question: `${ICONS.question} Question`
+            };
+            return labels[category] || category;
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Show reply form
+        function showReplyForm(id) {
+            const form = document.getElementById(`reply-form-${id}`);
+            form.style.display = 'block';
+            document.getElementById(`reply-text-${id}`).focus();
+        }
+
+        // Hide reply form
+        function hideReplyForm(id) {
+            const form = document.getElementById(`reply-form-${id}`);
+            form.style.display = 'none';
+            document.getElementById(`reply-text-${id}`).value = '';
+        }
+
+        // Submit reply
+        function submitReply(id) {
+            const replyText = document.getElementById(`reply-text-${id}`).value.trim();
+            const replyName = prompt('Enter your name:');
+            
+            if (!replyText || !replyName) {
+                alert('Please enter your name and a reply message.');
+                return;
+            }
+            
+            const feedback = loadFeedback();
+            const item = feedback.find(f => f.id === id);
+            
+            if (item) {
+                if (!item.replies) item.replies = [];
+                item.replies.push({
+                    id: Date.now() + Math.random(),
+                    name: replyName,
+                    content: replyText,
+                    timestamp: Date.now()
+                });
+                saveFeedback(feedback);
+                hideReplyForm(id);
+                renderFeedback(currentFilter);
+            }
+        }
+
+        // Toggle like
+        function toggleLike(id) {
+            const feedback = loadFeedback();
+            const item = feedback.find(f => f.id === id);
+            const likedIds = getLikedFeedback();
+            
+            if (item) {
+                const index = likedIds.indexOf(id);
+                if (index > -1) {
+                    likedIds.splice(index, 1);
+                    item.likes = Math.max(0, (item.likes || 0) - 1);
+                } else {
+                    likedIds.push(id);
+                    item.likes = (item.likes || 0) + 1;
+                }
+                saveLikedFeedback(likedIds);
+                saveFeedback(feedback);
+                renderFeedback(currentFilter);
+            }
+        }
+
+        // Form submission
+        let currentFilter = 'all';
+        
+        document.getElementById('feedback-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('user-name').value.trim();
+            const email = document.getElementById('user-email').value.trim();
+            const category = document.getElementById('feedback-category').value;
+            const content = document.getElementById('feedback-content').value.trim();
+            
+            if (!name || !category || !content) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            const feedback = loadFeedback();
+            feedback.push({
+                id: Date.now() + Math.random(),
+                name,
+                email,
+                category,
+                content,
+                timestamp: Date.now(),
+                likes: 0,
+                replies: []
+            });
+            
+            saveFeedback(feedback);
+            
+            // Reset form
+            this.reset();
+            document.getElementById('char-count').textContent = '0';
+            
+            // Show success message
+            const successMsg = document.getElementById('success-message');
+            successMsg.classList.add('show');
+            setTimeout(() => successMsg.classList.remove('show'), 5000);
+            
+            // Refresh list
+            renderFeedback(currentFilter);
+            
+            // Scroll to feedback list
+            document.querySelector('.feedback-list').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Character counter
+        document.getElementById('feedback-content').addEventListener('input', function() {
+            const count = this.value.length;
+            document.getElementById('char-count').textContent = count;
+            if (count > 1000) {
+                this.value = this.value.substring(0, 1000);
+                document.getElementById('char-count').textContent = '1000';
+            }
+        });
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                renderFeedback(currentFilter);
+            });
+        });
+
+        // Initialize
+        initializeFeedback();
+        renderFeedback();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,107 @@
+﻿<Window x:Class="ModusPractica.DaySessionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModusPractica"
+        mc:Ignorable="d"
+        Title="Day Sessions - Modus Practica"
+        Height="700"
+        Width="700"
+        Background="#F8F8F8"
+        Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <!-- Drop shadow for borders -->
+        <DropShadowEffect
+            x:Key="MildShadowEffect"
+            BlurRadius="10"
+            Direction="270"
+            Opacity="0.2"
+            ShadowDepth="3"
+            Color="#000000" />
+
+        <!-- Style for session items -->
+        <Style x:Key="SessionItemStyle" TargetType="Border">
+            <Setter Property="Margin" Value="0,5,0,5" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="#E0E0E0" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Effect" Value="{StaticResource MildShadowEffect}" />
+        </Style>
+
+        <!-- Style for completed sessions -->
+        <Style x:Key="CompletedSessionStyle" TargetType="Border" BasedOn="{StaticResource SessionItemStyle}">
+            <Setter Property="Background" Value="#F0F0F0" />
+            <Setter Property="BorderBrush" Value="#D0D0D0" />
+            <Setter Property="Opacity" Value="0.7" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header with date information -->
+        <Border
+            Grid.Row="0"
+            Background="White"
+            BorderBrush="#DDDDDD"
+            BorderThickness="1"
+            CornerRadius="8"
+            Padding="15"
+            Margin="0,0,0,15"
+            Effect="{StaticResource MildShadowEffect}">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock x:Name="TxtSelectedDate" Text="May 15, 2025" FontSize="22" FontWeight="SemiBold" Foreground="#333333" />
+                    <TextBlock x:Name="TxtSessionCount" Text="3 Practice Sessions Scheduled" FontSize="14" Foreground="#555555" Margin="0,5,0,0" />
+                </StackPanel>
+
+                
+            </Grid>
+        </Border>
+
+        <!-- Practice sessions list with vertical scrollbar -->
+        <ScrollViewer
+            Grid.Row="1"
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Disabled"
+            Margin="0,0,0,15">
+
+            <StackPanel x:Name="SessionsPanel">
+                <!-- Sessions will be added here dynamically in code-behind -->
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer with buttons -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBlock x:Name="TxtTotalTime" Text="Total practice time: 1h 30m" VerticalAlignment="Center" Foreground="#555555" />
+            </StackPanel>
+
+            <Button
+                Grid.Column="1"
+                x:Name="BtnClose"
+                Content="Close"
+                Width="100"
+                Click="BtnClose_Click" />
+        </Grid>
+    </Grid>
+</Window>

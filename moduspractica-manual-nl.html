@@ -1,0 +1,2033 @@
+<!--
++---------------------------------------------------------------------------+
+│  ModusPractica Handleiding                                               │
+│  Copyright © 2025 Frank De Baere - All Rights Reserved                   │
++---------------------------------------------------------------------------+
+-->
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModusPractica Handleiding - Begeleide Oefen Referentie</title>
+    <meta name="description" content="Officiële ModusPractica handleiding met gestructureerde begeleiding voor het aan de slag gaan, beheren van profielen, en het beheersen van adaptieve oefensessies.">
+    <meta name="keywords" content="ModusPractica handleiding, gebruikershandleiding, muziek oefenen, aan de slag, tutorial, documentatie">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.parturamusic.be/moduspractica/moduspractica-manual-nl.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.parturamusic.be/moduspractica/moduspractica-manual-nl.html">
+    <meta property="og:title" content="ModusPractica Handleiding - Volledige Gebruikershandleiding">
+    <meta property="og:description" content="Officiële handleiding met gestructureerde begeleiding voor ModusPractica adaptieve oefensessies.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    <meta property="og:locale" content="nl_NL">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ModusPractica Handleiding">
+    <meta name="twitter:description" content="Volledige handleiding voor ModusPractica muziek oefen app.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="assets/libs/lucide.min.js"></script>
+    <style>
+        :root {
+            --sidebar-width: 240px;
+            --header-height: 50px;
+            --bg-color: #ffffff;
+            --sidebar-bg: #e8e8e6;
+            --border-color: #e0e0e0;
+            --text-primary: #37352f;
+            --text-secondary: #787774;
+            --accent-color: #2eaadc;
+            --hover-bg: #efefef;
+            --selected-bg: #e6f3f7;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-size: 13px;
+        }
+
+        .main-content {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .top-bar {
+            height: var(--header-height);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            justify-content: space-between;
+        }
+
+        .top-bar-title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .manual-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .manual-header {
+            text-align: center;
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 32px;
+        }
+
+        .manual-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .manual-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="top-bar-title">ModusPractica Handleiding</div>
+        </div>
+        <div class="content-area">
+            <div class="manual-container">
+                <div class="manual-header">
+                    <h1 class="manual-title">ModusPractica Handleiding</h1>
+                    <p class="manual-subtitle">Gestructureerde begeleiding voor adaptief muziekoefenen</p>
+                    <div style="text-align: center; margin-top: 20px; font-size: 12px; color: var(--text-secondary);">
+                        <span>Laatst bijgewerkt: 15 december 2025</span> •
+                        <span>Versie: 2.0.0</span> •
+                        <span>Onderhouden door Partura Music</span>
+                    </div>
+                </div>
+
+                <!-- Inhoudstafel -->
+                <div class="section" style="background: #f8f9fa; padding: 24px; border-radius: 8px; margin-bottom: 32px;">
+                    <h2 class="section-title">📑 Inhoudstafel</h2>
+                    <div class="section-content">
+                        <ol style="line-height: 2.0; font-size: 14px;">
+                            <li><a href="#wat-is-moduspractica" style="color: var(--accent-color); text-decoration: none;">Wat is ModusPractica?</a>
+                                <ul style="margin-top: 8px; margin-bottom: 8px;">
+                                    <li><a href="#kernprobleem" style="color: var(--text-secondary); text-decoration: none;">Het kernprobleem</a></li>
+                                    <li><a href="#hoe-helpt-moduspractica" style="color: var(--text-secondary); text-decoration: none;">Hoe ModusPractica helpt</a></li>
+                                    <li><a href="#voor-wie" style="color: var(--text-secondary); text-decoration: none;">Voor wie is het?</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#aan-de-slag" style="color: var(--accent-color); text-decoration: none;">Aan de slag</a>
+                                <ul style="margin-top: 8px; margin-bottom: 8px;">
+                                    <li><a href="#eerste-stappen" style="color: var(--text-secondary); text-decoration: none;">Eerste stappen</a></li>
+                                    <li><a href="#interface-overzicht" style="color: var(--text-secondary); text-decoration: none;">Interface overzicht</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#profielbeheer" style="color: var(--accent-color); text-decoration: none;">Profielbeheer</a>
+                                <ul style="margin-top: 8px; margin-bottom: 8px;">
+                                    <li><a href="#nieuw-profiel" style="color: var(--text-secondary); text-decoration: none;">Nieuw profiel aanmaken</a></li>
+                                    <li><a href="#ervaringsniveau" style="color: var(--text-secondary); text-decoration: none;">Ervaringsniveau kiezen</a></li>
+                                    <li><a href="#profiel-bewerken" style="color: var(--text-secondary); text-decoration: none;">Profiel bewerken</a></li>
+                                    <li><a href="#data-beheer" style="color: var(--text-secondary); text-decoration: none;">Data exporteren en importeren</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#repertoire-opbouwen" style="color: var(--accent-color); text-decoration: none;">Repertoire opbouwen</a>
+                                <ul style="margin-top: 8px; margin-bottom: 8px;">
+                                    <li><a href="#chunking-strategie" style="color: var(--text-secondary); text-decoration: none;">Praktische chunking strategie</a></li>
+                                    <li><a href="#drie-lagen-systeem" style="color: var(--text-secondary); text-decoration: none;">Het drie-lagen systeem</a></li>
+                                    <li><a href="#voorbeeld-workflow" style="color: var(--text-secondary); text-decoration: none;">Voorbeeld workflow</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#oefensessies" style="color: var(--accent-color); text-decoration: none;">Oefensessies</a>
+                                <ul style="margin-top: 8px; margin-bottom: 8px;">
+                                    <li><a href="#sessie-starten" style="color: var(--text-secondary); text-decoration: none;">Een sessie starten</a></li>
+                                    <li><a href="#sessie-beoordelen" style="color: var(--text-secondary); text-decoration: none;">Prestatie beoordelen</a></li>
+                                    <li><a href="#intensiteitsmodule" style="color: var(--text-secondary); text-decoration: none;">Intensiteitsmodule (optioneel)</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#adaptief-leersysteem" style="color: var(--accent-color); text-decoration: none;">Het adaptieve leersysteem</a>
+                                <ul style="margin-top: 8px; margin-bottom: 8px;">
+                                    <li><a href="#ebbinghaus-algoritme" style="color: var(--text-secondary); text-decoration: none;">Ebbinghaus vergeetcurve</a></li>
+                                    <li><a href="#spaced-repetition" style="color: var(--text-secondary); text-decoration: none;">Spaced Repetition (gespreide herhaling)</a></li>
+                                    <li><a href="#tau-parameter" style="color: var(--text-secondary); text-decoration: none;">Tau (τ) parameter</a></li>
+                                    <li><a href="#adaptieve-calibratie" style="color: var(--text-secondary); text-decoration: none;">Adaptieve calibratie systemen</a></li>
+                                    <li><a href="#moeilijkheidsgraden" style="color: var(--text-secondary); text-decoration: none;">Moeilijkheidsgraden</a></li>
+                                    <li><a href="#practice-stages" style="color: var(--text-secondary); text-decoration: none;">Practice Stages (leertraject)</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#intensiteitsmodule-details" style="color: var(--accent-color); text-decoration: none;">Intensiteitsmodule (geavanceerd)</a>
+                                <ul style="margin-top: 8px; margin-bottom: 8px;">
+                                    <li><a href="#tds-metric" style="color: var(--text-secondary); text-decoration: none;">Technical Difficulty Score (TDS)</a></li>
+                                    <li><a href="#leerfasen" style="color: var(--text-secondary); text-decoration: none;">Leerfasen</a></li>
+                                    <li><a href="#olq-metric" style="color: var(--text-secondary); text-decoration: none;">Overlearning Quotum (OLQ)</a></li>
+                                    <li><a href="#duur-voorspelling" style="color: var(--text-secondary); text-decoration: none;">Sessieduur voorspelling</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#dashboard-features" style="color: var(--accent-color); text-decoration: none;">Dashboard & Statistieken</a>
+                                <ul style="margin-top: 8px; margin-bottom: 8px;">
+                                    <li><a href="#dagelijkse-agenda" style="color: var(--text-secondary); text-decoration: none;">Dagelijkse oefenagenda</a></li>
+                                    <li><a href="#voortgangsgrafieken" style="color: var(--text-secondary); text-decoration: none;">Voortgangsgrafieken</a></li>
+                                    <li><a href="#statistieken" style="color: var(--text-secondary); text-decoration: none;">Gedetailleerde statistieken</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#geavanceerde-functies" style="color: var(--accent-color); text-decoration: none;">Geavanceerde functies</a>
+                                <ul style="margin-top: 8px; margin-bottom: 8px;">
+                                    <li><a href="#interleaved-practice" style="color: var(--text-secondary); text-decoration: none;">Interleaved Practice</a></li>
+                                    <li><a href="#vrij-oefenen" style="color: var(--text-secondary); text-decoration: none;">Vrij oefenen</a></li>
+                                    <li><a href="#media-bibliotheek" style="color: var(--text-secondary); text-decoration: none;">Media bibliotheek</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="moduspractica-qa.html" style="color: var(--accent-color); text-decoration: none;">Veelgestelde vragen</a></li>
+                            <li><a href="#wetenschappelijke-basis" style="color: var(--accent-color); text-decoration: none;">Wetenschappelijke basis</a></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Sectie 1: Wat is ModusPractica -->
+                <div class="section" id="wat-is-moduspractica">
+                    <h2 class="section-title">1. Wat is ModusPractica?</h2>
+                    <div class="section-content">
+                        <p>Een muziekinstrument leren vereist consistent, strategisch oefenen—maar beslissen <em>wat</em> je moet oefenen en <em>wanneer</em> kan overweldigend zijn. ModusPractica lost deze uitdaging op door te fungeren als je intelligente oefen-assistent, die het giswerk uit je dagelijkse routine haalt.</p>
+                        
+                        <h3 id="kernprobleem" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Het kernprobleem</h3>
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0;"><strong>⚠️ Het probleem:</strong> De meeste muzikanten oefenen elke dag dezelfde stukken, wat leidt tot verspilde tijd aan materiaal dat ze al kennen, terwijl stukken die aandacht nodig hebben worden verwaarloosd. Deze inefficiënte aanpak vertraagt vooruitgang en veroorzaakt frustratie.</p>
+                        </div>
+
+                        <h3 id="hoe-helpt-moduspractica" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Hoe ModusPractica helpt</h3>
+                        <ul style="margin-top: 12px; line-height: 1.8;">
+                            <li><strong>Slimme planning:</strong> De app berekent het optimale herhalingsmoment voor elk stuk op basis van bewezen geheugenwetenschap (Ebbinghaus vergeetcurven). Je oefent precies wanneer je brein versterking nodig heeft—niet te vroeg, niet te laat.</li>
+                            <li><strong>Adaptief leren:</strong> Terwijl je oefent, leert ModusPractica je unieke retentiepatronen. Stukken die je beheerst krijgen langere intervallen; uitdagende secties verschijnen frequenter totdat ze stabiliseren.</li>
+                            <li><strong>Efficiënte focus:</strong> In plaats van doelloos door je repertoire te gaan, ontvang je een geprioriteerde dagelijkse agenda die precies laat zien welke stukken vandaag aandacht nodig hebben. Deze gerichte aanpak maximaliseert retentie terwijl oefentijd wordt geminimaliseerd.</li>
+                            <li><strong>Langdurige retentie:</strong> Door te herhalen op wetenschappelijk optimale intervallen, bouw je solide motorisch geheugen op dat blijft bestaan—wat de gebruikelijke frustratie voorkomt van het vergeten van stukken waar je hard aan hebt gewerkt.</li>
+                        </ul>
+
+                        <h3 id="voor-wie" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Voor wie is ModusPractica?</h3>
+                        <p>Of je nu een beginner bent die fundamenten opbouwt, een gevorderde student die recitals voorbereidt, of een professional die een groot repertoire onderhoudt, ModusPractica helpt je slimmer te oefenen, niet harder. Deze Pro desktop versie heeft onbeperkte opslagcapaciteit, zodat je een uitgebreid repertoire kunt opbouwen zonder zorgen over beperkingen.</p>
+                        
+                        <div style="background: #f0f9ff; border-left: 4px solid #2eaadc; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0; font-size: 13px;"><strong>💡 Pro versie voordeel:</strong> In tegenstelling tot de web-app (beperkt tot ~300 stukken door browser localstorage), biedt deze desktop versie onbeperkte opslag voor professionals met uitgebreide repertoires.</p>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 24px;">
+                            <div style="background: #f0f7ff; padding: 16px; border-radius: 6px; border: 1px solid #b3d9f2;">
+                                <h4 style="margin: 0 0 8px 0; color: var(--text-primary);">🎓 Voor studenten</h4>
+                                <p style="margin: 0; font-size: 13px; color: var(--text-secondary);">Bouw consistente oefengewoonten op met duidelijke dagelijkse doelen. Vraag je nooit meer "wat moet ik vandaag oefenen?"</p>
+                            </div>
+                            <div style="background: #f0f7ff; padding: 16px; border-radius: 6px; border: 1px solid #b3d9f2;">
+                                <h4 style="margin: 0 0 8px 0; color: var(--text-primary);">🎼 Voor professionals</h4>
+                                <p style="margin: 0; font-size: 13px; color: var(--text-secondary);">Onderhoud efficiënt een groot actief repertoire. Houd tientallen stukken performance-ready zonder dagelijkse doorlopen.</p>
+                            </div>
+                            <div style="background: #f0f7ff; padding: 16px; border-radius: 6px; border: 1px solid #b3d9f2;">
+                                <h4 style="margin: 0 0 8px 0; color: var(--text-primary);">👨‍🏫 Voor docenten</h4>
+                                <p style="margin: 0; font-size: 13px; color: var(--text-secondary);">Help studenten gestructureerde oefenroutines ontwikkelen gebaseerd op cognitieve wetenschap, niet op giswerk.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sectie 2: Aan de slag -->
+                <div class="section" id="aan-de-slag">
+                    <h2 class="section-title">2. Aan de slag</h2>
+                    <div class="section-content">
+                        <p>Welkom bij ModusPractica! Deze sectie begeleidt u door de eerste stappen om uw oefenroutine op te zetten. In slechts enkele minuten bent u klaar om slimmer te gaan oefenen.</p>
+
+                        <h3 id="eerste-stappen" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Eerste stappen</h3>
+                        
+                        <h4 style="margin-top: 16px; font-size: 14px; color: var(--text-primary);">1. Profiel aanmaken</h4>
+                        <p>Wanneer u ModusPractica voor het eerst opent, begint u met het aanmaken van een profiel. Dit houdt uw oefendata gescheiden en georganiseerd, wat handig is als meerdere muzikanten hetzelfde apparaat gebruiken.</p>
+                        <ul style="margin-top: 8px; margin-bottom: 16px; line-height: 1.6;">
+                            <li>Klik op de knop <strong>"Create New Profile"</strong>.</li>
+                            <li>Voer uw naam in (verplicht).</li>
+                            <li>Optioneel kunt u uw ervaringsniveau invullen. Dit helpt het systeem om betere initiële instellingen te kiezen.</li>
+                            <li>Klik op <strong>"Create Profile"</strong> om te bevestigen.</li>
+                        </ul>
+
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0; font-size: 13px;"><strong>⚠️ Belangrijk:</strong> Na het aanmaken van uw profiel, vergeet niet om het op te slaan via de knop <strong>"Export Data"</strong>. Dit creëert een back-up bestand op uw computer of in de cloud. Doe dit na iedere oefendag. Deze data kan eventueel geïmporteerd worden in een andere browser, zodat u daar verder kunt werken.</p>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">2. Uw eerste muziekstuk toevoegen</h4>
+                        <p>Na het inloggen komt u op het Dashboard. Hier begint u met het opbouwen van uw repertoire.</p>
+                        <ul style="margin-top: 8px; margin-bottom: 16px; line-height: 1.6;">
+                            <li>Klik op de knop <strong>"+ New Piece"</strong> bovenaan het scherm.</li>
+                            <li>Vul de details in:
+                                <ul style="margin-top: 4px; margin-bottom: 4px;">
+                                    <li><strong>Titel:</strong> Bijv. "Mondscheinsonate"</li>
+                                    <li><strong>Componist:</strong> Bijv. "Ludwig van Beethoven"</li>
+                                    <li><strong>Kleur:</strong> Kies een kleur om dit stuk makkelijk te herkennen in uw agenda.</li>
+                                </ul>
+                            </li>
+                            <li>Klik op <strong>"Save"</strong>.</li>
+                        </ul>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">3. Het stuk opdelen in secties</h4>
+                        <p>Dit is de kern van de ModusPractica methode. Door een stuk op te delen in kleine, behapbare secties (chunks), kan het algoritme elke sectie individueel inplannen op basis van uw beheersing.</p>
+                        <ul style="margin-top: 8px; margin-bottom: 16px; line-height: 1.6;">
+                            <li>Klik op uw nieuw aangemaakte stuk in het Dashboard om de detailpagina te openen.</li>
+                            <li>Klik op <strong>"+ Add Section"</strong>.</li>
+                            <li>Definieer de sectie:
+                                <ul style="margin-top: 4px; margin-bottom: 4px;">
+                                    <li><strong>Naam:</strong> Geef een beschrijvende naam (bijv. "Introductie", "Thema A", "Maten 1-8").</li>
+                                    <li><strong>Maten:</strong> Specificeer de maten (bijv. "1-8").</li>
+                                    <li><strong>Doelherhalingen:</strong> Kies een initiële waarde voor het aantal doelherhalingen (standaard: 6).</li>
+                                </ul>
+                            </li>
+                            <li>Klik op <strong>"Save Section"</strong>.</li>
+                        </ul>
+
+                        <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0; font-size: 13px;"><strong>💡 Tip:</strong> Houd secties klein! Voor complexe passages zijn 2-4-8 maten vaak ideaal, maar een chunck kan ook een halve maat of anderhalve maat zijn. Dit maakt het makkelijker om gefocust te oefenen en sneller vooruitgang te boeken.</p>
+                        </div>
+
+                        <h3 id="interface-overzicht" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Interface overzicht</h3>
+                        <p>ModusPractica is ontworpen voor duidelijkheid en focus. Hier is een snel overzicht van de belangrijkste onderdelen:</p>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px;">
+                            <div>
+                                <h4 style="font-size: 14px; color: var(--text-primary); margin-bottom: 8px;">🏠 Dashboard</h4>
+                                <p style="font-size: 13px; color: var(--text-secondary);">Uw centrale hub. Hier ziet u in één oogopslag wat u vandaag moet oefenen ("Vandaag te doen") en heeft u toegang tot al uw actieve stukken.</p>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 14px; color: var(--text-primary); margin-bottom: 8px;">📊 Statistieken</h4>
+                                <p style="font-size: 13px; color: var(--text-secondary);">Inzicht in uw voortgang. Bekijk grafieken over uw oefentijd, retentiepercentages en de groei van uw repertoire.</p>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 14px; color: var(--text-primary); margin-bottom: 8px;">⏱️ Vrij Oefenen</h4>
+                                <p style="font-size: 13px; color: var(--text-secondary);">Een flexibele modus voor wanneer u buiten het schema om wilt oefenen, bijvoorbeeld voor improvisatie of techniekoefeningen, zonder dat dit het algoritme beïnvloedt.</p>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 14px; color: var(--text-primary); margin-bottom: 8px;">🔀 Interleaved Practice</h4>
+                                <p style="font-size: 13px; color: var(--text-secondary);">Een geavanceerde modus die willekeurige secties uit verschillende stukken door elkaar aanbiedt om uw flexibiliteit en retentie te testen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sectie 3: Profielbeheer -->
+                <div class="section" id="profielbeheer" style="margin-top: 48px;">
+                    <h2 class="section-title">3. Profielbeheer</h2>
+                    <div class="section-content">
+                        <p>ModusPractica ondersteunt meerdere profielen, zodat verschillende muzikanten elk hun eigen oefendata en instellingen kunnen hebben op hetzelfde apparaat. Deze sectie legt uit hoe u profielen aanmaakt, beheert en uw data veilig houdt.</p>
+
+                        <h3 id="nieuw-profiel" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Nieuw profiel aanmaken</h3>
+                        <p>Het aanmaken van een nieuw profiel is eenvoudig en duurt slechts enkele seconden.</p>
+                        
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 14px;">Stappen:</h4>
+                            <ol style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                                <li>Klik op de knop <strong>"+ Create New Profile"</strong> op het inlogscherm</li>
+                                <li>Voer een <strong>profielnaam</strong> in (verplicht)
+                                    <ul style="margin-top: 4px; margin-bottom: 4px;">
+                                        <li>Kies een herkenbare naam zoals "Jan", "Maria" of "Leerling 1"</li>
+                                        <li>De naam moet uniek zijn - u kunt geen twee profielen met dezelfde naam hebben</li>
+                                    </ul>
+                                </li>
+                                <li>Selecteer optioneel uw <strong>ervaringsniveau</strong>:
+                                    <ul style="margin-top: 4px; margin-bottom: 4px;">
+                                        <li><strong>Beginner (0-2 jaar)</strong></li>
+                                        <li><strong>Intermediate (3-5 jaar)</strong></li>
+                                        <li><strong>Advanced (6+ jaar)</strong></li>
+                                        <li><strong>Professional</strong></li>
+                                    </ul>
+                                </li>
+                                <li>Klik op <strong>"Create Profile"</strong></li>
+                            </ol>
+                        </div>
+
+                        <p>Na het aanmaken wordt het nieuwe profiel automatisch geselecteerd en kunt u direct beginnen met het toevoegen van muziekstukken.</p>
+
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0; font-size: 13px;"><strong>⚠️ Belangrijk:</strong> Maak direct na het aanmaken van uw profiel een back-up via <strong>"Export Data"</strong>. Dit is uw veiligheidsnet tegen gegevensverlies!</p>
+                        </div>
+
+                        <h3 id="ervaringsniveau" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Ervaringsniveau kiezen</h3>
+                        <p>Het ervaringsniveau is optioneel maar kan helpen om betere standaardinstellingen te kiezen. Het beïnvloedt niet direct het leeralgoritme - dat past zich automatisch aan op basis van uw werkelijke prestaties.</p>
+
+                        <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px;">💡 Wanneer moet u uw ervaringsniveau aanpassen?</h4>
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;">Als u merkbaar vooruitgang boekt en naar een hoger niveau overgaat, kunt u dit aanpassen in de profiel instellingen. De app behoudt al uw oefenhistorie en geheugenstabiliteitsdata, maar past de planning algoritmes aan voor uw nieuwe niveau.</p>
+                        </div>
+
+                        <h3 id="profiel-bewerken" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Profiel bewerken</h3>
+                        <p>U kunt uw profielgegevens op elk moment aanpassen.</p>
+
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 14px;">Stappen:</h4>
+                            <ol style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                                <li>Selecteer het profiel dat u wilt bewerken in de dropdown</li>
+                                <li>Klik op de knop <strong>"✏️ Edit Profile"</strong></li>
+                                <li>Pas de naam en/of het ervaringsniveau aan</li>
+                                <li>Klik op <strong>"Save Changes"</strong> om te bevestigen</li>
+                                <li>Of klik op <strong>"Cancel"</strong> om de wijzigingen te annuleren</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #f0f7ff; padding: 16px; border-radius: 6px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0; font-size: 13px;"><strong>🔐 Data behouden:</strong> Bij het bewerken van een profiel blijven al uw muziekstukken, secties, oefenhistorie en statistieken volledig intact. Alleen de naam en het ervaringsniveau worden aangepast.</p>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">Profiel verwijderen</h4>
+                        <p>Als u een profiel definitief wilt verwijderen:</p>
+
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;"><strong>⚠️ Let op:</strong> Het verwijderen van een profiel is <strong>permanent en kan niet ongedaan gemaakt worden</strong>. Alle data wordt definitief verwijderd:</p>
+                            <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                <li>Alle muziekstukken en secties</li>
+                                <li>Volledige oefenhistorie</li>
+                                <li>Alle statistieken en voortgangsgrafieken</li>
+                                <li>Instellingen en voorkeuren</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 14px;">Stappen om een profiel te verwijderen:</h4>
+                            <ol style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                                <li>Selecteer het profiel dat u wilt verwijderen</li>
+                                <li>Klik op de knop <strong>"🗑️ Delete Profile"</strong></li>
+                                <li>Bevestig in het waarschuwingsvenster dat u zeker bent
+                                    <ul style="margin-top: 4px; margin-bottom: 4px;">
+                                        <li>Het systeem toont u hoeveel muziekstukken verloren gaan</li>
+                                        <li>U moet bevestigen dat u begrijpt dat dit permanent is</li>
+                                    </ul>
+                                </li>
+                                <li>Het profiel en alle bijbehorende data worden onmiddellijk verwijderd</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #ffebee; border-left: 4px solid #ef5350; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0; font-size: 13px;"><strong>🛡️ Veiligheidstip:</strong> Maak altijd eerst een back-up via <strong>"Export Data"</strong> voordat u een profiel verwijdert, voor het geval u later van gedachten verandert!</p>
+                        </div>
+
+                        <h3 id="data-beheer" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Data exporteren en importeren</h3>
+                        <p>ModusPractica slaat al uw data lokaal op in de browser (localStorage). Om uw data te beschermen en over te zetten naar andere apparaten, heeft de app krachtige export/import functionaliteit.</p>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">📥 Data exporteren</h4>
+                        <p>Met de export functie maakt u een complete back-up van <strong>alle</strong> profielen en hun data.</p>
+
+                        <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px;">Wat wordt er geëxporteerd?</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Alle profielen</strong> - namen, ervaringsniveaus, aanmaakdatums</li>
+                                <li><strong>Alle muziekstukken</strong> - titels, componisten, secties, kleuren</li>
+                                <li><strong>Volledige oefenhistorie</strong> - alle sessies, beoordelingen, tijdstempels</li>
+                                <li><strong>Statistieken en metrieken</strong> - tau-waardes, memory stability, practice stages</li>
+                                <li><strong>Instellingen</strong> - intensiteitsmodule configuratie, voorkeuren</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 14px;">Stappen om data te exporteren:</h4>
+                            <ol style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                                <li>Klik op de knop <strong>"📥 Export Data"</strong> onderaan het profielscherm</li>
+                                <li>De app genereert automatisch een JSON bestand met alle data</li>
+                                <li>Het bestand wordt opgeslagen in uw Downloads map met de naam:
+                                    <code style="background: #e0e0e0; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 12px;">ModusPractica_Export_[datum]_[tijd].json</code>
+                                </li>
+                                <li>Bewaar dit bestand op een veilige locatie:
+                                    <ul style="margin-top: 4px; margin-bottom: 4px;">
+                                        <li>USB-stick (voor back-up)</li>
+                                        <li>Cloud storage (Google Drive, Dropbox, OneDrive)</li>
+                                        <li>Externe harde schijf</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0; font-size: 13px;"><strong>💡 Best practice:</strong> Exporteer uw data regelmatig - bij voorkeur na elke oefensessie of minstens één keer per week. Dit voorkomt gegevensverlies bij browserproblemen of onbedoeld wissen van cache.</p>
+                        </div>
+
+                        <h4 style="margin-top: 32px; font-size: 14px; color: var(--text-primary);">📤 Data importeren</h4>
+                        <p>Met de import functie kunt u eerder geëxporteerde data terugzetten of data van een ander apparaat overnemen.</p>
+
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 14px;">Stappen om data te importeren:</h4>
+                            <ol style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                                <li>Klik op de knop <strong>"📤 Import Data"</strong></li>
+                                <li>Selecteer het JSON export bestand van uw computer</li>
+                                <li>Kies uw import strategie:
+                                    <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; border: 1px solid #e0e0e0;">
+                                        <p style="margin: 0 0 8px 0; font-weight: 600;">Option 1: Merge (Samenvoegen)</p>
+                                        <p style="margin: 0; font-size: 13px;">Voegt nieuwe profielen toe aan bestaande data. Als een profiel met dezelfde naam al bestaat, wordt het overgeslagen. <strong>Aanbevolen voor het combineren van data van meerdere apparaten.</strong></p>
+                                    </div>
+                                    <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; border: 1px solid #e0e0e0;">
+                                        <p style="margin: 0 0 8px 0; font-weight: 600;">Option 2: Replace (Vervangen)</p>
+                                        <p style="margin: 0; font-size: 13px;">Verwijdert ALLE bestaande data en vervangt deze met de geïmporteerde data. <strong>Gebruik dit voor het volledig herstellen van een back-up.</strong></p>
+                                    </div>
+                                </li>
+                                <li>Bevestig uw keuze</li>
+                                <li>De app laadt de data en toont een bevestiging</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #ffebee; border-left: 4px solid #ef5350; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0; font-size: 13px;"><strong>⚠️ Waarschuwing bij Replace modus:</strong> Als u "Replace" kiest, worden <strong>alle huidige profielen en data permanent verwijderd</strong> voordat de import plaatsvindt. Zorg dat u eerst een export maakt van uw huidige data als u deze wilt behouden!</p>
+                        </div>
+
+                        <h4 style="margin-top: 32px; font-size: 14px; color: var(--text-primary);">🔄 Tussen apparaten wisselen</h4>
+                        <p>U kunt ModusPractica op meerdere apparaten gebruiken door data over te zetten:</p>
+
+                        <div style="background: #f0f7ff; padding: 16px; border-radius: 6px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px;">Scenario 1: Van computer naar laptop</h4>
+                            <ol style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li>Exporteer data op computer A</li>
+                                <li>Kopieer het JSON bestand naar een USB-stick of cloud storage</li>
+                                <li>Download het bestand op computer B</li>
+                                <li>Importeer met "Replace" om exact dezelfde data te hebben</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #f0f7ff; padding: 16px; border-radius: 6px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px;">Scenario 2: Data van meerdere studenten combineren</h4>
+                            <ol style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li>Elke student exporteert hun eigen profiel</li>
+                                <li>Docent importeert elk bestand met "Merge"</li>
+                                <li>Alle studentprofielen zijn nu beschikbaar op één apparaat</li>
+                            </ol>
+                        </div>
+
+                        <h4 style="margin-top: 32px; font-size: 14px; color: var(--text-primary);">🗑️ Alle data wissen</h4>
+                        <p>In extreme gevallen (bijvoorbeeld bij het verkopen van een apparaat) kunt u alle ModusPractica data in één keer verwijderen:</p>
+
+                        <div style="background: #ffebee; padding: 16px; border-radius: 6px; border: 1px solid #ef5350; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;"><strong>⚠️ GEVAAR:</strong> De knop <strong>"🗑️ Clear All Data"</strong> onderaan het scherm verwijdert:</p>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                <li>Alle profielen (zonder uitzondering)</li>
+                                <li>Alle muziekstukken en secties</li>
+                                <li>Alle oefenhistorie en statistieken</li>
+                                <li>Alle instellingen en voorkeuren</li>
+                            </ul>
+                            <p style="margin: 12px 0 0 0; font-size: 13px;"><strong>Dit kan NIET ongedaan gemaakt worden!</strong> Gebruik deze functie alleen als u absoluut zeker bent. Maak eerst een export als u de data ooit nog nodig zou kunnen hebben.</p>
+                        </div>
+
+                        <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px;">💡 Samenvatting: Data beheer best practices</h4>
+                            <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Exporteer regelmatig</strong> - minstens één keer per week</li>
+                                <li><strong>Bewaar back-ups op meerdere locaties</strong> - USB + cloud storage</li>
+                                <li><strong>Test uw back-ups</strong> - probeer eens een import op een testapparaat</li>
+                                <li><strong>Label uw export bestanden duidelijk</strong> - voeg datums toe aan bestandsnamen</li>
+                                <li><strong>Voordat u een profiel verwijdert</strong> - maak eerst een export</li>
+                                <li><strong>Bij browserproblemen</strong> - importeer uw laatste back-up</li>
+                            </ul>
+                        </div>
+
+                        <h4 style="margin-top: 32px; font-size: 14px; color: var(--text-primary);">🔐 Privacy en beveiliging</h4>
+                        <p>Uw data blijft volledig onder uw controle:</p>
+                        <ul style="margin-top: 12px; line-height: 1.8;">
+                            <li><strong>Lokale opslag:</strong> Alle data wordt opgeslagen in uw browser (localStorage), niet op externe servers</li>
+                            <li><strong>Geen cloud synchronisatie:</strong> ModusPractica stuurt geen data naar externe diensten</li>
+                            <li><strong>U bepaalt de back-ups:</strong> Export en import gebeuren alleen wanneer u dat handmatig doet</li>
+                            <li><strong>Geen login vereist:</strong> Geen accounts, wachtwoorden of e-mailadressen nodig</li>
+                            <li><strong>Bestandsformaat:</strong> Export bestanden zijn gewone JSON tekst - u kunt ze openen en bekijken in elke teksteditor</li>
+                        </ul>
+
+                        <div style="background: #f0f7ff; padding: 16px; border-radius: 6px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0; font-size: 13px;"><strong>📝 Opmerking voor gevorderden:</strong> Het export JSON bestand bevat alle data in leesbaar formaat. Als u technisch onderlegd bent, kunt u het bestand handmatig bewerken met een teksteditor om specifieke aanpassingen te maken, voordat u het opnieuw importeert.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sectie 11: Wetenschappelijke basis -->
+                <div class="section" id="wetenschappelijke-basis" style="margin-top: 48px;">
+                    <h2 class="section-title">11. Wetenschappelijke basis</h2>
+                    <div class="section-content">
+                        <p>ModusPractica is gebouwd op een solide wetenschappelijke basis van cognitieve psychologie en motorisch leren onderzoek. Deze sectie geeft een overzicht van de belangrijkste wetenschappelijke principes en onderzoekers waarop de app is gebaseerd.</p>
+
+                        <h3 style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Hermann Ebbinghaus - De vergeetcurve (1885)</h3>
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0;"><strong>De grondlegger van spaced repetition</strong></p>
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;">Hermann Ebbinghaus ontdekte dat geheugenretentie exponentieel afneemt over tijd. Zijn baanbrekende onderzoek toonde aan dat strategisch getimede herhalingen de retentie-intervallen dramatisch kunnen verlengen terwijl hoge recall-percentages behouden blijven. De Ebbinghaus vergeetcurve vormt de kern van het ModusPractica algoritme:</p>
+                            <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; font-family: monospace; font-size: 12px;">
+                                R(t) = e^(-t/τ)
+                            </div>
+                            <p style="margin: 8px 0 0 0; font-size: 12px; color: var(--text-secondary);"><em>waarbij R(t) de waarschijnlijkheid van retentie is na tijd t, en τ (tau) de geheugenvervaldconstante.</em></p>
+                        </div>
+
+                        <h3 style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Dr. Molly Gebrian - Overlearning voor muzikanten (2024)</h3>
+                        <div style="background: #fff8e6; border-left: 4px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0 0 12px 0;"><strong>🎵 Kernonderzoek voor de Intensiteitsmodule</strong></p>
+                            <p style="margin: 0 0 12px 0; font-size: 13px; line-height: 1.6;">Dr. Molly Gebrian, auteur van <em>"Learn Faster, Perform Better: A Musician's Guide to the Neuroscience of Practicing"</em> (2024), is een vooraanstaand onderzoeker in muziekpedagogie en neurowetenschappen. Haar onderzoek heeft aangetoond dat <strong>gericht overlearning</strong> (oefenen voorbij initiële beheersing) essentieel is voor betrouwbare prestaties onder stress. Dit onderzoek vormt de basis voor het <strong>Overlearning Quotum (OLQ)</strong> systeem in ModusPractica.</p>
+                            
+                            <h4 style="margin: 16px 0 8px 0; font-size: 14px; color: var(--text-primary);">Belangrijkste bevindingen:</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Minimale drempel:</strong> Minstens 6 correcte herhalingen zijn nodig om motorisch geheugen te consolideren</li>
+                                <li><strong>Fase-specifieke targets:</strong> Het aantal benodigde herhalingen stijgt naargelang de leertrajectfase:
+                                    <ul style="margin-top: 4px;">
+                                        <li>Beginfase (Initial Acquisition): 6-8 correcte herhalingen</li>
+                                        <li>Verfijningsfase (Refinement): 7-10 herhalingen</li>
+                                        <li>Consolidatiefase (Consolidation): 8-12 herhalingen</li>
+                                        <li>Beheersingsfase (Mastery): 9-14 herhalingen</li>
+                                        <li>Overlearning fase: 10-18 herhalingen</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Performance onder stress:</strong> Extra herhalingen voorbij het punt van eerste succes verhogen de betrouwbaarheid tijdens optredens of examens aanzienlijk</li>
+                                <li><strong>Foutcorrectie principe:</strong> Het aantal extra herhalingen moet worden aangepast op basis van het aantal initiële fouten - meer vroege fouten vereisen meer overlearning herhalingen</li>
+                            </ul>
+                            
+                            <h4 style="margin: 16px 0 8px 0; font-size: 14px; color: var(--text-primary);">Implementatie in ModusPractica:</h4>
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;">Het OLQ-systeem combineert Dr. Gebrian's fase-specifieke baselines met een dynamische aanpassing gebaseerd op technische moeilijkheid:</p>
+                            <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; font-family: monospace; font-size: 12px;">
+                                OLQ_target = FixedGoal_phase + ceil(InitialFailedAttempts × 0.5)
+                            </div>
+                            <p style="margin: 8px 0 0 0; font-size: 12px; font-style: italic;">Voorbeeld: In de Consolidation fase (FixedGoal = 8) met 4 initiële fouten, wordt de target: 8 + ceil(4 × 0.5) = 8 + 2 = 10 correcte herhalingen.</p>
+                        </div>
+
+                        <h3 style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Kornell & Bjork - Errorful Learning (2008)</h3>
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Belangrijk inzicht:</strong> Fouten maken tijdens het initiële leren—mits met corrigerende feedback—leidt tot superieure langetermijnretentie vergeleken met foutloos leren. Dit onderzoek heeft direct geleid tot het onderscheid in ModusPractica tussen:</p>
+                            <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Failed Attempts (FA):</strong> Motorische uitvoeringsfouten die informatief zijn maar scheduling niet beïnvloeden</li>
+                                <li><strong>Streak Resets (SR):</strong> Geheugenopslagfouten die wel leiden tot scheduling aanpassingen</li>
+                            </ul>
+                        </div>
+
+                        <h3 style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Schmidt & Lee - Motor Control and Learning (2011)</h3>
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Motorisch leren theorie:</strong> Schmidt & Lee's onderzoek naar motorische controle en leren onderscheidt drie fasen:</p>
+                            <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Acquisitie:</strong> Hoge foutpercentages zijn normaal tijdens motorische exploratie</li>
+                                <li><strong>Verfijning:</strong> Fouten nemen af naarmate bewegingspatronen stabiliseren</li>
+                                <li><strong>Retentie:</strong> Fouten reflecteren voornamelijk geheugenverval, niet motorische exploratie</li>
+                            </ul>
+                        </div>
+
+                        <h3 style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Fitts & Posner - Motor Learning Stages (1967)</h3>
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>De drie fasen van motorisch leren:</strong> Fitts & Posner's klassieke model identificeert drie fundamentele fasen die ModusPractica gebruikt voor de TDS (Technical Difficulty Score) classificatie:</p>
+                            <ol style="margin: 8px 0 0 0; padding-left: 24px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Cognitieve fase:</strong> Focus op begrip (komt overeen met Initial Acquisition in ModusPractica)</li>
+                                <li><strong>Associatieve fase:</strong> Verfijning van techniek (Refinement & Consolidation)</li>
+                                <li><strong>Autonome fase:</strong> Automatische uitvoering (Mastery & Overlearning)</li>
+                            </ol>
+                        </div>
+
+                        <h3 style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">SuperMemo SM-17 - Memory Stability Model</h3>
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Geavanceerde geheugen tracking:</strong> ModusPractica's Memory Stability Manager implementeert concepten van SuperMemo's SM-17 algoritme, dat het begrip van <strong>memory stability (S)</strong> introduceerde—een kwantitatieve maat voor hoe goed een geheugen geconsolideerd is.</p>
+                            <p style="margin: 8px 0 0 0; font-size: 13px; line-height: 1.6;">S-waarde vertegenwoordigt het verwachte interval (in dagen) waarop retentiewaarschijnlijkheid zou dalen tot een kritische drempel (typisch 90%).</p>
+                        </div>
+
+                        <h3 style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Volledige referentielijst</h3>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 6px; margin: 16px 0;">
+                            <ol style="margin: 0; padding-left: 20px; font-size: 12px; line-height: 1.8;">
+                                <li><strong>Ebbinghaus, H. (1885/1913).</strong> Memory: A contribution to experimental psychology. <em>Teachers College, Columbia University</em>.</li>
+                                <li><strong>Gebrian, M. (2024).</strong> Learn Faster, Perform Better: A Musician's Guide to the Neuroscience of Practicing. <em>Oxford University Press</em>.</li>
+                                <li><strong>Kornell, N., & Bjork, R. A. (2008).</strong> Learning concepts and categories: Is spacing the "enemy of induction"? <em>Psychological Science, 19</em>(6), 585-592.</li>
+                                <li><strong>Schmidt, R. A., & Lee, T. D. (2011).</strong> Motor control and learning: A behavioral emphasis (5th ed.). <em>Human Kinetics</em>.</li>
+                                <li><strong>Fitts, P. M., & Posner, M. I. (1967).</strong> Human performance. <em>Brooks/Cole</em>.</li>
+                                <li><strong>Wozniak, P. A., & Gorzelanczyk, E. J. (1994).</strong> Optimization of repetition spacing in the practice of learning. <em>Acta Neurobiologiae Experimentalis, 54</em>, 59-62.</li>
+                                <li><strong>Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., & Rohrer, D. (2006).</strong> Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin, 132</em>(3), 354-380.</li>
+                                <li><strong>Walker, M. P., Brakefield, T., Morgan, A., Hobson, J. A., & Stickgold, R. (2002).</strong> Practice with sleep makes perfect: Sleep-dependent motor skill learning. <em>Neuron, 35</em>(1), 205-211.</li>
+                                <li><strong>Roediger, H. L., & Karpicke, J. D. (2006).</strong> Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249-255.</li>
+                                <li><strong>Settles, B., & Meeder, B. (2016).</strong> A trainable spaced repetition model for language learning. <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics</em>, 1848-1858.</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 16px; margin: 24px 0; border-radius: 4px;">
+                            <p style="margin: 0; font-size: 13px;"><strong>📄 Voor volledige wetenschappelijke details:</strong> Bekijk het uitgebreide wetenschappelijke paper <a href="moduspractica-science.html" style="color: var(--accent-color);">"Adaptive Spaced Repetition for Motor Skill Acquisition in Music Practice"</a> dat de volledige theoretische basis, algoritmes en validatie documenteert.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sectie 4: Repertoire opbouwen -->
+                <div class="section" id="repertoire-opbouwen" style="margin-top: 48px;">
+                    <h2 class="section-title">4. Repertoire opbouwen</h2>
+                    <div class="section-content">
+                        <p>Het opbouwen van een effectief repertoire in ModusPractica draait om één kernprincipe: <strong>intelligent chunking</strong> (opdelen in behapbare secties). Deze sectie leert u hoe u uw muziekstukken strategisch kunt opdelen voor optimaal leren en retentie.</p>
+
+                        <h3 id="chunking-strategie" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Praktische chunking strategie</h3>
+                        <p>Chunking is het proces van het opdelen van grote muziekstukken in kleine, geïsoleerde secties die onafhankelijk kunnen worden beoefend en beheerst. Dit is geen nieuwe techniek—cognitieve psychologie heeft al tientallen jaren aangetoond dat het menselijk brein informatie effectiever opslaat in betekenisvolle "chunks" van 5-9 items.</p>
+
+                        <div style="background: #fff8e6; border-left: 4px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px;">🎵 Waarom chunking zo krachtig is</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Vermindert cognitieve belasting:</strong> Kleinere secties zijn makkelijker te verwerken</li>
+                                <li><strong>Verhoogt focus:</strong> U kunt zich concentreren op specifieke technische uitdagingen</li>
+                                <li><strong>Versnelt vooruitgang:</strong> Mastery van kleine delen stapelt sneller op</li>
+                                <li><strong>Voorkomt frustratie:</strong> Vroege successen motiveren doorgang</li>
+                                <li><strong>Verbetert retentie:</strong> Elk chunk krijgt zijn eigen geheugenspoor en herhalingsschema</li>
+                            </ul>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">Hoe groot moet een chunk zijn?</h4>
+                        <p>Er is geen universeel antwoord—chunk grootte hangt af van:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 16px; line-height: 1.8;">
+                            <li><strong>Technische moeilijkheid:</strong> Complexere passages verdienen kleinere chunks</li>
+                            <li><strong>Uw ervaringsniveau:</strong> Beginners profiteren van zeer kleine secties (1-2 maten); gevorderden kunnen iets groter (4-8 maten)</li>
+                            <li><strong>Muzikale structuur:</strong> Respecteer frases, motieven en harmonische veranderingen</li>
+                            <li><strong>Technische shifts:</strong> Nieuwe vingerzettingen, positieverschuivingen of articulatiewijzigingen markeren natuurlijke grenzen</li>
+                        </ul>
+
+                        <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px;">💡 Praktische richtlijnen</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Beginners:</strong> 1-4 maten per chunk (soms zelfs een halve maat voor zeer technische passages)</li>
+                                <li><strong>Intermediates:</strong> 2-8 maten per chunk</li>
+                                <li><strong>Gevorderden:</strong> 4-16 maten, afhankelijk van complexiteit</li>
+                                <li><strong>Professionals:</strong> 8-32 maten, maar splits nog steeds uitdagende passages op</li>
+                            </ul>
+                            <p style="margin: 12px 0 0 0; font-size: 13px; font-style: italic;">Vuistregel: Als u een sectie niet vlot 3× achter elkaar foutloos kunt spelen na 5 minuten oefenen, is het waarschijnlijk te groot—splits het verder op!</p>
+                        </div>
+
+                        <h3 id="drie-lagen-systeem" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Het drie-lagen systeem</h3>
+                        <p>ModusPractica gebruikt een hiërarchische organisatie die de natuurlijke structuur van muziekstukken respecteert:</p>
+
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 16px;">
+                            <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2;">
+                                <h4 style="margin: 0 0 12px 0; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+                                    <span style="background: var(--accent-color); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">1</span>
+                                    Stuk (Piece)
+                                </h4>
+                                <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Wat:</strong> Het volledige muziekstuk (bijv. "Mondscheinsonate", "Für Elise")</p>
+                                <p style="margin: 0; font-size: 13px; color: var(--text-secondary);"><strong>Bevat:</strong> Metadata (titel, componist, kleur), meerdere chunks, statistieken</p>
+                            </div>
+
+                            <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2;">
+                                <h4 style="margin: 0 0 12px 0; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+                                    <span style="background: var(--accent-color); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">2</span>
+                                    Sectie/Chunk (Section)
+                                </h4>
+                                <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Wat:</strong> Een specifiek bereik binnen het stuk (bijv. "Introductie", "Thema A", "Maten 12-16")</p>
+                                <p style="margin: 0 0 12px 0; font-size: 13px; color: var(--text-secondary);"><strong>Bevat:</strong> Naam, maatbereik, doel-herhalingen, moeilijkheidsscore, planning data</p>
+                                <p style="margin: 0; font-size: 13px;"><strong>Dit is de kern-eenheid</strong> die ModusPractica plant en bijhoudt. Elke sectie krijgt haar eigen:</p>
+                                <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                    <li>Herhalingsinterval (volgende review datum)</li>
+                                    <li>Memory stability score (hoe goed het is geconsolideerd)</li>
+                                    <li>Practice stage (leertraject fase)</li>
+                                    <li>Tau-parameter (retentie karakteristiek)</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2;">
+                                <h4 style="margin: 0 0 12px 0; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+                                    <span style="background: var(--accent-color); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">3</span>
+                                    Sessie (Practice Session)
+                                </h4>
+                                <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Wat:</strong> Een enkele oefensessie voor één specifieke sectie</p>
+                                <p style="margin: 0; font-size: 13px; color: var(--text-secondary);"><strong>Registreert:</strong> Oefentijd, aantal herhalingen, fouten, energie niveau, prestatie beoordeling, tempo</p>
+                            </div>
+                        </div>
+
+                        <h3 id="voorbeeld-workflow" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Voorbeeld workflow: Een nieuw stuk toevoegen</h3>
+                        <p>Laten we het proces doorlopen van het toevoegen van Beethoven's "Für Elise" aan uw repertoire.</p>
+
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 16px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 14px; color: var(--text-primary);">Stap 1: Maak het stuk aan</h4>
+                            <ol style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li>Klik op <strong>"+ New Piece"</strong> in het Dashboard</li>
+                                <li>Vul in:
+                                    <ul style="margin: 4px 0;">
+                                        <li><strong>Titel:</strong> "Für Elise"</li>
+                                        <li><strong>Componist:</strong> "Ludwig van Beethoven"</li>
+                                        <li><strong>Kleur:</strong> Kies bijvoorbeeld blauw</li>
+                                    </ul>
+                                </li>
+                                <li>Klik <strong>"Save"</strong></li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 16px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 14px; color: var(--text-primary);">Stap 2: Analyseer de structuur</h4>
+                            <p style="margin: 0 0 12px 0; font-size: 13px;">Open uw partituur en identificeer natuurlijke secties:</p>
+                            <div style="background: white; padding: 12px; border-radius: 4px; border: 1px solid #e0e0e0; font-family: monospace; font-size: 12px; line-height: 1.6; margin: 12px 0;">
+                                <strong>Für Elise - Voorgestelde opdeling:</strong><br>
+                                • Sectie A: Hoofdthema (maten 1-23)<br>
+                                • Sectie B: Contrasterend gedeelte (maten 24-59)<br>
+                                • Sectie A': Herhaling thema (maten 60-82)<br>
+                                • Sectie C: Coda (maten 83-124)
+                            </div>
+                            <p style="margin: 12px 0 0 0; font-size: 13px; color: var(--text-secondary);"><em>Opmerking: Dit is een grove opdeling. In de praktijk zou u deze verder kunnen splitsen, vooral voor technisch uitdagende passages in sectie B.</em></p>
+                        </div>
+
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 16px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 14px; color: var(--text-primary);">Stap 3: Voeg chunks toe</h4>
+                            <p style="margin: 0 0 12px 0; font-size: 13px;">Klik op het stuk in het Dashboard om de detailpagina te openen, dan:</p>
+                            <ol style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li>Klik <strong>"+ Add Section"</strong></li>
+                                <li>Voor het hoofdthema:
+                                    <ul style="margin: 4px 0;">
+                                        <li><strong>Naam:</strong> "Sectie A - Hoofdthema"</li>
+                                        <li><strong>Maten:</strong> "1-23"</li>
+                                        <li><strong>Beschrijving:</strong> "Karakteristiek E-Dm-E frase" (optioneel)</li>
+                                        <li><strong>Target Reps:</strong> Laat staan op 6 (standaard)</li>
+                                    </ul>
+                                </li>
+                                <li>Klik <strong>"Save Section"</strong></li>
+                                <li>Herhaal voor de andere secties</li>
+                            </ol>
+
+                            <div style="background: #fff3cd; border-left: 3px solid #ffc107; padding: 12px; margin: 16px 0; border-radius: 4px;">
+                                <p style="margin: 0; font-size: 12px;"><strong>💡 Pro tip:</strong> Begin niet met alle secties tegelijk! Voeg alleen de eerste 1-2 secties toe die u deze week wilt leren. Voeg nieuwe chunks toe naarmate u vooruitgang boekt. Dit voorkomt een overweldigende agenda.</p>
+                            </div>
+                        </div>
+
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 16px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 14px; color: var(--text-primary);">Stap 4: Start uw eerste sessie</h4>
+                            <ol style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li>Op het Dashboard zie je nu de nieuwe sectie verschijnen in "Today's Agenda"</li>
+                                <li><strong>Klik op de sectie zelf</strong> om de oefensessie te starten</li>
+                                <li>Dit opent de Practice Session interface waar u:
+                                    <ul style="margin: 4px 0;">
+                                        <li>De timer start wanneer u begint</li>
+                                        <li>Fouten en correcte herhalingen bijhoudt</li>
+                                        <li>Uw prestatie beoordeelt na afloop</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <h4 style="margin-top: 32px; font-size: 14px; color: var(--text-primary);">Chunks later aanpassen</h4>
+                        <p>U hoeft niet perfect te zijn bij de eerste opdeling. ModusPractica laat u chunks aanpassen naarmate u leert:</p>
+
+                        <div style="background: #f0f7ff; padding: 16px; border-radius: 6px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <h5 style="margin: 0 0 8px 0; font-size: 13px;">🔧 Een sectie bewerken:</h5>
+                            <ol style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                <li>Ga naar de stuk detailpagina</li>
+                                <li>Klik op het <strong>✏️ icoon</strong> naast de sectie</li>
+                                <li>Pas de beschrijving of andere details aan</li>
+                                <li>Klik <strong>"Save"</strong></li>
+                            </ol>
+                            <p style="margin: 12px 0 0 0; font-size: 12px; color: var(--text-secondary);"><em>Let op: De sectienaam kan niet worden gewijzigd omdat dit de identifier is voor de planner. De oefenhistorie blijft behouden.</em></p>
+                        </div>
+
+                        <div style="background: #f0f7ff; padding: 16px; border-radius: 6px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <h5 style="margin: 0 0 8px 0; font-size: 13px;">➕ Een chunk splitsen:</h5>
+                            <p style="margin: 0 0 8px 0; font-size: 13px;">Als u merkt dat een chunk te groot is:</p>
+                            <ol style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                <li>Voeg een nieuwe, kleinere sectie toe (bijv. "Maten 1-4" in plaats van "Maten 1-8")</li>
+                                <li>Optioneel: Verwijder of archiveer de oude, te grote sectie</li>
+                                <li>Begin fresh met de nieuwe chunks</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #f0f7ff; padding: 16px; border-radius: 6px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <h5 style="margin: 0 0 8px 0; font-size: 13px;">🔗 Chunks combineren:</h5>
+                            <p style="margin: 0 0 8px 0; font-size: 13px;">Als twee aangrenzende chunks goed zitten:</p>
+                            <ol style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                <li>Voeg een nieuwe, gecombineerde sectie toe (bijv. "Maten 1-8" om "1-4" en "5-8" samen te voegen)</li>
+                                <li>Archiveer de individuele chunks als ze niet meer nodig zijn</li>
+                                <li>Oefen de nieuwe gecombineerde sectie</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; margin: 24px 0; border-radius: 4px;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px;">⚠️ Veelgemaakte fouten bij chunking</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Te grote chunks:</strong> "Ik zal de hele eerste pagina als één chunk nemen" → Splits op! Succes bij kleine delen motiveert meer.</li>
+                                <li><strong>Te veel chunks tegelijk toevoegen:</strong> "Ik voeg nu alle 47 chunks van dit stuk toe" → Begin met 2-3 chunks. Voeg geleidelijk toe.</li>
+                                <li><strong>Chunks zonder duidelijke grenzen:</strong> "Maten 5-9... of was het 6-10?" → Wees precies. Schrijf het op in de naam.</li>
+                                <li><strong>Negeren van muzikale structuur:</strong> Een chunk splitsen midden in een frase → Respecteer de muzikale logica.</li>
+                                <li><strong>Te perfectionistisch over de eerste opdeling:</strong> U kunt het altijd later aanpassen! Start en leer gaandeweg.</li>
+                            </ul>
+                        </div>
+
+                        <h4 style="margin-top: 32px; font-size: 14px; color: var(--text-primary);">Volledige stukken voor onderhoud</h4>
+                        <p style="font-size: 13px; line-height: 1.8;">Wanneer een stuk goed ingestudeerd is, kunt u het volledige stuk invoeren voor onderhoud:</p>
+                        
+                        <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <h5 style="margin: 0 0 8px 0; font-size: 13px;">✅ Onderhoud van volledige stukken:</h5>
+                            <ol style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li>Voeg het volledige stuk toe als nieuwe sectie (bijv. "Hele stuk - onderhoud")</li>
+                                <li>Zet <strong>Target Repetitions op 1</strong></li>
+                                <li>Speel het stuk volledig door</li>
+                                <li>Evalueer met <strong>"Excellent"</strong> als het goed ging - de planner zet dan automatisch een nieuwe onderhoudsdatum</li>
+                                <li><strong>U</strong> bepaalt zelf of u het stuk nog een keer wilt spelen op dezelfde dag - de geplande datum blijft ongewijzigd na extra herhalingen</li>
+                            </ol>
+                            <p style="margin: 12px 0 0 0; font-size: 12px; color: var(--text-secondary);"><em>Tip: Extra herhalingen op dezelfde dag beïnvloeden de planning niet. De volgende onderhoudsdatum wordt alleen aangepast na de eerste sessie van de dag.</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTIE 5: OEFENSESSIES -->
+                <div id="oefensessies" class="section">
+                    <div class="section-header">
+                        <h2 style="margin: 0; font-size: 24px; font-weight: 700; color: var(--text-primary);">5. Oefensessies</h2>
+                        <p style="margin: 8px 0 0 0; color: var(--text-secondary);">Leer hoe u effectief uw oefensessies uitvoert, uw voortgang bijhoudt, en het adaptieve leeralgoritme optimaliseert voor maximale retentie.</p>
+                    </div>
+
+                    <div class="section-content">
+                        <h3 id="sessie-starten" style="margin-top: 0; font-size: 16px; color: var(--text-primary);">Een oefensessie starten</h3>
+                        <p>De oefensessie-interface is het hart van ModusPractica. Hier registreert u uw oefenwerk en voegt u data toe die het adaptieve leeralgoritme gebruikt om optimale herhalingsintervallen te berekenen.</p>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">Hoe start u een sessie?</h4>
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <ol style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                                <li>Open het <strong>Dashboard</strong></li>
+                                <li>Zoek de chunk die u wilt oefenen in <strong>"Today's Agenda"</strong> of <strong>"All Pieces"</strong></li>
+                                <li><strong>Klik op de chunk zelf</strong> (niet op het edit-icoon)</li>
+                                <li>De Practice Session interface opent automatisch</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px;">💡 Wat u ziet wanneer de sessie opent:</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Stuktitel en chunk informatie</strong> - Wat u gaat oefenen</li>
+                                <li><strong>Memory Zone</strong> - De leerfase (Exploration, Consolidation, Mastery, of Overlearning)</li>
+                                <li><strong>Laatste oefendatum</strong> - Wanneer u deze chunk voor het laatst geoefend heeft</li>
+                                <li><strong>Timer</strong> - Voor het bijhouden van oefentijd</li>
+                                <li><strong>Tracking Metrics</strong> - Tellers voor correcte herhalingen, fouten, en streak resets</li>
+                                <li><strong>Energie niveau</strong> - Uw huidige fysieke en mentale staat</li>
+                                <li><strong>Notities veld</strong> - Voor het documenteren van observaties</li>
+                            </ul>
+                        </div>
+
+                        <h3 id="interface-overzicht" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Interface overzicht</h3>
+                        <p>De Practice Session interface is opgedeeld in twee kolommen met verschillende secties:</p>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">⏱️ Timer Sectie (Linkerkolom)</h4>
+                        <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;"><strong>Functie:</strong> Houdt bij hoeveel tijd u aan deze chunk besteedt.</p>
+                            
+                            <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; border: 1px solid #e0e0e0;">
+                                <p style="margin: 0 0 8px 0; font-weight: 600; font-size: 13px;">Knoppen:</p>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                    <li><strong>Start</strong> - Begin de timer</li>
+                                    <li><strong>Pause</strong> - Pauzeer tijdelijk (bijv. om notities te maken)</li>
+                                    <li><strong>Stop</strong> - Stop de timer zonder de sessie af te sluiten</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #fff3cd; border-left: 3px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 4px;">
+                                <p style="margin: 0; font-size: 12px;"><strong>💡 Tip:</strong> U kunt de timer ook handmatig bewerken door erop te klikken. Dit is handig als u vergeten bent de timer te starten, of als u een sessie retroactief wilt invoeren.</p>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">📊 Tracking Metrics (Linkerkolom)</h4>
+                        <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;"><strong>Dit zijn de kern-metingen</strong> die het Ebbinghaus-algoritme gebruikt om uw volgende oefendatum te berekenen:</p>
+
+                            <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700; color: #2563eb;">1. Failed Attempts (Fouten voor eerste correcte herhaling)</h5>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Wat:</strong> Het aantal mislukte pogingen <em>voordat</em> u de eerste correcte herhaling bereikt.</p>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Wanneer tellen:</strong> Alleen voordat u de eerste succesvolle uitvoering bereikt. Als u daarna nog fouten maakt, gebruikt u "Streak Reset".</p>
+                                <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Impact:</strong> Dit wordt gebruikt in de <em>Dr. Gebrian overlearning formule</em> om automatisch uw target repetitions te berekenen (T = MAX(6, E) voor 100% intensiteit of T = 6 + floor((E-6)/2) voor 50% intensiteit, waarbij E = errors).</p>
+                                
+                                <div style="background: #f0f7ff; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                                    <p style="margin: 0; font-size: 12px;"><strong>🎯 Dr. Gebrian Overlearning:</strong> Als u 3 fouten maakt voordat u de eerste correcte herhaling bereikt, stelt het systeem automatisch uw target in op 6 herhalingen (minimum baseline). Bij meer fouten groeit het target proportioneel.</p>
+                                </div>
+                            </div>
+
+                            <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700; color: #16a34a;">2. Correct Repetitions (Foutloze herhalingen)</h5>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Wat:</strong> Het aantal succesvolle, foutloze uitvoeringen van de chunk in deze sessie.</p>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Wanneer tellen:</strong> Elke keer dat u de chunk volledig correct speelt zonder fouten. Wees eerlijk - kwaliteit boven kwantiteit!</p>
+                                <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Impact:</strong> Wanneer u uw target repetitions bereikt (bijv. 6), vordert u naar de volgende practice stage en wordt uw herhalingsinterval verlengd.</p>
+                                
+                                <div style="background: #fff3cd; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                                    <p style="margin: 0; font-size: 12px;"><strong>💡 Molly Gebrian Micro-Break:</strong> Na elke 3 correcte herhalingen verschijnt automatisch een suggestie voor een micro-pauze van 3-5 minuten. Deze pauzes helpen consolidatie van het motorisch geheugen.</p>
+                                </div>
+                            </div>
+
+                            <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700; color: #dc2626;">3. Streak Resets (Geheugen retrieval failures)</h5>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Wat:</strong> Automatische teller die wordt verhoogd wanneer u de "Reset ↻" knop bij Correct Repetitions gebruikt.</p>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Wanneer tellen:</strong> Wanneer u een fout maakt <em>na</em> al correcte herhalingen te hebben bereikt. Dit reset uw correct repetitions teller terug naar 0, maar verhoogt streak resets met 1.</p>
+                                <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Impact:</strong> Streak resets worden door het Ebbinghaus-algoritme geïnterpreteerd als "memory retrieval failures" - indicatoren dat het materiaal nog niet stabiel is in het langetermijngeheugen. Dit resulteert in kortere herhalingsintervallen.</p>
+                            </div>
+
+                            <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 14px; margin: 16px 0; border-radius: 4px;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px;">✅ Workflow voorbeeld:</h5>
+                                <div style="background: white; padding: 12px; margin: 10px 0; border-radius: 4px; border: 1px solid #e0e0e0; font-family: monospace; font-size: 12px; line-height: 1.8;">
+                                    1. Start sessie → Failed Attempts: 0, Correct Reps: 0<br>
+                                    2. Eerste poging mislukt → Klik +1 bij Failed Attempts → 1<br>
+                                    3. Tweede poging mislukt → Failed Attempts → 2<br>
+                                    4. Derde poging LUKT! → Klik +1 bij Correct Reps → 1<br>
+                                    &nbsp;&nbsp;&nbsp;(Target wordt automatisch berekend op 6)<br>
+                                    5. Vierde poging lukt → Correct Reps → 2<br>
+                                    6. Vijfde poging lukt → Correct Reps → 3<br>
+                                    &nbsp;&nbsp;&nbsp;💡 Micro-break suggestie verschijnt<br>
+                                    7. Na pauze: poging mislukt → Klik "Reset ↻"<br>
+                                    &nbsp;&nbsp;&nbsp;Correct Reps → 0, Streak Resets → 1<br>
+                                    8. Begin opnieuw vanaf 0 correcte herhalingen...
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">🎯 Target Repetitions</h4>
+                        <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;"><strong>Functie:</strong> Het doel aantal foutloze herhalingen dat u wilt bereiken in deze sessie.</p>
+                            
+                            <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; border: 1px solid #e0e0e0;">
+                                <p style="margin: 0 0 8px 0; font-weight: 600; font-size: 13px;">Automatische berekening (Dr. Gebrian):</p>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                    <li><strong>Standaard:</strong> Begint op 6 (wetenschappelijke baseline voor overlearning)</li>
+                                    <li><strong>100% Intensiteit (standaard):</strong> Target = MAX(6, Failed Attempts)</li>
+                                    <li><strong>50% Intensiteit:</strong> Target = 6 + floor(max(0, Failed Attempts - 6) / 2)</li>
+                                    <li><strong>Target wordt vergrendeld</strong> zodra u uw eerste correcte herhaling bereikt</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #fff3cd; border-left: 3px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 4px;">
+                                <p style="margin: 0; font-size: 12px;"><strong>⚠️ Belangrijk:</strong> U kunt de target handmatig aanpassen met de +/- knoppen, maar dit schakelt de automatische Gebrian-berekening uit voor deze sessie. Gebruik reset-knop om terug te keren naar automatische modus.</p>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">⚡ Overlearning Intensity (50% / 100%)</h4>
+                        <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;"><strong>Functie:</strong> Bepaalt hoe agressief het overlearning algoritme reageert op fouten.</p>
+                            
+                            <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; border: 1px solid #e0e0e0;">
+                                <p style="margin: 0 0 8px 0; font-weight: 600; font-size: 13px;">Wanneer gebruiken:</p>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                    <li><strong>100% (standaard):</strong> Maximale consolidatie - elke fout vertaalt zich volledig in extra herhalingen. Aanbevolen voor nieuwe, moeilijke passages.</li>
+                                    <li><strong>50%:</strong> Gematigde benadering - fouten leiden tot minder extra herhalingen. Geschikt voor onderhoud van bekende passages.</li>
+                                </ul>
+                            </div>
+
+                            <p style="margin: 12px 0 0 0; font-size: 13px; line-height: 1.6;"><strong>Voorbeeld:</strong> Met 10 fouten voor de eerste correcte herhaling → 100% = 10 target reps, 50% = 8 target reps.</p>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">🔋 Energy Level (Energie niveau)</h4>
+                        <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;"><strong>Functie:</strong> Registreer uw fysieke en mentale staat tijdens de oefensessie.</p>
+                            
+                            <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; border: 1px solid #e0e0e0;">
+                                <p style="margin: 0 0 8px 0; font-weight: 600; font-size: 13px;">Opties:</p>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                    <li><strong>Low:</strong> Moe, geen energie, moeite om te concentreren</li>
+                                    <li><strong>Normal (standaard):</strong> Gemiddelde energietoestand</li>
+                                    <li><strong>High:</strong> Alert, scherp, vol energie</li>
+                                </ul>
+                            </div>
+
+                            <p style="margin: 12px 0 0 0; font-size: 13px; line-height: 1.6;"><strong>Gebruik:</strong> Deze data wordt opgeslagen voor toekomstige analyse. Het kan helpen om patronen te identificeren - misschien presteert u beter 's ochtends of na een koffiepauze!</p>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">🎵 Tempo Tracking (Rechterkolom)</h4>
+                        <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;"><strong>Functie:</strong> Volg uw tempo-progressie voor chunks waar tempo een belangrijk leerdoel is.</p>
+                            
+                            <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; border: 1px solid #e0e0e0;">
+                                <p style="margin: 0 0 8px 0; font-weight: 600; font-size: 13px;">Velden:</p>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                    <li><strong>Target Tempo:</strong> Uw uiteindelijke doel-tempo (in BPM)</li>
+                                    <li><strong>Last Achieved Tempo:</strong> Het hoogste tempo dat u succesvol bereikte in de vorige sessie (automatisch getoond)</li>
+                                    <li><strong>Achieved Tempo (This Session):</strong> Het hoogste tempo dat u succesvol bereikte in de huidige sessie</li>
+                                    <li><strong>Tempo Suggestion:</strong> Voorgesteld tempo voor deze sessie (+5 BPM van vorige sessie, max. target tempo)</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #fff3cd; border-left: 3px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 4px;">
+                                <p style="margin: 0; font-size: 12px;"><strong>💡 Auto-fill functie:</strong> Het "Achieved Tempo" veld wordt automatisch ingevuld met uw laatste sessie waarde. Als u hetzelfde tempo bereikte, hoeft u niets te wijzigen. Anders past u het aan.</p>
+                            </div>
+
+                            <div style="background: #ffebee; border-left: 3px solid #ef5350; padding: 12px; margin: 12px 0; border-radius: 4px;">
+                                <p style="margin: 0; font-size: 12px;"><strong>⚠️ Validatie:</strong> Het systeem waarschuwt u als uw achieved tempo hoger is dan uw target (+10 BPM), of als er een grote sprong is t.o.v. vorige sessie (±30 BPM). Dit helpt typfouten te voorkomen.</p>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">📝 Session Notes</h4>
+                        <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;"><strong>Functie:</strong> Documenteer observaties, ontdekkingen, en problematieken tijdens de sessie.</p>
+                            
+                            <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 12px; margin: 12px 0; border-radius: 4px;">
+                                <p style="margin: 0 0 8px 0; font-size: 12px; font-weight: 600;">💡 Aanbevolen te noteren:</p>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 12px; line-height: 1.6;">
+                                    <li>Technische moeilijkheden (bijv. "Vingerzetting in maat 3 problematisch")</li>
+                                    <li>Muzikale interpretatie ideeën (bijv. "Probeer rubato bij frasering")</li>
+                                    <li>Lichamelijke sensaties (bijv. "Spanning in rechter pols na 10 min")</li>
+                                    <li>Mentale blokkades of doorbraken</li>
+                                    <li>Oefenstrategieën die werkten (bijv. "Slow practice 50% hielp enorm")</li>
+                                </ul>
+                            </div>
+
+                            <p style="margin: 12px 0 0 0; font-size: 13px; line-height: 1.6;"><strong>Auto-load:</strong> Notities van uw vorige sessie worden automatisch geladen, zodat u uw eerdere observaties direct kunt raadplegen en aanvullen.</p>
+                        </div>
+
+                        <h3 id="sessie-afsluiten" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Een sessie afsluiten</h3>
+                        <p>Wanneer u klaar bent met oefenen, moet u de sessie correct afsluiten om de data op te slaan en het Ebbinghaus-algoritme te activeren.</p>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">Stap 1: Klik "Complete Session"</h4>
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;">Deze knop opent het <strong>Evaluation Modal</strong> - het laatste belangrijke onderdeel van de sessie.</p>
+                            
+                            <div style="background: #fff3cd; border-left: 3px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 4px;">
+                                <p style="margin: 0; font-size: 12px;"><strong>⚠️ Validatie:</strong> Het systeem controleert of u voldoende activiteit heeft (minstens 30 seconden oefentijd OF minstens één poging geregistreerd). Te korte sessies verstoren uw statistieken.</p>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">Stap 2: Prestatie evaluatie</h4>
+                        <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;"><strong>Dit is de belangrijkste input voor het Ebbinghaus-algoritme.</strong> Uw evaluatie bepaalt direct het volgende herhalingsinterval:</p>
+
+                            <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700; color: #dc2626;">❌ Poor (Slecht)</h5>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Wanneer gebruiken:</strong> De chunk lukte niet, veel fouten, geen progressie, voelt overweldigend moeilijk.</p>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Impact:</strong> Zeer kort herhalingsinterval (vaak 1-2 dagen) - het systeem plant u snel terug in om memory failure te voorkomen.</p>
+                                <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Retention target:</strong> 90% (hoge retentie vereist = kort interval)</p>
+                            </div>
+
+                            <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700; color: #f59e0b;">⚠️ Fair (Matig)</h5>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Wanneer gebruiken:</strong> De chunk lukte met moeite, enkele fouten, nog niet vloeiend, maar zichtbare vooruitgang.</p>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Impact:</strong> Gematigd kort interval (2-4 dagen afhankelijk van stage).</p>
+                                <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Retention target:</strong> 85%</p>
+                            </div>
+
+                            <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700; color: #2563eb;">✅ Good (Goed)</h5>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Wanneer gebruiken:</strong> De chunk lukte goed, minimale fouten, redelijk vloeiend, controle over het materiaal.</p>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Impact:</strong> Standaard Ebbinghaus interval volgens uw huidige stage (bijv. 3-7 dagen).</p>
+                                <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Retention target:</strong> 80% (baseline)</p>
+                            </div>
+
+                            <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700; color: #16a34a;">⭐ Excellent (Uitstekend)</h5>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Wanneer gebruiken:</strong> De chunk lukte moeiteloos, nul fouten, vloeiend, volledig onder controle, muzikaal expressief.</p>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Impact:</strong> Verlengd interval (1.8-2.2× langer dan standaard) - maximale efficiency.</p>
+                                <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Retention target:</strong> 70% (lagere retentie acceptabel = langer interval)</p>
+                            </div>
+
+                            <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 14px; margin: 16px 0; border-radius: 4px;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px;">💡 Eerlijkheid is cruciaal!</h5>
+                                <p style="margin: 0; font-size: 13px; line-height: 1.6;">Het adaptieve systeem is alleen effectief als u eerlijk bent in uw evaluatie. Te optimistisch evalueren resulteert in te lange intervallen en memory failure. Te pessimistisch evalueren verspilt uw tijd met onnodige herhalingen.</p>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">Stap 3: Success Ratio Trend Chart (optioneel)</h4>
+                        <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;">Als u minstens 2 sessies heeft voltooid voor deze chunk, toont het evaluatie modal automatisch een <strong>Success Ratio Trend Chart</strong>.</p>
+                            
+                            <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; border: 1px solid #e0e0e0;">
+                                <p style="margin: 0 0 8px 0; font-weight: 600; font-size: 13px;">Wat u ziet:</p>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                    <li>Uw success rate percentage voor de laatste 7 sessies</li>
+                                    <li>Een groene lijn die uw progressie toont</li>
+                                    <li>De huidige sessie (preview) in lichtblauw</li>
+                                    <li>Een 70% threshold lijn (ondergrens voor "Target Reached")</li>
+                                </ul>
+                            </div>
+
+                            <p style="margin: 12px 0 0 0; font-size: 13px; line-height: 1.6;"><strong>Gebruik:</strong> Deze visualisatie helpt u om uw consistentie te beoordelen en trends te identificeren (bijv. "Mijn success rate daalt - misschien te snel door chunks heen?").</p>
+                        </div>
+
+                        <h4 style="margin-top: 24px; font-size: 14px; color: var(--text-primary);">Stap 4: Save Evaluation</h4>
+                        <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;">Nadat u een prestatie-evaluatie heeft geselecteerd, klikt u op <strong>"Save Evaluation"</strong>.</p>
+                            
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Wat gebeurt er nu:</strong></p>
+                            <ol style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li>De sessie wordt opgeslagen in <code>practiceSessions</code> array van het stuk</li>
+                                <li>Een entry wordt toegevoegd aan <code>practiceHistory</code> voor statistieken</li>
+                                <li>De chunk properties worden bijgewerkt:
+                                    <ul style="margin: 4px 0;">
+                                        <li><code>lastPracticeDate</code> → vandaag</li>
+                                        <li><code>completedRepetitions</code> → +correct repetitions</li>
+                                        <li><code>targetTempo</code> en <code>achievedTempo</code> bijgewerkt</li>
+                                    </ul>
+                                </li>
+                                <li>Het <strong>Ebbinghaus-algoritme</strong> berekent het volgende herhalingsinterval:
+                                    <ul style="margin: 4px 0;">
+                                        <li>Stage 0-2: Vaste 1-dag intervallen (foundation phase)</li>
+                                        <li>Stage 3+: Ebbinghaus formule (t = -τ × ln(R*)) met performance adjustment</li>
+                                    </ul>
+                                </li>
+                                <li><code>nextReviewDate</code> wordt gezet</li>
+                                <li>Als u uw <code>targetRepetitions</code> bereikte, wordt <code>practiceScheduleStage</code> verhoogd met 1</li>
+                                <li><strong>Adaptieve systemen</strong> worden bijgewerkt:
+                                    <ul style="margin: 4px 0;">
+                                        <li>Personalized Memory Calibration (PMC) leert uw individuele retentie-karakteristiek</li>
+                                        <li>Memory Stability Manager trakt stabiliteit (S) en difficulty (D)</li>
+                                        <li>Adaptive Tau Manager berekent geoptimaliseerde τ-waardes</li>
+                                    </ul>
+                                </li>
+                                <li>Draft wordt gewist (auto-save data verwijderd)</li>
+                                <li>U wordt teruggeleid naar het Dashboard</li>
+                            </ol>
+                        </div>
+
+                        <h3 id="incomplete-sessies" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Incomplete sessies (0 correcte herhalingen)</h3>
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 14px;">⚠️ Wat als de chunk te moeilijk is?</h4>
+                            <p style="margin: 0 0 12px 0; font-size: 13px; line-height: 1.6;">Soms oefent u een chunk 10+ minuten zonder één succesvolle herhaling te bereiken. Dit is <strong>normaal</strong> voor uitdagende passages!</p>
+                            
+                            <p style="margin: 0 0 8px 0; font-size: 13px; font-weight: 600;">Het systeem herkent dit automatisch:</p>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                <li>Als u <strong>2+ minuten</strong> geoefend heeft maar <strong>0 correcte herhalingen</strong> bereikte</li>
+                                <li>Toont het evaluatie modal een waarschuwing: <em>"Passage too difficult?"</em></li>
+                                <li>De sessie wordt gemarkeerd als <code>sessionOutcome: 'Incomplete'</code></li>
+                            </ul>
+
+                            <p style="margin: 12px 0 8px 0; font-size: 13px; font-weight: 600;">Gevolgen:</p>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                <li><strong>Vast 1-dag interval</strong> - u krijgt morgen opnieuw een kans</li>
+                                <li><strong>Geen stage penalty</strong> - uw practice stage blijft hetzelfde</li>
+                                <li><strong>Data wordt bewaard</strong> - uw tijd en moeite worden geregistreerd</li>
+                                <li><strong>Geen target increment</strong> - target blijft 6</li>
+                            </ul>
+
+                            <p style="margin: 12px 0 0 0; font-size: 13px; line-height: 1.6;"><strong>Advies:</strong> Overweeg de chunk op te splitsen in kleinere sub-chunks, of oefen eerst langzamer tempo. Soms is het verstandig om te pauzeren en met een frisse geest terug te komen.</p>
+                        </div>
+
+                        <h3 id="sessie-annuleren" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Een sessie annuleren</h3>
+                        <div style="background: #ffebee; border-left: 4px solid #ef5350; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;">Als u de sessie wilt annuleren zonder op te slaan, klik op <strong>"Cancel Session"</strong>.</p>
+                            
+                            <p style="margin: 0 0 8px 0; font-size: 13px; font-weight: 600;">Wat gebeurt er:</p>
+                            <ul style="margin: 0 0 12px 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                <li>Als u data heeft ingevoerd (tijd, pogingen, notities), krijgt u een waarschuwing</li>
+                                <li>Na bevestiging wordt <strong>alle sessiedata verwijderd</strong></li>
+                                <li>Draft wordt gewist</li>
+                                <li>U keert terug naar het Dashboard</li>
+                                <li><strong>Niets wordt opgeslagen</strong> - de chunk blijft ongewijzigd</li>
+                            </ul>
+
+                            <p style="margin: 0; font-size: 12px; line-height: 1.6;"><strong>⚠️ Let op:</strong> Annuleren kan niet ongedaan gemaakt worden! Als u per ongeluk annuleert, moet u de sessie opnieuw doen.</p>
+                        </div>
+
+                        <h3 id="auto-save-draft" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Auto-save en draft recovery</h3>
+                        <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 14px;">💾 Automatische opslag</h4>
+                            <p style="margin: 0 0 12px 0; font-size: 13px; line-height: 1.6;">ModusPractica slaat uw sessie automatisch op als draft <strong>elke 30 seconden</strong> terwijl u oefent.</p>
+                            
+                            <p style="margin: 0 0 8px 0; font-size: 13px; font-weight: 600;">Wat wordt opgeslagen in de draft:</p>
+                            <ul style="margin: 0 0 12px 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                <li>Timer status (totalElapsedSeconds, isRunning, pausedTime)</li>
+                                <li>Tracking metrics (failedAttempts, correctRepetitions, streakResets)</li>
+                                <li>Dr. Gebrian state (errorsBeforeFirstCorrect, hasAchievedFirstCorrect, targetRepetitions)</li>
+                                <li>Energy level selectie</li>
+                                <li>Session notes</li>
+                                <li>Tempo values (target, achieved)</li>
+                                <li>Timestamp van laatste save</li>
+                            </ul>
+
+                            <p style="margin: 0 0 8px 0; font-size: 13px; font-weight: 600;">Recovery scenario's:</p>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                <li><strong>Browser crash:</strong> Bij heropenen van de sessie laadt het systeem automatisch de draft</li>
+                                <li><strong>Per ongeluk venster sluiten:</strong> Draft wordt hersteld bij volgende sessie voor dezelfde chunk</li>
+                                <li><strong>Elektriciteit uitval:</strong> Als de draft was opgeslagen binnen 30 sec, is data behouden</li>
+                            </ul>
+
+                            <p style="margin: 12px 0 0 0; font-size: 12px; line-height: 1.6;"><strong>💡 Tip:</strong> U ziet een indicator "💾 Unsaved Changes" rechtsonder als er niet-opgeslagen data is. Deze verdwijnt zodra de auto-save triggert.</p>
+                        </div>
+
+                        <h3 id="intensity-module" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Intensity Module (Gevorderd)</h3>
+                        <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 16px 0;">
+                            <p style="margin: 0 0 12px 0; font-size: 13px;">Het <strong>Intensity Module</strong> is een geavanceerd systeem dat real-time feedback geeft over uw oefenintensiteit en kwaliteit.</p>
+                            
+                            <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700;">Metrics die worden getoond:</h5>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                    <li><strong>TDS (Total Deliberate Struggle):</strong> Totaal aantal fouten (failed attempts + streak resets) - hoger getal = meer struggle = intensiever</li>
+                                    <li><strong>Phase:</strong> Huidige leerfase gebaseerd op correcte herhalingen
+                                        <ul style="margin: 4px 0;">
+                                            <li>Initial Attempts (0-2 correct reps)</li>
+                                            <li>Early Learning (3-5 correct reps)</li>
+                                            <li>Consolidation (6-9 correct reps)</li>
+                                            <li>Mastery (10+ correct reps)</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>OLQ (Overlearning Quality):</strong> De verhouding tussen target reps en fouten - hogere waarde = efficiënter leren</li>
+                                    <li><strong>Adaptive T̄_CR:</strong> Gemiddelde tijd per correcte herhaling (geleerd over meerdere sessies) - helpt realistische sessie-planning</li>
+                                </ul>
+                            </div>
+
+                            <p style="margin: 12px 0 0 0; font-size: 13px; line-height: 1.6;"><strong>Gebruik:</strong> Deze metrics zijn bedoeld voor gevorderde gebruikers die hun oefenproces willen optimaliseren. Voor beginners zijn ze optioneel.</p>
+                        </div>
+
+                        <h3 id="best-practices" style="margin-top: 32px; font-size: 16px; color: var(--text-primary);">Best practices voor oefensessies</h3>
+                        <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 14px;">✅ Aanbevolen aanpak:</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Start de timer zodra u begint</strong> - accuraat bijhouden is cruciaal voor statistieken</li>
+                                <li><strong>Registreer elke poging eerlijk</strong> - kwaliteit boven kwantiteit</li>
+                                <li><strong>Gebruik failed attempts conservatief</strong> - alleen voor echte mislukkingen vóór eerste succes</li>
+                                <li><strong>Neem micro-breaks serieus</strong> - na 3 correcte herhalingen even pauzeren helpt consolidatie</li>
+                                <li><strong>Wees eerlijk bij evaluatie</strong> - het systeem is alleen zo goed als uw input</li>
+                                <li><strong>Documenteer observaties</strong> - toekomstige-u zal u dankbaar zijn voor goede notities</li>
+                                <li><strong>Track tempo progressie</strong> - ook kleine stappen vooruit zijn motiverend om te zien</li>
+                                <li><strong>Splits te moeilijke chunks op</strong> - als u 0 correcte herhalingen bereikt na 10+ minuten, is de chunk te groot</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 4px;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 14px;">⚠️ Veelgemaakte fouten:</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Te optimistisch evalueren:</strong> "Het ging best goed" → Excellent → Interval te lang → Memory failure volgende sessie</li>
+                                <li><strong>Target handmatig aanpassen zonder reden:</strong> Dit schakelt Dr. Gebrian uit - laat het systeem zijn werk doen</li>
+                                <li><strong>Failed attempts blijven verhogen na eerste succes:</strong> Gebruik "Reset ↻" bij streak break, niet failed attempts</li>
+                                <li><strong>Timer vergeten te starten:</strong> Retroactief invullen is mogelijk maar minder accuraat</li>
+                                <li><strong>Notities negeren:</strong> Gedocumenteerde inzichten zijn goud waard bij toekomstige sessies</li>
+                                <li><strong>Te snel doorheen chunks racen:</strong> Kwaliteit > kwantiteit - liever 3 chunks excellent dan 10 chunks mediocre</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTIE 6: HET ADAPTIEVE LEERSYSTEEM -->
+                <div id="adaptief-leersysteem" class="section">
+                    <div class="section-header">
+                        <h2 style="margin: 0; font-size: 24px; font-weight: 700; color: var(--text-primary);">6. Het adaptieve leersysteem</h2>
+                        <p style="margin: 8px 0 0 0; color: var(--text-secondary);">Begrijp hoe ModusPractica wetenschappelijk onderbouwde algoritmes gebruikt om uw herhalingsintervallen te optimaliseren en uw persoonlijke retentiepatronen te leren.</p>
+                    </div>
+
+                    <div class="section-content">
+                        <div style="background: #f0f9ff; border-left: 4px solid #2eaadc; padding: 20px; margin: 24px 0; border-radius: 6px;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 16px;">🧠 De kern: Waarom adaptief leren?</h4>
+                            <p style="margin: 0; font-size: 14px; line-height: 1.8;">ModusPractica's kracht ligt in het gebruik van <strong>spaced repetition</strong> (gespreide herhaling) gebaseerd op de Ebbinghaus vergeetcurve. In plaats van willekeurig te herhalen of alles elke dag te oefenen, plant het systeem herhalingen op het optimale moment—net voordat u het dreigt te vergeten. Dit maximaliseert retentie terwijl het uw oefentijd minimaliseert.</p>
+                        </div>
+
+                        <h3 id="ebbinghaus-algoritme" style="margin-top: 32px; font-size: 18px; color: var(--text-primary);">📉 De Ebbinghaus vergeetcurve</h3>
+                        <p style="font-size: 14px; line-height: 1.8;">In 1885 ontdekte de Duitse psycholoog Hermann Ebbinghaus een fundamenteel principe van menselijk geheugen: informatie wordt exponentieel vergeten over tijd, tenzij het actief wordt herhaald.</p>
+
+                        <div style="background: #f8f9fa; padding: 24px; border-radius: 8px; margin: 20px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 15px; color: var(--text-primary);">De wiskundige formule</h4>
+                            <div style="background: white; padding: 16px; border-radius: 6px; border: 1px solid #e0e0e0; font-family: monospace; font-size: 14px; text-align: center; margin: 16px 0;">
+                                R(t) = e<sup>-t/τ</sup>
+                            </div>
+                            <p style="margin: 0; font-size: 13px; line-height: 1.8;"><strong>Waar:</strong></p>
+                            <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>R(t)</strong> = Retentie (kans op succesvolle recall) na tijd <em>t</em></li>
+                                <li><strong>t</strong> = Tijd sinds laatste herhaling (in dagen)</li>
+                                <li><strong>τ</strong> (tau) = Geheugen half-waardetijd—de tijd waarin retentie daalt naar ~37% (e<sup>-1</sup>)</li>
+                                <li><strong>e</strong> = Euler's getal (~2.718)</li>
+                            </ul>
+
+                            <div style="background: #e6f7ff; padding: 14px; margin: 16px 0; border-radius: 6px;">
+                                <p style="margin: 0; font-size: 13px; line-height: 1.8;"><strong>💡 Intuïtief begrip:</strong> Als τ = 3 dagen, dan na 3 dagen is uw retentie gedaald naar ~37%. Na 6 dagen (2×τ) naar ~14%. Na 9 dagen (3×τ) naar ~5%. De curve versnelt exponentieel!</p>
+                            </div>
+                        </div>
+
+                        <h3 id="spaced-repetition" style="margin-top: 32px; font-size: 18px; color: var(--text-primary);">🔄 Spaced Repetition (gespreide herhaling)</h3>
+                        <p style="font-size: 14px; line-height: 1.8;">De Ebbinghaus curve heeft een cruciale implicatie: <strong>timing van herhalingen is alles</strong>. Te vroeg herhalen verspilt tijd (retentie is nog hoog). Te laat herhalen veroorzaakt memory failure (retentie is al te laag).</p>
+
+                        <div style="background: #f0f7ff; padding: 24px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 20px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 15px; color: var(--text-primary);">Het optimale herhalingsmoment</h4>
+                            <p style="margin: 0 0 12px 0; font-size: 13px; line-height: 1.8;">ModusPractica berekent uw volgende oefendatum met de <strong>inverse Ebbinghaus formule</strong>. De complete formule houdt rekening met de asymptotische baseline:</p>
+                            
+                            <div style="background: white; padding: 16px; border-radius: 6px; border: 1px solid #e0e0e0; margin: 16px 0;">
+                                <div style="font-family: monospace; font-size: 14px; text-align: center; margin-bottom: 12px;">
+                                    R(t) = L₀ × e<sup>-t/τ</sup> + B
+                                </div>
+                                <p style="margin: 0 0 8px 0; font-size: 12px; text-align: center; color: var(--text-secondary);">↓ Oplossen voor t wanneer R(t) = R* ↓</p>
+                                <div style="font-family: monospace; font-size: 14px; text-align: center; margin-top: 8px;">
+                                    t = -τ × ln((R* - B) / L₀)
+                                </div>
+                            </div>
+
+                            <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.8;"><strong>Waar:</strong></p>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>t</strong> = Optimale interval tot volgende herhaling (dagen)</li>
+                                <li><strong>τ</strong> = Uw persoonlijke tau-parameter (zie verderop)</li>
+                                <li><strong>R*</strong> = Gewenste retentie-drempel (target retention threshold)</li>
+                                <li><strong>L₀</strong> = Initial learning strength = 0.80 (80% direct na leren)</li>
+                                <li><strong>B</strong> = Asymptotic retention baseline = 0.15 (15% blijft altijd over)</li>
+                                <li><strong>ln</strong> = Natuurlijke logaritme</li>
+                            </ul>
+
+                            <div style="background: #e6f7ff; padding: 14px; margin: 16px 0; border-radius: 6px;">
+                                <p style="margin: 0 0 8px 0; font-size: 12px; font-weight: 600;">💡 Waarom de baseline (B)?</p>
+                                <p style="margin: 0; font-size: 12px; line-height: 1.6;">Onderzoek toont dat je nooit <em>helemaal</em> vergeet. Een kern van ~15% blijft als residueel geheugen, zelfs na lange tijd. Dit maakt herinleren sneller dan eerste leer. De formule modelleert dit realistisch.</p>
+                            </div>
+
+                            <div style="background: #fff3cd; border-left: 3px solid #ffc107; padding: 14px; margin: 16px 0; border-radius: 6px;">
+                                <p style="margin: 0 0 8px 0; font-size: 12px; font-weight: 600;">📊 Rekenvoorbeeld:</p>
+                                <div style="font-family: monospace; font-size: 11px; line-height: 1.8; background: white; padding: 10px; border-radius: 4px; margin: 8px 0;">
+                                    Gegeven: τ = 3 dagen, R* = 0.80, L₀ = 0.80, B = 0.15<br><br>
+                                    Stap 1: R* - B = 0.80 - 0.15 = 0.65<br>
+                                    Stap 2: (R* - B) / L₀ = 0.65 / 0.80 = 0.8125<br>
+                                    Stap 3: ln(0.8125) ≈ -0.2077<br>
+                                    Stap 4: t = -3 × (-0.2077) = <strong>0.623 dagen</strong> ≈ 15 uur<br><br>
+                                    → Met meer herhalingen groeit τ → langere intervallen
+                                </div>
+                                <p style="margin: 8px 0 0 0; font-size: 11px; color: var(--text-secondary); font-style: italic;">Opmerking: Dit is de vereenvoudigde berekening. In praktijk worden ook repetition multiplier en individuality factor toegepast op τ.</p>
+                            </div>
+                        </div>
+
+                        <h3 id="tau-parameter" style="margin-top: 32px; font-size: 18px; color: var(--text-primary);">⏱️ De Tau (τ) parameter: Uw persoonlijke geheugenkarakteristiek</h3>
+                        <p style="font-size: 14px; line-height: 1.8;">De tau-parameter is het kloppende hart van het Ebbinghaus-algoritme. Het bepaalt hoe snel uw geheugen vervaagt voor een specifieke chunk.</p>
+
+                        <div style="background: #f8f9fa; padding: 24px; border-radius: 8px; margin: 20px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 15px;">Basisberekening van tau</h4>
+                            <p style="margin: 0 0 12px 0; font-size: 13px; line-height: 1.8;">ModusPractica start met een wetenschappelijke baseline en past deze aan op basis van meerdere factoren:</p>
+
+                            <div style="background: white; padding: 16px; margin: 16px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 700;">1. Wetenschappelijke baseline</h5>
+                                <div style="font-family: monospace; font-size: 13px; background: #f0f7ff; padding: 10px; border-radius: 4px; margin: 8px 0;">
+                                    BASE_TAU_DAYS = 3.0 dagen
+                                </div>
+                                <p style="margin: 8px 0 0 0; font-size: 13px; line-height: 1.6;">Deze baseline is gebaseerd op empirisch onderzoek naar geheugenretentie bij verbaal materiaal. Voor motorische vaardigheden (zoals muziek) wordt deze verhoogd.</p>
+                            </div>
+
+                            <div style="background: white; padding: 16px; margin: 16px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 700;">2. Muziekmateriaal factor</h5>
+                                <div style="font-family: monospace; font-size: 13px; background: #f0f7ff; padding: 10px; border-radius: 4px; margin: 8px 0;">
+                                    τ = BASE_TAU × 3.0 (MUSIC_MATERIAL_FACTOR)
+                                </div>
+                                <p style="margin: 8px 0 0 0; font-size: 13px; line-height: 1.6;">Muzikaal materiaal wordt anders opgeslagen dan taal—het combineert motorisch geheugen, auditief geheugen, en procedureel geheugen. Deze multiplier verhoogt de baseline tot ~9 dagen.</p>
+                            </div>
+
+                            <div style="background: white; padding: 16px; margin: 16px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 700;">3. Ervaringsniveau adjustment</h5>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;">Uw gekozen ervaringsniveau beïnvloedt de tau (encoding strength hypothesis):</p>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                    <li><strong>Beginner:</strong> 0.8× (kortere intervallen, sneller vergeten)</li>
+                                    <li><strong>Intermediate:</strong> 1.0× (baseline)</li>
+                                    <li><strong>Advanced:</strong> 1.1× (langere intervallen, sterke encoding)</li>
+                                    <li><strong>Professional:</strong> 1.3× (langste intervallen, chunking expertise)</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: white; padding: 16px; margin: 16px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 700;">4. Moeilijkheidsgraad modifier</h5>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;">De ingestelde moeilijkheidsgraad van de chunk heeft directe invloed:</p>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
+                                    <li><strong>Difficult:</strong> 0.6× (40% reductie → kortere intervallen)</li>
+                                    <li><strong>Average:</strong> 1.0× (geen aanpassing)</li>
+                                    <li><strong>Easy:</strong> 1.7× (70% verhoging → langere intervallen)</li>
+                                    <li><strong>Mastered:</strong> 3.5× tot 2.0× (250-100% verhoging, afhankelijk van stage)</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: white; padding: 16px; margin: 16px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 14px; font-weight: 700;">5. Herhaling bonus</h5>
+                                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;">Elke succesvolle herhaling versterkt het geheugen:</p>
+                                <div style="font-family: monospace; font-size: 13px; background: #f0f7ff; padding: 10px; border-radius: 4px; margin: 8px 0;">
+                                    effective_reps = log₂(repetitions + 1)<br>
+                                    bonus_multiplier = 1.0 + min(0.5, effective_reps × 0.08)
+                                </div>
+                                <p style="margin: 6px 0 0 0; font-size: 12px; color: var(--text-secondary);"><em>Opmerking:</em> Dit is een vereenvoudigde illustratie; de engine gebruikt een wetenschappelijk onderbouwde variant (standaard en gepersonaliseerd) met dezelfde logaritmische trend.</p>
+                                <p style="margin: 8px 0 0 0; font-size: 13px; line-height: 1.6;">Dit betekent dat uw tau gradueel groeit naarmate u meer herhalingen voltooit, wat leidt tot langere intervallen.</p>
+                            </div>
+
+                            <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 14px; margin: 16px 0; border-radius: 6px;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px;">✅ Voorbeeld berekening:</h5>
+                                <div style="font-family: monospace; font-size: 12px; line-height: 1.8; background: white; padding: 12px; border-radius: 4px; margin: 8px 0;">
+                                    Profiel: Intermediate (multiplier = 1.0)<br>
+                                    Chunk: "Maten 1-4", moeilijkheid = Average<br>
+                                    Herhalingen: 6 (stage 3)<br>
+                                    <br>
+                                    Stap 1: BASE_TAU = 3.0 dagen<br>
+                                    Stap 2: × 3.0 (music) = 9.0 dagen<br>
+                                    Stap 3: × 1.0 (intermediate) = 9.0 dagen<br>
+                                    Stap 4: × 1.0 (average difficulty) = 9.0 dagen<br>
+                                    Stap 5: log₂(7) ≈ 2.8 → bonus = 1.0 + (2.8 × 0.08) = 1.224<br>
+                                    <br>
+                                    <strong>τ_final = 9.0 × 1.224 ≈ 11.0 dagen</strong>
+                                </div>
+                                <p style="margin: 8px 0 0 0; font-size: 12px; line-height: 1.6;">Met R* = 0.80, interval = -11.0 × ln(0.80) ≈ 2.5 dagen voor stage 3+. Voor stage 0-2 wordt een vast 1-dag interval gebruikt (foundation phase).</p>
+                            </div>
+                        </div>
+
+                        <h3 id="adaptieve-calibratie" style="margin-top: 32px; font-size: 18px; color: var(--text-primary);">🎯 Adaptieve calibratie systemen</h3>
+                        <p style="font-size: 14px; line-height: 1.8;">De echte kracht van ModusPractica ligt niet alleen in de Ebbinghaus formule, maar in de drie geïntegreerde systemen die uw persoonlijke retentie-karakteristiek leren:</p>
+
+                        <div style="background: #f0f7ff; padding: 24px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 20px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 15px; color: var(--text-primary);">1️⃣ Personalized Memory Calibration (PMC)</h4>
+                            <p style="margin: 0 0 12px 0; font-size: 13px; line-height: 1.8;"><strong>Wat het doet:</strong> Leert uw individuele geheugenpatronen door voorspellingen te vergelijken met werkelijke prestaties.</p>
+
+                            <div style="background: white; padding: 16px; margin: 16px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700;">Bayesian Learning proces:</h5>
+                                <ol style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                    <li>Systeem voorspelt hoe goed u het zou moeten doen (expected performance)</li>
+                                    <li>U oefent en evalueert uw prestatie (actual performance)</li>
+                                    <li>Systeem berekent de prediction accuracy (fout tussen verwacht en werkelijk)</li>
+                                    <li>Tau-parameter wordt aangepast:
+                                        <ul style="margin: 4px 0;">
+                                            <li>Beter dan verwacht → τ verhogen (u vergeet langzamer)</li>
+                                            <li>Slechter dan verwacht → τ verlagen (u vergeet sneller)</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                                <div style="background: #f0f7ff; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                                    <p style="margin: 0; font-size: 12px; line-height: 1.6;"><strong>📊 Learning Rate:</strong> 0.1 (conservatief) - geleidelijke aanpassingen over 10+ sessies om overreageren te voorkomen.</p>
+                                </div>
+                            </div>
+
+                            <div style="background: #fff3cd; border-left: 3px solid #ffc107; padding: 14px; margin: 16px 0; border-radius: 6px;">
+                                <p style="margin: 0; font-size: 12px; line-height: 1.6;"><strong>⚠️ Activatie:</strong> PMC levert merkbare personalisatie na ca. 5 sessies en wordt betrouwbaarder richting 10+ sessies. In de eerste 5 sessies past de <em>Adaptive Tau Manager</em> een versnelde "rapid calibration" toe (heuristiek; lr ≈ 0,35); de Bayesian learning rate van PMC zelf blijft 0,1 (conservatief).</p>
+                            </div>
+                        </div>
+
+                        <div style="background: #f0f7ff; padding: 24px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 20px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 15px; color: var(--text-primary);">2️⃣ Memory Stability Manager (MSM)</h4>
+                            <p style="margin: 0 0 12px 0; font-size: 13px; line-height: 1.8;"><strong>Wat het doet:</strong> Traceert geheugen-stabiliteit en moeilijkheid per sectie gebaseerd op SuperMemo SM-17+ algoritmes.</p>
+
+                            <div style="background: white; padding: 16px; margin: 16px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700;">Kern concepten:</h5>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                    <li><strong>Stability (S):</strong> Hoe lang het geheugen duurt voordat 50% vergeetprobabiliteit (in dagen)
+                                        <ul style="margin: 4px 0;">
+                                            <li>Start bij 1.8 dagen (eerste recall)</li>
+                                            <li>Groeit met succesvolle herhalingen (× 1.3 per succes)</li>
+                                            <li>Krimpt bij failures</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Difficulty (D):</strong> Intrinsieke moeilijkheid van de chunk (0.0 = makkelijk, 1.0 = moeilijk)
+                                        <ul style="margin: 4px 0;">
+                                            <li>Start bij 0.3 (default)</li>
+                                            <li>Past aan op basis van streak resets en failures</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Retrievability (R):</strong> Huidige kans op succesvolle recall
+                                        <ul style="margin: 4px 0;">
+                                            <li>Berekend als: R = e<sup>-days/S</sup></li>
+                                            <li>Daalt exponentieel over tijd</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 14px; margin: 16px 0; border-radius: 6px;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px;">✅ Voorbeeld tracking:</h5>
+                                <div style="font-family: monospace; font-size: 12px; line-height: 1.8; background: white; padding: 12px; border-radius: 4px; margin: 8px 0;">
+                                    Dag 0: Nieuwe chunk → S = 1.8d, D = 0.3, R = 1.0<br>
+                                    Dag 2: Sessie "Good" → S = 2.3d, D = 0.29, R = 0.42<br>
+                                    Dag 5: Sessie "Excellent" → S = 3.0d, D = 0.27, R = 0.19<br>
+                                    Dag 8: Sessie "Good" → S = 3.9d, D = 0.26, R = 0.12<br>
+                                    Dag 12: Sessie "Fair" + streak reset → S = 3.2d, D = 0.28<br>
+                                </div>
+                            </div>
+
+                            <div style="background: #fff3cd; border-left: 3px solid #ffc107; padding: 14px; margin: 16px 0; border-radius: 6px;">
+                                <p style="margin: 0; font-size: 12px; line-height: 1.6;"><strong>⚠️ Same-day repetition filter:</strong> MSM negeert herhalingen op dezelfde kalenderdag (behalve de eerste) om over-optimistische stabiliteitsschattingen te voorkomen. Slaap is cruciaal voor consolidatie!</p>
+                            </div>
+                        </div>
+
+                        <div style="background: #f0f7ff; padding: 24px; border-radius: 8px; border: 1px solid #b3d9f2; margin: 20px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 15px; color: var(--text-primary);">3️⃣ Adaptive Tau Manager (ATM)</h4>
+                            <p style="margin: 0 0 12px 0; font-size: 13px; line-height: 1.8;"><strong>Wat het doet:</strong> Coördineert PMC en MSM data om een geïntegreerde, betrouwbare tau te berekenen.</p>
+
+                            <div style="background: white; padding: 16px; margin: 16px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700;">Integratie proces:</h5>
+                                <ol style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                    <li>Bereken <strong>demographic baseline tau</strong> (leeftijd, ervaring, moeilijkheid, herhalingen)</li>
+                                    <li>Verzamel <strong>adaptive data</strong> van PMC en MSM</li>
+                                    <li>Bereken <strong>confidence score</strong>:
+                                        <ul style="margin: 4px 0;">
+                                            <li>Meer sessies = hogere confidence</li>
+                                            <li>Recent data = hogere confidence</li>
+                                            <li>Consistente resultaten = hogere confidence</li>
+                                        </ul>
+                                    </li>
+                                    <li>Integreer bronnen op basis van confidence:
+                                        <div style="font-family: monospace; font-size: 12px; background: #f0f7ff; padding: 10px; border-radius: 4px; margin: 8px 0;">
+                                            τ_final = (1 - confidence) × τ_demographic + confidence × τ_adaptive
+                                        </div>
+                                    </li>
+                                    <li>Clamp binnen veilige grenzen: [1, 180] dagen</li>
+                                </ol>
+                            </div>
+
+                            <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 14px; margin: 16px 0; border-radius: 6px;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px;">💡 Confidence build-up:</h5>
+                                <p style="margin: 0; font-size: 12px; line-height: 1.6;">In de eerste sessies groeit de confidence snel en bron-afhankelijk (PMC, stabiliteit, prestaties) — rapid calibration is actief in de eerste 5 sessies. Rond ~10+ sessies stabiliseert de weging en volgt geleidelijke fine-tuning. Dit geeft nieuwkomers snelle aanpassing zonder stabiliteit voor gevorderden te verliezen.</p>
+                            </div>
+                        </div>
+
+                        <h3 id="moeilijkheidsgraden" style="margin-top: 32px; font-size: 18px; color: var(--text-primary);">🎚️ Moeilijkheidsgraden en retentie targets</h3>
+                        <p style="font-size: 14px; line-height: 1.8;">ModusPractica gebruikt verschillende <strong>retention thresholds (R*)</strong> afhankelijk van de moeilijkheidsgraad van de chunk:</p>
+
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin: 20px 0;">
+                            <div style="background: #ffebee; padding: 20px; border-radius: 8px; border-left: 4px solid #dc2626;">
+                                <h4 style="margin: 0 0 12px 0; font-size: 14px; color: #dc2626;">🔴 Difficult (Moeilijk)</h4>
+                                <div style="background: white; padding: 12px; border-radius: 6px; margin: 8px 0;">
+                                    <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Retention Target (R*):</strong> 85% (OPTIMAL_RETENTION_THRESHOLD)</p>
+                                    <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Tau Modifier:</strong> 0.6× (40% reductie)</p>
+                                    <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Effect:</strong> Kortere intervallen + hogere retentie vereist → Frequente herhalingen om memory failure te voorkomen</p>
+                                </div>
+                                <p style="margin: 12px 0 0 0; font-size: 12px; line-height: 1.6; color: var(--text-secondary);"><em>Gebruik voor: Technisch uitdagende passages, nieuwe repertoire waar je nog worstelt.</em></p>
+                            </div>
+
+                            <div style="background: #fff9e6; padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                                <h4 style="margin: 0 0 12px 0; font-size: 14px; color: #f59e0b;">🟡 Average (Gemiddeld)</h4>
+                                <div style="background: white; padding: 12px; border-radius: 6px; margin: 8px 0;">
+                                    <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Retention Target (R*):</strong> 80% (RETENTION_THRESHOLD)</p>
+                                    <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Tau Modifier:</strong> 1.0× (geen aanpassing)</p>
+                                    <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Effect:</strong> Baseline Ebbinghaus intervallen → Balans tussen efficiency en retentie</p>
+                                </div>
+                                <p style="margin: 12px 0 0 0; font-size: 12px; line-height: 1.6; color: var(--text-secondary);"><em>Gebruik voor: Meeste chunks, standaard moeilijkheid, normale progressie.</em></p>
+                            </div>
+
+                            <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; border-left: 4px solid #16a34a;">
+                                <h4 style="margin: 0 0 12px 0; font-size: 14px; color: #16a34a;">🟢 Easy (Makkelijk)</h4>
+                                <div style="background: white; padding: 12px; border-radius: 6px; margin: 8px 0;">
+                                    <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Retention Target (R*):</strong> 70% (EASY_RETENTION_THRESHOLD)</p>
+                                    <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Tau Modifier:</strong> 1.7× (70% verhoging)</p>
+                                    <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Effect:</strong> Langere intervallen + lagere retentie acceptabel → Maximale efficiency</p>
+                                </div>
+                                <p style="margin: 12px 0 0 0; font-size: 12px; line-height: 1.6; color: var(--text-secondary);"><em>Gebruik voor: Chunks die moeiteloos gaan, technisch simpel materiaal.</em></p>
+                            </div>
+
+                            <div style="background: #e0f2fe; padding: 20px; border-radius: 8px; border-left: 4px solid #2563eb;">
+                                <h4 style="margin: 0 0 12px 0; font-size: 14px; color: #2563eb;">🔵 Mastered (Beheerst)</h4>
+                                <div style="background: white; padding: 12px; border-radius: 6px; margin: 8px 0;">
+                                    <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Retention Target (R*):</strong> 65% (MASTERED_RETENTION_THRESHOLD)</p>
+                                    <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Tau Modifier:</strong> 2.0× → 3.5× (groeit met stage)</p>
+                                    <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Effect:</strong> Langste intervallen → Minimaal onderhoud voor geconsolideerd materiaal</p>
+                                </div>
+                                <ul style="margin: 12px 0 0 0; padding-left: 20px; font-size: 12px; line-height: 1.6;">
+                                    <li><strong>Stage 3:</strong> 2.0× (eerste mastered, 7-10 dagen intervals)</li>
+                                    <li><strong>Stage 4:</strong> 2.5× (tweede perfect, 14-21 dagen)</li>
+                                    <li><strong>Stage 5+:</strong> 3.5× (derde+ perfect, 30-60+ dagen)</li>
+                                </ul>
+                                <p style="margin: 12px 0 0 0; font-size: 12px; line-height: 1.6; color: var(--text-secondary);"><em>Gebruik voor: Chunks in stage 5+ die consistent excellent scoren, onderhoud-modus.</em></p>
+                                <p style="margin: 8px 0 0 0; font-size: 12px; color: var(--text-secondary);"><em>Let op:</em> Dit zijn richtwaarden; de uiteindelijke intervallen komen uit de geïntegreerde berekening (ATM) op basis van stabiliteit, prestaties en personalisatie.</p>
+                            </div>
+                        </div>
+
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; margin: 24px 0; border-radius: 6px;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px;">💡 Wanneer moeilijkheidsgraad wijzigen?</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Difficult → Average:</strong> Wanneer u consistent "Good" evalueert en minimale streak resets heeft</li>
+                                <li><strong>Average → Easy:</strong> Wanneer u 3+ sessies "Excellent" achter elkaar scoort</li>
+                                <li><strong>Easy → Mastered:</strong> Pas in stage 5+ wanneer materiaal foutloos en automatisch is</li>
+                                <li><strong>Mastered → Average:</strong> Als u merkt dat kwaliteit degradeert na lange intervallen</li>
+                            </ul>
+                        </div>
+                        <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 12px; margin: 12px 0; border-radius: 6px;">
+                            <p style="margin: 0; font-size: 12px; line-height: 1.6;"><strong>ℹ️ Planner:</strong> Tijdens het plannen per sessie gebruikt het systeem performance-afgeleide retentiedoelen (R*). De moeilijkheidsgebonden R* hierboven zijn beleidswaarden en vormen het algemene kader.</p>
+                        </div>
+
+                        <h3 id="practice-stages" style="margin-top: 32px; font-size: 18px; color: var(--text-primary);">📈 Practice Stages: Uw leertraject</h3>
+                        <p style="font-size: 14px; line-height: 1.8;">Elke chunk doorloopt een reeks van <strong>practice stages</strong> die het leertraject van initiële acquisitie tot langetermijn onderhoud markeren.</p>
+
+                        <div style="background: #f8f9fa; padding: 24px; border-radius: 8px; margin: 20px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 15px;">Stage progressie mechanisme</h4>
+                            <p style="margin: 0 0 12px 0; font-size: 13px; line-height: 1.8;">U vordert naar de volgende stage wanneer u uw <strong>Target Repetitions</strong> bereikt in een sessie. Dit gebeurt niet automatisch—alleen als u de target haalt!</p>
+
+                            <div style="background: white; padding: 16px; margin: 16px 0; border-radius: 6px; border: 1px solid #e0e0e0;">
+                                <h5 style="margin: 0 0 8px 0; font-size: 13px; font-weight: 700;">Rekenvoorbeeld:</h5>
+                                <div style="font-family: monospace; font-size: 12px; line-height: 1.8; background: #f0f7ff; padding: 12px; border-radius: 4px;">
+                                    Stage 0 → Target: 6 herhalingen<br>
+                                    Sessie 1: Bereikte 4 correcte → Stage blijft 0<br>
+                                    Sessie 2: Bereikte 6 correcte → Stage wordt 1 ✓<br>
+                                    <br>
+                                    Stage 1 → Target: 6 herhalingen<br>
+                                    Sessie 3: Bereikte 6 correcte → Stage wordt 2 ✓<br>
+                                    <br>
+                                    Stage 2 → Target: 6 herhalingen<br>
+                                    Sessie 4: Bereikte 6 correcte → Stage wordt 3 ✓<br>
+                                    <br>
+                                    <strong>Vanaf Stage 3: Ebbinghaus planning activeert!</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin: 24px 0;">
+                            <div style="background: #fff3e0; padding: 24px; border-radius: 8px; border-left: 4px solid #f57c00;">
+                                <h4 style="margin: 0 0 12px 0; font-size: 15px; color: #f57c00;">🌱 Stage 0-2: Foundation Phase (Fundament fase)</h4>
+                                <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px;">
+                                    <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Doel:</strong> Initiële acquisitie en stabilisatie van het motorisch patroon</p>
+                                    <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Planning:</strong> Vast 1-dag interval (geen Ebbinghaus nog)</p>
+                                    <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Rationale:</strong> Dagelijkse herhaling is cruciaal in de eerste dagen om het nieuwe motorische patroon te consolideren voordat het vervloeiing van het declaratieve naar procedurele geheugen doormaakt.</p>
+                                </div>
+                                <div style="background: #fff9e6; padding: 12px; margin: 12px 0; border-radius: 6px;">
+                                    <p style="margin: 0 0 4px 0; font-size: 12px; font-weight: 600;">Wat te verwachten:</p>
+                                    <ul style="margin: 0; padding-left: 20px; font-size: 12px; line-height: 1.6;">
+                                        <li>Veel fouten initieel (normaal!)</li>
+                                        <li>Hoge mental load</li>
+                                        <li>Langzame tempo's</li>
+                                        <li>Failed Attempts zijn hoog (Dr. Gebrian target groeit mee)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div style="background: #e3f2fd; padding: 24px; border-radius: 8px; border-left: 4px solid #1976d2;">
+                                <h4 style="margin: 0 0 12px 0; font-size: 15px; color: #1976d2;">🌿 Stage 3-4: Consolidation Phase (Consolidatie fase)</h4>
+                                <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px;">
+                                    <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Doel:</strong> Overgang van expliciet naar automatisch geheugen</p>
+                                    <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Planning:</strong> Ebbinghaus formule activeert → Intervallen van 2-7 dagen (afhankelijk van τ en R*)</p>
+                                    <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Rationale:</strong> Nu het patroon gestabiliseerd is, test het systeem langere intervallen om efficiëntie te maximaliseren terwijl het retentie bewaakt.</p>
+                                </div>
+                                <div style="background: #e3f2fd; padding: 12px; margin: 12px 0; border-radius: 6px;">
+                                    <p style="margin: 0 0 4px 0; font-size: 12px; font-weight: 600;">Wat te verwachten:</p>
+                                    <ul style="margin: 0; padding-left: 20px; font-size: 12px; line-height: 1.6;">
+                                        <li>Afnemende fouten</li>
+                                        <li>Snellere recall (minder mental effort)</li>
+                                        <li>Tempo groeit naar target</li>
+                                        <li>Gelegelijke streak resets mogelijk bij langere pauzes</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div style="background: #e8f5e9; padding: 24px; border-radius: 8px; border-left: 4px solid #388e3c;">
+                                <h4 style="margin: 0 0 12px 0; font-size: 15px; color: #388e3c;">🌳 Stage 5-7: Mastery Phase (Beheersingsfase)</h4>
+                                <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px;">
+                                    <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Doel:</strong> Versteviging van automatisme en performance-readiness</p>
+                                    <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Planning:</strong> Langere intervallen (7-21 dagen), overweeg "Mastered" difficulty voor extra verlenging</p>
+                                    <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Rationale:</strong> Het geheugen is nu goed geconsolideerd. Het systeem test agressief langere intervallen om onderhoud-efficiëntie te maximaliseren.</p>
+                                </div>
+                                <div style="background: #e8f5e9; padding: 12px; margin: 12px 0; border-radius: 6px;">
+                                    <p style="margin: 0 0 4px 0; font-size: 12px; font-weight: 600;">Wat te verwachten:</p>
+                                    <ul style="margin: 0; padding-left: 20px; font-size: 12px; line-height: 1.6;">
+                                        <li>Foutloos of bijna foutloos</li>
+                                        <li>Automatische uitvoering</li>
+                                        <li>Focus verschuift naar muzikale expressie</li>
+                                        <li>Target tempo bereikt of overschreden</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div style="background: #f3e5f5; padding: 24px; border-radius: 8px; border-left: 4px solid #7b1fa2;">
+                                <h4 style="margin: 0 0 12px 0; font-size: 15px; color: #7b1fa2;">🏆 Stage 8+: Maintenance Phase (Onderhoudsfase)</h4>
+                                <div style="background: white; padding: 14px; margin: 12px 0; border-radius: 6px;">
+                                    <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Doel:</strong> Langetermijn onderhoud met minimale oefentijd</p>
+                                    <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;"><strong>Planning:</strong> Langste intervallen (21-60+ dagen met "Mastered" difficulty)</p>
+                                    <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Rationale:</strong> Diep geconsolideerd materiaal vereist slechts periodieke recall om actief te blijven. Het systeem maximaliseert het interval tot aan de limiet van veilig onderhoud.</p>
+                                </div>
+                                <div style="background: #f3e5f5; padding: 12px; margin: 12px 0; border-radius: 6px;">
+                                    <p style="margin: 0 0 4px 0; font-size: 12px; font-weight: 600;">Wat te verwachten:</p>
+                                    <ul style="margin: 0; padding-left: 20px; font-size: 12px; line-height: 1.6;">
+                                        <li>Chunks verschijnen sporadisch in agenda</li>
+                                        <li>Mogelijk initiële "rust" bij eerste poging (normaal na weken)</li>
+                                        <li>Snelle reactivatie binnen sessie</li>
+                                        <li>Minimale oefentijd nodig voor behoud</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 20px; margin: 24px 0; border-radius: 6px;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 14px;">💡 Pro tips voor stage management:</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Wees geduldig in Stage 0-2:</strong> De dagelijkse herhalingen zijn een investering. Spring niet over naar stage 3 zonder solide fundament!</li>
+                                <li><strong>Verwacht regressie in Stage 3-4:</strong> Langere intervallen testen uw retentie. Gelegelijke "Fair" of "Good" evaluaties zijn normaal—het systeem leert hiervan.</li>
+                                <li><strong>Verlaag target reps niet handmatig:</strong> Als u stage 5+ bereikt heeft, heeft u bewezen dat 6+ herhalingen haalbaar zijn. Houd dit aan voor sterke consolidatie.</li>
+                                <li><strong>"Mastered" difficulty is niet voor iedereen:</strong> Gebruik het alleen voor chunks die u echt foutloos en moeiteloos beheerst in stage 5+.</li>
+                                <li><strong>Stage reset bij major edits:</strong> Als u een chunk drastisch wijzigt (tempo verhogen met 40+ BPM, toevoegen van ornamentatie), overweeg dan om terug te gaan naar stage 0 met een nieuwe chunk naam.</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; margin: 24px 0; border-radius: 6px;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 14px;">⚠️ Veelvoorkomende misconcepties:</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Mythe: "Hogere stage = beter"</strong><br>
+                                    <em>Realiteit:</em> Stage is slechts een indicator van consolidatie-voortgang. Een stage 3 chunk die u excellent beheerst is waardevoller dan een stage 8 chunk die degradeert.</li>
+                                <li><strong>Mythe: "Ik moet elke dag alle chunks oefenen"</strong><br>
+                                    <em>Realiteit:</em> ModusPractica is ontworpen om dit te VERMIJDEN. Vertrouw op de planning—chunks in stage 8 hoeven misschien maar 1× per maand.</li>
+                                <li><strong>Mythe: "Als het interval lang is, vergeet ik het zeker"</strong><br>
+                                    <em>Realiteit:</em> Het systeem past zich aan. Als u inderdaad vergeet (evaluatie: Poor/Fair), wordt het interval ingekort. Desirable difficulty is goed voor leren!</li>
+                                <li><strong>Mythe: "Adaptieve systemen zijn te complex, ik stel alles handmatig in"</strong><br>
+                                    <em>Realiteit:</em> De adaptieve systemen hebben 10+ sessies nodig om te convergeren. Geef ze de tijd—handmatige override vereist zeer diepgaande kennis van SRS algoritmes.</li>
+                            </ul>
+                        </div>
+
+                        <h3 id="samenvatting-werking" style="margin-top: 32px; font-size: 18px; color: var(--text-primary);">🔄 Samenvatting: Hoe werkt het in de praktijk?</h3>
+                        <div style="background: #f8f9fa; padding: 24px; border-radius: 8px; margin: 20px 0;">
+                            <h4 style="margin: 0 0 16px 0; font-size: 15px;">De adaptieve lus</h4>
+                            <ol style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 2.0;">
+                                <li><strong>U voegt een nieuwe chunk toe</strong> → Stage 0, τ = baseline (~9-11 dagen)</li>
+                                <li><strong>U oefent (Stage 0-2)</strong> → Dagelijkse herhalingen, systeem observeert uw performance</li>
+                                <li><strong>Stage 3 bereikt</strong> → Ebbinghaus planning activates, eerste interval ~2-3 dagen</li>
+                                <li><strong>U oefent de chunk na 3 dagen</strong> → Evaluatie: "Good"
+                                    <ul style="margin: 4px 0;">
+                                        <li>PMC: "Performance was zoals verwacht" → τ blijft stabiel</li>
+                                        <li>MSM: Stability groeit 1.3× → S = 2.3d</li>
+                                        <li>ATM: Integreert data → τ = 11.5d</li>
+                                        <li>Volgend interval: ~3.5 dagen (R* = 0.80)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>U oefent na 4 dagen (iets langer)</strong> → Evaluatie: "Excellent"
+                                    <ul style="margin: 4px 0;">
+                                        <li>PMC: "Beter dan verwacht!" → τ verhogen met 5%</li>
+                                        <li>MSM: Stability groeit 1.3× → S = 3.0d</li>
+                                        <li>ATM: τ = 12.5d</li>
+                                        <li>Volgend interval: ~5 dagen (Excellent bonus × 1.8)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>U oefent na 5 dagen</strong> → Evaluatie: "Fair" + 2 streak resets
+                                    <ul style="margin: 4px 0;">
+                                        <li>PMC: "Slechter dan verwacht" → τ verlagen met 3%</li>
+                                        <li>MSM: Stability daalt door streaks → S = 2.6d, Difficulty stijgt</li>
+                                        <li>ATM: τ = 11.0d</li>
+                                        <li>Volgend interval: ~2.5 dagen (Fair penalty)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Cyclus herhaalt...</strong> → Gradueel convergeert τ naar uw werkelijke retentie-karakteristiek</li>
+                            </ol>
+
+                            <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 16px; margin: 16px 0; border-radius: 6px;">
+                                <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>✅ Resultaat:</strong> Na 10-15 sessies heeft het systeem uw persoonlijke τ geleerd. Intervallen zijn nu optimaal voor <em>uw</em> geheugen—niet een generiek gemiddelde. U oefent alleen wanneer nodig, maximaliseert retentie, en minimaliseert verspilde tijd.</p>
+                            </div>
+                        </div>
+
+                        <div style="background: #e0f2fe; padding: 24px; border-radius: 8px; margin: 24px 0; text-align: center;">
+                            <h4 style="margin: 0 0 12px 0; font-size: 16px; color: var(--text-primary);">🎓 Klaar voor de volgende stap?</h4>
+                            <p style="margin: 0 0 16px 0; font-size: 14px; color: var(--text-secondary);">Nu u begrijpt hoe het adaptieve systeem werkt, kunt u vol vertrouwen uw oefendata invoeren. Het systeem leert van elke sessie en optimaliseert zich automatisch voor uw unieke geheugen.</p>
+                            <p style="margin: 0; font-size: 13px;"><a href="#intensiteitsmodule-details" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">→ Verder naar Sectie 7: Intensiteitsmodule (Geavanceerd)</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sectie 7: Intensiteitsmodule (geavanceerd) -->
+                <div class="section" id="intensiteitsmodule-details" style="margin-top: 48px;">
+                    <h2 class="section-title">7. Intensiteitsmodule (geavanceerd)</h2>
+                    <div class="section-content">
+                        <p>De <strong>Intensiteitsmodule</strong> is een <em>optionele</em> hulplaag die <strong>parallel</strong> werkt aan de Ebbinghaus kern. Waar de kern bepaalt <em>wanneer</em> u moet herhalen, helpt deze module u bepalen <em>hoe lang</em> en <em>hoe intensief</em> u een sectie oefent binnen een sessie.</p>
+
+                        <div style="background: #fff8e6; border-left: 4px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 6px;">
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Belangrijk:</strong> De intensiteitsmodule beïnvloedt <em>niet</em> de planning (τ/interval). Ze geeft duur- en herhalingsaanbevelingen gebaseerd op uw <strong>Success Ratio</strong> en het <strong>Overlearning Quotum</strong> (OLQ). U kunt de module in- of uitschakelen in de instellingen.</p>
+                        </div>
+
+                        <h3 id="tds-metric" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Technical Difficulty Score (TDS)</h3>
+                        <p>De TDS schat de <strong>technische moeilijkheid</strong> van een sectie op basis van uw recente sessie. De metric is de <em>pure success ratio</em>:</p>
+                        <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; font-family: monospace; font-size: 12px;">
+                            TDS = CR / (CR + FA)
+                        </div>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                            <li><strong>CR</strong> = Correct Repetitions (geslaagde herhalingen)</li>
+                            <li><strong>FA</strong> = Failed Attempts (informatieve fouten tijdens het leren)</li>
+                            <li>TDS wordt begrensd tot [0.0, 1.0]; geen data → 0.0</li>
+                        </ul>
+
+                        <h3 id="leerfasen" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Leerfasen (op basis van TDS)</h3>
+                        <p>De TDS wordt geclassificeerd in leertrajectfasen. Deze fasen sturen de OLQ-baselines en duurinschattingen:</p>
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px;">
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                                <li><strong>Initial Acquisition</strong> (0–40%): Veel fouten, steil leren</li>
+                                <li><strong>Refinement</strong> (40–70%): Afnemende fouten, techniek stabiliseert</li>
+                                <li><strong>Consolidation</strong> (70–85%): Weinig fouten, automatisering start</li>
+                                <li><strong>Mastery</strong> (85–95%): Zeer weinig fouten, hoge consistentie</li>
+                                <li><strong>Overlearning</strong> (95–100%): Foutloos, performance-ready</li>
+                            </ul>
+                        </div>
+
+                        <h3 id="olq-metric" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Overlearning Quotum (OLQ)</h3>
+                        <p>OLQ bepaalt het <strong>doelaantal correcte herhalingen</strong> in een sessie. Baselines zijn fase-specifiek (geïnspireerd door Dr. Gebrian) en worden dynamisch bijgesteld op basis van het aantal initiële fouten.</p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 12px 0;">
+                            <div style="background: #f0f7ff; padding: 12px; border-radius: 6px; border: 1px solid #b3d9f2; font-size: 12px;">
+                                <strong>Initial Acquisition</strong><br/>Min 6 – Max 8
+                            </div>
+                            <div style="background: #f0f7ff; padding: 12px; border-radius: 6px; border: 1px solid #b3d9f2; font-size: 12px;">
+                                <strong>Refinement</strong><br/>Min 7 – Max 10
+                            </div>
+                            <div style="background: #f0f7ff; padding: 12px; border-radius: 6px; border: 1px solid #b3d9f2; font-size: 12px;">
+                                <strong>Consolidation</strong><br/>Min 8 – Max 12
+                            </div>
+                            <div style="background: #f0f7ff; padding: 12px; border-radius: 6px; border: 1px solid #b3d9f2; font-size: 12px;">
+                                <strong>Mastery</strong><br/>Min 9 – Max 14
+                            </div>
+                            <div style="background: #f0f7ff; padding: 12px; border-radius: 6px; border: 1px solid #b3d9f2; font-size: 12px;">
+                                <strong>Overlearning</strong><br/>Min 10 – Max 18
+                            </div>
+                        </div>
+                        <p style="margin-top: 8px;">De aanbeveling wordt als volgt berekend:</p>
+                        <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; font-family: monospace; font-size: 12px;">
+                            OLQ_target = PhaseMin + ceil(InitialFailedAttempts × 0.5)
+                        </div>
+                        <p style="font-size: 12px; color: var(--text-secondary);">Waar <em>InitialFailedAttempts</em> de fouten vóór de eerste succesvolle herhaling in deze sessie zijn. Als dit onbekend is, wordt het totale aantal fouten (FA) gebruikt.</p>
+
+                        <h3 id="duur-voorspelling" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Sessieduur voorspelling</h3>
+                        <p>Op basis van het OLQ en de fase schat de module de <strong>sessieduur</strong>. Het model gebruikt fase-specifieke tijdswaarden per correcte herhaling:</p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 12px 0;">
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; font-size: 12px;">Initial: ~120 s/CR</div>
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; font-size: 12px;">Refinement: ~90 s/CR</div>
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; font-size: 12px;">Consolidation: ~60 s/CR</div>
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; font-size: 12px;">Mastery: ~45 s/CR</div>
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; font-size: 12px;">Overlearning: ~30 s/CR</div>
+                        </div>
+                        <div style="background: white; padding: 12px; margin: 12px 0; border-radius: 4px; font-family: monospace; font-size: 12px;">
+                            Duration_seconds = OLQ_target × TimePerCR_phase<br/>
+                            Duration_minutes ≈ round(Duration_seconds / 60)
+                        </div>
+
+                        <div style="background: #f0f7ff; border-left: 4px solid #3b82f6; padding: 12px; margin: 12px 0; border-radius: 6px;">
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>UI:</strong> In het sessiescherm verschijnt onder het OLQ‑doel een regel <em>“Estimated Duration”</em>. Wanneer er voldoende historische data is gebruikt de app uw <strong>geleerde gemiddelde tijd per correcte herhaling</strong> (robuuste schatting met outlier‑filter en trimming); anders valt ze terug op de fase‑defaults hierboven. De UI toont ook een eenvoudige <strong>range (±20%)</strong> en <strong>betrouwbaarheidsniveau</strong> (laag/medium/hoog) op basis van het aantal sessies waarover gekalibreerd werd.</p>
+                        </div>
+
+                        <div style="background: #e6f7ff; border-left: 4px solid #2eaadc; padding: 16px; margin: 16px 0; border-radius: 6px;">
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Module aan/uit:</strong> Wanneer de module <em>uit</em> staat, gebruikt de app een vaste duur (standaard 15 minuten) en worden geen OLQ-instructies getoond. Wanneer de module <em>aan</em> staat, krijgt u een dynamische instructie met fase, target en geschatte tijd.</p>
+                        </div>
+
+                        <div style="background: #f8f9fa; padding: 16px; border-radius: 6px;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px; color: var(--text-primary);">Archiveren van onwerkbare chunks</h4>
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;">Als een sessie <strong>CR = 0</strong> oplevert (geen enkele correcte herhaling), markeert de module de sectie als onwerkbaar voor deze sessie en adviseert ze archivering. Dit voorkomt verstoorde statistieken en focust u op haalbare delen.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sectie 8: Dashboard & Statistieken -->
+                <div class="section" id="dashboard-features" style="margin-top: 48px;">
+                    <h2 class="section-title">8. Dashboard & Statistieken</h2>
+                    <div class="section-content">
+                        <p>Het <strong>Dashboard</strong> is uw startpunt. Hier ziet u in één oogopslag welke stukken en secties <strong>vandaag</strong> aandacht nodig hebben, welke <strong>achterstallig</strong> zijn en wat er <strong>binnenkort</strong> aankomt. Vanuit het Dashboard kunt u snel een <em>Practice Session</em> starten of doorklikken naar de detailpagina van een stuk of sectie.</p>
+
+                        <div style="background: #fff8e6; border-left: 4px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 6px;">
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Tip:</strong> De dagelijkse agenda is gebaseerd op uw individuele planning (Ebbinghaus/τ). Oefen eerst de items met een <strong>rode/oranje</strong> status (achterstallig of vandaag), en werk daarna aan <strong>groen/grijs</strong> (binnenkort/optioneel).</p>
+                        </div>
+
+                        <h3 id="voortgangsgrafieken" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Voortgangsgrafieken</h3>
+                        <p>De <strong>Grafieken</strong>-pagina toont trends op sectieniveau zodat u uw vooruitgang objectief kunt volgen. Selecteer bovenaan een <em>stuk</em> en <em>sectie</em> om de grafiek te vullen.</p>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                            <li><strong>Success ratio trend</strong> (cumulatief over geselecteerde sessies)</li>
+                            <li><strong>Start friction trend</strong> (0% = direct succes, 100% = ≥ 5 pogingen nodig)</li>
+                            <li><strong>Samenvattingstegels</strong>: huidig succespercentage, 7-sessiesgemiddelde, tijd besteed aan sectie/stuk</li>
+                            <li><strong>Context</strong>: grafieken focussen op <em>kwaliteit van herhalingen</em> en <em>leercurve</em>, niet enkel op oefentijd</li>
+                        </ul>
+
+                        <div style="background: #f0f7ff; border-left: 4px solid #3b82f6; padding: 12px; margin: 12px 0; border-radius: 6px;">
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;">Grafieken gebruiken uw geregistreerde sessies (CR/FA, duur, tempo) uit de praktijkgeschiedenis. Onvolledige of zeer korte sessies kunnen worden uitgefilterd om vertekingen te vermijden.</p>
+                        </div>
+
+                        <h3 id="statistieken" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Gedetailleerde statistieken</h3>
+                        <p>De <strong>Statistieken</strong>-pagina biedt een overzicht op hoger niveau met filters en exportmogelijkheden.</p>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                            <li><strong>Periodefilters</strong>: week/maand/custom</li>
+                            <li><strong>Overzichten</strong>: oefentijd per periode, oefentijd per stuk (week/maand)</li>
+                            <li><strong>Export</strong>: download uw statistieken als <em>CSV</em> voor analyse of archivering</li>
+                            <li><strong>Definities</strong> (kort):
+                                <br/>– <em>Success ratio</em> = CR / (CR + FA)
+                                <br/>– <em>CR</em> = Correct Repetitions; <em>FA</em> = Failed Attempts
+                                <br/>– <em>Tijd/CR</em> = gemiddelde seconden per correcte herhaling (per sectie)
+                                <br/>– <em>Practice stages</em> = voortgang in consolidatie (stap 0–5+)
+                            </li>
+                        </ul>
+
+                        <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 12px; margin: 12px 0; border-radius: 6px;">
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Praktisch advies:</strong> Gebruik grafieken voor <em>kwaliteitsbewaking</em> (fouten dalen? stabiliteit stijgt?) en statistieken voor <em>tijdbewaking</em> (waar gaat uw oefentijd naartoe?). Zo stuurt u evidence-based bij.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sectie 9: Geavanceerde functies -->
+                <div class="section" id="geavanceerde-functies" style="margin-top: 48px;">
+                    <h2 class="section-title">9. Geavanceerde functies</h2>
+                    <div class="section-content">
+                        <p>Deze sectie bundelt krachtige extra's die uw workflow versnellen of specifieke didactische doelen ondersteunen. Ze zijn optioneel en beïnvloeden de kernplanning (Ebbinghaus/τ) niet, tenzij anders vermeld.</p>
+
+                        <h3 id="interleaved-practice" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Interleaved Practice</h3>
+                        <p><strong>Interleaved Practice</strong> herhaalt meerdere reeds geoefende chunks in een <em>afgewisselde, willekeurige volgorde</em>. Dit verhoogt contextuele interferentie en bevordert transfer en langetermijnretentie.</p>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                            <li><strong>Voorwaarden:</strong> Minstens <em>2 verschillende</em> chunks moeten vandaag reeds geoefend zijn. Zo niet, krijgt u een hint om eerst via de reguliere agenda enkele chunks te doen.</li>
+                            <li><strong>Starten:</strong> Open het <em>Dashboard</em> en klik in de zijbalk op <em>Interleaved Practice</em>. De app bouwt een circuit met today's chunks en opent de <em>Practice Session</em> in interleaved‑modus.</li>
+                            <li><strong>Werking:</strong> De sessie toont <em>“Interleaved Circuit — Chunk X of Y”</em> en gebruikt een <em>countdown</em> per chunk (bv. ~3 minuten). Klik op <em>Next/Complete</em> om door het circuit te gaan; aan het einde worden alle resultaten in één keer opgeslagen.</li>
+                            <li><strong>Data & invloed:</strong> Resultaten worden gelogd (tag: <em>interleaved</em>), maar <em>de planning, stages en τ worden niet aangepast</em>. De Intensiteitsmodule is verborgen in deze modus: focus ligt op retrieval.</li>
+                        </ul>
+                        <div style="background: #f0f7ff; border-left: 4px solid #3b82f6; padding: 12px; margin: 12px 0; border-radius: 6px;">
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Tip:</strong> Gebruik Interleaved Practice na uw gewone agenda wanneer u 2–6 chunks kort wil “opfrissen” met maximale variatie. Ideaal vlak voor optreden of les.</p>
+                        </div>
+
+                        <h3 id="vrij-oefenen" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Vrij oefenen</h3>
+                        <p><strong>Vrij Oefenen</strong> is een lichte timer voor niet‑geplande oefenmomenten (improvisatie, techniek, experiment). Het logt uw tijd zodat uw statistieken volledig blijven.</p>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                            <li><strong>Starten:</strong> Klik in de Dashboard‑zijbalk op <em>Free Practice</em> (opent een compact timer‑venster).</li>
+                            <li><strong>Opslag:</strong> Bij stoppen wordt de sessie opgeslagen in uw geschiedenis als <em>Free Practice</em> met de geregistreerde duur.</li>
+                            <li><strong>Invloed:</strong> Vrij Oefenen <em>wijzigt geen</em> intervallen, stages of τ; het is puur voor tijdbewaking en overzicht.</li>
+                        </ul>
+                        <div style="background: #fff8e6; border-left: 4px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px;">
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Wanneer gebruiken?</strong> Opwarming, experiment, techniekblokken buiten planning, of wanneer u iets wil bijhouden zonder het te schedulen.</p>
+                        </div>
+
+                        <h3 id="media-bibliotheek" style="margin-top: 24px; font-size: 16px; color: var(--text-primary);">Media bibliotheek</h3>
+                        <p>U kunt per <strong>stuk</strong> een <em>YouTube‑referentie</em> bewaren (b.v. referentie‑opname of interpretatie‑voorbeeld) zodat u die snel terugvindt tijdens het oefenen.</p>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.8;">
+                            <li><strong>Gebruik:</strong> Open de <em>stukdetails</em> en voeg een YouTube‑link toe om een naslagreferentie te bewaren.</li>
+                            <li><strong>Doel:</strong> Snelle toegang tot referentie‑opnames zonder het zoekwerk, rechtstreeks vanuit uw repertoirebeheer.</li>
+                        </ul>
+                        <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 12px; margin: 12px 0; border-radius: 6px;">
+                            <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Vooruitblik:</strong> Uitbreiding naar meerdere media‑referenties per stuk/sectie (audio, noten, externe links) staat op de roadmap.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verdere secties volgen in toekomstige updates -->
+                <div class="section" style="background: #e6f7ff; padding: 24px; border-radius: 8px; margin-top: 32px; text-align: center;">
+                    <h3 style="margin: 0 0 12px 0; color: var(--text-primary);">🚧 Handleiding in ontwikkeling</h3>
+                    <p style="margin: 0 0 16px 0; color: var(--text-secondary);">De volledige Nederlandse handleiding wordt momenteel uitgebreid. Secties 10+ worden geleidelijk toegevoegd.</p>
+                    <p style="margin: 0; font-size: 13px; color: var(--text-secondary);">Raadpleeg ondertussen de <a href="moduspractica-quick-start.html" style="color: var(--accent-color);">Quick Start Guide</a> (Engels) voor onmiddellijke hulp.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Load profile name
+        async function loadProfileName() {
+            try {
+                const profileId = sessionStorage.getItem('activeProfileId');
+                if (!profileId) {
+                    document.getElementById('profileName').textContent = 'Geen profiel';
+                    return;
+                }
+
+                const dbName = `ModusPractica_Profile_${profileId}`;
+                const db = await new Promise((resolve, reject) => {
+                    const request = indexedDB.open(dbName, 1);
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+
+                const tx = db.transaction(['profiles'], 'readonly');
+                const store = tx.objectStore('profiles');
+                const profile = await new Promise((resolve, reject) => {
+                    const req = store.get(parseInt(profileId));
+                    req.onsuccess = () => resolve(req.result);
+                    req.onerror = () => reject(req.error);
+                });
+
+                db.close();
+                document.getElementById('profileName').textContent = profile?.name || 'Onbekend';
+            } catch (error) {
+                console.error('Error loading profile:', error);
+                document.getElementById('profileName').textContent = 'Fout';
+            }
+        }
+
+        function logout() {
+            if (confirm('Weet u zeker dat u wilt uitloggen?')) {
+                sessionStorage.removeItem('activeProfileId');
+                window.location.href = 'moduspractica-app.html';
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadProfileName();
+        });
+    </script>
+</body>
+</html>

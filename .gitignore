@@ -1,0 +1,38 @@
+# ModusPractica Desktop - Electron Setup
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build & Distribution
+dist/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Obfuscated versions (development only, keep source)
+*.obfuscated.js
+
+# Environment
+.env
+.env.local
+
+# Development artifacts
+development/
+prod/
+
+# Temporary files
+*.tmp
+*.temp
+.history/
+
+# Non-essential docs (keep main docs)
+_dev-docs/deprecated/

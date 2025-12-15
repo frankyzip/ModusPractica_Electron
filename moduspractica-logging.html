@@ -1,0 +1,39 @@
+<!-- Modus Practica � Logging Page
+     Opens manually by developer. Shows logs stored in localStorage and allows clearing.
+     Dutch developer messages but English UI text in code as per project conventions.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ModusPractica - Logging Console</title>
+    
+    <meta name="description" content="Developer logging console for ModusPractica. View and manage application logs for debugging purposes.">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- CSS styles are inline in this file -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #controls { margin-bottom: 10px; }
+        #log { white-space: pre-wrap; background: #111; color: #cfcfcf; padding: 10px; border-radius: 6px; height: 70vh; overflow:auto; }
+        button { margin-right: 10px; }
+        .small { font-size: 0.9rem; opacity: 0.85; }
+        .logline-time { color: #aaa; }
+    </style>
+</head>
+<body>
+    <h1>ModusPractica Logging Console</h1>
+    <div class="small">This page is not linked from the UI. Open manually for debugging. Use the button to clear logs.</div>
+    <div id="controls">
+        <button id="btn-refresh">Refresh</button>
+        <button id="btn-clear">Clear Logs</button>
+        <button id="btn-download">Download</button>
+        <label class="small"><input id="auto-scroll" type="checkbox" checked/> Auto-scroll</label>
+    </div>
+    <div id="log" aria-live="polite"></div>
+    <script src="logging.js"></script>
+    <script src="moduspractica-logging.js"></script>
+</body>
+</html>

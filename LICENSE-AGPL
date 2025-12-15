@@ -1,0 +1,53 @@
+GNU AFFERO GENERAL PUBLIC LICENSE
+Version 3, 19 November 2007
+
+Copyright (C) 2025 Frank De Baere - Partura Music™
+
+ModusPractica - Smart Music Practice Management System
+https://github.com/[YOUR_REPO]
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+================================================================================
+SUMMARY OF PERMISSIONS
+
+✓ Freedom to use for any purpose (including scientific research)
+✓ Freedom to study and modify the source code
+✓ Freedom to distribute copies
+✓ Freedom to distribute modified versions
+
+CONDITION: Any modifications or derived works MUST also be licensed under AGPL-3.0.
+This applies to network-based services (SaaS) as well as traditional software.
+
+================================================================================
+COMMERCIAL LICENSE OPTION
+
+If you wish to use this software in a proprietary or commercial product
+without being bound by AGPL-3.0 requirements, contact:
+
+Frank De Baere
+Partura Music™
+[YOUR_EMAIL]
+
+A commercial license allows you to:
+
+- Use ModusPractica code in closed-source projects
+- Distribute without source code requirements
+- Avoid AGPL copyleft obligations
+- Receive dedicated support and custom modifications
+
+================================================================================
+
+The full AGPL-3.0 license text is available at:
+https://www.gnu.org/licenses/agpl-3.0.html

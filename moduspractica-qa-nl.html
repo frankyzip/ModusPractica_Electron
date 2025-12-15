@@ -1,0 +1,458 @@
+<!--
++---------------------------------------------------------------------------+
+│  ModusPractica Q&A (NL) - Veelgestelde Vragen                             │
+│  Copyright © 2025 Frank De Baere - All Rights Reserved                    │
++---------------------------------------------------------------------------+
+-->
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModusPractica Q&A (NL) - Veelgestelde Vragen</title>
+    <meta name="description" content="Veelgestelde vragen over ModusPractica. Antwoorden over oefensessies, het planningssysteem, databeheer en kernconcepten.">
+    <meta name="keywords" content="ModusPractica FAQ, veelgestelde vragen, hulp, ondersteuning, probleemoplossing, oefentips">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.parturamusic.be/moduspractica/moduspractica-qa-nl.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.parturamusic.be/moduspractica/moduspractica-qa-nl.html">
+    <meta property="og:title" content="ModusPractica Q&A - Veelgestelde Vragen">
+    <meta property="og:description" content="Vind antwoorden op veelgestelde vragen over oefensessies, planning en databeheer.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    <meta property="og:locale" content="nl_NL">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ModusPractica FAQ (NL)">
+    <meta name="twitter:description" content="Veelgestelde vragen en antwoorden.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="assets/libs/lucide.min.js"></script>
+    <style>
+        :root {
+            --sidebar-width: 240px;
+            --header-height: 50px;
+            --bg-color: #ffffff;
+            --sidebar-bg: #e8e8e6;
+            --border-color: #e0e0e0;
+            --text-primary: #37352f;
+            --text-secondary: #787774;
+            --accent-color: #2eaadc;
+            --hover-bg: #efefef;
+            --selected-bg: #e6f3f7;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-family); background-color: var(--bg-color); color: var(--text-primary); height: 100vh; width: 100vw; overflow: hidden; display: flex; font-size: 13px; }
+        .sidebar { width: var(--sidebar-width); background-color: var(--sidebar-bg); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; height: 100%; flex-shrink: 0; }
+        .sidebar-header { padding: 12px 16px; display: flex; align-items: center; gap: 8px; height: var(--header-height); }
+        .app-logo-img { height: 20px; width: auto; }
+        .app-title { font-size: 13px; font-weight: 600; }
+        .sidebar-nav { flex: 1; padding: 8px 0; overflow-y: auto; }
+        .nav-section-title { padding: 8px 12px 4px; font-size: 10px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; }
+        .nav-item { display: flex; align-items: center; gap: 8px; padding: 4px 12px; margin: 1px 8px; border-radius: 4px; color: var(--text-primary); text-decoration: none; font-size: 13px; cursor: pointer; }
+        .nav-item:hover { background-color: var(--hover-bg); }
+        .nav-item.active { background-color: var(--hover-bg); font-weight: 500; }
+        .nav-icon { font-size: 14px; width: 18px; text-align: center; color: var(--text-secondary); }
+        .sidebar-footer { padding: 12px; border-top: 1px solid var(--border-color); }
+        .user-profile { display: flex; align-items: center; gap: 8px; padding: 6px; border-radius: 4px; cursor: pointer; }
+        .user-profile:hover { background-color: var(--hover-bg); }
+        .user-avatar { width: 20px; height: 20px; background-color: #e0e0e0; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+        .main-content { flex: 1; display: flex; flex-direction: column; height: 100%; overflow: hidden; background-color: var(--bg-color); }
+        .top-bar { height: var(--header-height); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; border-bottom: 1px solid var(--border-color); background-color: #dcdcda; flex-shrink: 0; }
+        .breadcrumbs { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-primary); font-weight: 500; }
+        .content-scroll { flex: 1; overflow-y: auto; padding: 40px; }
+        .qa-container { max-width: 900px; margin: 0 auto; background: #fff; padding: 48px; border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .qa-header { text-align: center; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border-color); }
+        .qa-header h1 { font-size: 28px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+        .qa-header p { font-size: 16px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.5; }
+        .faq-section { margin: 60px 0; }
+        .faq-section h2 { font-size: 24px; color: var(--text-primary); margin-bottom: 32px; text-align: center; font-weight: 600; }
+        .faq-item { margin-bottom: 32px; padding: 24px; background: #f9f9f9; border-radius: 8px; border-left: 4px solid var(--accent-color); }
+        .faq-question { font-size: 18px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; }
+        .faq-answer { font-size: 16px; line-height: 1.8; color: var(--text-primary); }
+        .faq-answer a { color: var(--accent-color); text-decoration: none; font-weight: 500; }
+        .faq-answer a:hover { text-decoration: underline; }
+        @media (max-width: 768px) { .qa-container { padding: 24px; } .content-scroll { padding: 16px; } }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="assets/BreinLogo.png" alt="Logo" class="app-logo-img">
+            <div class="app-title">ModusPractica <span style="font-weight: 400; color: #999; font-size: 11px;">v2.0.0</span></div>
+        </div>
+        <div class="sidebar-nav">
+            <div class="nav-section-title">Main</div>
+            <a href="moduspractica-app.html" class="nav-item"><span class="nav-icon"><i data-lucide="user"></i></span><span>Profiel Selectie</span></a>
+            <a href="moduspractica-dashboard.html" class="nav-item"><span class="nav-icon"><i data-lucide="home"></i></span><span>Dashboard</span></a>
+            <a href="moduspractica-charts.html" class="nav-item"><span class="nav-icon"><i data-lucide="trending-up"></i></span><span>Grafieken</span></a>
+            <a href="moduspractica-statistics.html" class="nav-item"><span class="nav-icon"><i data-lucide="bar-chart-2"></i></span><span>Statistieken</span></a>
+            <a href="#" onclick="window.open('moduspractica-free-practice.html', 'FreePractice', 'width=480,height=420'); return false;" class="nav-item"><span class="nav-icon"><i data-lucide="timer"></i></span><span>Vrij Oefenen</span></a>
+            <a href="moduspractica-dashboard.html" class="nav-item"><span class="nav-icon"><i data-lucide="shuffle"></i></span><span>Interleaved Practice</span></a>
+            <div class="nav-section-title" style="margin-top: 16px;">System</div>
+            <a href="moduspractica-quick-start.html" class="nav-item"><span class="nav-icon"><i data-lucide="zap"></i></span><span>Quick Start</span></a>
+            <a href="moduspractica-qa-nl.html" class="nav-item active"><span class="nav-icon"><i data-lucide="help-circle"></i></span><span>Q&A (NL)</span></a>
+            <a href="moduspractica-manual-nl.html" class="nav-item"><span class="nav-icon"><i data-lucide="book-open"></i></span><span>Handleiding NL</span></a>
+            <a href="moduspractica-manual.html" class="nav-item"><span class="nav-icon"><i data-lucide="book-open"></i></span><span>Manual EN</span></a>
+            <a href="moduspractica-about.html" class="nav-item"><span class="nav-icon"><i data-lucide="info"></i></span><span>Over</span></a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="user-profile" id="logout-btn" title="Klik om van profiel te wisselen">
+                <div class="user-avatar"><i data-lucide="user-circle" style="width: 20px; height: 20px;"></i></div>
+                <div class="user-name" id="profile-name">Laden...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="breadcrumbs">Q&A (NL) - Veelgestelde Vragen</div>
+        </div>
+        <div class="content-scroll">
+            <div class="qa-container">
+                <div class="qa-header">
+                    <h1>Veelgestelde Vragen</h1>
+                    <p>Antwoorden op de meest voorkomende vragen over ModusPractica.</p>
+                    <div style="margin-top: 12px; font-size: 14px;">
+                        <a href="moduspractica-qa.html" style="margin-right: 12px; color: var(--accent-color); text-decoration: none;">EN</a>
+                        |
+                        <a href="moduspractica-qa-nl.html" style="margin-left: 12px; font-weight: 600; color: var(--accent-color); text-decoration: none;">NL</a>
+                    </div>
+                </div>
+
+                <!-- NL: Gespiegelde inhoud van de Engelse Q&A -->
+                <div class="faq-section">
+                    <h2>❓ Algemene Vragen</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Hoe werkt het planningsalgoritme?</div>
+                        <div class="faq-answer">
+                            ModusPractica gebruikt de vergeetcurve van Ebbinghaus, die voorspelt hoe snel u informatie vergeet. 
+                            Elke keer dat u een sectie succesvol oefent, berekent de app het optimale moment om deze opnieuw te herhalen. 
+                            Dit interval wordt langer naarmate u het materiaal beter beheerst, zodat retentie wordt gemaximaliseerd terwijl oefentijd geminimaliseerd wordt.<br><br>
+                            <strong>Het algoritme is ook data-gedreven:</strong> Het leert van uw persoonlijke oefengeschiedenis. Uw succespercentages, 
+                            faalpatronen en prestatieconsistentie worden geanalyseerd om de planning te personaliseren. Hoe meer u ModusPractica gebruikt, 
+                            hoe beter het uw individuele leercurve begrijpt en intervallen aanpast aan uw specifieke geheugenretentiepatronen.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Wat als ik een geplande oefensessie mis?</div>
+                        <div class="faq-answer">
+                            Geen probleem! Secties worden "overdue" maar blijven in uw oefenqueue. Het algoritme past zich aan—als u het materiaal vergeten bent, 
+                            wordt het volgende interval korter. Als u het nog goed herinnert, kan het interval toch langer worden.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Hoe markeer ik een sectie als "Beheerst"?</div>
+                        <div class="faq-answer">
+                            Tijdens een oefensessie kunt u bij herhaalde perfecte uitvoeringen de moeilijkheid wijzigen naar "Beheerst". 
+                            Het algoritme plant die sectie dan minder frequent, zodat u kunt focussen op nieuwer of moeilijker materiaal.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Wat betekenen de gekleurde zones in Practice Charts?</div>
+                        <div class="faq-answer">
+                            De zones vertegenwoordigen verschillende leerfasen:<br>
+                            • <strong style="color: #C62828;">Te Moeilijk (0-60%)</strong>: Materiaal is te uitdagend—split verder op<br>
+                            • <strong style="color: #F57F17;">Exploratie (60-80%)</strong>: Normale leerfase met fouten<br>
+                            • <strong style="color: #E65100;">Consolidatie (80-90%)</strong>: Sweet spot voor optimaal leren!<br>
+                            • <strong style="color: #2E7D32;">Beheersing (90-95%)</strong>: Bijna geperfectioneerd, minder frequent oefenen<br>
+                            • <strong style="color: #616161;">Overleren (95-100%)</strong>: Reeds beheerst, oefentijd reduceren<br><br>
+                            Het doel is om secties geleidelijk te laten evolueren van Exploratie → Consolidatie → Beheersing over meerdere sessies.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Kan ik secties (chunks) oefenen die vandaag niet gepland zijn?</div>
+                        <div class="faq-answer">
+                            Ja! Op de chunk-pagina kunt u een oefensessie starten voor elke sectie (chunk) op elk moment. 
+                            Let wel: oefenen vóór de geplande datum is mogelijk minder efficiënt volgens de Ebbinghaus-principes.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Wat is het verschil tussen "Doelherhalingen" en de werkelijke oefenherhalingen?</div>
+                        <div class="faq-answer">
+                            "Doelherhalingen" is een doel dat u instelt (bv. "ik wil dit 3 keer per sessie spelen"). Tijdens het oefenen klikt u 
+                            "Poging Geslaagd" elke keer dat u het correct speelt. Het algoritme gebruikt beide waarden—het doel helpt de sessielengte plannen, 
+                            terwijl uw werkelijke prestatie toekomstige planning beïnvloedt.<br><br>
+                            <strong>Meer leren over effectieve herhaalstrategieën:</strong><br>
+                            • <a href="https://www.mollygebrian.com/" target="_blank" rel="noopener">Molly Gebrian</a>—Neurowetenschappelijke oefentechnieken<br>
+                            • <a href="https://youtu.be/PsQDxAE1P1E?si=hNdNhSSkINIyPiH1" target="_blank" rel="noopener">Video: Avoid Power Saver Mode - How to Practice (Charles Szczepanek)</a>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Slaat ModusPractica mijn werk automatisch op?</div>
+                        <div class="faq-answer">
+                            <strong>Gedeeltelijk.</strong> Uw oefendata wordt automatisch opgeslagen in de localStorage van de browser:<br>
+                            • Na elke oefensessie<br>
+                            • Wanneer u stukken en secties toevoegt of bewerkt<br>
+                            • Wanneer u van profiel wisselt<br><br>
+                            <strong>Maar dit is GEEN bestandsbackup!</strong> U moet handmatig backups maken via "Export Data" om een JSON-bestand op te slaan. 
+                            Dit is belangrijk omdat localStorage kan worden leeggemaakt wanneer u browserdata wist of van apparaat wisselt.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Gaat mijn data verloren als ik mijn browsercache wis?</div>
+                        <div class="faq-answer">
+                            Ja, als localStorage wordt geleegd. Daarom zijn regelmatige backups via "Export Data" essentieel! 
+                            Bewaar het geëxporteerde JSON-bestand in uw cloudopslag (Dropbox, Google Drive, OneDrive, enz.) voor maximale veiligheid. 
+                            Houd altijd backupkopieën bij problemen met de browser of bij het wisselen van computer.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Kan ik ModusPractica op meerdere apparaten gebruiken?</div>
+                        <div class="faq-answer">
+                            Zeker! Exporteer uw profiel naar cloudopslag (Google Drive, OneDrive, Dropbox, enz.), en gebruik daarna 
+                            "Import Data" op uw andere apparaat. <strong>Belangrijk:</strong> Vergeet niet om uw volledige sessie 
+                            te exporteren na elke oefendag—bij voorkeur dagelijks om data gesynchroniseerd te houden.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Welke browsers werken het best?</div>
+                        <div class="faq-answer">
+                            <strong>Chrome</strong> en <strong>Edge</strong> bieden de beste ervaring met geavanceerde bestandsfuncties 
+                            (File System Access API). Firefox en Safari werken ook, maar met beperktere bestandsbeheer—u moet 
+                            dan handmatig profielbestanden downloaden/uploaden.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Hoe lang moet een practice chunk zijn?</div>
+                        <div class="faq-answer">
+                            Begin klein! Een chunk moet iets zijn dat u binnen enkele pogingen 3 keer op rij correct kunt spelen. 
+                            Dit kan zo klein zijn als een halve maat of zo groot als enkele maten, afhankelijk van moeilijkheid:<br>
+                            • Voor beginners: 0,5–2 maten<br>
+                            • Voor intermediate: 1–4 maten<br>
+                            • Voor gevorderden: 2–8 maten<br><br>
+                            Als u consequent fouten maakt, is uw chunk te groot—split verder op. Het doel is kwaliteitsherhalingen, niet kwantiteit.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Moet ik met of zonder partituur oefenen?</div>
+                        <div class="faq-answer">
+                            ModusPractica is ontworpen voor <strong>geheugen-gebaseerd oefenen</strong>. Start met de partituur om noten en vingerzetting te leren, 
+                            maar schakel zo snel mogelijk over naar geheugen. Het algoritme volgt uw vermogen om uit het hoofd te spelen, cruciaal voor 
+                            performance readiness. Gebruik de partituur als referentie wanneer u vastloopt, maar streef naar geheugen-gebaseerde herhalingen 
+                            tijdens gelogde sessies.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Wat is de optimale lengte van een oefensessie?</div>
+                        <div class="faq-answer">
+                            Kwaliteit boven kwantiteit! Korte, gefocuste sessies (15–30 minuten) zijn effectiever dan lange, ongerichte sessies. 
+                            De app toont wat vandaag gepland is—oefen die secties, log eerlijk, en stop wanneer uw concentratie daalt. 
+                            Meerdere korte sessies per dag werken beter dan één marathonsessie.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Kan ik ModusPractica gebruiken voor niet-muzikaal leren?</div>
+                        <div class="faq-answer">
+                            Niet echt. ModusPractica is specifiek ontworpen voor muzikaal oefenen, wat zowel cognitief als 
+                            <strong>motorisch leren</strong> combineert. Voor puur cognitief leren (talen, feiten, enz.) is dit motorische component 
+                            niet nodig. Een vergelijkbare app geoptimaliseerd voor cognitief leren komt in de toekomst.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Waarom worden mijn intervallen niet langer zoals verwacht?</div>
+                        <div class="faq-answer">
+                            Het algoritme past intervallen aan op basis van uw prestatieconsistentie. Als intervallen kort blijven, betekent dit meestal:<br>
+                            • Uw succesratio is inconsistent over sessies heen<br>
+                            • U markeert sessies te vaak als "Matig" of "Redelijk"<br>
+                            • De chunk is te moeilijk—split verder op<br>
+                            • U heeft meer fundamentele herhalingen nodig voordat het materiaal stabiliseert<br><br>
+                            Wees geduldig—solide geheugenvorming kost tijd. Eerlijke beoordelingen helpen het algoritme om u beter te bedienen.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Hoe verwijder of archiveer ik oude stukken?</div>
+                        <div class="faq-answer">
+                            In het Dashboard vindt u het stuk dat u wilt beheren. Klik op de stuknaam om details te openen en kies dan voor 
+                            archiveren of verwijderen. <strong>Archiveren</strong> stopt de planning maar bewaart alle data voor later. 
+                            <strong>Verwijderen</strong> verwijdert het stuk en alle oefengeschiedenis permanent. Maak altijd een profielbackup 
+                            voordat u belangrijke data verwijdert!
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Wat doe ik als ik een stuk al uit het hoofd beheers?</div>
+                        <div class="faq-answer">
+                            Prima! Voeg het toch toe aan ModusPractica voor <strong>onderhoud</strong>. Maak grotere chunks (8–16 maten), 
+                            zet de moeilijkheid op "Gemakkelijk" of "Beheerst", en log uw eerste sessies als "Uitstekend". Het algoritme 
+                            zal intervallen snel verlengen naar weken of maanden, zodat u het stuk met minimale inspanning in langdurig geheugen houdt.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Kan ik de moeilijkheid van een sectie achteraf aanpassen?</div>
+                        <div class="faq-answer">
+                            Ja! Tijdens elke oefensessie kunt u de moeilijkheid aanpassen. Als een sectie makkelijker blijkt, verander naar "Gemakkelijk" of "Beheerst"—
+                            het algoritme past dan de intervallen aan. Is het te moeilijk, verlaag naar "Moeilijk" of "Zeer Moeilijk", of beter nog: archiveer en maak kleinere chunks.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Geavanceerde technische vragen -->
+                <div class="faq-section">
+                    <h2>🔬 Geavanceerd & Technisch</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Hoe gebruik ik de oefenpagina? Wat is het verschil tussen "Mislukte Pogingen" en "Totale Fouten"?</div>
+                        <div class="faq-answer">
+                            <p>De oefenpagina is waar u de resultaten van uw sessie logt. Deze data is cruciaal voor het algoritme om uw vooruitgang te berekenen en uw volgende herhaling te plannen. Hier zijn de kernbegrippen:</p>
+
+                            <h4>Begrip van "Mislukte Pogingen"</h4>
+                            <p>Bij het aanleren van een sectie verkent u. Fouten zijn normaal. De teller <code>Mislukte Pogingen</code> logt fouten <strong>binnen de huidige herhaalreeks</strong>.</p>
+                            <p>Het doel is om uw chunk (bv. één maat, of enkele noten) langzaam en bewust foutloos te spelen. Speelt u het meteen correct, laat de teller op <code>0</code>. Bij een fout zet u deze op <code>1</code> en probeert opnieuw. Minimaliseer fouten: elke fout wordt ook in uw brein opgeslagen.</p>
+
+                            <h4>"Correcte Herhalingen" vs. "Totale Fouten"</h4>
+                            <p>Elke keer dat u een fout maakt en uw reeks correcte herhalingen moet herstarten, klikt u op de resetknop (de ronde pijl). Dit doet twee dingen:</p>
+                            <ul>
+                                <li>Verhoogt de teller <code>Totale Fouten</code> met één. Dit is een overkoepelende metric voor de sessie.</li>
+                                <li>Verhoogt de teller <code>Herhaalreeks Resets</code>, wat aangeeft hoe vaak een succesvolle reeks is onderbroken.</li>
+                            </ul>
+                            <p>Na een reset noteert u <code>1</code> bij <code>Correcte Herhalingen</code> wanneer u het correct speelt. Speelt u het twee keer na elkaar correct, zet u dit op <code>2</code>, enzovoort.</p>
+
+                            <h4>Automatische Doelaanpassing</h4>
+                            <p>ModusPractica past uw oefendoelen automatisch aan op basis van prestaties. Stel dat uw doel 6 correcte herhalingen is, maar u 8 mislukte pogingen nodig had—dan <strong>verhoogt het systeem automatisch uw doel naar 8 voor de volgende sessie</strong>. Waarom? Dit duidt erop dat de sectie meer herhalingen nodig heeft om in het geheugen te stabiliseren. Het algoritme zorgt zo voor voldoende extra herhalingen voor echte beheersing, niet enkel oppervlakkige accuraatheid.</p>
+                            <p>Deze aanpak is gebaseerd op onderzoek van Dr. Molly Gebrian over <strong>overleren</strong>: doorgaan met oefenen voorbij het punt van initiële beheersing versterkt geheugenconsolidatie en betrouwbaarheid. Door doelen op te schalen bij moeilijkheden, zorgt ModusPractica dat u de extra herhalingen krijgt die nodig zijn voor echte beheersing.</p>
+
+                            <h4>Belangrijke Opmerking over Initiële Oefenfase</h4>
+                            <p>Een nieuwe sectie wordt automatisch <strong>drie opeenvolgende dagen</strong> ingepland, ongeacht uw prestaties. Deze initiële fase legt een solide basis in uw geheugen. Na deze drie sessies (op verschillende dagen) neemt de intelligente planner alles over.</p>
+
+                            <h4>Ervaringsfeedback & Voortgangsgrafiek</h4>
+                            <p>Vanaf de tweede sessie verschijnt een voortgangsgrafiek. Deze toont een voortschrijdend gemiddelde van uw laatste 7 sessies om de trend te visualiseren en dagelijkse fluctuaties te dempen.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Wat betekent de waarde `(avg X)` naast mijn score?</div>
+                        <div class="faq-answer">
+                            <p>De waarde <code>(avg X)</code> is het <strong>gemiddeld aantal pogingen</strong> dat nodig is om één correcte herhaling te behalen. Het is een maat voor oefenefficiëntie: lager is beter.</p>
+                            <p>Formule: <code>(Mislukte Pogingen + Correcte Herhalingen) / Correcte Herhalingen</code>.</p>
+
+                            <h4>Voorbeeld 1: Perfecte score</h4>
+                            <p>U speelt 3 correcte herhalingen na elkaar.</p>
+                            <ul>
+                                <li>Mislukte Pogingen: <code>0</code>, Correcte Herhalingen: <code>3</code></li>
+                                <li>Berekening: <code>(0 + 3) / 3 = 1</code></li>
+                                <li><strong>Resultaat: <code>(avg 1)</code></strong>. Gemiddeld exact één poging per correcte herhaling—ideaal.</li>
+                            </ul>
+
+                            <h4>Voorbeeld 2: Eén foute start</h4>
+                            <p>U maakt 1 fout, daarna 2 correcte herhalingen.</p>
+                            <ul>
+                                <li>Mislukte Pogingen: <code>1</code>, Correcte Herhalingen: <code>2</code></li>
+                                <li>Berekening: <code>(1 + 2) / 2 = 1,5</code></li>
+                                <li><strong>Resultaat: <code>(avg 2)</code></strong> (naar boven afgerond). U heeft meer dan één poging per correctie nodig.</li>
+                            </ul>
+
+                            <h4>Voorbeeld 3: Moeilijke start</h4>
+                            <p>U maakt 4 fouten, daarna één correcte herhaling.</p>
+                            <ul>
+                                <li>Mislukte Pogingen: <code>4</code>, Correcte Herhalingen: <code>1</code></li>
+                                <li>Berekening: <code>(4 + 1) / 1 = 5</code></li>
+                                <li><strong>Resultaat: <code>(avg 5)</code></strong>.</li>
+                            </ul>
+                            <p>Kortom, <code>avg</code> is geen gemiddelde van uw score, maar van de <strong>inspanning</strong> (pogingen) per succes. Een hogere waarde wijst op meer moeite met de sectie.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Hoe structureer ik mijn chunks om een volledig stuk op te bouwen?</div>
+                        <div class="faq-answer">
+                            <p>Veel nieuwe gebruikers vragen: <strong>"Hoe deel ik een stuk op en structureer ik mijn oefening?"</strong> ModusPractica gebruikt een <strong>drie-lagen chunkingsysteem</strong> dat weerspiegelt hoe het brein complexe vaardigheden opbouwt—van kleine componenten naar geïntegreerde gehelen.</p>
+
+                            <h4>ℹ️ Belangrijke opmerking over tijdslijnen</h4>
+                            <p>De voorbeelden hieronder gebruiken specifieke aantallen dagen ter illustratie. In werkelijkheid hangt uw progressiesnelheid af van veel factoren: moeilijkheidsgraad, ervaringsniveau, beschikbare oefentijd en hoe snel u elk chunk beheerst. Sommigen gaan sneller, anderen trager—beide zijn normaal. Het kernprincipe blijft: <strong>bouw van kleine chunks naar grotere structuren</strong>, los van uw persoonlijke tijdslijn.</p>
+
+                            <h4>Het Drie-Lagen Systeem</h4>
+                            <ul>
+                                <li><strong>Laag 1: Micro-Chunks</strong>—Kleine bouwstenen (2–4 maten). Focus: technische accuraatheid en initiële memorisatie.</li>
+                                <li><strong>Laag 2: Integratie-Chunks</strong>—Gecombineerde secties (4–8 maten). Focus: vloeiende overgangen en muzikaliteit.</li>
+                                <li><strong>Laag 3: Onderhouds-Chunks</strong>—Volledige passages (8–16 maten). Focus: langdurige retentie en performance readiness.</li>
+                            </ul>
+
+                            <h4>Voorbeeldworkflow: Passage van 8 maten</h4>
+                            <p><strong>Fase 1: Bouw Micro-Chunks</strong></p>
+                            <p>Maak vier aparte chunks:</p>
+                            <ul>
+                                <li>Chunk A: Maten 1–2</li>
+                                <li>Chunk B: Maten 3–4</li>
+                                <li>Chunk C: Maten 5–6</li>
+                                <li>Chunk D: Maten 7–8</li>
+                            </ul>
+                            <p>Oefen elk chunk door de funderingsfase (Stage 0→1→2→3). Zodra een chunk Stage 3 bereikt, gaat het naar de adaptieve Ebbinghaus-fase met groeiende intervallen. <strong>Doel:</strong> alle micro-chunks op Stage 4+ (solide memorisatie en technische controle).</p>
+
+                            <p><strong>Fase 2: Maak Integratie-Chunks</strong></p>
+                            <p>Wanneer beide componenten van een paar Stage 4+ bereiken, maakt u integratie-chunks:</p>
+                            <ul>
+                                <li>Integratie 1: Maten 1–4 (wanneer Chunks A en B beide Stage 4+ zijn)</li>
+                                <li>Integratie 2: Maten 5–8 (wanneer Chunks C en D beide Stage 4+ zijn)</li>
+                            </ul>
+                            <p>Deze chunks focussen op vloeiende overgangen en muzikaliteit. Omdat de componenten al goed geleerd zijn, 
+                            beoordeelt u deze sessies vaak meteen als "Goed" of "Uitstekend", waardoor het algoritme sneller opschaalt. 
+                            <strong>Doel:</strong> integratie-chunks naar Stage 3–4 (zekere verbindingen tussen secties).</p>
+
+                            <p><strong>Fase 3: Bouw Onderhouds-Chunk (Doorlopend)</strong></p>
+                            <p>Als beide integratie-chunks zeker zijn (Stage 3–4+), maakt u uw onderhouds-chunk:</p>
+                            <ul>
+                                <li>Volledige passage: Maten 1–8 (complete sectie voor langdurige retentie)</li>
+                            </ul>
+                            <p>Deze chunk is uw eindproduct en zal uw primaire onderhoudstool zijn. Naarmate deze door de stages gaat, 
+                            worden intervallen weken of maanden, wat efficiënt langdurig onderhoud biedt met minimale oefenlast.</p>
+
+                            <p><strong>Fase 4: Archiveer eerdere chunks (optioneel)</strong></p>
+                            <p>Als uw onderhouds-chunk (1–8) Stage 3+ bereikt, kunt u micro- en integratie-chunks archiveren. Archiveren stopt de planning 
+                            maar bewaart de data, waardoor uw dashboard gefocust blijft op actieve onderhoudstaken.</p>
+
+                            <h4>Kernprincipes</h4>
+                            <ul>
+                                <li><strong>Fundering eerst bouwen</strong>—Maak geen integratie-chunks voordat componenten solide zijn (Stage 4+).</li>
+                                <li><strong>Redundantie vermijden</strong>—Maak geen overlappende chunks op hetzelfde niveau. Gebruik de drie-lagenprogressie.</li>
+                                <li><strong>Vertrouw op het dashboard</strong>—Laat het algoritme bepalen wat u oefent. Geef eerlijke prestatiebeoordelingen.</li>
+                                <li><strong>Archiveer strategisch</strong>—Wanneer onderhouds-chunks actief zijn, archiveer eerdere chunks voor overzicht.</li>
+                                <li><strong>Schaalbaar systeem</strong>—Werkt voor 8 of 64 maten. Voeg simpelweg meer micro- en integratielagen toe.</li>
+                            </ul>
+
+                            <h4>🎵 Praktijkvoorbeeld</h4>
+                            <p>Voor de eerste pagina van een 16-maten Chopin Nocturne kunt u 8 micro-chunks (2 maten elk) maken, vervolgens 4 integratie-chunks (4 maten elk), 
+                            dan 2 halve pagina-chunks (8 maten elk), en tot slot 1 volledige pagina-chunk (16 maten). Na 6–8 weken heeft u één onderhouds-chunk 
+                            die om de 3–4 weken gepland wordt—efficiënt langdurig behoud met minimale inspanning.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-footer" style="text-align:center; margin-top:64px; padding-top:32px; border-top:1px solid var(--border-color); font-size:14px; color: var(--text-secondary);">
+                    <p>Laatst bijgewerkt: 15 dec 2025 • Versie 2.0.0 • Onderhouden door Partura Music</p>
+                    <p>Bekijk ook de <a href="moduspractica-manual-nl.html">Handleiding NL</a> en de <a href="moduspractica-manual.html">Manual EN</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<UserControl x:Class="ModusPractica.Views.SuccessRatioTrendChartControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+    <Border Background="White"
+            BorderBrush="#E0E0E0"
+            BorderThickness="1"
+            CornerRadius="4"
+            Padding="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Canvas x:Name="ChartCanvas"
+                    ClipToBounds="True"/>
+
+            <TextBlock x:Name="EmptyStateText"
+                       Grid.Row="0"
+                    Text="Not enough data to show a trend yet"
+                       Foreground="#777"
+                       FontStyle="Italic"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Visibility="Collapsed"/>
+        </Grid>
+    </Border>
+</UserControl>

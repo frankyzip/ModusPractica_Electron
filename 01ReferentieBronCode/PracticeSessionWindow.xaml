@@ -1,0 +1,1000 @@
+﻿<Window
+    x:Class="ModusPractica.PracticeSessionWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ModusPractica"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Practice Session"
+    Width="1300"
+    Height="800"
+    Background="#F8F8F8"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="CanResize"
+    Loaded="PracticeSessionWindow_Loaded"
+    Closing="PracticeSessionWindow_Closing"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <Style x:Key="NotesTooltipStyle"
+               TargetType="TextBlock">
+            <Setter Property="TextWrapping"
+                    Value="Wrap"/>
+            <Setter Property="MaxWidth"
+                    Value="300"/>
+            <Setter Property="Padding"
+                    Value="5"/>
+        </Style>
+        <SolidColorBrush x:Key="DifficultColor"
+                         Color="#FFD0D0"/>
+        <SolidColorBrush x:Key="AverageColor"
+                         Color="#FFE2C0"/>
+        <SolidColorBrush x:Key="EasyColor"
+                         Color="#D4F0D4"/>
+        <SolidColorBrush x:Key="MasteredColor"
+                         Color="#D0E0FF"/>
+
+        <local:GreaterThanValueConverter x:Key="GreaterThanConverter"/>
+        <local:LessThanValueConverter x:Key="LessThanConverter"/>
+        <local:RangeValueConverter x:Key="RangeConverter"/>
+
+        <Style x:Key="PerformanceScoreStyle"
+               TargetType="TextBlock">
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+            <Setter Property="FontSize"
+                    Value="12"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding PerformanceScore}"
+                             Value="0">
+                    <Setter Property="Text"
+                            Value="N/A"/>
+                    <Setter Property="Foreground"
+                            Value="Gray"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding PerformanceScore, Converter={StaticResource GreaterThanConverter}, ConverterParameter=8.0}"
+                             Value="True">
+                    <Setter Property="Foreground"
+                            Value="Green"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding PerformanceScore, Converter={StaticResource RangeConverter}, ConverterParameter='5.0,7.99'}"
+                             Value="True">
+                    <Setter Property="Foreground"
+                            Value="Orange"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding PerformanceScore, Converter={StaticResource LessThanConverter}, ConverterParameter=5.0}"
+                             Value="True">
+                    <Setter Property="Foreground"
+                            Value="Red"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border
+            Grid.Row="0"
+            Margin="0,0,0,15"
+            Padding="10"
+            Background="White"
+            BorderBrush="#DDDDDD"
+            BorderThickness="1">
+            <StackPanel>
+                <TextBlock
+                    x:Name="TxtMusicPieceTitle"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Foreground="#333333"/>
+                <TextBlock
+                    x:Name="TxtBarSectionInfo"
+                    Margin="0,5,0,0"
+                    FontSize="14"
+                    Foreground="#555555"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.2*"
+                                  MinWidth="300"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="1.3*"
+                                  MinWidth="250"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="1*"
+                                  MinWidth="300"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT COLUMN (Grid.Column=0) -->
+            <Border Grid.Column="0"
+                    Padding="15"
+                    Background="White"
+                    BorderBrush="#DDDDDD"
+                    BorderThickness="1"
+                    SnapsToDevicePixels="True">
+                <!-- Keep scrolling behavior for the left column -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Background="Transparent">
+                    <!-- EXISTING LEFT COLUMN CONTENT -->
+                    <StackPanel>
+                        <GroupBox
+                            Margin="0,0,0,15"
+                            Padding="10"
+                            Header="Session Timer">
+                            <StackPanel>
+                                <TextBlock
+                                    x:Name="TxtTimer"
+                                    Margin="0,5,0,10"
+                                    HorizontalAlignment="Center"
+                                    FontFamily="Consolas"
+                                    FontSize="36"
+                                    Text="00:00:00"/>
+                                <StackPanel HorizontalAlignment="Center"
+                                            Orientation="Horizontal">
+                                    <Button
+                                        x:Name="BtnStartTimer"
+                                        Width="80"
+                                        Height="28"
+                                        Margin="0,0,10,0"
+                                        Click="BtnStartTimer_Click"
+                                        Content="Start"/>
+                                    <Button
+                                        x:Name="BtnPauseTimer"
+                                        Width="80"
+                                        Height="28"
+                                        Margin="0,0,10,0"
+                                        Click="BtnPauseTimer_Click"
+                                        Content="Pause"/>
+                                    <Button
+                                        x:Name="BtnStopTimer"
+                                        Width="80"
+                                        Height="28"
+                                        Click="BtnStopTimer_Click"
+                                        Content="Stop"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox
+                            Margin="0,0,0,15"
+                            Padding="10"
+                            Header="Pomodoro Timer">
+                            <StackPanel>
+                                <TextBlock
+                                    Margin="0,5,0,10"
+                                    FontStyle="Italic"
+                                    TextWrapping="Wrap">
+                                    <Run FontWeight="SemiBold">Gebrian's Research:</Run>
+                                    Practice a section for a short period, then take at least a 10-second break. Your brain continues to process during these microbreaks, improving learning efficiency.<LineBreak/>
+                                    <LineBreak/>
+                                    <Run FontWeight="SemiBold">Pomodoro Technique:</Run>
+                                    The Pomodoro (25 min) option helps you maintain focus and avoid fatigue by working in concentrated blocks followed by a short break.</TextBlock>
+                                <TextBlock
+                                    x:Name="TxtMicroBreakTimer"
+                                    Margin="0,5,0,10"
+                                    HorizontalAlignment="Center"
+                                    FontFamily="Consolas"
+                                    FontSize="24"
+                                    Text="00:00"/>
+                                <StackPanel>
+                                    <TextBlock
+                                        Margin="0,0,0,5"
+                                        HorizontalAlignment="Center"
+                                        Text="Pomodoro Time (minutes):"/>
+                                    <StackPanel HorizontalAlignment="Center"
+                                                Orientation="Horizontal">
+                                        <TextBox
+                                            x:Name="TxtPomodoroDuration"
+                                            Width="60"
+                                            Height="25"
+                                            Margin="5,0"
+                                            HorizontalContentAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Text="5"
+                                            TextChanged="TxtPomodoroDuration_TextChanged"/>
+                                        <TextBlock
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            Text="min"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel
+                                    Margin="0,10,0,0"
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <Button
+                                        x:Name="BtnStartMicroBreak"
+                                        Width="100"
+                                        Height="28"
+                                        Margin="0,0,10,0"
+                                        Click="BtnStartMicroBreak_Click"
+                                        Content="Start Pomodoro"/>
+                                    <Button
+                                        x:Name="BtnStopMicroBreak"
+                                        Width="80"
+                                        Height="28"
+                                        Click="BtnStopMicroBreak_Click"
+                                        Content="Stop"
+                                        IsEnabled="False"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox
+                            Margin="0,0,0,15"
+                            Padding="10"
+                            Header="Notes">
+                            <TextBox
+                                x:Name="TxtNotes"
+                                Height="160"
+                                AcceptsReturn="True"
+                                TextWrapping="Wrap"
+                                VerticalScrollBarVisibility="Auto"/>
+                        </GroupBox>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- MIDDLE COLUMN (Grid.Column=2) -->
+            <Border Grid.Column="2"
+                    Padding="15"
+                    Background="White"
+                    BorderBrush="#DDDDDD"
+                    BorderThickness="1"
+                    SnapsToDevicePixels="True">
+                <!-- Keep scrolling behavior for the middle column -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Background="Transparent">
+                    <!-- EXISTING MIDDLE COLUMN CONTENT -->
+                    <StackPanel>
+                        <GroupBox x:Name="GbAttempts"
+                                  Margin="0,0,0,15"
+                                  Padding="10">
+                            <GroupBox.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center"
+                                               Text="Attempts"/>
+                                    <TextBlock
+                                        Margin="5,0,0,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        FontWeight="Bold"
+                                        Foreground="DodgerBlue"
+                                        Text="ⓘ">
+                                        <TextBlock.ToolTip>
+                                            <ToolTip>
+                                                <TextBlock Style="{StaticResource NotesTooltipStyle}"
+                                                           Text="This value helps the AI determine when you're struggling. A high number of attempts before your first success can lead to adjusted practice advice."/>
+                                            </ToolTip>
+                                        </TextBlock.ToolTip>
+                                    </TextBlock>
+                                </StackPanel>
+                            </GroupBox.Header>
+                            <StackPanel>
+                                <!--  Deze Grid bevat de bestaande teller en knoppen. DEZE MOET BLIJVEN.  -->
+                                <Grid Margin="0,0,0,10">
+                                    <TextBlock VerticalAlignment="Center"
+                                               Text="Failed attempts:"/>
+                                    <StackPanel HorizontalAlignment="Right"
+                                                Orientation="Horizontal">
+                                        <Button
+                                            x:Name="BtnDecreaseAttempts"
+                                            Width="30"
+                                            Height="30"
+                                            Click="BtnDecreaseAttempts_Click"
+                                            Content="-"/>
+                                        <TextBlock
+                                            x:Name="TxtAttemptsTillSuccess"
+                                            Width="40"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            FontWeight="SemiBold"
+                                            Text="0"
+                                            TextAlignment="Center"/>
+                                        <Button
+                                            x:Name="BtnIncreaseAttempts"
+                                            Width="30"
+                                            Height="30"
+                                            Click="BtnIncreaseAttempts_Click"
+                                            Content="+"/>
+                                        <Button
+                                            x:Name="BtnResetAttempts"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,0,0"
+                                            Click="BtnResetAttempts_Click"
+                                            Content="⟲"
+                                            ToolTip="Reset Attempts to 0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!-- Preparatory phase label (initially hidden) -->
+                                <TextBlock x:Name="TxtPreparatoryPhaseInfo"
+                                           Text="Preparatory phase: --:--"
+                                           Margin="0,6,0,0"
+                                           Foreground="Orange"
+                                           Visibility="Collapsed"/>
+
+                                <!--  De bestaande instructietekst. DEZE MOET OOK BLIJVEN.  -->
+                                <TextBlock
+                                    Margin="0,10,0,0"
+                                    FontStyle="Italic"
+                                    Foreground="Gray"
+                                    Text="Enter failed attempts BEFORE first success."
+                                    TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox x:Name="GbRepetitions"
+                                  Margin="0,0,0,15"
+                                  Padding="10"
+                                  Header="Repetitions &amp; Streaks">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <!--  Instructional Text  -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!--  Target Reps  -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!--  Correct Reps  -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!--  Streak Resets  -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!--  Total Failures (v4.0)  -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!--  Success Ratio (v4.0)  -->
+                                </Grid.RowDefinitions>
+
+                                <!--  Row 0: Instructional Text  -->
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Margin="0,0,0,10"
+                                    FontStyle="Italic"
+                                    Foreground="Gray"
+                                    Text="A streak reset means you made a mistake and had to start counting the repetition sequence again."
+                                    TextWrapping="Wrap"/>
+
+                                <!--  Row 1: Target Repetitions  -->
+                                <Grid Grid.Row="1"
+                                      Margin="0,0,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Grid.Column="0"
+                                        VerticalAlignment="Center"
+                                        Text="Target Repetitions:"/>
+
+                                    <StackPanel
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal"
+                                                    HorizontalAlignment="Right">
+                                            <TextBlock
+                                                x:Name="TxtDynamicTargetInfo"
+                                                Margin="0,0,10,0"
+                                                VerticalAlignment="Center"
+                                                FontWeight="SemiBold"
+                                                Foreground="DodgerBlue"
+                                                Visibility="Collapsed"/>
+                                            <ComboBox
+                                                x:Name="CbTargetRepetitions"
+                                                Width="80"
+                                                VerticalAlignment="Center"
+                                                SelectionChanged="CbTargetRepetitions_SelectionChanged">
+                                                <ComboBoxItem Content="1"/>
+                                                <ComboBoxItem Content="2"/>
+                                                <ComboBoxItem Content="3"/>
+                                                <ComboBoxItem Content="4"/>
+                                                <ComboBoxItem Content="5"/>
+                                                <ComboBoxItem Content="6"
+                                                              IsSelected="True"/>
+                                                <ComboBoxItem Content="7"/>
+                                                <ComboBoxItem Content="8"/>
+                                                <ComboBoxItem Content="9"/>
+                                                <ComboBoxItem Content="10"/>
+                                                <ComboBoxItem Content="11"/>
+                                                <ComboBoxItem Content="12"/>
+                                                <ComboBoxItem Content="13"/>
+                                                <ComboBoxItem Content="14"/>
+                                                <ComboBoxItem Content="15"/>
+                                                <ComboBoxItem Content="16"/>
+                                                <ComboBoxItem Content="17"/>
+                                                <ComboBoxItem Content="18"/>
+                                                <ComboBoxItem Content="19"/>
+                                                <ComboBoxItem Content="20"/>
+                                            </ComboBox>
+                                        </StackPanel>
+
+                                        <!-- Overlearning Recommendations -->
+                                        <StackPanel x:Name="OverlearningRecommendationPanel"
+                                                    Orientation="Vertical"
+                                                    Margin="0,5,0,0"
+                                                    HorizontalAlignment="Right"
+                                                    Visibility="Visible">
+                                            <TextBlock x:Name="TxtOverlearningRecommendation"
+                                                       FontSize="11"
+                                                       FontStyle="Italic"
+                                                       Foreground="Gray"
+                                                       HorizontalAlignment="Right"
+                                                       Text="Overlearning advice activates after the first mistake."/>
+                                            <StackPanel Orientation="Horizontal"
+                                                        HorizontalAlignment="Right"
+                                                        Margin="0,2,0,0">
+                                                <Button x:Name="BtnApply50Overlearning"
+                                                        Content="Apply 50%"
+                                                        FontSize="10"
+                                                        Padding="5,1"
+                                                        Margin="0,0,5,0"
+                                                        IsEnabled="False"
+                                                        Background="#E0E0E0"
+                                                        Foreground="Gray"
+                                                        Click="BtnApply50Overlearning_Click"/>
+                                                <Button x:Name="BtnApply100Overlearning"
+                                                        Content="Apply 100%"
+                                                        FontSize="10"
+                                                        Padding="5,1"
+                                                        IsEnabled="False"
+                                                        Background="#E0E0E0"
+                                                        Foreground="Gray"
+                                                        Click="BtnApply100Overlearning_Click"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!--  Row 2: Correct Repetitions  -->
+                                <Grid Grid.Row="2"
+                                      Margin="0,5,0,5">
+                                    <TextBlock VerticalAlignment="Center"
+                                               Text="Correct Repetitions:"/>
+                                    <StackPanel HorizontalAlignment="Right"
+                                                Orientation="Horizontal">
+                                        <Button
+                                            x:Name="BtnDecreaseReps"
+                                            Width="30"
+                                            Height="30"
+                                            Click="BtnDecreaseReps_Click"
+                                            Content="-"/>
+                                        <TextBlock
+                                            x:Name="TxtRepetitions"
+                                            Width="40"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            FontWeight="SemiBold"
+                                            Text="0"
+                                            TextAlignment="Center"/>
+                                        <Button
+                                            x:Name="BtnIncreaseReps"
+                                            Width="30"
+                                            Height="30"
+                                            Click="BtnIncreaseReps_Click"
+                                            Content="+"/>
+                                        <Button
+                                            x:Name="BtnResetReps"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,0,0"
+                                            Click="BtnResetRepetitions_Click"
+                                            Content="⟲"
+                                            ToolTip="Reset Repetitions to 0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!--  Row 3: Repetition Streak Resets  -->
+                                <Grid Grid.Row="3"
+                                      Margin="0,5,0,0">
+                                    <TextBlock VerticalAlignment="Center"
+                                               Text="Repetition Streak Resets:"/>
+                                    <StackPanel HorizontalAlignment="Right"
+                                                Orientation="Horizontal">
+                                        <Button
+                                            x:Name="BtnDecreaseStreak"
+                                            Width="30"
+                                            Height="30"
+                                            Click="BtnDecreaseStreak_Click"
+                                            Content="-"/>
+                                        <TextBlock
+                                            x:Name="TxtRepetitionStreakAttempts"
+                                            Width="40"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            FontWeight="SemiBold"
+                                            Text="0"
+                                            TextAlignment="center"/>
+                                        <Button
+                                            x:Name="BtnIncreaseStreak"
+                                            Width="30"
+                                            Height="30"
+                                            Click="BtnIncreaseStreak_Click"
+                                            Content="+"/>
+                                        <Button
+                                            x:Name="BtnResetStreak"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,0,0"
+                                            Click="BtnResetStreak_Click"
+                                            Content="⟲"
+                                            ToolTip="Reset Streak Resets to 0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!--  Row 4: Total Failures (v4.0)  -->
+                                <Grid Grid.Row="4"
+                                      Margin="0,5,0,0">
+                                    <TextBlock VerticalAlignment="Center">
+                                        <Run Text="Total Failures:"/>
+                                        <Run FontSize="10"
+                                             Foreground="Gray"
+                                             Text="(all errors)"/>
+                                    </TextBlock>
+                                    <StackPanel HorizontalAlignment="Right"
+                                                Orientation="Horizontal">
+                                        <Button
+                                            x:Name="BtnDecreaseTotalFailures"
+                                            Width="30"
+                                            Height="30"
+                                            Click="BtnDecreaseTotalFailures_Click"
+                                            Content="-"/>
+                                        <TextBlock
+                                            x:Name="TxtTotalFailures"
+                                            Width="40"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            FontWeight="SemiBold"
+                                            Text="0"
+                                            TextAlignment="center"/>
+                                        <Button
+                                            x:Name="BtnIncreaseTotalFailures"
+                                            Width="30"
+                                            Height="30"
+                                            Click="BtnIncreaseTotalFailures_Click"
+                                            Content="+"/>
+                                        <Button
+                                            x:Name="BtnResetTotalFailures"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,0,0,0"
+                                            Click="BtnResetTotalFailures_Click"
+                                            Content="⟲"
+                                            ToolTip="Reset Total Failures to 0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!--  Row 5: Success Ratio Display (v4.0)  -->
+                                <Border Grid.Row="5"
+                                        Margin="0,10,0,0"
+                                        Padding="8"
+                                        Background="#F0F8FF"
+                                        BorderBrush="#1E90FF"
+                                        BorderThickness="1"
+                                        CornerRadius="4">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0"
+                                                    VerticalAlignment="Center"
+                                                    Orientation="Vertical">
+                                            <TextBlock FontWeight="SemiBold"
+                                                       Text="Success Rate:"/>
+                                            <TextBlock
+                                                x:Name="TxtLearningZone"
+                                                Margin="0,2,0,0"
+                                                FontSize="10"
+                                                FontWeight="Bold"
+                                                Text="—"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    Orientation="Horizontal">
+                                            <TextBlock
+                                                x:Name="TxtSuccessRatio"
+                                                VerticalAlignment="Center"
+                                                FontSize="18"
+                                                FontWeight="Bold"
+                                                Text="—%"/>
+                                            <TextBlock
+                                                Margin="8,0,0,0"
+                                                VerticalAlignment="Center"
+                                                FontSize="12"
+                                                Foreground="Gray"
+                                                Text="→ Target: 85%"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox x:Name="GbTempo"
+                                  Margin="0,0,0,15"
+                                  Padding="10"
+                                  Header="Tempo (BPM)">
+                            <StackPanel>
+                                <TextBlock
+                                    Margin="0,0,0,10"
+                                    FontStyle="Italic"
+                                    Foreground="Gray"
+                                    Text="*This section is optional..."
+                                    TextWrapping="Wrap"/>
+
+                                <Grid Margin="0,0,0,10">
+                                    <TextBlock VerticalAlignment="Center"
+                                               Text="Target Tempo:"/>
+                                    <TextBox
+                                        x:Name="TxtTargetTempo"
+                                        Width="80"
+                                        HorizontalAlignment="Right"
+                                        PreviewTextInput="NumberValidationTextBox"
+                                        TextAlignment="Center"/>
+                                </Grid>
+
+                                <Grid>
+                                    <TextBlock VerticalAlignment="Center"
+                                               Text="Achieved Tempo:"/>
+                                    <TextBox
+                                        x:Name="TxtAchievedTempo"
+                                        Width="80"
+                                        HorizontalAlignment="Right"
+                                        PreviewTextInput="NumberValidationTextBox"
+                                        TextAlignment="Center"/>
+                                </Grid>
+
+                                <TextBlock
+                                    x:Name="TxtLastAchievedTempo"
+                                    Margin="0,5,0,0"
+                                    HorizontalAlignment="Right"
+                                    FontStyle="Italic"
+                                    Foreground="Gray"
+                                    Visibility="Collapsed"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox x:Name="GbDifficulty"
+                                  Margin="0,0,0,15"
+                                  Padding="10"
+                                  Header="Difficulty">
+                            <StackPanel>
+                                <RadioButton
+                                    x:Name="RbDifficult"
+                                    Margin="0,0,0,5"
+                                    Padding="5,3"
+                                    Background="{StaticResource DifficultColor}"
+                                    Checked="RbDifficulty_Checked"
+                                    Content="Difficult"/>
+                                <RadioButton
+                                    x:Name="RbAverage"
+                                    Margin="0,0,0,5"
+                                    Padding="5,3"
+                                    Background="{StaticResource AverageColor}"
+                                    Checked="RbDifficulty_Checked"
+                                    Content="Average"/>
+                                <RadioButton
+                                    x:Name="RbEasy"
+                                    Margin="0,0,0,5"
+                                    Padding="5,3"
+                                    Background="{StaticResource EasyColor}"
+                                    Checked="RbDifficulty_Checked"
+                                    Content="Easy"/>
+                                <RadioButton
+                                    x:Name="RbMastered"
+                                    Padding="5,3"
+                                    Background="{StaticResource MasteredColor}"
+                                    Checked="RbDifficulty_Checked"
+                                    Content="Mastered"/>
+
+
+                            </StackPanel>
+                        </GroupBox>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- RIGHT COLUMN (Grid.Column=4) -->
+            <Border Grid.Column="4"
+                    Padding="15"
+                    Background="White"
+                    BorderBrush="#DDDDDD"
+                    BorderThickness="1"
+                    SnapsToDevicePixels="True">
+                <!-- Optional: wrap right side in a ScrollViewer too, so it behaves the same when taller -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Background="Transparent">
+                    <!-- EXISTING RIGHT COLUMN CONTENT -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Row="0"
+                            Margin="0,0,0,10"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="Session Duration (Manual Entry)"/>
+                        <StackPanel Grid.Row="1"
+                                    Margin="0,0,0,20">
+                            <Grid Margin="0,0,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Margin="0,0,5,0"
+                                    VerticalAlignment="Center"
+                                    Text="Hours:"/>
+                                <TextBox
+                                    x:Name="TxtHours"
+                                    Grid.Column="1"
+                                    Width="40"
+                                    Margin="0,0,10,0"
+                                    PreviewTextInput="NumberValidationTextBox"
+                                    TextAlignment="Center"
+                                    TextChanged="Duration_TextChanged"/>
+                                <TextBlock
+                                    Grid.Column="2"
+                                    Margin="0,0,5,0"
+                                    VerticalAlignment="Center"
+                                    Text="Minutes:"/>
+                                <TextBox
+                                    x:Name="TxtMinutes"
+                                    Grid.Column="3"
+                                    Width="40"
+                                    Margin="0,0,10,0"
+                                    PreviewTextInput="NumberValidationTextBox"
+                                    TextAlignment="Center"
+                                    TextChanged="Duration_TextChanged"/>
+                                <TextBlock
+                                    Grid.Column="4"
+                                    Margin="0,0,5,0"
+                                    VerticalAlignment="Center"
+                                    Text="Seconds:"/>
+                                <TextBox
+                                    x:Name="TxtSeconds"
+                                    Grid.Column="5"
+                                    Width="40"
+                                    PreviewTextInput="NumberValidationTextBox"
+                                    TextAlignment="Center"
+                                    TextChanged="Duration_TextChanged"/>
+                            </Grid>
+                            <TextBlock
+                                Margin="0,2,0,0"
+                                HorizontalAlignment="Left"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="#FF6600"
+                                Text="* Time recording is required. Use the timer or enter a duration manually."
+                                TextWrapping="Wrap"/>
+                        </StackPanel>
+
+                        <TextBlock
+                            Grid.Row="2"
+                            Margin="0,0,0,10"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="Practice History for this Section"/>
+
+                        <ListView
+                            x:Name="LvPracticeHistory"
+                            Grid.Row="3"
+                            BorderThickness="0"
+                            SelectionChanged="LvPracticeHistory_SelectionChanged">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Padding="0,8"
+                                        BorderBrush="#EEEEEE"
+                                        BorderThickness="0,0,0,1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Grid.Column="0"
+                                                        Width="100">
+                                                <TextBlock FontWeight="SemiBold"
+                                                           Text="{Binding Date, StringFormat=d}"/>
+                                                <TextBlock Foreground="#666666"
+                                                           Text="{Binding Duration, StringFormat=hh\\:mm\\:ss}"/>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Column="1"
+                                                        Margin="10,0">
+                                                <TextBlock Text="{Binding Difficulty}"/>
+                                                <TextBlock>
+                                                    <Run Text="Repetitions: "/><Run FontWeight="SemiBold"
+                                                                                    Text="{Binding Repetitions}"/>
+                                                </TextBlock>
+                                                <TextBlock>
+                                                    <Run Text="Success Ratio: "/>
+                                                    <Run FontWeight="SemiBold"
+                                                         Text="{Binding SuccessRatio, Mode=OneWay, StringFormat={}{0:P0}}"/>
+                                                    <Run Text=" ("/>
+                                                    <InlineUIContainer>
+                                                        <TextBlock FontWeight="SemiBold"
+                                                                   Text="{Binding LearningZone, Mode=OneWay}">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="Foreground"
+                                                                            Value="Gray"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding LearningZone, Mode=OneWay}"
+                                                                                     Value="Consolidation">
+                                                                            <Setter Property="Foreground"
+                                                                                    Value="Green"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding LearningZone, Mode=OneWay}"
+                                                                                     Value="Exploration">
+                                                                            <Setter Property="Foreground"
+                                                                                    Value="Orange"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding LearningZone, Mode=OneWay}"
+                                                                                     Value="Polish">
+                                                                            <Setter Property="Foreground"
+                                                                                    Value="DarkBlue"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding LearningZone, Mode=OneWay}"
+                                                                                     Value="Mastered">
+                                                                            <Setter Property="Foreground"
+                                                                                    Value="DarkBlue"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding LearningZone, Mode=OneWay}"
+                                                                                     Value="TooHard">
+                                                                            <Setter Property="Foreground"
+                                                                                    Value="Red"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding LearningZone, Mode=OneWay}"
+                                                                                     Value="Legacy">
+                                                                            <Setter Property="Foreground"
+                                                                                    Value="Gray"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                    </InlineUIContainer>
+                                                    <Run Text=")"/>
+                                                </TextBlock>
+                                                <TextBlock>
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding AchievedTempo}"
+                                                                             Value="0">
+                                                                    <Setter Property="Visibility"
+                                                                            Value="Collapsed"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                    <Run Text="Tempo: "/>
+                                                    <Run FontWeight="SemiBold"
+                                                         Text="{Binding AchievedTempo, StringFormat={}{0} BPM}"/>
+                                                    <Run Text=" (Target: "/>
+                                                    <Run Text="{Binding TargetTempo, StringFormat={}{0} BPM}"/>
+                                                    <Run Text=")"/>
+                                                </TextBlock>
+                                            </StackPanel>
+
+                                            <StackPanel
+                                                Grid.Column="2"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    Margin="0,0,10,0"
+                                                    Style="{StaticResource PerformanceScoreStyle}"
+                                                    Text="{Binding PerformanceScore, StringFormat=F1}"
+                                                    ToolTip="Performance Score (0-10)"/>
+                                                <TextBlock Text="📝"
+                                                           Visibility="{Binding Notes, Converter={StaticResource StringToVisibilityConverter}}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip>
+                                                            <TextBlock Style="{StaticResource NotesTooltipStyle}"
+                                                                       Text="{Binding Notes}"/>
+                                                        </ToolTip>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Click="EditHistoryItem_Click"
+                                              Header="Edit Practice Session"/>
+                                    <MenuItem Click="AddCustomMinutes_Click"
+                                              Header="Add Minutes..."/>
+                                    <Separator/>
+                                    <MenuItem Click="DeleteHistoryItem_Click"
+                                              Header="Delete"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,15,0,0"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                x:Name="BtnEndWithFrustration"
+                Width="160"
+                Height="32"
+                Margin="0,0,15,0"
+                Background="#FFF0E6"
+                BorderBrush="#FF7043"
+                Click="BtnEndWithFrustration_Click"
+                Content="End with Frustration"
+                FontWeight="SemiBold"
+                Foreground="#D84315"
+                ToolTip="End the session and mark it as frustrating. This gives the AI valuable feedback and will schedule a break for this section.">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="4"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button
+                x:Name="BtnSave"
+                Width="120"
+                Height="32"
+                Margin="0,0,10,0"
+                Background="#4A86E8"
+                Click="BtnSave_Click"
+                Content="Save Session"
+                Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="4"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button
+                x:Name="BtnCancel"
+                Width="100"
+                Height="32"
+                Click="BtnCancel_Click"
+                Content="Cancel">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="4"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

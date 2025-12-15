@@ -1,0 +1,72 @@
+{
+  "name": "moduspractica",
+  "version": "2.0.0",
+  "description": "ModusPractica - Smart Music Practice Management Desktop App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --remote-debugging-port=9222",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux"
+  },
+  "keywords": [
+    "music",
+    "practice",
+    "learning",
+    "ebbinghaus",
+    "spaced-repetition"
+  ],
+  "author": "Frank De Baere",
+  "license": "AGPL-3.0-or-later",
+  "licenseInfo": {
+    "primary": "AGPL-3.0-or-later",
+    "secondary": "Commercial",
+    "description": "Dual-licensed: Free under AGPL-3.0 for open source, commercial license available for proprietary use"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.parturamusic.moduspractica",
+    "productName": "ModusPractica",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!01ReferentieBronCode/**/*",
+      "!development/**/*",
+      "!Handleiding/**/*",
+      "!_dev-docs/**/*",
+      "!dist/**/*",
+      "!node_modules/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/BreinLogo.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.music"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "assets/icon.png",
+      "category": "Audio"
+    }
+  }
+}

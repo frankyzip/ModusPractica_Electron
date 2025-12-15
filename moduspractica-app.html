@@ -1,0 +1,867 @@
+<!--
++---------------------------------------------------------------------------+
+�  Partura Music - ModusPractica Web App                                    �
+�  Copyright � 2025 Frank De Baere. All rights reserved.                    �
+�  Effective Date: January 15, 2025                                         �
+�                                                                            �
+�  AUTHOR IDENTIFICATION:                                                   �
+�  Legal Name: Frank De Baere                                               �
+�  Domicile: Flanders, Belgium                                              �
+�                                                                            �
+�  PROPRIETARY AND CONFIDENTIAL SOFTWARE                                    �
+�  UNAUTHORIZED USE STRICTLY PROHIBITED                                     �
+�                                                                            �
+�  TRADEMARK NOTICE:                                                        �
+�  Modus Practica� and Partura Music� are trademarks of                   �
+�  Frank De Baere. All rights reserved.                                    �
+�                                                                            �
+�  For licensing inquiries: contact@parturamusic.be                        �
++---------------------------------------------------------------------------+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModusPractica - Profile Selection | Smart Music Practice Management</title>
+    
+    <meta name="description" content="ModusPractica profile management - Create and manage your music practice profiles. Free web-based practice scheduler using Ebbinghaus forgetting curves for optimal learning.">
+    <meta name="keywords" content="ModusPractica, music practice profile, practice management, music learning, Ebbinghaus, spaced repetition">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.parturamusic.be/moduspractica/moduspractica-app.html">
+    <meta property="og:title" content="ModusPractica - Smart Music Practice Management">
+    <meta property="og:description" content="Free web-based practice scheduler using Ebbinghaus forgetting curves.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ModusPractica App">
+    <meta name="twitter:description" content="Smart music practice management with science-based scheduling.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LLHVMF3M0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        // Developer exclusion: Check if running on localhost
+        const isDeveloper = window.location.hostname === 'localhost' || 
+                           window.location.hostname === '127.0.0.1' ||
+                           window.location.hostname === '';
+        
+        if (!isDeveloper) {
+            gtag('config', 'G-0LLHVMF3M0', {
+                'app_name': 'ModusPractica',
+                'app_version': '1.0.0'
+            });
+        } else {
+            console.log('[GA4] Developer mode - tracking disabled');
+        }
+    </script>
+    
+    <!-- CSS styles are inline in this file -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --border-color: #e0e0e0;
+            --text-primary: #37352f;
+            --text-secondary: #787774;
+            --accent-color: #2eaadc;
+            --hover-bg: #efefef;
+            --selected-bg: #e6f3f7;
+            --danger-color: #eb5757;
+            --success-color: #27ae60;
+            --warning-color: #f2994a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(135deg, #b3d9f2 0%, #7eb8db 50%, #5a9fc9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-size: 13px;
+        }
+
+        .app-container {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            max-width: 650px;
+            width: 100%;
+            padding: 32px;
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .app-logo-img {
+            height: 48px;
+            width: auto;
+            margin-bottom: 12px;
+        }
+
+        .app-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .app-subtitle {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .profile-section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .profile-select {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 13px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: #ffffff;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+
+        .profile-select:hover {
+            border-color: var(--accent-color);
+            background-color: #fafafa;
+        }
+
+        .profile-select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(46, 170, 220, 0.1);
+        }
+
+        .new-profile-form {
+            display: none;
+            margin-top: 16px;
+            padding: 16px;
+            background: #fafafa;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        .new-profile-form.active {
+            display: block;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 13px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: #ffffff;
+            font-family: inherit;
+            transition: all 0.15s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(46, 170, 220, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        /* What's New Notification */
+        .whats-new-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(3px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .whats-new-overlay.active {
+            display: flex;
+        }
+
+        .whats-new-balloon {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            max-height: 80vh;
+            width: 90%;
+            padding: 24px;
+            position: relative;
+            animation: slideUp 0.2s ease-out;
+            overflow-y: auto;
+        }
+
+        /* New card-style Whats New (used by newer markup) */
+        .whats-new-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            min-height: 60vh;
+            max-height: 80vh;
+            width: 90%;
+            padding: 24px;
+            position: relative;
+            animation: slideUp 0.2s ease-out;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .whats-new-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .whats-new-icon {
+            font-size: 24px;
+        }
+
+        .whats-new-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .whats-new-content {
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        .whats-new-content h4 {
+            color: var(--text-primary);
+            font-size: 15px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .whats-new-content ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .whats-new-content li {
+            margin-bottom: 6px;
+        }
+
+        .whats-new-close-btn {
+            width: 100%;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #2eaadc 0%, #28a0d0 100%);
+            color: white;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 2px 4px rgba(46, 170, 220, 0.2);
+        }
+
+        .whats-new-close-btn:hover {
+            background: linear-gradient(135deg, #28a0d0 0%, #2195c0 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(46, 170, 220, 0.3);
+        }
+
+        .whats-new-btn {
+            display: block;
+            width: 100%;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #2eaadc 0%, #28a0d0 100%);
+            color: white;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            margin-top: 16px;
+            box-shadow: 0 2px 4px rgba(46, 170, 220, 0.2);
+        }
+
+        .whats-new-btn:hover {
+            background: linear-gradient(135deg, #28a0d0 0%, #2195c0 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(46, 170, 220, 0.3);
+        }
+
+        .btn {
+            flex: 1;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2eaadc 0%, #28a0d0 100%);
+            color: white;
+            border: 1px solid #2195c0;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #28a0d0 0%, #2195c0 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(46, 170, 220, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            background: #cccccc;
+            border: 1px solid #bbb;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ececec 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-create {
+            width: 100%;
+            margin-top: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #e6f3f7 100%);
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-create:hover {
+            background: linear-gradient(135deg, #e6f3f7 0%, #d0eaf3 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(46, 170, 220, 0.2);
+        }
+
+        .profile-info {
+            margin-top: 16px;
+            padding: 12px;
+            background: #fafafa;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text-primary);
+        }
+
+        .profile-info-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+
+        .info-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .info-value {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .error-message {
+            background: #fee;
+            color: var(--danger-color);
+            padding: 10px 12px;
+            border: 1px solid #fcc;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        .btn-delete {
+            background: linear-gradient(135deg, #ffffff 0%, #ffe6e6 100%);
+            color: var(--danger-color);
+            border: 2px solid var(--danger-color);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-delete:hover {
+            background: linear-gradient(135deg, var(--danger-color) 0%, #d84545 100%);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(235, 87, 87, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            animation: slideUp 0.2s ease-out;
+        }
+
+        .modal-icon {
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .modal-message {
+            color: var(--text-primary);
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, #eb5757 0%, #d84545 100%);
+            color: white;
+            border: 1px solid #c83d3d;
+        }
+
+        .modal-btn-primary:hover {
+            background: linear-gradient(135deg, #d84545 0%, #c83d3d 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(235, 87, 87, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .app-container {
+                padding: 24px 16px;
+            }
+
+            .app-title {
+                font-size: 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- (Removed old 'What's New' balloon markup; newer `.whats-new-card` overlay appears below) -->
+
+    <div class="app-container">
+        <div class="app-header">
+    <link rel="icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="apple-touch-icon" href="assets/BreinLogo.png">
+            <img src="assets/BreinLogo.png" alt="ModusPractica Logo" class="app-logo-img">
+            <h1 class="app-title">ModusPractica</h1>
+            <p class="app-subtitle">Smart Music Practice Management</p>
+            <p style="margin-top: 8px; font-size: 12px; opacity: 0.85;">
+                <a href="https://www.parturamusic.com" target="_blank" rel="noopener noreferrer" style="color: #2eaadc; text-decoration: none;">www.parturamusic.com</a>
+            </p>
+        </div>
+
+        <div class="error-message" id="error-message"></div>
+
+        <div class="profile-section">
+            <h2 class="section-title">Select Profile</h2>
+            <select class="profile-select" id="profile-select">
+                <option value="">-- Choose a profile --</option>
+            </select>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="start-btn" disabled>
+                    <i data-lucide="play" style="width: 16px; height: 16px;"></i> Start Practice
+                </button>
+            </div>
+
+            <div class="new-profile-form" id="new-profile-form">
+                <div class="input-group">
+                    <label class="input-label" for="profile-name">Profile Name *</label>
+                    <input 
+                        type="text" 
+                        id="profile-name" 
+                        name="mp_new_profile_name"
+                        autocomplete="off"
+                        class="input-field" 
+                        placeholder="e.g., John Smith"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="profile-experience">Experience Level (optional)</label>
+                    <select id="profile-experience" class="profile-select">
+                        <option value="">Not specified</option>
+                        <option value="beginner">Beginner (0-2 years)</option>
+                        <option value="intermediate">Intermediate (3-5 years)</option>
+                        <option value="advanced">Advanced (6+ years)</option>
+                        <option value="professional">Professional</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" id="cancel-profile-btn">Cancel</button>
+                    <button class="btn btn-primary" id="save-profile-btn">Create Profile</button>
+                </div>
+            </div>
+
+            <div class="profile-info" id="profile-info" style="display: none;">
+                <div class="profile-info-title">Profile Information</div>
+                <div class="info-item">
+                    <span class="info-label">Name:</span>
+                    <span class="info-value" id="info-name">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Experience:</span>
+                    <span class="info-value" id="info-experience">Not specified</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Created:</span>
+                    <span class="info-value" id="info-created">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Music Pieces:</span>
+                    <span class="info-value" id="info-pieces">0</span>
+                </div>
+            </div>
+
+            <!-- Edit Profile Form (hidden by default) -->
+            <div class="new-profile-form" id="edit-profile-form" style="display: none;">
+                <div class="input-group">
+                    <label class="input-label" for="edit-profile-name">Profile Name *</label>
+                    <input 
+                        type="text" 
+                        id="edit-profile-name" 
+                        name="mp_edit_profile_name"
+                        autocomplete="off"
+                        class="input-field" 
+                        placeholder="e.g., John Smith"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="edit-profile-experience">Experience Level</label>
+                    <select id="edit-profile-experience" class="profile-select">
+                        <option value="">Not specified</option>
+                        <option value="beginner">Beginner (0-2 years)</option>
+                        <option value="intermediate">Intermediate (3-5 years)</option>
+                        <option value="advanced">Advanced (6+ years)</option>
+                        <option value="professional">Professional</option>
+                    </select>
+                    <p style="font-size: 0.85em; color: #666; margin-top: 8px; line-height: 1.4;">
+                        ?? <strong>Tip:</strong> When you advance to a higher experience level, update this setting. 
+                        Your adaptive learning data (practice history, memory stability) will be preserved while 
+                        the algorithm adjusts scheduling accordingly.
+                    </p>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" id="cancel-edit-btn">Cancel</button>
+                    <button class="btn btn-primary" id="save-edit-btn">Save Changes</button>
+                </div>
+            </div>
+
+            <button class="btn btn-create" id="new-profile-btn">
+                <i data-lucide="plus" style="width: 16px; height: 16px;"></i> Create New Profile
+            </button>
+        </div>
+
+        <div class="profile-section" style="margin-top: 20px;" id="delete-section">
+            <div class="button-group" style="gap: 10px;">
+                <button class="btn btn-secondary" id="edit-profile-btn" style="flex: 1; display: none;">
+                    <i data-lucide="edit-2" style="width: 16px; height: 16px;"></i> Edit Profile
+                </button>
+                <button class="btn btn-delete" id="delete-profile-btn" style="flex: 1; display: none;">
+                    <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i> Delete Profile
+                </button>
+            </div>
+        </div>
+
+        <div class="profile-section" style="margin-top: 30px; padding-top: 30px; border-top: 2px solid #e2e8f0;">
+            <h2 class="section-title">Data Management</h2>
+            <p style="color: #718096; font-size: 0.9em; margin-bottom: 15px;">
+                Export your data to save it on a USB stick or backup. Import to restore data on another computer.
+            </p>
+            
+            <div class="button-group">
+                <button class="btn btn-secondary" id="export-btn"
+                        style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); color: #2e7d32; border: 1px solid #66bb6a;"
+                        title="Export ALL profiles and data to Downloads folder (full backup)">
+                    <i data-lucide="download" style="width: 16px; height: 16px;"></i> Export Data
+                </button>
+                <button class="btn btn-secondary" id="import-btn"
+                        style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); color: #1565c0; border: 1px solid #42a5f5;"
+                        title="Import ALL profiles and data from a backup file">
+                    <i data-lucide="upload" style="width: 16px; height: 16px;"></i> Import Data
+                </button>
+            </div>
+            
+            <div class="button-group" style="margin-top: 15px;">
+                <button class="btn btn-delete" id="clear-all-data-btn"
+                        title="Delete ALL profiles and data from this browser (cannot be undone!)">
+                    <i data-lucide="alert-triangle" style="width: 16px; height: 16px;"></i> Clear All Data
+                </button>
+            </div>
+            
+            <input type="file" id="import-file" accept=".json" style="display: none;">
+        </div>
+
+        <!-- Footer -->
+        <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center;">
+            <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">
+                <strong>ModusPractica®</strong> - Smart Music Practice Management
+            </p>
+            <p style="font-size: 10px; color: var(--text-secondary); margin-bottom: 4px;">
+                Copyright © 2025 Frank De Baere. All rights reserved.
+            </p>
+            <p style="font-size: 10px; color: var(--text-secondary);">
+                Flanders, Belgium | <a href="mailto:contact@parturamusic.be" style="color: var(--accent-color); text-decoration: none;">contact@parturamusic.be</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- What's New Overlay -->
+    <div class="whats-new-overlay" id="whatsNewOverlay">
+        <div class="whats-new-card">
+            <div class="whats-new-header">
+                <h2>✨ What's New in ModusPractica</h2>
+                <button class="close-btn" onclick="closeWhatsNew()">×</button>
+            </div>
+            <div class="whats-new-content">
+                <div class="version-badge">Version BETA 0.1.11</div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">?</div>
+                    <div class="feature-text">
+                        <h3>Energy & Focus Tracking</h3>
+                        <p>Log your energy level (High/Normal/Low) during practice. The system now understands when fatigue affects your performance.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">???</div>
+                    <div class="feature-text">
+                        <h3>Smart Stability Protection</h3>
+                        <p>Bad session due to being tired? If you mark "Low Energy", the algorithm protects your memory stability score, reducing the penalty from 70% to just 10%.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">??</div>
+                    <div class="feature-text">
+                        <h3>Context-Aware History</h3>
+                        <p>Your energy state is saved with every session, helping you understand how fatigue impacts your long-term progress.</p>
+                    </div>
+                </div>
+
+                <a href="moduspractica-release-notes.html" class="release-notes-link">View full release notes ?</a>
+            </div>
+            <button class="whats-new-btn" onclick="closeWhatsNew()">Got it!</button>
+        </div>
+    </div>
+
+    <!-- Save Reminder Modal -->
+    <div class="modal-overlay" id="save-reminder-modal">
+        <div class="modal-content">
+            <div class="modal-icon">??</div>
+            <div class="modal-title">Profile Must Be Saved</div>
+            <div class="modal-message">
+                You have created a new profile. Don't forget to save the profile to your disk using the <strong>"?? Save Profile To"</strong> button below.<br><br>
+                Otherwise you will lose your data when you close the browser!
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-primary" id="modal-ok-btn">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Storage Quota Manager -->
+    <script src="StorageQuotaManager.js"></script>
+    <script src="moduspractica-utils.js"></script>
+    
+    <!-- GA4 Event Tracker -->
+    <script src="ga4-tracker.js"></script>
+    
+    <script>
+        // What's New notification close handler
+        function closeWhatsNew() {
+            const currentVersion = 'v0.1.11-beta-dec01-2025';
+            localStorage.setItem('mp_lastSeenVersion', currentVersion);
+            
+            const overlay = document.getElementById('whatsNewOverlay');
+            if (overlay) {
+                overlay.classList.remove('active');
+            }
+        }
+    </script>
+    
+    <script src="moduspractica-app.js?v=20251125-1"></script>
+</body>
+</html>
+

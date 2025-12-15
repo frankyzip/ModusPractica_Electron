@@ -1,0 +1,769 @@
+<!--
++---------------------------------------------------------------------------+
+�  ModusPractica Q&A - Frequently Asked Questions                          �
+�  Copyright � 2025 Frank De Baere - All Rights Reserved                    �
++---------------------------------------------------------------------------+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModusPractica Q&A - Frequently Asked Questions</title>
+    <meta name="description" content="Frequently asked questions about ModusPractica. Find answers on practice sessions, the scheduler, data management, and core concepts.">
+    <meta name="keywords" content="ModusPractica FAQ, frequently asked questions, help, support, troubleshooting, practice tips">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.parturamusic.be/moduspractica/moduspractica-qa.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.parturamusic.be/moduspractica/moduspractica-qa.html">
+    <meta property="og:title" content="ModusPractica Q&A - Frequently Asked Questions">
+    <meta property="og:description" content="Find answers to common questions about practice sessions, scheduling, and data management.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ModusPractica FAQ">
+    <meta name="twitter:description" content="Frequently asked questions and answers.">
+    
+    <!-- CSS styles are inline in this file -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="assets/libs/lucide.min.js"></script>
+    <style>
+        :root {
+            --sidebar-width: 240px;
+            --header-height: 50px;
+            --bg-color: #ffffff;
+            --sidebar-bg: #e8e8e6;
+            --border-color: #e0e0e0;
+            --text-primary: #37352f;
+            --text-secondary: #787774;
+            --accent-color: #2eaadc;
+            --hover-bg: #efefef;
+            --selected-bg: #e6f3f7;
+            --danger-color: #eb5757;
+            --success-color: #27ae60;
+            --warning-color: #f2994a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            background-image: none !important;
+            zoom: 1 !important;
+            color: var(--text-primary);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            font-size: 13px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: var(--header-height);
+        }
+
+        .app-logo-img { height: 20px; width: auto; }
+        .app-title { font-size: 13px; font-weight: 600; }
+
+        .sidebar-nav { flex: 1; padding: 8px 0; overflow-y: auto; }
+        
+        .nav-section-title {
+            padding: 8px 12px 4px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            margin: 1px 8px;
+            border-radius: 4px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .nav-item:hover { background-color: var(--hover-bg); }
+        .nav-item.active { background-color: var(--hover-bg); font-weight: 500; }
+        .nav-icon { font-size: 14px; width: 18px; text-align: center; color: var(--text-secondary); }
+
+        .sidebar-footer { padding: 12px; border-top: 1px solid var(--border-color); }
+        .user-profile { display: flex; align-items: center; gap: 8px; padding: 6px; border-radius: 4px; cursor: pointer; }
+        .user-profile:hover { background-color: var(--hover-bg); }
+        .user-avatar { width: 20px; height: 20px; background-color: #e0e0e0; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            align-items: stretch !important;
+            justify-content: flex-start !important;
+            padding: 0 !important;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: #dcdcda;
+            flex-shrink: 0;
+        }
+
+        .breadcrumbs { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-primary); font-weight: 500; }
+
+        /* Content Scroll Area */
+        .content-scroll { 
+            flex: 1; 
+            overflow-y: auto; 
+            padding: 40px; 
+        }
+
+        .qa-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 48px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .qa-header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .qa-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .qa-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .qa-entry {
+            margin-bottom: 48px;
+        }
+
+        .qa-question {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .qa-question::before {
+            content: 'Q:';
+            color: var(--accent-color);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .qa-answer {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            padding-left: 32px;
+            border-left: 3px solid var(--border-color);
+            margin-left: 6px;
+        }
+
+        .qa-answer p {
+            margin: 0 0 20px 0;
+        }
+        
+        .qa-answer code {
+            background-color: #f5f5f5;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: monospace;
+            color: var(--accent-color);
+        }
+
+        .qa-answer h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .qa-answer ul {
+            padding-left: 24px;
+            margin-bottom: 20px;
+        }
+
+        .qa-footer {
+            text-align: center;
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .qa-footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .qa-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* FAQ Section Styles */
+        .faq-section {
+            margin: 60px 0;
+        }
+
+        .faq-section h2 {
+            font-size: 24px;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .faq-item {
+            margin-bottom: 32px;
+            padding: 24px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .faq-answer {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .faq-answer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .faq-answer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .qa-container {
+                padding: 24px;
+            }
+            .content-scroll {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="assets/BreinLogo.png" alt="Logo" class="app-logo-img">
+            <div class="app-title">ModusPractica <span style="font-weight: 400; color: #999; font-size: 11px;">v2.0.0</span></div>
+        </div>
+        
+        <div class="sidebar-nav">
+            <div class="nav-section-title">Main</div>
+            <a href="moduspractica-app.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="user"></i></span>
+                <span>Profile Selection</span>
+            </a>
+            <a href="moduspractica-dashboard.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="home"></i></span>
+                <span>Dashboard</span>
+            </a>
+            <a href="moduspractica-charts.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="trending-up"></i></span>
+                <span>Charts</span>
+            </a>
+            <a href="moduspractica-statistics.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="bar-chart-2"></i></span>
+                <span>Statistics</span>
+            </a>
+            <a href="#" onclick="window.open('moduspractica-free-practice.html', 'FreePractice', 'width=480,height=420'); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="timer"></i></span>
+                <span>Free Practice</span>
+            </a>
+            <a href="moduspractica-dashboard.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="shuffle"></i></span>
+                <span>Interleaved Practice</span>
+            </a>
+
+            <div class="nav-section-title" style="margin-top: 16px;">System</div>
+            <a href="#" onclick="alert('Settings modal would open here'); return false;" class="nav-item">
+                <span class="nav-icon"><i data-lucide="settings"></i></span>
+                <span>Settings</span>
+            </a>
+            <a href="moduspractica-quick-start.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="zap"></i></span>
+                <span>Quick Start</span>
+            </a>
+            <a href="moduspractica-qa.html" class="nav-item active">
+                <span class="nav-icon"><i data-lucide="help-circle"></i></span>
+                <span>Q&A</span>
+            </a>
+            <a href="moduspractica-manual.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="book-open"></i></span>
+                <span>Manual EN</span>
+            </a>
+            <a href="moduspractica-manual-nl.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="book-open"></i></span>
+                <span>Manual NL</span>
+            </a>
+            <a href="moduspractica-about.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="info"></i></span>
+                <span>About</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="user-profile" id="logout-btn" title="Click to switch profile">
+                <div class="user-avatar"><i data-lucide="user-circle" style="width: 20px; height: 20px;"></i></div>
+                <div class="user-name" id="profile-name">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="breadcrumbs">Q&A - Frequently Asked Questions</div>
+        </div>
+
+        <!-- Content Scroll Area -->
+        <div class="content-scroll">
+            <div class="qa-container">
+                <header class="qa-header">
+                    <h1>Q&A - Frequently Asked Questions</h1>
+                    <p>Answers to the most common questions about ModusPractica.</p>
+                    <div style="margin-top: 12px; font-size: 14px;">
+                        <a href="moduspractica-qa.html" style="margin-right: 12px; font-weight: 600; color: var(--accent-color); text-decoration: none;">EN</a>
+                        |
+                        <a href="moduspractica-qa-nl.html" style="margin-left: 12px; color: var(--accent-color); text-decoration: none;">NL</a>
+                    </div>
+                </header>
+
+                
+
+                <!-- FAQ Section from Quick Start -->
+                <div class="faq-section">
+                    <h2>❓ General Questions</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: How does the scheduling algorithm work?</div>
+                        <div class="faq-answer">
+                            ModusPractica uses the Ebbinghaus Forgetting Curve, which predicts how quickly you forget information. 
+                            Each time you successfully practice a section, the app calculates the optimal time before you should review it again. 
+                            This interval grows longer as you master the material, maximizing retention while minimizing practice time.<br><br>
+                            <strong>The algorithm is also data-driven:</strong> It learns from your personal practice history. Your success rates, 
+                            failure patterns, and performance consistency are analyzed to personalize the scheduling. The more you use ModusPractica, 
+                            the better it understands your individual learning curve and adapts intervals to match your specific memory retention patterns.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: What if I miss a scheduled practice session?</div>
+                        <div class="faq-answer">
+                            No problem! Sections become "overdue" but remain in your practice queue. The algorithm adjusts - if you've 
+                            forgotten the material, the next interval will be shorter. If you still remember it well, the interval may 
+                            still increase.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: How do I mark a section as "Mastered"?</div>
+                        <div class="faq-answer">
+                            During a practice session, if you perform a section perfectly multiple times, you can change its difficulty 
+                            to "Mastered". The algorithm will then schedule it less frequently, allowing you to focus on newer or more 
+                            difficult material.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: What do the colored zones in Practice Charts mean?</div>
+                        <div class="faq-answer">
+                            The zones represent different stages of learning:<br>
+                            • <strong style="color: #C62828;">Too Hard (0-60%):</strong> Material is too challenging - break it down further<br>
+                            • <strong style="color: #F57F17;">Exploration (60-80%):</strong> Normal learning phase with mistakes<br>
+                            • <strong style="color: #E65100;">Consolidation (80-90%):</strong> Sweet spot for optimal learning!<br>
+                            • <strong style="color: #2E7D32;">Mastery (90-95%):</strong> Nearly perfected, practice less frequently<br>
+                            • <strong style="color: #616161;">Overlearning (95-100%):</strong> Already mastered, reduce practice time<br><br>
+                            Your goal is to move sections gradually from Exploration → Consolidation → Mastery over multiple sessions.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: Can I practice sections (chunks) that aren't due today?</div>
+                        <div class="faq-answer">
+                            Yes! In the chunk page, you can start a practice session for any section (chunk) at any time. However, 
+                            practicing chunks before they're due may not be the most efficient use of your time according to the 
+                            Ebbinghaus principles.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: What's the difference between "Target Repetitions" and actual practice?</div>
+                        <div class="faq-answer">
+                            "Target Repetitions" is a goal you set (e.g., "I want to play this 3 times per session"). During practice, 
+                            you click "Attempt Successful" each time you play it correctly. The algorithm uses both values - the target 
+                            helps plan session length, while your actual performance affects future scheduling.<br><br>
+                            <strong>Learn more about effective repetition strategies:</strong><br>
+                            • <a href="https://www.mollygebrian.com/" target="_blank" rel="noopener">Molly Gebrian</a> - Neuroscience-based practice techniques<br>
+                            • <a href="https://youtu.be/PsQDxAE1P1E?si=hNdNhSSkINIyPiH1" target="_blank" rel="noopener">Video: Avoid Power Saver Mode - How to Practice (Charles Szczepanek)</a>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: Does ModusPractica automatically save my work?</div>
+                        <div class="faq-answer">
+                            <strong>Partially.</strong> Your practice data is automatically saved in your browser's localStorage:<br>
+                            • After each practice session<br>
+                            • When you add or edit pieces and sections<br>
+                            • When you switch profiles<br><br>
+                            <strong>However, this is NOT a file backup!</strong> You must manually create backups using "Export Data" to save a JSON file to your computer. 
+                            This is especially important because localStorage can be cleared if you clear your browser data or switch devices.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: Will my data be lost if I clear my browser cache?</div>
+                        <div class="faq-answer">
+                            Yes, if you clear localStorage. This is why regular backups using "Export Data" are essential! 
+                            Save the exported JSON file to your cloud storage (Dropbox, Google Drive, OneDrive, etc.) for maximum safety. 
+                            Always keep backup copies in case of browser issues or if you need to switch computers.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: Can I use ModusPractica on multiple devices?</div>
+                        <div class="faq-answer">
+                            Absolutely! Export your profile to cloud storage (Google Drive, OneDrive, Dropbox, etc.), then use 
+                            "Import Data" on your other device. <strong>Important:</strong> Don't forget to export your complete practice 
+                            session after each practice - ideally do this daily to keep your data synchronized across devices.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: What browsers work best?</div>
+                        <div class="faq-answer">
+                            <strong>Chrome</strong> and <strong>Edge</strong> offer the best experience with advanced file saving features 
+                            (File System Access API). Firefox and Safari work too, but with limited file management - you'll need to 
+                            manually download/upload profile files each time.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: How long should a practice chunk be?</div>
+                        <div class="faq-answer">
+                            Start small! A chunk should be something you can play correctly 3 times in a row within a few attempts. 
+                            This can be as small as half a measure or as large as several measures, depending on difficulty:<br>
+                            • For beginners: 0.5-2 measures<br>
+                            • For intermediate: 1-4 measures<br>
+                            • For advanced: 2-8 measures<br><br>
+                            If you're consistently making mistakes, your chunk is too large - break it down further. The goal is quality repetitions, not quantity.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: Should I practice with or without the score?</div>
+                        <div class="faq-answer">
+                            ModusPractica is designed for <strong>memory-based practice</strong>. Start with the score to learn notes and fingerings, 
+                            but transition to memory as soon as possible. The algorithm tracks your ability to recall from memory, which is 
+                            crucial for performance readiness. Use the score for reference when stuck, but aim for memory-based repetitions 
+                            during logged sessions.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: What's the optimal practice session length?</div>
+                        <div class="faq-answer">
+                            Quality over quantity! Short, focused sessions (15-30 minutes) are more effective than long, unfocused ones. 
+                            The app shows you what's due today - practice those sections, log your results honestly, and stop when your 
+                            concentration drops. Multiple short sessions throughout the day work better than one marathon session.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: Can I use ModusPractica for non-musical learning?</div>
+                        <div class="faq-answer">
+                            Not really. ModusPractica is specifically designed for musical practice, which combines both cognitive and 
+                            <strong>motor learning</strong>. For purely cognitive learning (languages, facts, etc.) this motor component 
+                            isn't needed. However, a similar app specifically optimized for cognitive learning will be available in the future.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: Why are my intervals not increasing as expected?</div>
+                        <div class="faq-answer">
+                            The algorithm adjusts intervals based on your performance consistency. If intervals stay short, it means:<br>
+                            • Your success rate is inconsistent across sessions<br>
+                            • You're marking sessions as "Poor" or "Fair" too often<br>
+                            • The chunk might be too difficult - consider breaking it down<br>
+                            • You need more foundational repetitions before the material stabilizes<br><br>
+                            Be patient - solid memory formation takes time. Honest ratings help the algorithm serve you better.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: How do I delete or archive old pieces?</div>
+                        <div class="faq-answer">
+                            In the Dashboard, find the piece you want to manage. Click on the piece name to open details, then look for 
+                            archive or delete options. <strong>Archiving</strong> stops scheduling but keeps all data for future reference. 
+                            <strong>Deleting</strong> permanently removes the piece and all its practice history. Always save your profile 
+                            before deleting important data!
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: What should I do if I've already memorized a piece?</div>
+                        <div class="faq-answer">
+                            Great! Add it to ModusPractica anyway for <strong>maintenance</strong>. Create larger chunks (8-16 measures), 
+                            mark the difficulty as "Easy" or "Mastered", and log your first sessions as "Excellent". The algorithm will 
+                            quickly expand intervals to weeks or months, helping you maintain the piece in long-term memory with minimal effort.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Q: Can I adjust the difficulty of a section after creating it?</div>
+                        <div class="faq-answer">
+                            Yes! During any practice session, you can change the difficulty rating. If a section is easier than expected, 
+                            change it to "Easy" or "Mastered" - the algorithm will adjust intervals accordingly. If it's too hard, 
+                            downgrade to "Hard" or "Very Hard", or better yet: archive it and create smaller chunks.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Technical Questions -->
+                <div class="faq-section">
+                    <h2>🔬 Advanced & Technical Questions</h2>
+                    
+                    <div class="qa-entry">
+            <h2 class="qa-question">How do I use the practice page? What is the difference between "Failed Attempts" and "Total Failures"?</h2>
+            <div class="qa-answer">
+                <p>The practice page is where you log the results of your session. This data is crucial for the algorithm to calculate your progress and schedule your next review. Here's a breakdown of the key concepts:</p>
+
+                <h4>Understanding "Failed Attempts"</h4>
+                <p>When you first learn a section, you are exploring. It's normal to make mistakes. The <code>Failed Attempts</code> counter is for logging the errors you make <strong>within the current practice streak</strong>.</p>
+                <p>The goal is to play your chunk (e.g., one measure, or even just a few notes) slowly and consciously without mistakes. If you play it correctly on the first try, leave the counter at <code>0</code>. If you make a mistake, increment it to <code>1</code> and try again. It is crucial to minimize mistakes, as every error is stored in your brain.</p>
+                
+                <h4>"Correct Repetitions" vs. "Total Failures"</h4>
+                <p>Each time you make a mistake and have to restart your streak of correct repetitions, you should click the reset button (the circular arrow). This action does two things:</p>
+                <ul>
+                    <li>It increments the <code>Total Failures</code> counter by one. This is a high-level metric for the entire session.</li>
+                    <li>It increments the <code>Repetition Streak Reset</code> counter, showing how many times you broke a successful streak.</li>
+                </ul>
+                <p>After a reset, you enter <code>1</code> under <code>Correct Repetitions</code> once you play it correctly. If you play it twice correctly in a row, you increase this to <code>2</code>, and so on.</p>
+
+                <h4>Automatic Target Adjustment</h4>
+                <p>ModusPractica automatically adapts your practice targets based on performance. If you set a target of 6 correct repetitions but need 8 failed attempts to achieve it, the system will <strong>automatically increase your target to 8 for the next session</strong>. Why? Because this indicates the section needs more repetitions to stabilize in your memory. The algorithm uses this data to ensure you're doing enough practice to build reliable long-term retention.</p>
+                <p>This approach is based on research by Dr. Molly Gebrian on <strong>overlearning</strong>: continuing to practice beyond the point of initial mastery significantly strengthens memory consolidation and performance reliability. By automatically adjusting targets upward when you struggle, ModusPractica ensures you're getting the extra repetitions needed for true mastery, not just surface-level accuracy.</p>
+
+                <h4>Important Note on Initial Practice</h4>
+                <p>A new section will automatically be scheduled for <strong>three consecutive days</strong>, regardless of your performance. This initial phase ensures a solid foundation in your memory. After these three sessions (on different days), the intelligent scheduler will take over completely.</p>
+                
+                <h4>Experience Feedback & Progress Graph</h4>
+                <p>From the second session onwards, a progress graph will appear. This graph shows a moving average of your last 7 sessions to visualize your performance trend and smooth out daily fluctuations.</p>
+            </div>
+        </div>
+
+        <div class="qa-entry">
+            <h2 class="qa-question">What does the `(avg X)` value next to my score mean?</h2>
+            <div class="qa-answer">
+                <p>The <code>(avg X)</code> value represents the <strong>average number of attempts</strong> required to achieve a single correct repetition. It's a measure of your practice efficiency: a lower number is better.</p>
+                <p>The formula is: <code>(Failed Attempts + Correct Repetitions) / Correct Repetitions</code>.</p>
+
+                <h4>Example 1: Perfect Score</h4>
+                <p>You play 3 correct repetitions in a row.</p>
+                <ul>
+                    <li>Failed Attempts: <code>0</code>, Correct Repetitions: <code>3</code></li>
+                    <li>Calculation: <code>(0 + 3) / 3 = 1</code></li>
+                    <li><strong>Result: <code>(avg 1)</code></strong>. On average, it takes you exactly one attempt to play it correctly. This is the ideal outcome.</li>
+                </ul>
+
+                <h4>Example 2: One Wrong Start</h4>
+                <p>You make 1 mistake, then play 2 correct repetitions.</p>
+                <ul>
+                    <li>Failed Attempts: <code>1</code>, Correct Repetitions: <code>2</code></li>
+                    <li>Calculation: <code>(1 + 2) / 2 = 1.5</code></li>
+                    <li><strong>Result: <code>(avg 2)</code></strong> (rounded up). You now need more than one attempt per correct repetition.</li>
+                </ul>
+                
+                <h4>Example 3: Difficult Start</h4>
+                <p>You make 4 mistakes, then play it correctly once.</p>
+                <ul>
+                    <li>Failed Attempts: <code>4</code>, Correct Repetitions: <code>1</code></li>
+                    <li>Calculation: <code>(4 + 1) / 1 = 5</code></li>
+                    <li><strong>Result: <code>(avg 5)</code></strong>.</li>
+                </ul>
+                <p>In short, <code>avg</code> is not an average of your score, but an average of the <strong>effort</strong> (in attempts) needed for each success. A higher value indicates you are struggling more with the section.</p>
+            </div>
+        </div>
+
+        <div class="qa-entry">
+            <h2 class="qa-question">How should I structure my chunks to build a complete piece?</h2>
+            <div class="qa-answer">
+                <p>One of the most common questions from new users is: <strong>"How should I break down a piece and structure my practice?"</strong> ModusPractica uses a <strong>three-tier chunking system</strong> that mirrors how the brain naturally builds complex skills—from small components to integrated wholes.</p>
+
+                <h4>ℹ️ Important Note on Timelines</h4>
+                <p>The examples below use specific day counts for illustration purposes. In reality, your progression speed depends on many factors: piece difficulty, your experience level, available practice time, and how quickly you master each chunk. Some users may progress faster, others may take longer—both are perfectly normal. The key principle remains the same: <strong>build from small chunks to larger structures</strong>, regardless of your personal timeline.</p>
+
+                <h4>The Three-Tier System</h4>
+                <ul>
+                    <li><strong>Tier 1: Micro-Chunks</strong> — Small building blocks (2-4 measures). Focus: technical accuracy and initial memorization.</li>
+                    <li><strong>Tier 2: Integration Chunks</strong> — Combined sections (4-8 measures). Focus: smooth transitions and musical flow between components.</li>
+                    <li><strong>Tier 3: Maintenance Chunks</strong> — Complete pages or passages (8-16 measures). Focus: long-term retention and performance readiness.</li>
+                </ul>
+
+                <h4>Example Workflow: 8-Measure Passage</h4>
+                <p><strong>Phase 1: Build Micro-Chunks</strong></p>
+                <p>Start by creating four separate chunks:</p>
+                <ul>
+                    <li>Chunk A: Measures 1-2</li>
+                    <li>Chunk B: Measures 3-4</li>
+                    <li>Chunk C: Measures 5-6</li>
+                    <li>Chunk D: Measures 7-8</li>
+                </ul>
+                <p>Practice each chunk through its foundation phase (Stage 0→1→2→3). Once a chunk reaches Stage 3, it enters the adaptive Ebbinghaus phase with expanding intervals. <strong>Goal:</strong> All micro-chunks at Stage 4+ (solid memorization and technical command).</p>
+
+                <p><strong>Phase 2: Create Integration Chunks</strong></p>
+                <p>When both components of a pair reach Stage 4+, create integration chunks:</p>
+                <ul>
+                    <li>Integration 1: Measures 1-4 (when Chunks A and B are both Stage 4+)</li>
+                    <li>Integration 2: Measures 5-8 (when Chunks C and D are both Stage 4+)</li>
+                </ul>
+                <p>These chunks focus on practicing smooth transitions and musical flow. Because the individual components are already well-learned, you'll likely rate these sessions as "Good" or "Excellent" from the start, causing the algorithm to accelerate progression. <strong>Goal:</strong> Integration chunks reach Stage 3-4 (secure connections between sections).</p>
+
+                <p><strong>Phase 3: Build Maintenance Chunk (Ongoing)</strong></p>
+                <p>Once both integration chunks are secure (Stage 3-4+), create your maintenance chunk:</p>
+                <ul>
+                    <li>Full Passage: Measures 1-8 (complete section for long-term retention)</li>
+                </ul>
+                <p>This chunk represents the finished product and will be your primary maintenance tool going forward. As it progresses through stages, intervals will extend to weeks or even months, providing efficient long-term retention with minimal practice overhead.</p>
+
+                <p><strong>Phase 4: Archive Earlier Chunks (Optional)</strong></p>
+                <p>Once your maintenance chunk (1-8) reaches Stage 3+, you may optionally archive the micro-chunks and integration chunks. Archiving stops their scheduling but preserves all data, keeping your dashboard focused on active maintenance tasks.</p>
+
+                <h4>Key Principles</h4>
+                <ul>
+                    <li><strong>Build foundations first</strong> — Don't rush to create integration chunks until components are solid (Stage 4+).</li>
+                    <li><strong>Avoid redundancy</strong> — Don't create overlapping chunks at the same tier. Use the three-tier progression instead.</li>
+                    <li><strong>Trust the dashboard</strong> — Let the algorithm tell you what to practice. Your job is to provide honest performance ratings.</li>
+                    <li><strong>Archive strategically</strong> — Once maintenance chunks are active, archive earlier chunks to keep your dashboard clean.</li>
+                    <li><strong>Scale the system</strong> — This approach works for 8 measures or 64 measures. Simply add more micro-chunks and integration layers as needed.</li>
+                </ul>
+
+                <h4>🎵 Real-World Example</h4>
+                <p>For a 16-measure Chopin Nocturne first page, you might create 8 micro-chunks (2 measures each), then 4 integration chunks (4 measures each), then 2 half-page chunks (8 measures each), and finally 1 full-page chunk (16 measures). After 6-8 weeks, you'd have one maintenance chunk scheduled every 3-4 weeks, efficiently preserving the entire page in long-term memory.</p>
+            </div>
+        </div>
+
+        <footer class="qa-footer">
+            <p>© 2025 Partura Music - Frank De Baere. All rights reserved.</p>
+            <p>
+                <a href="moduspractica-manual.html">Manual</a> &bull;
+                <a href="moduspractica-release-notes.html">Release Notes</a> &bull;
+                Contact: <a href="mailto:contact@parturamusic.be">contact@parturamusic.be</a>
+            </p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const questions = document.querySelectorAll('.qa-entry');
+
+            questions.forEach(entry => {
+                const question = entry.querySelector('.qa-question');
+                const answer = entry.querySelector('.qa-answer');
+
+                // Initially hide all answers
+                answer.style.display = 'none';
+
+                // Add click event to toggle visibility
+                question.addEventListener('click', () => {
+                    const isVisible = answer.style.display === 'block';
+                    answer.style.display = isVisible ? 'none' : 'block';
+                });
+            });
+
+            // Profile management
+            const profileName = localStorage.getItem('activeProfile');
+            if (profileName) {
+                document.getElementById('profile-name').textContent = profileName;
+            }
+
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                window.location.href = 'moduspractica-app.html';
+            });
+        });
+    </script>
+</body>
+</html>
+

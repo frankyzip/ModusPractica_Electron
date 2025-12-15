@@ -1,0 +1,708 @@
+<!--
++---------------------------------------------------------------------------+
+�  ModusPractica Calendar - Practice Schedule Overview                      �
+�  Copyright � 2025 Frank De Baere - All Rights Reserved                    �
++---------------------------------------------------------------------------+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Calendar - ModusPractica | Schedule Overview</title>
+    
+    <meta name="description" content="View your practice schedule with the ModusPractica calendar. Track upcoming sessions, due dates, and optimize your practice timing.">
+    <meta name="keywords" content="practice calendar, practice schedule, session planning, ModusPractica calendar, music practice timing">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Practice Calendar - ModusPractica">
+    <meta property="og:description" content="View your practice schedule and upcoming sessions.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Practice Calendar">
+    <meta name="twitter:description" content="Track your practice schedule with calendar view.">
+    
+    <link rel="icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="apple-touch-icon" href="assets/BreinLogo.png">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LLHVMF3M0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        const isDeveloper = window.location.hostname === 'localhost' || 
+                           window.location.hostname === '127.0.0.1' ||
+                           window.location.hostname === '';
+        
+        if (!isDeveloper) {
+            gtag('config', 'G-0LLHVMF3M0', {
+                'app_name': 'ModusPractica',
+                'app_version': '1.0.0'
+            });
+        } else {
+            console.log('[GA4] Developer mode - tracking disabled');
+        }
+    </script>
+    
+    <!-- CSS styles are inline in this file -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --sidebar-bg: #f7f7f5;
+            --border-color: #e0e0e0;
+            --text-primary: #37352f;
+            --text-secondary: #787774;
+            --accent-color: #2eaadc;
+            --hover-bg: #efefef;
+            --danger-color: #eb5757;
+            --success-color: #27ae60;
+            --warning-color: #f2994a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--sidebar-bg);
+            background-image: none !important;
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+        }
+
+        .calendar-container {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        /* Toolbar (Merged Header & Controls) */
+        .calendar-toolbar {
+            background: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+
+        .toolbar-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .calendar-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .mp-back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 10px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .mp-back-button:hover {
+            background: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--hover-bg);
+        }
+
+        .btn-nav {
+            padding: 6px 10px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+
+        .btn-nav:hover {
+            background: var(--hover-bg);
+        }
+
+        .current-month {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .filter-select {
+            padding: 6px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 12px;
+            min-width: 150px;
+            background: white;
+            color: var(--text-primary);
+        }
+
+        .btn-today {
+            padding: 6px 12px;
+            background: white;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-today:hover {
+            background: var(--hover-bg);
+        }
+
+        /* Calendar Grid */
+        .calendar-grid {
+            background: var(--bg-color);
+            padding: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 1px;
+            margin-bottom: 0;
+            background: var(--border-color);
+            border-bottom: none;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .weekday-header {
+            text-align: center;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 10px;
+            background: #f9f9f9;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            min-width: 0;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            grid-template-rows: repeat(6, 1fr);
+            gap: 1px;
+            background: var(--border-color);
+            border: 1px solid var(--border-color);
+            flex: 1;
+            overflow-y: auto;
+            min-height: 0;
+        }
+
+        .day-cell {
+            min-height: 100px;
+            background: white;
+            padding: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        .day-cell:hover {
+            background: #fafafa;
+        }
+
+        .day-cell.other-month {
+            background: #fcfcfc;
+            color: #ccc;
+        }
+
+        .day-cell.today {
+            background: #fffbeb;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .day-cell.today .day-number {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .day-cell.current-week {
+            min-height: 180px;
+            background: #fafffe;
+        }
+
+        .day-cell.current-week .day-sessions {
+            max-height: none !important;
+            overflow-y: visible !important;
+        }
+
+        .day-cell.current-week.today {
+            background: #fffbeb;
+        }
+        
+        .day-more-indicator {
+            font-size: 9px;
+            font-style: italic;
+            color: #666;
+            padding: 2px 4px;
+            margin-top: 2px;
+        }
+
+        .day-number {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: right;
+            margin-bottom: 4px;
+            flex-shrink: 0;
+        }
+
+        .day-sessions {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-height: 0;
+        }
+
+        .session-item {
+            background: #e3f2fd;
+            border-radius: 3px;
+            padding: 3px 6px;
+            font-size: 10px;
+            color: #2c5282;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 0;
+            border-left: 2px solid #2196f3;
+        }
+
+        .session-item.completed {
+            background: #f0fff4;
+            color: #2f855a;
+            border-left-color: #48bb78;
+        }
+
+        .session-item.overdue {
+            background: #fff5f5;
+            color: #c53030;
+            border-left-color: #f56565;
+        }
+
+        .day-more-indicator {
+            font-size: 9px;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 2px;
+            font-style: italic;
+            flex-shrink: 0;
+        }
+
+        /* Stats Summary - REMOVED per user request */
+        .calendar-stats {
+            display: none;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        /* Tooltip styles */
+        .tooltip {
+            visibility: hidden;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 300px;
+            background: white;
+            color: var(--text-primary);
+            padding: 12px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 1px solid var(--border-color);
+            font-size: 12px;
+            z-index: 100;
+            margin-top: 8px;
+        }
+        
+        .btn-recalculate:hover .tooltip {
+            visibility: visible;
+        }
+        
+        /* Modal Session Items */
+        .modal-session-item {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: #f9f9f9;
+        }
+
+        .modal-session-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 6px;
+        }
+
+        .modal-session-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .modal-session-status {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .status-completed {
+            background: #e6fffa;
+            color: #2c7a7b;
+        }
+
+        .status-planned {
+            background: #ebf8ff;
+            color: #2b6cb0;
+        }
+
+        .status-overdue {
+            background: #fff5f5;
+            color: #c53030;
+        }
+
+        .modal-session-info {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .session-action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .btn-practice {
+            background: var(--text-primary);
+            color: white;
+        }
+
+        .btn-practice:hover {
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar-container">
+        <!-- Toolbar (Merged Header & Controls) -->
+        <div class="calendar-toolbar">
+            <div class="toolbar-group">
+                <a href="moduspractica-dashboard.html" class="mp-back-button">? Back</a>
+                <h1 class="calendar-title">?? Calendar</h1>
+            </div>
+
+            <div class="toolbar-group">
+                <button class="btn-nav" id="btnPrevMonth">?</button>
+                <div class="current-month" id="currentMonth">January 2025</div>
+                <button class="btn-nav" id="btnNextMonth">?</button>
+                <button class="btn-today" id="btnToday">Today</button>
+            </div>
+            
+            <div class="toolbar-group">
+                <select class="filter-select" id="pieceFilter">
+                    <option value="">All Pieces</option>
+                </select>
+                <button class="btn btn-secondary" id="btnRecalculate">?? Recalculate</button>
+            </div>
+        </div>
+
+        <!-- Calendar Grid -->
+        <div class="calendar-grid">
+            <div class="calendar-weekdays">
+                <div class="weekday-header">Monday</div>
+                <div class="weekday-header">Tuesday</div>
+                <div class="weekday-header">Wednesday</div>
+                <div class="weekday-header">Thursday</div>
+                <div class="weekday-header">Friday</div>
+                <div class="weekday-header">Saturday</div>
+                <div class="weekday-header">Sunday</div>
+            </div>
+            <div class="calendar-days" id="calendarDays">
+                <!-- Days will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Day Details Modal -->
+    <div id="dayModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalDate">Loading...</h2>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Load dependencies -->
+    <script src="logging.js" onerror="console.error('Failed to load logging.js')"></script>
+    <script src="StorageQuotaManager.js" onerror="console.error('Failed to load StorageQuotaManager.js')"></script>
+    <script src="moduspractica-utils.js" onerror="console.error('Failed to load moduspractica-utils.js')"></script>
+    <script src="PersonalizedMemoryCalibration.js" onerror="console.error('Failed to load PersonalizedMemoryCalibration.js')"></script>
+    <script src="MemoryStabilityManager.js" onerror="console.error('Failed to load MemoryStabilityManager.js')"></script>
+    <script src="AdaptiveTauManager.js" onerror="console.error('Failed to load AdaptiveTauManager.js')"></script>
+    <script src="EbbinghausEngine.js" onerror="console.error('Failed to load EbbinghausEngine.js')"></script>
+    <script src="moduspractica-calendar.js" onerror="console.error('Failed to load moduspractica-calendar.js')"></script>
+    <script>
+        // Debug output
+        console.log('?? Calendar page loaded');
+        console.log('?? StorageQuotaManager available:', typeof StorageQuotaManager !== 'undefined');
+        console.log('?? PersonalizedMemoryCalibration available:', typeof PersonalizedMemoryCalibration !== 'undefined');
+        console.log('?? ModusPracticaCalendar class available:', typeof ModusPracticaCalendar !== 'undefined');
+        
+        // Wait for calendar initialization and check if planning data loads
+        setTimeout(() => {
+            const daysContainer = document.getElementById('calendarDays');
+            console.log('?? Checking calendar render...');
+            console.log('Days container:', daysContainer);
+            console.log('Day cells:', daysContainer?.children.length || 0);
+            console.log('Calendar app:', window.calendarApp);
+            
+            // If main script loaded, try to trigger render with planning data
+            if (window.calendarApp && typeof window.calendarApp.renderCalendar === 'function') {
+                console.log('?? Main calendar script loaded, forcing re-render with data...');
+                window.calendarApp.renderCalendar();
+                return;
+            }
+            
+            if (daysContainer && daysContainer.children.length === 0) {
+                console.warn('?? Main calendar script did not render. Using fallback...');
+                
+                // Render basic 42-cell grid (6 weeks � 7 days)
+                const today = new Date();
+                const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+                const year = currentMonth.getFullYear();
+                const month = currentMonth.getMonth();
+                
+                const firstDay = new Date(year, month, 1);
+                let firstDayOfWeek = firstDay.getDay();
+                firstDayOfWeek = firstDayOfWeek === 0 ? 7 : firstDayOfWeek;
+                
+                const lastDay = new Date(year, month + 1, 0);
+                const daysInMonth = lastDay.getDate();
+                
+                const prevMonthLastDay = new Date(year, month, 0);
+                const daysInPrevMonth = prevMonthLastDay.getDate();
+                
+                // Previous month trailing days
+                for (let i = firstDayOfWeek - 1; i > 0; i--) {
+                    const day = daysInPrevMonth - i + 1;
+                    const cell = document.createElement('div');
+                    cell.className = 'day-cell other-month';
+                    cell.innerHTML = `<div class="day-number">${day}</div><div class="day-sessions"></div>`;
+                    daysContainer.appendChild(cell);
+                }
+                
+                // Current month days
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'day-cell';
+                    if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                        cell.classList.add('today');
+                    }
+                    cell.innerHTML = `<div class="day-number">${day}</div><div class="day-sessions"></div>`;
+                    daysContainer.appendChild(cell);
+                }
+                
+                // Next month leading days
+                const totalCells = daysContainer.children.length;
+                const remainingCells = 42 - totalCells;
+                for (let day = 1; day <= remainingCells; day++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'day-cell other-month';
+                    cell.innerHTML = `<div class="day-number">${day}</div><div class="day-sessions"></div>`;
+                    daysContainer.appendChild(cell);
+                }
+                
+                console.log('? Fallback calendar rendered:', daysContainer.children.length, 'cells');
+            } else {
+                console.log('? Calendar already rendered by main script');
+            }
+        }, 500);
+
+        // Check if running in a popup
+        if (window.opener) {
+            const backBtn = document.querySelector('.mp-back-button');
+            if (backBtn) {
+                backBtn.textContent = '? Close';
+                backBtn.href = '#';
+                backBtn.onclick = (e) => {
+                    e.preventDefault();
+                    window.close();
+                };
+                // Adjust style for close button
+                backBtn.style.backgroundColor = '#718096';
+                backBtn.style.backgroundImage = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+

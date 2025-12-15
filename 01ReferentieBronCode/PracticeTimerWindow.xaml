@@ -1,0 +1,63 @@
+﻿<Window x:Class="ModusPractica.PracticeTimerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModusPractica"
+        mc:Ignorable="d"
+        Title="Overall Practice Timer"
+        Height="190"
+        Width="200"
+        ResizeMode="NoResize"
+        WindowStyle="ToolWindow"
+        Topmost="True">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                Text="General Practice Timer"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"/>
+
+        <TextBlock x:Name="TxtTimeDisplay"
+                Grid.Row="1"
+                Text="00:00"
+                FontSize="48"
+                FontWeight="SemiBold"
+                   HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,5,0,5"/>
+
+        <StackPanel Grid.Row="2"
+                Orientation="Vertical">
+            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,10">
+                <Label Content="Minutes:"
+                        VerticalAlignment="Center"/>
+                <TextBox x:Name="TxtMinutes"
+                        Width="50"
+                        Text="30"
+                        VerticalAlignment="Center"
+                         PreviewTextInput="TxtMinutes_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+                <Button x:Name="BtnStartPause"
+                        Content="Start"
+                        Width="70"
+                        Margin="5"
+                        Click="BtnStartPause_Click"/>
+                <Button x:Name="BtnReset"
+                        Content="Reset"
+                        Width="70"
+                        Margin="5"
+                        Click="BtnReset_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

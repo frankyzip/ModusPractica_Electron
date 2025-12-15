@@ -1,0 +1,34 @@
+﻿<Application
+    x:Class="ModusPractica.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ModusPractica"
+    ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <FontFamily x:Key="PlayfairDisplay">pack://application:,,,/Fonts/#Playfair Display</FontFamily>
+        <local:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+
+        <!--  Difficulty colors  -->
+        <SolidColorBrush x:Key="DifficultColor" Color="#FFD0D0" />
+        <SolidColorBrush x:Key="AverageColor" Color="#FFE2C0" />
+        <SolidColorBrush x:Key="EasyColor" Color="#D4F0D4" />
+        <SolidColorBrush x:Key="MasteredColor" Color="#D0E0FF" />
+
+        <!--  Pastel colors for music pieces - verplaatst van MainWindow naar App resources  -->
+        <SolidColorBrush x:Key="PastelBlue" Color="#B3D9FF" />
+        <SolidColorBrush x:Key="PastelGreen" Color="#B8E6B8" />
+        <SolidColorBrush x:Key="PastelPink" Color="#FFCCE6" />
+        <SolidColorBrush x:Key="PastelPurple" Color="#D8C6F7" />
+        <SolidColorBrush x:Key="PastelYellow" Color="#FFF2B3" />
+        <SolidColorBrush x:Key="PastelOrange" Color="#FFD8B3" />
+        <SolidColorBrush x:Key="PastelTeal" Color="#B3E6E6" />
+        <SolidColorBrush x:Key="PastelRed" Color="#FFBFC1" />
+
+        <local:ProgressToColorConverter x:Key="ProgressToColorConverter" />
+        <!--  Converters used in Bar Sections grid for time display  -->
+        <local:BarSectionTotalTimeConverter x:Key="BarSectionTotalTimeConverter" />
+        <local:BarSectionTimeTooltipConverter x:Key="BarSectionTimeTooltipConverter" />
+    </Application.Resources>
+</Application>

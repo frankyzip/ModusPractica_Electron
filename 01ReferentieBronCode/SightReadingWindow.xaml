@@ -1,0 +1,301 @@
+<Window x:Class="ModusPractica.SightReadingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sight Reading Practice"
+        Height="800"
+        Width="700"
+        WindowStartupLocation="CenterScreen"
+        Background="#F8F9FA"
+        ResizeMode="CanResize"
+        Closing="Window_Closing">
+
+    <Window.Resources>
+        <Style x:Key="LevelButton"
+               TargetType="ToggleButton">
+            <Setter Property="Width"
+                    Value="80"/>
+            <Setter Property="Height"
+                    Value="80"/>
+            <Setter Property="Margin"
+                    Value="8"/>
+            <Setter Property="FontSize"
+                    Value="16"/>
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+            <Setter Property="Background"
+                    Value="#E0E0E0"/>
+            <Setter Property="Foreground"
+                    Value="#333"/>
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                BorderThickness="2"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           Text="{TemplateBinding Content}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontSize="20"
+                                           FontWeight="Bold"
+                                           Foreground="{TemplateBinding Foreground}"/>
+                                <TextBlock Grid.Row="1"
+                                           x:Name="TimeText"
+                                           Text="00:00"
+                                           HorizontalAlignment="Center"
+                                           FontSize="11"
+                                           FontFamily="Consolas"
+                                           Margin="0,0,0,6"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           Opacity="0.7"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#4A86E8"/>
+                                <Setter Property="Foreground"
+                                        Value="White"/>
+                                <Setter Property="BorderBrush"
+                                        Value="#3367D6"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#BDBDBD"/>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                         Value="True">
+                                <Setter Property="Background"
+                                        Value="#4A86E8"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TimerButton"
+               TargetType="Button">
+            <Setter Property="Height"
+                    Value="50"/>
+            <Setter Property="Margin"
+                    Value="5"/>
+            <Setter Property="FontSize"
+                    Value="16"/>
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="White"
+                BorderBrush="#DDDDDD"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,0,20">
+            <StackPanel>
+                <TextBlock Text="Sight Reading Practice"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="#333"/>
+                <TextBlock Text="Track practice time per level"
+                           FontSize="13"
+                           Foreground="#666"
+                           Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Level Selection Grid -->
+        <Border Grid.Row="1"
+                Background="White"
+                BorderBrush="#DDDDDD"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock Text="Select Level"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,15"/>
+                    <UniformGrid Columns="5"
+                                 Rows="2">
+                        <ToggleButton x:Name="BtnLevel1"
+                                      Content="1"
+                                      Style="{StaticResource LevelButton}"
+                                      Checked="LevelButton_Checked"/>
+                        <ToggleButton x:Name="BtnLevel2"
+                                      Content="2"
+                                      Style="{StaticResource LevelButton}"
+                                      Checked="LevelButton_Checked"/>
+                        <ToggleButton x:Name="BtnLevel3"
+                                      Content="3"
+                                      Style="{StaticResource LevelButton}"
+                                      Checked="LevelButton_Checked"/>
+                        <ToggleButton x:Name="BtnLevel4"
+                                      Content="4"
+                                      Style="{StaticResource LevelButton}"
+                                      Checked="LevelButton_Checked"/>
+                        <ToggleButton x:Name="BtnLevel5"
+                                      Content="5"
+                                      Style="{StaticResource LevelButton}"
+                                      Checked="LevelButton_Checked"/>
+                        <ToggleButton x:Name="BtnLevel6"
+                                      Content="6"
+                                      Style="{StaticResource LevelButton}"
+                                      Checked="LevelButton_Checked"/>
+                        <ToggleButton x:Name="BtnLevel7"
+                                      Content="7"
+                                      Style="{StaticResource LevelButton}"
+                                      Checked="LevelButton_Checked"/>
+                        <ToggleButton x:Name="BtnLevel8"
+                                      Content="8"
+                                      Style="{StaticResource LevelButton}"
+                                      Checked="LevelButton_Checked"/>
+                        <ToggleButton x:Name="BtnLevel9"
+                                      Content="9"
+                                      Style="{StaticResource LevelButton}"
+                                      Checked="LevelButton_Checked"/>
+                        <ToggleButton x:Name="BtnLevel10"
+                                      Content="10"
+                                      Style="{StaticResource LevelButton}"
+                                      Checked="LevelButton_Checked"/>
+                    </UniformGrid>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Timer Display -->
+        <Border Grid.Row="2"
+                Background="White"
+                BorderBrush="#DDDDDD"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,20,0,0">
+            <StackPanel>
+                <TextBlock Text="Current Session"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="#666"
+                           HorizontalAlignment="Center"/>
+                <TextBlock x:Name="TxtElapsed"
+                           Text="00:00:00"
+                           FontFamily="Consolas"
+                           FontSize="48"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,10"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Total Time Display -->
+        <Border Grid.Row="3"
+                Background="#E8F5E9"
+                BorderBrush="#4CAF50"
+                BorderThickness="2"
+                CornerRadius="8"
+                Padding="15"
+                Margin="0,20,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0"
+                        VerticalAlignment="Center">
+                    <TextBlock Text="Total Practice Time"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="#2E7D32"/>
+                    <TextBlock Text="All Levels Combined"
+                               FontSize="11"
+                               Foreground="#558B2F"
+                               Margin="0,2,0,0"/>
+                </StackPanel>
+                <TextBlock Grid.Column="1"
+                           x:Name="TxtTotalAllLevels"
+                           Text="00:00:00"
+                           FontFamily="Consolas"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           Foreground="#2E7D32"
+                           VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- Timer Controls -->
+        <Grid Grid.Row="4"
+              Margin="0,15,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="BtnStart"
+                    Grid.Column="0"
+                    Content="▶ Start"
+                    Background="#28A745"
+                    Foreground="White"
+                    Style="{StaticResource TimerButton}"
+                    Click="BtnStart_Click"/>
+
+            <Button x:Name="BtnPause"
+                    Grid.Column="1"
+                    Content="⏸ Pause"
+                    Background="#FFC107"
+                    Foreground="#333"
+                    Style="{StaticResource TimerButton}"
+                    Click="BtnPause_Click"
+                    IsEnabled="False"/>
+
+            <Button x:Name="BtnStop"
+                    Grid.Column="2"
+                    Content="⏹ Stop &amp; Save"
+                    Background="#DC3545"
+                    Foreground="White"
+                    Style="{StaticResource TimerButton}"
+                    Click="BtnStop_Click"
+                    IsEnabled="False"/>
+        </Grid>
+    </Grid>
+</Window>

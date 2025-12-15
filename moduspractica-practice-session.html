@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Session - ModusPractica | Adaptive Music Practice</title>
+    <!-- Two-column layout v2.1 - 2025-12-08 -->
+    
+    <meta name="description" content="Active practice session in ModusPractica. Use adaptive spaced repetition to optimize your music practice with real-time feedback and scheduling.">
+    <meta name="keywords" content="practice session, active practice, adaptive learning, spaced repetition, music practice, ModusPractica">
+    <meta name="author" content="Frank De Baere">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Practice Session - ModusPractica">
+    <meta property="og:description" content="Active adaptive music practice session with real-time feedback.">
+    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Practice Session">
+    <meta name="twitter:description" content="Adaptive music practice with real-time feedback.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/BreinLogo.png">
+    <link rel="apple-touch-icon" href="assets/BreinLogo.png">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LLHVMF3M0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        // Developer exclusion: Check if running on localhost
+        const isDeveloper = window.location.hostname === 'localhost' || 
+                           window.location.hostname === '127.0.0.1' ||
+                           window.location.hostname === '';
+        
+        if (!isDeveloper) {
+            gtag('config', 'G-0LLHVMF3M0', {
+                'app_name': 'ModusPractica',
+                'app_version': '1.0.0'
+            });
+        } else {
+            console.log('[GA4] Developer mode - tracking disabled');
+        }
+    </script>
+    <style>
+        :root {
+            --bg-body: #f5f7fb;
+            --surface: #ffffff;
+            --surface-muted: #f0f2f8;
+            --surface-muted-strong: #e6eaf3;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border: #e5e7eb;
+            --accent: #2563eb;
+            --accent-strong: #1d4ed8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.12);
+            --radius-lg: 20px;
+            --radius-sm: 10px;
+            --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: var(--font-sans);
+            background: radial-gradient(circle at top, #eef2ff 0%, var(--bg-body) 45%, #edf1f7 100%);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            overflow-x: auto;
+        }
+
+        /* Increased base width to prevent counter buttons (+ / reset) from wrapping
+           outside their metric cards. Previously 720px was too narrow for the
+           three-column metrics layout with long labels + controls. */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--surface-muted-strong);
+            border-radius: var(--radius-sm);
+            padding: 8px;
+        }
+
+        .session-card {
+            background: var(--surface-muted-strong);
+            border-radius: var(--radius-sm);
+            padding: 10px 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .session-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .session-header-left {
+            flex: 1;
+        }
+
+        .piece-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 2px;
+            color: #0f172a;
+        }
+
+        .chunk-info {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-strong);
+        }
+
+        .chunk-description {
+            margin-top: 2px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+
+        .session-header-right {
+            min-width: 160px;
+            background: var(--surface-muted);
+            border-radius: var(--radius-sm);
+            padding: 8px 10px;
+            display: grid;
+            gap: 4px;
+        }
+
+        .header-info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+        }
+
+        .header-info-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .header-info-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .session-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .session-left,
+        .session-right {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .panel {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 24px;
+        }
+
+        .timer-section {
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: #f8fafc;
+        }
+
+        .timer-display {
+            font-size: 32px;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 1px;
+            background: var(--surface);
+            color: #0f172a;
+            padding: 6px 10px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 4px;
+            border: 1px solid var(--border);
+            box-shadow: inset 0 -2px 0 rgba(37, 99, 235, 0.08);
+            text-align: center;
+            cursor: text;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .timer-display:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: inset 0 -4px 0 rgba(37, 99, 235, 0.18), 0 0 0 3px rgba(37, 99, 235, 0.14);
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+
+        .timer-btn {
+            min-width: 80px;
+            border-radius: var(--radius-sm);
+            border: none;
+            padding: 7px 12px;
+            font-weight: 600;
+            font-size: 12px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+        }
+
+        .timer-btn.start { background: linear-gradient(120deg, #22c55e, #16a34a); }
+        .timer-btn.pause { background: linear-gradient(120deg, #fb923c, #f97316); }
+        .timer-btn.stop { background: linear-gradient(120deg, #f87171, #ef4444); }
+
+        .timer-btn:not(:disabled):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+        }
+
+        .timer-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .session-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .metrics-section {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 8px 10px;
+            background: var(--surface);
+        }
+
+        .section-title {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .counter-group {
+            display: grid;
+            grid-template-columns: 115px 1fr;
+            gap: 8px;
+            align-items: center;
+            padding: 3px 0;
+        }
+
+        .counter-group label {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 12px;
+        }
+
+        .counter-controls {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: nowrap;
+        }
+
+        .counter-btn {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--surface-muted);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .counter-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .counter-btn.reset {
+            border-radius: 4px;
+            padding: 0 5px;
+            background: #fef3c7;
+            border-color: #facc15;
+            color: #92400e;
+            font-size: 12px;
+        }
+
+        .counter-value {
+            font-size: 18px;
+            font-weight: 700;
+            min-width: 36px;
+            text-align: center;
+        }
+
+        label[data-tooltip] {
+            position: relative;
+            cursor: help;
+        }
+
+        label[data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: 120%;
+            left: 0;
+            width: 280px;
+            background: #0f172a;
+            color: white;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            line-height: 1.4;
+            z-index: 20;
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.35);
+        }
+
+        .success-rate-display {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            padding: 10px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--surface-muted);
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .success-rate-display.low { border-color: #fecaca; background: #fef2f2; }
+        .success-rate-display.medium { border-color: #fde68a; background: #fffbeb; }
+        .success-rate-display.high { border-color: #bbf7d0; background: #ecfdf5; }
+
+        .success-rate-emoji { font-size: 20px; }
+        .success-rate-text { flex: 1; font-size: 11px; color: var(--text-secondary); }
+        .success-rate-percentage { font-size: 16px; font-weight: 700; }
+
+        .tempo-input {
+            width: 90px;
+            padding: 6px 10px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font-weight: 600;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .tempo-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .intensity-module-display {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 8px 10px;
+            background: #f8fafc;
+        }
+
+        .intensity-metric + .intensity-metric { margin-top: 8px; }
+
+        .intensity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .intensity-value { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+
+        .intensity-bar-container {
+            width: 100%;
+            height: 14px;
+            background: #e0e7ff;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .intensity-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #22d3ee, #6366f1);
+            border-radius: 999px;
+            transition: width 0.3s ease;
+        }
+
+        .notes-section label {
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: block;
+            font-size: 11px;
+        }
+
+        .notes-section textarea {
+            width: 100%;
+            min-height: 235px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            padding: 6px 8px;
+            font-size: 12px;
+            resize: vertical;
+            background: var(--surface);
+        }
+
+        .notes-section textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .energy-section label {
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 11px;
+        }
+
+        .energy-toggles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+        }
+
+        .energy-btn {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 6px;
+            font-weight: 600;
+            font-size: 11px;
+            color: var(--text-secondary);
+            background: var(--surface);
+            cursor: pointer;
+            transition: border 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+
+        .energy-btn.selected {
+            border-color: var(--accent);
+            color: var(--accent-strong);
+            box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .btn {
+            flex: 1;
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            border: none;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--surface-muted);
+            color: var(--text-primary);
+        }
+
+        .btn:not(:disabled):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
+        }
+
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; transform: none; }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.active { display: flex; }
+
+        /* Keep modal visually consistent with widened container */
+        .modal-content {
+            width: min(850px, calc(100% - 16px));
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            box-shadow: var(--shadow-lg);
+            animation: fadeUp 0.25s ease;
+        }
+
+        /* Extra breathing room on very large screens */
+        @media (min-width: 1400px) {
+            .container { max-width: 1300px; }
+            .modal-content { width: min(1300px, calc(100% - 16px)); }
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .modal-header h2 { margin: 0; font-size: 20px; }
+        .modal-header p { margin-top: 6px; color: var(--text-secondary); }
+
+        .modal-two-column {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 14px;
+        }
+
+        .evaluation-options { display: grid; gap: 10px; }
+
+        .eval-option {
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .eval-option:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12); }
+        .eval-option.selected { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+
+        .eval-option.poor { background: #fef2f2; }
+        .eval-option.fair { background: #fff7ed; }
+        .eval-option.good { background: #ecfdf5; }
+        .eval-option.excellent { background: #eff6ff; }
+
+        .eval-title { font-size: 15px; margin-bottom: 3px; }
+        .eval-description { color: var(--text-secondary); font-size: 11px; }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .unsaved-indicator {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: #f97316;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.35);
+            display: none;
+        }
+
+        .unsaved-indicator.visible { display: inline-flex; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Micro-Break Toast Notification (Molly Gebrian) */
+        .micro-break-toast {
+            display: none;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            animation: slideUpBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 90%;
+            width: 500px;
+        }
+
+        .micro-break-toast.visible {
+            display: block;
+        }
+
+        .micro-break-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .micro-break-icon {
+            font-size: 40px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .micro-break-text {
+            flex: 1;
+        }
+
+        .micro-break-text strong {
+            display: block;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .micro-break-text small {
+            display: block;
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        @keyframes slideUpBounce {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(100px) scale(0.8);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px) scale(1.02);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+        }
+
+        /* Responsive breakpoints voor metrics grid */
+        @media (max-width: 500px) {
+            body { padding: 8px 0; }
+            .session-layout { grid-template-columns: 1fr; }
+            .container { max-width: 570px; }
+        }
+
+        @media (max-width: 950px) {
+            .session-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .session-card { padding: 24px; }
+            .timer-controls { flex-direction: column; }
+            .counter-group { grid-template-columns: 1fr; }
+            .action-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="session-card">
+            <!-- Header -->
+            <div class="session-header">
+                <div class="session-header-left">
+                    <div class="piece-title" id="pieceTitle">Loading...</div>
+                    <div class="chunk-info" id="chunkInfo"></div>
+                    <div class="chunk-description" id="chunkDescription"></div>
+                </div>
+                <div class="session-header-right">
+                    <div class="header-info-row">
+                        <span class="header-info-label">Memory Zone:</span>
+                        <span class="header-info-value" id="memoryZone">EXPLORATION</span>
+                    </div>
+                    <div class="header-info-row">
+                        <span class="header-info-label">Last Practice:</span>
+                        <span class="header-info-value" id="lastPractice">Never</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="session-layout">
+                <div class="session-left">
+                    <!-- Timer Display -->
+                    <div class="timer-section">
+                        <div class="timer-display" id="timerDisplay" contenteditable="true" 
+                             onclick="enableManualEdit()" 
+                             onblur="saveManualTime()"
+                             onkeypress="handleTimeKeypress(event)"
+                             title="Click to edit time manually">00:00:00</div>
+                        <div style="text-align: center; margin-bottom: 10px;">
+                            <small style="color: var(--text-secondary); font-size: 12px;">💡 Click time to edit manually (format: HH:MM:SS)</small>
+                        </div>
+                        <div class="timer-controls">
+                            <button id="btnStart" class="timer-btn start" onclick="startTimer()">Start</button>
+                            <button id="btnPause" class="timer-btn pause" onclick="pauseTimer()" disabled>Pause</button>
+                            <button id="btnStop" class="timer-btn stop" onclick="stopTimer()" disabled>Stop</button>
+                        </div>
+                    </div>
+
+                    <!-- Tracking Metrics -->
+                    <div class="session-info">
+                        <!-- Attempts Section -->
+                        <div class="metrics-section">
+                            <h3 class="section-title">Attempts</h3>
+                            <div class="counter-group">
+                                <label data-tooltip="Number of mistakes made before your first correct repetition. The target automatically increases LIVE as errors accumulate (Target = MAX(6, errors)). Used to calculate %Correct and difficulty rating.">Failed Attempts:</label>
+                                <div class="counter-controls">
+                                    <button class="counter-btn" onclick="adjustFailedAttempts(-1)">−</button>
+                                    <span class="counter-value" id="failedAttempts">0</span>
+                                    <button class="counter-btn" onclick="adjustFailedAttempts(1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Repetitions & Streaks Section -->
+                        <div class="metrics-section">
+                            <h3 class="section-title">Repetitions & Streaks</h3>
+                            
+                            <!-- Intensity Toggle -->
+                            <div class="counter-group">
+                                <label data-tooltip="Choose intensity: 100% (Default) = Target equals number of errors. 50% = Target stays 6 until 6 errors, then grows +1 for every 2 extra errors (half-speed ramp). Changes how the target is calculated live as you make mistakes.">Overlearning Intensity:</label>
+                                <div class="counter-controls" style="gap: 6px;">
+                                    <button class="counter-btn" id="intensity50Btn" onclick="setOverlearningIntensity(50)" 
+                                            style="width: auto; padding: 0 10px; border-radius: 15px; font-size: 12px;">
+                                        50%
+                                    </button>
+                                    <button class="counter-btn" id="intensity100Btn" onclick="setOverlearningIntensity(100)" 
+                                            style="width: auto; padding: 0 10px; border-radius: 15px; font-size: 12px; background: var(--accent); color: white; font-weight: 700;">
+                                        100%
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="counter-group">
+                                <label data-tooltip="Dr. Gebrian Method: Target starts at 6 (minimum) and increases LIVE as you make errors. Formula: MAX(6, errors) at 100% intensity, or 6 + floor(max(0, errors - 6)/2) at 50%. After your first success, the target locks. If you make mistakes during your streak, just reset and keep going - the target stays the same!">Target Repetitions:</label>
+                                <div class="counter-controls">
+                                    <button class="counter-btn" onclick="adjustTargetReps(-1)">−</button>
+                                    <span class="counter-value" id="targetReps">5</span>
+                                    <button class="counter-btn" onclick="adjustTargetReps(1)">+</button>
+                                    <button class="counter-btn reset" onclick="resetTargetReps()">↺</button>
+                                </div>
+                            </div>
+                            <div class="counter-group">
+                                <label data-tooltip="Number of successful repetitions in your current streak. Every 3 repetitions, take a Micro-Break (10-15 seconds rest). Also rest 5 seconds between each repetition. Used to calculate success rate and determine if you reached your target. TIP: It's OK if this stays at 0 when a passage is too difficult - you can still save the session after 2+ minutes, and you'll get another chance tomorrow without stage penalty.">Correct Repetitions:</label>
+                                <div class="counter-controls">
+                                    <button class="counter-btn" onclick="adjustCorrectReps(-1)">−</button>
+                                    <span class="counter-value" id="correctRepetitions">0</span>
+                                    <button class="counter-btn" onclick="adjustCorrectReps(1)">+</button>
+                                    <button class="counter-btn reset" onclick="resetCorrectReps()">↺</button>
+                                </div>
+                            </div>
+                            <div class="counter-group">
+                                <label data-tooltip="Automatic counter: Number of times you failed to remember and had to reset your streak. Each memory failure directly affects your next review interval by shortening it. When you reset, start over but your target stays the same. This counter increments automatically when you click the reset button (↺) next to Correct Repetitions.">Repetition Streak Resets:</label>
+                                <div class="counter-controls">
+                                    <span class="counter-value" id="streakResets" style="font-size: 24px; color: #7a2d17; font-weight: 700; padding: 0 20px;">0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tempo Section -->
+                        <div class="metrics-section">
+                            <h3 class="section-title">Tempo (BPM) <span style="font-style: italic; font-weight: normal; font-size: 12px; color: #a0522d;">(optional)</span></h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start;">
+                                <div>
+                                    <label style="display: block; margin-bottom: 4px; font-size: 11px; font-weight: 600;">Target Tempo:</label>
+                                    <input type="number" id="targetTempo" class="tempo-input" min="30" max="300" placeholder="BPM" onchange="validateTempoInput()" style="width: 100%;" />
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 4px; font-size: 11px; font-weight: 600;">Achieved Tempo:</label>
+                                    <input type="number" id="achievedTempo" class="tempo-input" min="30" max="300" placeholder="BPM" onchange="validateTempoInput()" style="width: 100%;" />
+                                </div>
+                            </div>
+                            <div class="info-row" id="lastAchievedTempoRow" style="display: none; margin-top: 10px; padding: 8px; background: rgba(211, 158, 90, 0.1); border-radius: 6px;">
+                                <span class="info-label" style="font-size: 13px;">Last achieved:</span>
+                                <span class="info-value" id="lastAchievedTempo" style="font-weight: 700; color: #7a2d17;">- BPM</span>
+                            </div>
+                            <div class="info-row" id="tempoSuggestionRow" style="display: none; margin-top: 5px; padding: 8px; background: rgba(76, 175, 80, 0.1); border-radius: 6px; border-left: 3px solid #4caf50;">
+                                <span class="info-label" style="font-size: 13px; color: #2e7d32;">💡 Try:</span>
+                                <span class="info-value" id="tempoSuggestion" style="font-weight: 700; color: #2e7d32;">- BPM</span>
+                            </div>
+                            <div class="info-row" id="tempoWarningRow" style="display: none; margin-top: 5px; padding: 8px; background: rgba(255, 152, 0, 0.1); border-radius: 6px; border-left: 3px solid #ff9800;">
+                                <span style="font-size: 12px; color: #e65100;">⚠️ <span id="tempoWarningText"></span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="session-right">
+                    <!-- Intensity Module Display -->
+                    <div id="intensityDisplay" class="intensity-module-display" style="display: none;">
+                        <h3 class="section-title">Learning Progress</h3>
+                        
+                        <!-- TDS Display -->
+                        <div class="intensity-metric">
+                            <div class="intensity-header">
+                                <span class="intensity-label">Technical Difficulty Score (TDS)</span>
+                                <span class="intensity-value" id="tdsValue">0%</span>
+                            </div>
+                            <div class="intensity-bar-container">
+                                <div class="intensity-bar" id="tdsBar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Phase Badge removed per user request -->
+                        
+                        <!-- OLQ Progress -->
+                        <div class="intensity-metric">
+                            <div class="intensity-header">
+                                <span class="intensity-label">Overlearning Quotum (OLQ)</span>
+                                <span class="intensity-value" id="olqProgress">0/0</span>
+                            </div>
+                            <div class="intensity-bar-container">
+                                <div class="intensity-bar" id="olqProgressBar" style="width: 0%;"></div>
+                            </div>
+                            <div class="olq-target" id="olqTarget">Target: - reps</div>
+                            <div class="olq-target" id="durationEstimate" style="margin-top: 4px; color: var(--text-secondary);">Estimated Duration: —</div>
+                            <div class="olq-target" id="durationDetails" style="margin-top: 2px; color: var(--text-secondary); font-size: 11px;" title="Range shows ±20% around the estimate. Confidence increases with more sessions used to calibrate your average time per correct repetition: Low (0–2), Medium (3–7), High (8+)."></div>
+                        </div>
+                    </div>
+
+                    <!-- Energy/Context Factor -->
+                    <div class="energy-section">
+                        <label data-tooltip="How do you feel today? Low energy can affect performance, and the algorithm will be more forgiving if you're tired.">Energy & Focus Level:</label>
+                        <div class="energy-toggles">
+                            <button class="energy-btn" id="energyHigh" onclick="setEnergy('High')">⚡ High</button>
+                            <button class="energy-btn selected" id="energyNormal" onclick="setEnergy('Normal')">😐 Normal</button>
+                            <button class="energy-btn" id="energyLow" onclick="setEnergy('Low')">😴 Low</button>
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="notes-section">
+                        <label for="sessionNotes">Session Notes (optional)</label>
+                        <textarea id="sessionNotes" placeholder="Add notes about this practice session..."></textarea>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" onclick="cancelSession()">Cancel</button>
+                        <button id="btnComplete" class="btn btn-primary" onclick="completeSession()" disabled>Complete Session</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Evaluation Modal -->
+    <div id="evaluationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>How was your practice?</h2>
+                <p data-tooltip="Rate how difficult this section felt during practice. This affects the adaptive tau multiplier and future interval calculations.">Evaluate your performance to help improve scheduling</p>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="modal-two-column">
+                <!-- Left Column: Evaluation Options -->
+                <div class="modal-left-column">
+                    <div class="evaluation-options">
+                        <div class="eval-option poor" onclick="selectEvaluation('Poor')">
+                            <div class="eval-title">😔 Poor</div>
+                            <div class="eval-description">Struggled significantly, need more practice</div>
+                        </div>
+                        <div class="eval-option fair" onclick="selectEvaluation('Fair')">
+                            <div class="eval-title">😐 Fair</div>
+                            <div class="eval-description">Made progress but challenging</div>
+                        </div>
+                        <div class="eval-option good" onclick="selectEvaluation('Good')">
+                            <div class="eval-title">😊 Good</div>
+                            <div class="eval-description">Comfortable performance, minor issues</div>
+                        </div>
+                        <div class="eval-option excellent" onclick="selectEvaluation('Excellent')">
+                            <div class="eval-title">🎉 Excellent</div>
+                            <div class="eval-description">Flawless execution, confident</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Success Ratio Trend Chart -->
+                <div class="modal-right-column">
+                    <div class="chart-section" id="chartSection" style="display: none;">
+                        <h3 style="text-align: center; color: #7a2d17; margin-bottom: 10px; font-size: 15px; font-weight: 600;">
+                            📈 Success Ratio Trend
+                        </h3>
+                        <p style="text-align: center; font-size: 11px; color: #666; margin-bottom: 10px;">
+                            Last 7 Sessions
+                        </p>
+                            <div style="background: white; border-radius: 8px; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <canvas id="trendChartCanvas" width="360" height="240"></canvas>
+                        </div>
+                        <p style="text-align: center; font-size: 11px; color: #666; margin-top: 8px; font-style: italic;">
+                            🎯 Ideal zone: 80-90%
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeEvaluationModal()">Cancel</button>
+                <button id="btnSaveEvaluation" class="btn btn-primary" onclick="saveEvaluation()" disabled>Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="microBreakNotification" class="micro-break-toast" aria-live="polite" aria-hidden="true">
+        <div class="micro-break-content">
+            <div class="micro-break-icon">🧠</div>
+            <div class="micro-break-text">
+                <strong>Micro-Break: Stop for 10 to 15 seconds and do nothing.</strong>
+                <small>(Tip: Also rest 5 seconds between each repetition)</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Storage Quota Manager -->
+    <script src="StorageQuotaManager.js"></script>
+    <script src="moduspractica-utils.js"></script>
+    <script src="SuccessRatioTrendChart.js"></script>
+    
+    <!-- Ebbinghaus Engine and Adaptive Systems -->
+    <script src="EbbinghausEngine.js"></script>
+    <script src="PersonalizedMemoryCalibration.js"></script>
+    <script src="MemoryStabilityManager.js"></script>
+    <script src="AdaptiveTauManager.js"></script>
+    <script src="IntensityModule.js"></script>
+    <script src="InterleavedSessionManager.js"></script>
+    <script src="logging.js"></script>
+    
+    <!-- GA4 Event Tracker -->
+    <script src="ga4-tracker.js"></script>
+    
+    <script src="moduspractica-practice-session.js"></script>
+</body>
+</html>

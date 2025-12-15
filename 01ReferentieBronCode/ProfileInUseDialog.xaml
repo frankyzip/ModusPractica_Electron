@@ -1,0 +1,59 @@
+<Window x:Class="ModusPractica.ProfileInUseDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Profile in use"
+        Height="230"
+        Width="520"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#FFFFFF">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="This profile cannot be deleted while it is in use."
+                   FontWeight="Bold"
+                   FontSize="14"/>
+
+        <StackPanel Grid.Row="1"
+                    Margin="0,10,0,10">
+            <TextBlock Text="Try this first:"
+                       FontWeight="SemiBold"/>
+            <TextBlock Text="• Open another profile first, then delete this profile."
+                       Margin="10,2,0,8"/>
+
+            <TextBlock Text="Manual removal (if that doesn't work):"
+                       FontWeight="SemiBold"/>
+            <TextBlock Margin="10,2,0,8">
+                <Run Text="1. Close the application completely."/>
+                <LineBreak/>
+                <Run Text="2. Delete the 'Profiles' folder in File Explorer: "/>
+                <Hyperlink x:Name="HlOpenFolder"
+                           Click="HlOpenFolder_Click">Open folder</Hyperlink>
+            </TextBlock>
+            <TextBlock x:Name="TxtFolder"
+                       FontFamily="Consolas"
+                       FontSize="12"
+                       Foreground="#444"
+                       TextWrapping="Wrap"
+                       Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button x:Name="BtnOpenAnother"
+                    Content="Open another profile"
+                    Width="170"
+                    Margin="0,0,8,0"
+                    Click="BtnOpenAnother_Click"/>
+            <Button Content="OK"
+                    Width="90"
+                    IsDefault="True"
+                    Click="BtnOk_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
