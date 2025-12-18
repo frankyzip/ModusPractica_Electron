@@ -3,7 +3,7 @@
 **Smart Music Practice Management System**
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](./LICENSE-AGPL)
-[![GitHub Release](https://img.shields.io/badge/Version-2.0.0-brightgreen)]()
+[![GitHub Release](https://img.shields.io/badge/Version-2.0.1-brightgreen)]()
 [![Built with Electron](https://img.shields.io/badge/Built%20with-Electron-47848F?logo=electron&logoColor=white)]()
 
 ModusPractica is an advanced, scientifically-grounded music practice management system based on the Ebbinghaus memory curve and spaced repetition learning. It uses adaptive algorithms to optimize learning intervals and practice intensity for individual musicians.
@@ -34,7 +34,8 @@ Learn more: [DEVELOPERS.md](./DEVELOPERS.md)
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 16+ 
+
+- Node.js 16+
 - npm or yarn
 
 ### Installation
@@ -60,14 +61,14 @@ See [README-ELECTRON.md](./README-ELECTRON.md) for detailed development instruct
 
 ## 📖 Documentation
 
-| Document | Purpose |
-|----------|---------|
-| [README-ELECTRON.md](./README-ELECTRON.md) | Development setup & commands |
-| [DEVELOPERS.md](./DEVELOPERS.md) | Full development history, architecture, algorithms |
-| [LICENSING.md](./LICENSING.md) | Dual licensing: AGPL-3.0 (open) & Commercial |
-| [CONTRIBUTORS.md](./CONTRIBUTORS.md) | How to contribute, contributor guidelines |
-| [NOTICES](./NOTICES) | Copyright and attribution notices |
-| `_dev-docs/` | Technical algorithm documentation |
+| Document                                   | Purpose                                            |
+| ------------------------------------------ | -------------------------------------------------- |
+| [README-ELECTRON.md](./README-ELECTRON.md) | Development setup & commands                       |
+| [DEVELOPERS.md](./DEVELOPERS.md)           | Full development history, architecture, algorithms |
+| [LICENSING.md](./LICENSING.md)             | Dual licensing: AGPL-3.0 (open) & Commercial       |
+| [CONTRIBUTORS.md](./CONTRIBUTORS.md)       | How to contribute, contributor guidelines          |
+| [NOTICES](./NOTICES)                       | Copyright and attribution notices                  |
+| `_dev-docs/`                               | Technical algorithm documentation                  |
 
 ## 📋 Architecture
 
@@ -107,7 +108,9 @@ InterleavedSessionManager.js
 ModusPractica is **dual-licensed**:
 
 ### Option 1: AGPL-3.0 (Open Source)
+
 **Free for research and education**
+
 - ✅ Academic research
 - ✅ Educational use
 - ✅ Open source projects
@@ -116,7 +119,9 @@ ModusPractica is **dual-licensed**:
 [Read AGPL-3.0 License](./LICENSE-AGPL)
 
 ### Option 2: Commercial License
+
 **For proprietary and commercial use**
+
 - ✅ Closed-source products
 - ✅ Commercial services
 - ✅ No copyleft requirements
@@ -131,12 +136,14 @@ Frank De Baere (Partura Music™)
 ## 👥 Contributing
 
 We welcome contributions! See [CONTRIBUTORS.md](./CONTRIBUTORS.md) for:
+
 - Contribution guidelines
 - Code of conduct
 - How to get started
 - Recognition levels
 
 **Requirements:**
+
 - Must accept AGPL-3.0 license
 - Follow code style guidelines
 - Include tests and documentation
@@ -155,9 +162,10 @@ ModusPractica is built on peer-reviewed research:
 ## 📊 Algorithm Examples
 
 ### Ebbinghaus Interval Calculation
+
 ```javascript
 // Core formula
-nextInterval = τ * (difficulty / targetRetention)
+nextInterval = τ * (difficulty / targetRetention);
 
 // Where:
 // τ = tau parameter (personalized)
@@ -166,6 +174,7 @@ nextInterval = τ * (difficulty / targetRetention)
 ```
 
 ### Adaptive Tau Learning
+
 ```javascript
 // Bayesian updates from performance
 If (actual_success > expected):
@@ -179,18 +188,21 @@ More details: [DEVELOPERS.md](./DEVELOPERS.md)
 ## 🎓 Use Cases
 
 ### For Musicians
+
 - Optimize practice sessions
 - Reduce practice time while improving retention
 - Track progress scientifically
 - Personalized learning recommendations
 
 ### For Music Educators
+
 - Student practice optimization
 - Understanding learning patterns
 - Research on effective practice
 - Educational software reference
 
 ### For Researchers
+
 - Music learning algorithm research
 - Spaced repetition studies
 - Personalized learning effectiveness
@@ -207,17 +219,20 @@ Found a bug? Have a suggestion?
 ## 🗺️ Roadmap
 
 ### Short Term (Q1 2026)
+
 - [ ] Community feedback integration
 - [ ] Performance optimization
 - [ ] Additional statistical reports
 
 ### Medium Term (2026)
+
 - [ ] Mobile applications (iOS/Android)
 - [ ] Cloud synchronization
 - [ ] Multi-device support
 - [ ] Advanced analytics dashboard
 
 ### Long Term
+
 - [ ] AI-powered practice recommendations
 - [ ] Collaboration features
 - [ ] Teacher/student management system
@@ -245,7 +260,7 @@ Third-party libraries and attributions: See [NOTICES](./NOTICES)
 ## 📞 Contact
 
 **Frank De Baere**  
-Partura Music™  
+Partura Music™
 
 - GitHub: [@frankyzip](https://github.com/frankyzip)
 - Email: [Your email]
@@ -255,7 +270,7 @@ Partura Music™
 
 ## 🌟 Star this project if you find it useful!
 
-*Let's make music learning scientific, personalized, and effective.* 🎵
+_Let's make music learning scientific, personalized, and effective._ 🎵
 
 ---
 

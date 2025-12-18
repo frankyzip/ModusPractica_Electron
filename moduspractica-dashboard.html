@@ -175,6 +175,8 @@
         .breadcrumbs { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-primary); font-weight: 500; }
         .top-actions { display: flex; align-items: center; gap: 12px; }
         .top-date { color: var(--text-secondary); font-size: 13px; }
+        .top-time { color: var(--text-secondary); font-size: 13px; text-align: right; }
+        .top-meta { display: flex; flex-direction: column; align-items: flex-end; margin-right: 12px; }
 
         /* Content Scroll Area */
         .content-scroll {
@@ -419,6 +421,117 @@
             background: #bbb;
         }
 
+        /* Update Notification */
+        .update-notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+        .update-notification-modal {
+            background: white;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.3s ease-out;
+            overflow: hidden;
+        }
+        .update-notification-header {
+            background: linear-gradient(135deg, #2eaadc 0%, #1e8eb8 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+        .update-notification-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .update-notification-header p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+        .update-notification-body {
+            padding: 24px;
+        }
+        .update-notification-body h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        .update-notification-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 16px 0;
+        }
+        .update-notification-body li {
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .update-notification-body li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .update-notification-footer {
+            padding: 16px 24px;
+            background: #f9f9f9;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+        .update-notification-btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .update-notification-btn-primary {
+            background: var(--accent-color);
+            color: white;
+        }
+        .update-notification-btn-primary:hover {
+            background: #2699c5;
+        }
+        .update-notification-btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+        .update-notification-btn-secondary:hover {
+            background: var(--hover-bg);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         /* View Tabs */
         .view-tab {
             padding: 6px 12px;
@@ -626,11 +739,42 @@
     </style>
 </head>
 <body>
+    <!-- Update Notification Modal -->
+    <div id="update-notification" class="update-notification-overlay" style="display: none;">
+        <div class="update-notification-modal">
+            <div class="update-notification-header">
+                <h2>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/>
+                        <path d="M21 3v5h-5"/>
+                    </svg>
+                    ModusPractica Updated!
+                </h2>
+                <p>Version 2.0.1 is now available</p>
+            </div>
+            <div class="update-notification-body">
+                <h3>🌍 What's New</h3>
+                <ul>
+                    <li><strong>Global Timezone Support:</strong> ModusPractica now works perfectly across all timezones</li>
+                    <li><strong>Live Clock Display:</strong> See your local time and timezone right in the dashboard</li>
+                    <li><strong>Bug Fixes:</strong> Resolved import issues and improved stability</li>
+                </ul>
+                <p style="font-size: 13px; color: var(--text-secondary); margin-top: 16px;">
+                    Your practice schedule is now fully timezone-safe. The app automatically migrated your existing data.
+                </p>
+            </div>
+            <div class="update-notification-footer">
+                <button class="update-notification-btn update-notification-btn-secondary" onclick="closeUpdateNotification()">Close</button>
+                <button class="update-notification-btn update-notification-btn-primary" onclick="viewReleaseNotes()">View Release Notes</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
             <img src="assets/BreinLogo.png" alt="Logo" class="app-logo-img">
-            <div class="app-title">ModusPractica <span style="font-weight: 400; color: #999; font-size: 11px;">v2.0.0</span></div>
+            <div class="app-title">ModusPractica <span style="font-weight: 400; color: #999; font-size: 11px;">v2.0.1</span></div>
         </div>
         
         <div class="sidebar-nav">
@@ -681,6 +825,10 @@
                 <span class="nav-icon"><i data-lucide="book-open"></i></span>
                 <span>Manual NL</span>
             </a>
+            <a href="moduspractica-release-notes.html" class="nav-item">
+                <span class="nav-icon"><i data-lucide="file-text"></i></span>
+                <span>Release Notes</span>
+            </a>
             <a href="moduspractica-about.html" class="nav-item">
                 <span class="nav-icon"><i data-lucide="info"></i></span>
                 <span>About</span>
@@ -710,7 +858,10 @@
                 </div>
             </div>
             <div class="top-actions">
-                <div class="top-date" id="top-date-display">Monday, December 1, 2025</div>
+                <div class="top-meta">
+                    <div class="top-date" id="top-date-display">Monday, December 1, 2025</div>
+                    <div class="top-time" id="top-time-display">00:00 • UTC+00:00 • Local Time</div>
+                </div>
                 <button class="btn btn-primary" id="add-piece-btn">
                     <span>+ New Piece</span>
                 </button>
@@ -1137,12 +1288,57 @@
     <script src="moduspractica-dashboard.js"></script>
 
     <script>
-        // Simple date display script (English long format)
         const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const topDateEl = document.getElementById('top-date-display');
-        if (topDateEl) {
-            topDateEl.textContent = new Date().toLocaleDateString('en-US', dateOptions);
+        const topTimeEl = document.getElementById('top-time-display');
+        const timeZoneName = (Intl.DateTimeFormat().resolvedOptions().timeZone || 'Local Time');
+
+        function updateTopDateTime() {
+            const now = new Date();
+            if (topDateEl) {
+                topDateEl.textContent = now.toLocaleDateString('en-US', dateOptions);
+            }
+            if (topTimeEl) {
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const offsetMinutes = -now.getTimezoneOffset();
+                const sign = offsetMinutes >= 0 ? '+' : '-';
+                const absOffset = Math.abs(offsetMinutes);
+                const offsetHours = String(Math.floor(absOffset / 60)).padStart(2, '0');
+                const offsetRemainder = String(absOffset % 60).padStart(2, '0');
+                topTimeEl.textContent = `${hours}:${minutes} • UTC${sign}${offsetHours}:${offsetRemainder} • ${timeZoneName}`;
+            }
         }
+
+        updateTopDateTime();
+        setInterval(updateTopDateTime, 30000);
+    </script>
+    <script>
+        // Update Notification System
+        const APP_VERSION = '2.0.1';
+        const UPDATE_NOTIFICATION_KEY = `mp_updateNotificationShown_${APP_VERSION}`;
+
+        function showUpdateNotification() {
+            const notificationShown = localStorage.getItem(UPDATE_NOTIFICATION_KEY);
+            if (!notificationShown) {
+                document.getElementById('update-notification').style.display = 'flex';
+            }
+        }
+
+        function closeUpdateNotification() {
+            document.getElementById('update-notification').style.display = 'none';
+            localStorage.setItem(UPDATE_NOTIFICATION_KEY, 'true');
+        }
+
+        function viewReleaseNotes() {
+            closeUpdateNotification();
+            window.location.href = 'moduspractica-release-notes.html';
+        }
+
+        // Show notification after dashboard loads
+        window.addEventListener('load', () => {
+            setTimeout(showUpdateNotification, 1000);
+        });
     </script>
     <script>
         // Initialize Lucide icons

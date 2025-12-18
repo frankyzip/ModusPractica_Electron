@@ -126,6 +126,159 @@ function normalizeProfilePracticeHistory(profileData) {
     return profileData;
 }
 
+// ============================================================================
+// TIMEZONE-SAFE DATE UTILITIES
+// Ensures consistent date handling across all timezones and devices
+// ============================================================================
+
+/**
+ * Get today's date in the user's local timezone (date-only, no time)
+ * Always returns midnight in local timezone for consistent comparisons
+ * @returns {Date} Today at 00:00:00 local time
+ */
+function getTodayLocal() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+}
+
+/**
+ * Convert any date to date-only (midnight) in local timezone
+ * Strips time component for consistent date comparisons
+ * @param {Date|string} date - Date to convert
+ * @returns {Date} Date at 00:00:00 local time
+ */
+function toDateOnly(date) {
+    const d = date instanceof Date ? date : new Date(date);
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+}
+
+/**
+ * Check if two dates are the same calendar day (timezone-aware)
+ * Compares only the date portion, ignoring time and timezone differences
+ * @param {Date|string} date1 - First date
+ * @param {Date|string} date2 - Second date
+ * @returns {boolean} True if same calendar day
+ */
+function isSameDay(date1, date2) {
+    const d1 = toDateOnly(date1);
+    const d2 = toDateOnly(date2);
+    return d1.getFullYear() === d2.getFullYear() &&
+           d1.getMonth() === d2.getMonth() &&
+           d1.getDate() === d2.getDate();
+}
+
+/**
+ * Calculate days between two dates (timezone-safe)
+ * Always uses date-only comparison, ignoring time components
+ * @param {Date|string} date1 - Start date
+ * @param {Date|string} date2 - End date
+ * @returns {number} Number of days difference (can be negative)
+ */
+function daysBetween(date1, date2) {
+    const d1 = toDateOnly(date1);
+    const d2 = toDateOnly(date2);
+    const diffMs = d2.getTime() - d1.getTime();
+    return Math.floor(diffMs / (1000 * 60 * 60 * 24));
+}
+
+/**
+ * Add days to a date (timezone-safe)
+ * @param {Date|string} date - Starting date
+ * @param {number} days - Number of days to add (can be negative)
+ * @returns {Date} New date with days added
+ */
+function addDays(date, days) {
+    const d = toDateOnly(date);
+    const result = new Date(d);
+    result.setDate(result.getDate() + days);
+    return result;
+}
+
+/**
+ * Format date as YYYY-MM-DD (timezone-safe)
+ * Uses local timezone, not UTC
+ * @param {Date|string} date - Date to format
+ * @returns {string} Date in YYYY-MM-DD format
+ */
+function formatDateYMD(date) {
+    const d = date instanceof Date ? date : new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+/**
+ * Parse YYYY-MM-DD string to Date (timezone-safe)
+ * Returns midnight in local timezone
+ * @param {string} dateString - Date string in YYYY-MM-DD format
+ * @returns {Date|null} Parsed date or null if invalid
+ */
+function parseDateYMD(dateString) {
+    if (!dateString || typeof dateString !== 'string') return null;
+    const parts = dateString.split('-');
+    if (parts.length !== 3) return null;
+    
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Month is 0-indexed
+    const day = parseInt(parts[2], 10);
+    
+    if (isNaN(year) || isNaN(month) || isNaN(day)) return null;
+    if (month < 0 || month > 11 || day < 1 || day > 31) return null;
+    
+    return new Date(year, month, day);
+}
+
+/**
+ * Check if a date is in the past (timezone-aware)
+ * @param {Date|string} date - Date to check
+ * @returns {boolean} True if date is before today
+ */
+function isPastDate(date) {
+    return daysBetween(date, getTodayLocal()) > 0;
+}
+
+/**
+ * Check if a date is in the future (timezone-aware)
+ * @param {Date|string} date - Date to check
+ * @returns {boolean} True if date is after today
+ */
+function isFutureDate(date) {
+    return daysBetween(date, getTodayLocal()) < 0;
+}
+
+/**
+ * Check if a date is today (timezone-aware)
+ * @param {Date|string} date - Date to check
+ * @returns {boolean} True if date is today
+ */
+function isToday(date) {
+    return isSameDay(date, getTodayLocal());
+}
+
+/**
+ * Convert legacy date storage to timezone-safe format
+ * Ensures all stored dates use consistent format
+ * @param {Date|string|number} date - Date in any format
+ * @returns {string} ISO string of date at midnight local time
+ */
+function normalizeDateForStorage(date) {
+    if (!date) return getTodayLocal().toISOString();
+    
+    let d;
+    if (typeof date === 'number') {
+        d = new Date(date);
+    } else if (typeof date === 'string') {
+        d = new Date(date);
+    } else {
+        d = date;
+    }
+    
+    // Convert to date-only in local timezone, then to ISO
+    const dateOnly = toDateOnly(d);
+    return dateOnly.toISOString();
+}
+
 /**
  * Open the practice session page inside a centered popup window.
  * Falls back to a normal navigation when the browser blocks popups.
@@ -186,8 +339,23 @@ if (typeof module !== 'undefined' && module.exports) {
         generateProfileId, 
         LifecycleState, 
         getLifecycleStateName, 
-        getLifecycleStateValue 
-        , getMemoryFailures, getExecutionFailures, getCombinedFailures, normalizeProfilePracticeHistory
-        , openPracticeSessionWindow
+        getLifecycleStateValue,
+        getMemoryFailures, 
+        getExecutionFailures, 
+        getCombinedFailures, 
+        normalizeProfilePracticeHistory,
+        openPracticeSessionWindow,
+        // Timezone-safe date utilities
+        getTodayLocal,
+        toDateOnly,
+        isSameDay,
+        daysBetween,
+        addDays,
+        formatDateYMD,
+        parseDateYMD,
+        isPastDate,
+        isFutureDate,
+        isToday,
+        normalizeDateForStorage
     };
 }

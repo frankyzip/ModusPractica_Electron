@@ -1,795 +1,223 @@
-<!--
-+---------------------------------------------------------------------------+
-�  ModusPractica Release Notes                                             �
-�  Copyright � 2025 Frank De Baere - All Rights Reserved                    �
-+---------------------------------------------------------------------------+
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModusPractica Release Notes - Version History</title>
-    <meta name="description" content="Complete changelog and release history for ModusPractica - track new features, improvements, and bug fixes.">
-    <meta name="keywords" content="ModusPractica changelog, release notes, version history, updates, new features, bug fixes">
-    <meta name="author" content="Frank De Baere">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.parturamusic.be/moduspractica/moduspractica-release-notes.html">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://www.parturamusic.be/moduspractica/moduspractica-release-notes.html">
-    <meta property="og:title" content="ModusPractica Release Notes - Version History">
-    <meta property="og:description" content="Complete changelog with new features, improvements, and bug fixes.">
-    <meta property="og:image" content="https://www.parturamusic.be/assets/bzt.png">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="ModusPractica Release Notes">
-    <meta name="twitter:description" content="Track new features and updates.">
-    
-    <!-- CSS styles are inline in this file -->
+    <title>Release Notes - ModusPractica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #2eaadc;
+            --bg-color: #f7f3ef;
+            --text-primary: #37352f;
+            --text-secondary: #787774;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #f7f3ef;
-            color: #1a202c;
-            margin: 0;
-        }
-
-        .release-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 24px 80px;
-        }
-
-        .release-header {
-            background: linear-gradient(135deg, #b45722 0%, #c9782a 100%);
-            color: #fff;
-            border-radius: 18px;
-            padding: 48px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
-            margin-bottom: 36px;
-        }
-
-        .release-header h1 {
-            margin: 0 0 12px;
-            font-size: 2.8rem;
-            letter-spacing: 0.02em;
-        }
-
-        .release-header p {
-            margin: 0;
-            font-size: 1.1rem;
+            background: var(--bg-color);
+            color: var(--text-primary);
             line-height: 1.6;
-            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
         }
 
         .back-link {
             display: inline-block;
             margin-bottom: 24px;
-            color: #b45722;
+            color: var(--primary-color);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: color 0.2s;
+            font-weight: 500;
         }
 
         .back-link:hover {
-            color: #8a4319;
+            text-decoration: underline;
         }
 
-        .release-entry {
+        .release {
             background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 18px 45px rgba(30, 30, 30, 0.12);
-            padding: 40px 48px;
-            margin-bottom: 32px;
-            border-left: 6px solid #c9782a;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary-color);
         }
 
-        .release-entry.latest {
-            border-left-color: #2ecc71;
-            box-shadow: 0 18px 45px rgba(46, 204, 113, 0.25);
+        .release.latest {
+            border-left-color: #27ae60;
+        }
+
+        .release-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
         }
 
         .release-version {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .release-version h2 {
-            margin: 0;
-            font-size: 1.8rem;
-            color: #2d3748;
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
         .release-badge {
-            background: #2ecc71;
-            color: #fff;
-            padding: 6px 14px;
+            background: #27ae60;
+            color: white;
+            padding: 4px 12px;
             border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-size: 0.7rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
         .release-date {
-            color: #718096;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 24px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
         }
 
         .release-section {
-            margin-bottom: 28px;
+            margin-bottom: 20px;
         }
 
         .release-section h3 {
-            font-size: 1.25rem;
-            color: #b45722;
-            margin: 0 0 12px;
+            font-size: 1.1rem;
             font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-color);
         }
 
         .release-section ul {
-            margin: 0;
-            padding-left: 24px;
-            line-height: 1.8;
+            list-style: none;
+            padding-left: 0;
         }
 
         .release-section li {
-            margin-bottom: 8px;
-            color: #3a4557;
+            padding-left: 24px;
+            margin-bottom: 6px;
+            position: relative;
         }
 
-        .release-section code {
-            background: #f7fafc;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            color: #c7254e;
-            font-family: 'Courier New', monospace;
+        .release-section li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: var(--primary-color);
+            font-weight: bold;
         }
 
-        .release-highlight {
-            background: #fef6ed;
-            border-left: 5px solid #c9782a;
-            padding: 18px 22px;
-            border-radius: 12px;
+        .highlight {
+            background: #fff9e6;
+            border-left: 3px solid #ffd700;
+            padding: 16px;
+            border-radius: 6px;
             margin: 16px 0;
-            font-size: 0.95rem;
         }
 
-        .release-footer {
-            text-align: center;
-            font-size: 0.95rem;
-            color: #596170;
-            margin-top: 44px;
-            padding-top: 32px;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        @media (max-width: 768px) {
-            .release-header {
-                padding: 38px 28px;
-            }
-
-            .release-entry {
-                padding: 32px 24px;
-            }
-
-            .release-version h2 {
-                font-size: 1.5rem;
-            }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <div class="release-container">
-        <a href="moduspractica-manual.html" class="back-link">? Back to Manual</a>
+    <div class="container">
+        <a href="moduspractica-app.html" class="back-link">← Back to App</a>
+        
+        <div class="header">
+            <h1>🎵 Release Notes</h1>
+            <p>Version history and updates for ModusPractica</p>
+        </div>
 
-        <header class="release-header">
-            <h1>?? Release Notes</h1>
-            <p>Complete version history of ModusPractica with detailed changelogs, new features, improvements, and bug fixes.</p>
-        </header>
-
-        <main aria-label="ModusPractica Release Notes">
+        <!-- Version 2.0.1 - Timezone Fix -->
+        <div class="release latest">
+            <div class="release-header">
+                <span class="release-version">Version 2.0.1</span>
+                <span class="release-badge">Latest</span>
+            </div>
+            <div class="release-date">Released: December 18, 2025 • Build 20251218</div>
             
-            <!-- TEMPLATE: Copy this block for each new release -->
-            <!--
-            <article class="release-entry latest">
-                <div class="release-version">
-                    <h2>Version X.X.X</h2>
-                    <span class="release-badge">Latest</span>
-                </div>
-                <div class="release-date">Released: Month DD, YYYY</div>
-                
-                <div class="release-section">
-                        <li><strong>manual update:</strong> Added a dedicated Practice Session interface walkthrough in the ModusPractica manual explaining how to enter data accurately and how to interpret the Learning Progress window (TDS, phase badge, OLQ progress).</li>
-                    <h3>? New Features</h3>
-                    <ul>
-                        <li>Feature description</li>
-                    </ul>
-                </div>
+            <div class="highlight">
+                <strong>🌍 Global Timezone Support!</strong> ModusPractica is now fully timezone-safe and works correctly for users worldwide.
+            </div>
 
-                <div class="release-section">
-                    <h3>?? Improvements</h3>
-                    <ul>
-                        <li>Improvement description</li>
-                    </ul>
-                </div>
+            <div class="release-section">
+                <h3>✨ New Features</h3>
+                <ul>
+                    <li><strong>Live Clock Display:</strong> Dashboard now shows local time, UTC offset, and IANA timezone name in the top-right corner</li>
+                    <li><strong>Timezone-Safe Date Storage:</strong> All dates are stored in timezone-safe format with automatic migration of legacy data</li>
+                    <li><strong>Global Compatibility:</strong> Ebbinghaus scheduler works identically across all timezones</li>
+                </ul>
+            </div>
 
-                <div class="release-section">
-                    <h3>?? Bug Fixes</h3>
-                    <ul>
-                        <li>Bug fix description</li>
-                    </ul>
-                </div>
-            </article>
-            -->
+            <div class="release-section">
+                <h3>🔧 Improvements</h3>
+                <ul>
+                    <li><strong>Timezone Utilities:</strong> New utility functions: <code>getTodayLocal()</code>, <code>toDateOnly()</code>, <code>isSameDay()</code>, <code>daysBetween()</code></li>
+                    <li><strong>Data Migration:</strong> Automatic conversion of legacy dates to timezone-safe format during data import</li>
+                    <li><strong>Calendar Fixes:</strong> Calendar now displays correct local dates independent of timezone</li>
+                    <li><strong>Statistics Accuracy:</strong> Streak calculations and overdue tracking are now timezone-aware</li>
+                </ul>
+            </div>
 
-            <!-- December 1, 2025 - Energy & Focus Tracking -->
-            <article class="release-entry latest">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.11</h2>
-                    <span class="release-badge">Latest</span>
-                </div>
-                <div class="release-date">Released: December 1, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>? Energy-Aware Practice!</strong> ModusPractica now tracks your energy levels during practice. If you're tired ("Low Energy") and a session doesn't go well, the algorithm is now smart enough to know it's likely due to fatigue, not memory failure, and protects your long-term stability score.
-                </div>
+            <div class="release-section">
+                <h3>🐛 Bug Fixes</h3>
+                <ul>
+                    <li><strong>Dashboard Loading:</strong> Fixed "Loading..." status caused by syntax errors in dashboard JavaScript</li>
+                    <li><strong>Import Issues:</strong> Data import now correctly displays all pieces after import completion</li>
+                    <li><strong>Syntax Errors:</strong> Corrected <code>getAgendaBucketsForDate()</code> function with valid parameters</li>
+                </ul>
+            </div>
+        </div>
 
-                <div class="release-section">
-                    <h3>? New Features</h3>
-                    <ul>
-                        <li><strong>Energy & Focus Tracking:</strong> New buttons in the practice session interface allow you to log your current state: <strong>High</strong>, <strong>Normal</strong>, or <strong>Low</strong>. This adds valuable context to your practice history.</li>
-                        <li><strong>Smart Stability Protection:</strong> The memory algorithm has been updated to be context-aware. If you fail a session while your energy is marked as "Low", the penalty to your memory stability is reduced from 70% to just 10%. This prevents a bad day from ruining your long-term schedule.</li>
-                    </ul>
-                </div>
+        <!-- Version 2.0.0 - Initial Electron Release -->
+        <div class="release">
+            <div class="release-header">
+                <span class="release-version">Version 2.0.0</span>
+            </div>
+            <div class="release-date">Released: December 1, 2025</div>
 
-                <div class="release-section">
-                    <h3>?? Improvements</h3>
-                    <ul>
-                        <li><strong>Session History:</strong> Your energy state is now saved with every session, allowing you to correlate performance with fatigue levels over time.</li>
-                        <li><strong>Draft Recovery:</strong> Energy settings are preserved in drafts, so if your browser crashes, your context is saved.</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 28, 2025 - Locale-Aware Date & Time Rendering -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.10</h2>
-                </div>
-                <div class="release-date">Released: November 28, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>?? Your Time, Your Format!</strong> Dates and times across ModusPractica now automatically follow the locale of the device you're using. Whether you're in Belgium, the United States, or anywhere else, every schedule, history entry, and log will match your familiar regional format.
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Improvements</h3>
-                    <ul>
-                        <li><strong>Locale-Aware Scheduling:</strong> Practice sessions, calendar entries, statistics summaries, and piece details now render using <code>toLocaleDateString(undefined, ...)</code> and <code>toLocaleTimeString(undefined, ...)</code>, letting the browser apply the user's regional preferences automatically.</li>
-                        <li><strong>Consistent Historical Data:</strong> Existing profile data is preserved in ISO format but displayed using the local convention, ensuring previously logged practice sessions immediately reflect the correct formatting on any machine.</li>
-                        <li><strong>Dashboard Polish:</strong> Profile overview cards and draft recovery prompts now mirror the same locale-aware formatting, eliminating confusion when comparing timestamps across devices.</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Bug Fixes</h3>
-                    <ul>
-                        <li><strong>Regional Mismatch:</strong> Resolved the hardcoded Belgian date/time formatting that previously caused MM/DD vs DD/MM confusion for North American users and other regions.</li>
-                        <li><strong>Documentation Note:</strong> Updated release highlights and popup messaging so teams are immediately aware of the locale-aware rollout.</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 27, 2025 - Manual Target Override & Incomplete Session Handling -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.9</h2>
-                </div>
-                <div class="release-date">Released: November 27, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>?? More Control, Better Data!</strong> You can now manually adjust target repetitions and have the system respect your choice for the entire session. Plus, incomplete sessions (when a passage is too difficult) can now be saved and tracked separately for more accurate statistics.
-                </div>
-
-                <div class="release-section">
-                    <h3>? New Features</h3>
-                    <ul>
-                        <li><strong>Manual Target Override Respect:</strong> When you manually adjust the target repetitions using the [+ / -] buttons during a session, the Intensity Module now respects your decision for the remainder of that practice session. The system won't automatically increase the target again until you start a new session. This gives you full control when fatigue sets in or time runs out.</li>
-                        <li><strong>Incomplete Session Handling:</strong> Sessions where you struggle with a difficult passage (0 correct repetitions after 2+ minutes of practice) can now be saved as "Incomplete" sessions. These receive a fixed 1-day review interval without stage penalties, allowing you to track effort even when success is elusive.</li>
-                        <li><strong>Session Outcome Tracking:</strong> Practice sessions are now categorized as <code>TargetReached</code>, <code>PartialProgress</code>, or <code>Incomplete</code> for more accurate statistics and better insight into your learning patterns.</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Improvements</h3>
-                    <ul>
-                        <li><strong>Manual Documentation Update:</strong> Section 4.2 "Understanding Target Repetitions & Overlearning" has been expanded to clearly explain the new manual override behavior, including when auto-adjustments resume and why this design supports both scientific rigor and user autonomy.</li>
-                        <li><strong>Counter Tooltip Update:</strong> The Correct Repetitions counter now includes a helpful tooltip explaining that it's OK if the counter stays at 0 for very difficult passages.</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Bug Fixes</h3>
-                    <ul>
-                        <li><strong>Intensity Module Override Prevention:</strong> Fixed an issue where the Intensity Module would automatically increase target repetitions immediately after a user manually lowered them (e.g., 6?3 would become 6?3?7 after the first repetition). The system now honors manual adjustments throughout the entire session.</li>
-                        <li><strong>Validation Block for Zero-Rep Sessions:</strong> Removed the hard validation block that prevented saving sessions with 0 correct repetitions, even after extended practice time. Sessions with genuine effort (2+ minutes) can now be saved regardless of success rate.</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 26, 2025 - Short Session Protection & Algorithm Fix -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.8</h2>
-                </div>
-                <div class="release-date">Released: November 26, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>??? Data Integrity & Precision!</strong> We've added protection against accidental short sessions polluting your stats and fixed a timing anomaly in the memory stability algorithm to ensure your retention predictions are more accurate than ever.
-                </div>
-
-                <div class="release-section">
-                    <h3>? New Features</h3>
-                    <ul>
-                        <li><strong>Short Session Protection:</strong> Sessions shorter than 30 seconds now trigger a confirmation dialog. You can choose to save them (for quick checks) or discard them, preventing accidental "clicks" from skewing your practice statistics.</li>
-                        <li><strong>Enhanced Diagnostics:</strong> Comprehensive logging has been added for profile management, data import/export, and adaptive learning decisions, allowing for better support and troubleshooting.</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Improvements</h3>
-                    <ul>
-                        <li><strong>Algorithm Accuracy Fix:</strong> Fixed a timing anomaly where the memory stability calculation could sometimes use the "current" time instead of the "last review" time, leading to overly optimistic retention predictions. Predictions are now strictly based on the actual interval since the last practice.</li>
-                        <li><strong>Release Notes Popup:</strong> The "What's New" popup now correctly tracks the specific version you've seen, ensuring you only see it once per update.</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 25, 2025 - Simplified Interface & Smart Targets -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.7</h2>
-                </div>
-                <div class="release-date">Released: November 25, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>?? Less Noise, More Focus!</strong> We've simplified the practice interface by removing the confusing "Learning Phase" badge and "range" displays. The system now handles target adjustments intelligently in the background�automatically increasing volume for mastery consolidation and resetting to a clean slate for new stages�so you can focus entirely on the music.
-                </div>
-
-                <div class="release-section">
-                    <h3>? New Features</h3>
-                    <ul>
-                        <li><strong>Smart Target Adjustment:</strong> The system now automatically increases your Target Repetitions when you perform flawlessly (Mastery/Overlearning). This ensures you get the scientifically required volume for long-term consolidation without having to calculate it yourself.</li>
-                        <li><strong>Stage Reset:</strong> When you are promoted to a new stage (e.g., Stage 1 ? Stage 2), your target repetitions automatically reset to the baseline of 6. This gives you a fresh start for every new level of difficulty.</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Improvements</h3>
-                    <ul>
-                        <li><strong>Simplified Interface:</strong> Removed the "Learning Phase" badge from the live practice view. The average success ratio in your trend charts provides a much more stable and useful indicator of progress than a jumping live meter.</li>
-                        <li><strong>Clearer Targets:</strong> Removed the confusing "range" display (e.g., "6-8") from the target counter. You now see a single, clear goal.</li>
-                        <li><strong>Simplified Warnings:</strong> The manual override warning is now cleaner: <em>"manual override (recommended X)"</em>. It informs you of the scientific optimum while respecting your autonomy to stop when needed.</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Documentation</h3>
-                    <ul>
-                        <li><strong>Manual Update:</strong> Added clear explanations for "Why does the Target increase when I play well?" and "Starting a New Stage", focusing on the scientific principles of consolidation vs. acquisition.</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 24, 2025 - TDS & Manual Override Update -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.6</h2>
-                    <span class="release-badge">Latest</span>
-                </div>
-                <div class="release-date">Released: November 24, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>?? Enhanced Practice Feedback!</strong> The Learning Progress card now features a more intuitive "Failure Rate" display for TDS and a smart warning system for manual target overrides, ensuring you always know when you're deviating from the optimal retention strategy.
-                </div>
-
-                <div class="release-section">
-                    <h3>? New Features</h3>
-                    <ul>
-                        <li><strong>Smart Manual Override Warning:</strong> When manually adjusting Target Repetitions away from the scientific recommendation, a bold red warning now appears: <em>"manual override (recommended X � range Y-Z)"</em>. This keeps you informed about the optimal path while respecting your autonomy.</li>
-                        <li><strong>Real-time Target Sync:</strong> The Learning Progress card (OLQ bar) now instantly updates when you change your target repetitions, providing immediate visual feedback on your new goal.</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Improvements</h3>
-                    <ul>
-                        <li><strong>TDS Calculation Update:</strong> Technical Difficulty Score (TDS) now displays <strong>Failure Rate</strong> instead of Success Rate. A full bar (100%) now correctly indicates high difficulty (all failures), while an empty bar (0%) indicates mastery. This aligns better with the concept of "Difficulty".</li>
-                        <li><strong>Immediate Feedback:</strong> The TDS bar now updates immediately upon entering the first failed attempt, even before any correct repetitions are logged, giving instant feedback on session difficulty.</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 23, 2025 - Intensity Module Documentation Complete -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.5</h2>
-                </div>
-                <div class="release-date">Released: November 23, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>?? Intensity Module Documentation Complete!</strong> All documentation now reflects the new FixedGoal + 50% overlearning algorithm. Scientific paper, implementation guides, examples, and manual sections fully synchronized with Dr. Gebrian's research framework.
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Documentation Updates</h3>
-                    <ul>
-                        <li><strong>Scientific Paper:</strong> Updated moduspractica-science.html with FixedGoal baselines (6-10) and overlearning formula (ceil(initialFailedAttempts � 0.5))</li>
-                        <li><strong>README:</strong> Revised metric tables showing baseline + overlearning components per learning phase</li>
-                        <li><strong>Implementation Guide:</strong> Updated code examples and TDS tables with new OLQ calculation logic</li>
-                        <li><strong>Quickstart Guide:</strong> Replaced range descriptions with explicit FixedGoal + overlearning term explanations</li>
-                        <li><strong>Examples Document:</strong> All 5 worked examples recalculated with initial failure counts, overlearning bonuses, and revised durations</li>
-                        <li><strong>Console Debug Output:</strong> Example debug logs now show FixedGoal baseline and overlearning bonus fields</li>
-                        <li><strong>Research Validation Table:</strong> Updated to show FixedGoal baselines per phase with overlearning term formula</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Algorithm Clarity</h3>
-                    <ul>
-                        <li><strong>Pre-Success vs Post-Success:</strong> All docs now emphasize that only failures BEFORE first success contribute to overlearning term</li>
-                        <li><strong>Baseline Stability:</strong> FixedGoals (6/7/8/9/10) provide consistent targets across learning phases</li>
-                        <li><strong>Overlearning Transparency:</strong> Formula ceil(initialFailedAttempts � 0.5) explicitly documented in all contexts</li>
-                        <li><strong>Duration Recalculation:</strong> All example scenarios updated with phase-specific time-per-CR values</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>? Manual Enhancements</h3>
-                    <ul>
-                        <li><strong>Practice Session Interface Guide:</strong> New comprehensive walkthrough explaining left/right panel layout and data entry workflow</li>
-                        <li><strong>Counter Explanations:</strong> Detailed descriptions of Failed Attempts, Target Reps, Correct Reps, and automatic Streak Resets</li>
-                        <li><strong>Learning Progress Window:</strong> Step-by-step guide to interpreting TDS bar, phase badge, and OLQ progress display</li>
-                        <li><strong>Real-World Example:</strong> Chopin Nocturne practice session walkthrough with 10 logged attempts showing exact button clicks</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Consistency Achieved</h3>
-                    <ul>
-                        <li>Code implementation (IntensityModule.js) ?</li>
-                        <li>Unit tests (IntensityModule.test.js) ?</li>
-                        <li>Scientific paper (moduspractica-science.html) ?</li>
-                        <li>Developer documentation (README, Implementation, Quickstart, Examples) ?</li>
-                        <li>User manual (moduspractica-manual.html) ?</li>
-                        <li>All references to old "range" system removed ?</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 22, 2025 - Practice Charts Enhancement & UI Refinement -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.4</h2>
-                </div>
-                <div class="release-date">Released: November 22, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>?? Enhanced Practice Visualization!</strong> Practice Charts now display both success ratio trends and start friction evolution, providing deeper insight into preparation effort versus execution quality. Updated manual section 4A explains the dual-line system.
-                </div>
-
-                <div class="release-section">
-                    <h3>? New Features</h3>
-                    <ul>
-                        <li><strong>Start Friction Tracking:</strong> New purple dashed line on Practice Charts visualizes attempts before first success (0 attempts = instant success, =5 attempts = 100% friction)</li>
-                        <li><strong>Start Friction Indicators:</strong> Summary bar and session cards now display color-coded friction chips (Low/Moderate/High) based on preparation difficulty</li>
-                        <li><strong>Dual-Line Legend:</strong> New left-column legend clearly explains both success ratio (blue solid) and start friction (purple dashed) trend lines</li>
-                        <li><strong>Manual Section 4A:</strong> Comprehensive Practice Charts documentation added to manual explaining interpretation of dual metrics</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Improvements</h3>
-                    <ul>
-                        <li><strong>Session Detail Cards:</strong> Practice session cards now show "Attempts Before Success" count alongside existing metrics</li>
-                        <li><strong>Chart Data Consistency:</strong> Start friction uses same normalization logic across all views (summary, sessions, chart)</li>
-                        <li><strong>Visual Clarity:</strong> Removed redundant canvas legend for friction line; sidebar legend provides clearer context</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>??? Removed</h3>
-                    <ul>
-                        <li><strong>Success Rate Badge:</strong> Removed distracting live success percentage display from practice session page to improve focus during practice</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Documentation</h3>
-                    <ul>
-                        <li><strong>Manual Updated:</strong> Section 4A now explains how success ratio (planner metric) and start friction (coaching metric) work together</li>
-                        <li><strong>Screenshot Added:</strong> Practice Charts manual section includes annotated example showing both trend lines</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 21, 2025 - Critical Bug Fixes & UI Improvements -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.3</h2>
-                </div>
-                <div class="release-date">Released: November 21, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>?? Critical Stability Update!</strong> Major bug fixes improve data integrity and prevent session save failures. Enhanced error handling ensures your practice data is always protected, even during code updates or browser reloads.
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Critical Bug Fixes</h3>
-                    <ul>
-                        <li><strong>Session Save Crash Fixed:</strong> Resolved "clampedInterval.toFixed is not a function" error that prevented sessions from being saved</li>
-                        <li><strong>Data Integrity Protection:</strong> Added comprehensive validation to saveData() function to detect and prevent corrupt data scenarios</li>
-                        <li><strong>Error Recovery:</strong> Complete try-catch wrapper around save operations with user-friendly error messages showing practice metrics</li>
-                        <li><strong>Race Condition Fix:</strong> saveData() now always loads fresh data from localStorage before merging changes to prevent data loss during concurrent operations</li>
-                        <li><strong>Cancel Safety:</strong> Enhanced cancel function with error handling to ensure clean exit even if draft cleanup fails</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? UI/UX Improvements</h3>
-                    <ul>
-                        <li><strong>Calendar Button Swap:</strong> "Free Practice" button now positioned on the left, "Recalculate Schedule" on the right for better workflow</li>
-                        <li><strong>Lifecycle Terminology:</strong> "Inactive" status renamed to "Archive" for clearer semantics (archived chunks are not scheduled)</li>
-                        <li><strong>Tooltip Clarity:</strong> "Repetition Streak Resets" tooltip now clearly states it counts memory failures, not successful repetitions</li>
-                        <li><strong>Simplified Controls:</strong> Removed redundant reset button (?) from "Failed Attempts" counter - only +/- needed for manual adjustments</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Developer Notes</h3>
-                    <ul>
-                        <li><strong>API Fix:</strong> EbbinghausConstants.clampIntervalToScientificBounds() return value now correctly destructured ({ clampedIntervalDays, reason })</li>
-                        <li><strong>Validation Layer:</strong> All save operations now validate currentProfile, currentPiece, and currentSection existence before proceeding</li>
-                        <li><strong>Enhanced Logging:</strong> Added detailed console logging for save operations and error states for easier debugging</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 21, 2025 - Critical Bug Fix: Metric Separation -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.2</h2>
-                </div>
-                <div class="release-date">Released: November 21, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>?? Scientific Accuracy Update!</strong> Critical bug fix ensures correct implementation of Ebbinghaus memory theory by properly separating execution errors from memory retrieval failures. This update significantly improves scheduling accuracy for difficult but well-remembered sections.
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Critical Bug Fix</h3>
-                    <ul>
-                        <li><strong>Metric Separation Fix:</strong> Removed incorrect automatic coupling between Failed Attempts and Total Failures counters</li>
-                        <li><strong>Scientific Accuracy:</strong> Failed Attempts now correctly measures execution errors (motor skills) without affecting memory failure tracking</li>
-                        <li><strong>Scheduling Impact:</strong> Intervals are no longer over-penalized for difficult sections with many execution errors but good memory retention</li>
-                        <li><strong>Ebbinghaus Compliance:</strong> Implementation now matches the scientific principle that "retention strength increases with successful recalls, penalized by retrieval failures, independent of acquisition errors" (Ebbinghaus, 1885; Kornell & Bjork, 2008)</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? UI/UX Improvements</h3>
-                    <ul>
-                        <li><strong>Simplified Metrics UI:</strong> Removed redundant "Total Failures" manual counter</li>
-                        <li><strong>Automatic Counter:</strong> "Repetition Streak Resets" is now read-only and increments automatically when you reset your practice streak</li>
-                        <li><strong>Enhanced Tooltips:</strong> Added professional balloon-style tooltips explaining each metric's purpose and impact on scheduling</li>
-                        <li><strong>Clearer Semantics:</strong> UI now clearly distinguishes between manual counters (Failed Attempts, Correct Repetitions) and automatic counters (Repetition Streak Resets)</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Technical Details</h3>
-                    <ul>
-                        <li><strong>Before:</strong> Each Failed Attempt incorrectly incremented both failedAttempts AND totalFailures (double-counting)</li>
-                        <li><strong>After:</strong> Failed Attempts only tracks execution errors; Repetition Streak Resets (used as totalFailures in Ebbinghaus calculations) only increments on memory retrieval breakdowns</li>
-                        <li><strong>Research Basis:</strong> Aligns with SuperMemo SM-2+ algorithms that separate difficulty (errors during practice) from stability (memory retrieval success)</li>
-                        <li><strong>Impact:</strong> Difficult sections that you successfully memorize will now get appropriately longer intervals instead of being stuck in short review cycles</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Documentation</h3>
-                    <ul>
-                        <li><strong>Tooltip Explanations:</strong> Each counter now has detailed tooltip explaining what it measures and how it affects scheduling</li>
-                        <li><strong>Failed Attempts:</strong> "Number of mistakes made while practicing. Used to calculate %Correct and difficulty rating. Does not directly affect scheduling intervals."</li>
-                        <li><strong>Correct Repetitions:</strong> "Number of successful repetitions in your current streak. Used to calculate success rate and determine if you reached your target."</li>
-                        <li><strong>Repetition Streak Resets:</strong> "Automatic counter: increments when you reset your streak due to memory failure. Each reset directly affects your next review interval."</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 20, 2025 - Tempo Tracking Update -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.1</h2>
-                </div>
-                <div class="release-date">Released: November 20, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>?? Tempo Tracking Feature!</strong> Practice sessions now include optional tempo tracking with intelligent validation and progressive suggestions. Track your tempo progress alongside practice quality metrics.
-                </div>
-
-                <div class="release-section">
-                    <h3>? New Features</h3>
-                    <ul>
-                        <li><strong>Tempo Tracking:</strong> Optional BPM (beats per minute) tracking in practice sessions</li>
-                        <li><strong>Target & Achieved Tempo:</strong> Set long-term tempo goals and record actual achieved tempo per session</li>
-                        <li><strong>Auto-Fill System:</strong> Achieved tempo automatically pre-filled with last session's value for consistency</li>
-                        <li><strong>Progressive Suggestions:</strong> Smart +5 BPM recommendations based on previous session (?? Try: X BPM)</li>
-                        <li><strong>Tempo Overlay Graph:</strong> Optional orange dashed line in Success Ratio Trend Chart showing tempo progress as percentage of target</li>
-                        <li><strong>Last Achieved Display:</strong> Shows most recent successful tempo from practice history</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Improvements</h3>
-                    <ul>
-                        <li><strong>Smart Validation:</strong> Real-time warnings for unusual tempo values or large jumps between sessions</li>
-                        <li><strong>Typo Detection:</strong> Alerts when achieved tempo exceeds target by more than 10 BPM</li>
-                        <li><strong>Jump Detection:</strong> Warns about tempo changes >30 BPM from previous session (both increases and decreases)</li>
-                        <li><strong>Range Validation:</strong> Ensures tempo values stay within realistic 30-300 BPM range</li>
-                        <li><strong>Draft Persistence:</strong> Tempo values saved in session drafts for crash recovery</li>
-                        <li><strong>Layout Optimization:</strong> Moved "Additional Info" section to left column for better visual balance</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? User Experience</h3>
-                    <ul>
-                        <li><strong>Non-Invasive Design:</strong> All tempo tracking is optional - empty fields = not tracked (value: 0)</li>
-                        <li><strong>Visual Feedback:</strong> Green suggestion boxes and orange warning boxes with clear icons</li>
-                        <li><strong>Consistent Graphs:</strong> Auto-fill prevents gaps in tempo progression charts</li>
-                        <li><strong>No Algorithm Impact:</strong> Tempo tracking is purely informational - doesn't affect Ebbinghaus interval calculations</li>
-                        <li><strong>Clear Labeling:</strong> Section titled "Tempo (BPM) <em>(optional)</em>" to reduce confusion</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Technical Details</h3>
-                    <ul>
-                        <li><strong>Data Storage:</strong> <code>targetTempo</code> and <code>achievedTempo</code> added to PracticeHistory model</li>
-                        <li><strong>BarSection Model:</strong> <code>targetTempo</code> property stores section-level tempo goals</li>
-                        <li><strong>Validation Function:</strong> <code>validateTempoInput()</code> with multi-stage checking logic</li>
-                        <li><strong>Chart Enhancement:</strong> <code>SuccessRatioTrendChart.drawTempoOverlay()</code> method for tempo visualization</li>
-                        <li><strong>Backward Compatible:</strong> Existing sessions without tempo data (0 values) work seamlessly</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 20, 2025 - Initial BETA Release -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Version BETA 0.1.0</h2>
-                </div>
-                <div class="release-date">Released: November 20, 2025</div>
-                
-                <div class="release-highlight">
-                    <strong>?? First Public BETA Release!</strong> ModusPractica is now available as a web-based adaptive practice scheduler. This initial version implements the complete Ebbinghaus-based scheduling engine with adaptive learning capabilities.
-                </div>
-
-                <div class="release-section">
-                    <h3>? Core Features</h3>
-                    <ul>
-                        <li><strong>Adaptive Learning System:</strong> Three-layer intelligence combining Ebbinghaus forgetting curves, SM-17+ memory stability tracking, and Bayesian calibration</li>
-                        <li><strong>Profile Management:</strong> Create multiple musician profiles with isolated data, demographics, and learning preferences</li>
-                        <li><strong>Practice Sessions:</strong> Smart daily agendas showing prioritized pieces based on retention science</li>
-                        <li><strong>Memory Stability Tracking:</strong> Dynamic difficulty adjustment and S-value evolution per section</li>
-                        <li><strong>Personalized Calibration:</strong> System learns your unique retention patterns through Bayesian updating</li>
-                        <li><strong>Local-First Storage:</strong> All data stored in browser localStorage with <code>mp_</code> prefix - zero server transmission</li>
-                        <li><strong>Export/Import:</strong> Single-profile and full-backup data portability using File System Access API</li>
-                        <li><strong>Directory Memory:</strong> Remembers last save location via IndexedDB for seamless workflow</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Technical Implementation</h3>
-                    <ul>
-                        <li><strong>EbbinghausEngine.js:</strong> Core retention formulas and baseline calculations</li>
-                        <li><strong>AdaptiveTauManager.js:</strong> Unified adaptive system coordinator (Fase 1)</li>
-                        <li><strong>MemoryStabilityManager.js:</strong> SM-17+ stability tracking with S-value persistence (Fase 2)</li>
-                        <li><strong>PersonalizedMemoryCalibration.js:</strong> Bayesian learning of individual forgetting rates (Fase 3)</li>
-                        <li><strong>StorageQuotaManager.js:</strong> Prevents data loss by checking localStorage capacity</li>
-                        <li><strong>Debug Console Commands:</strong> <code>showCalibrationReport()</code>, <code>showMemoryStats(sectionId)</code>, <code>exportAdaptiveData()</code></li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Documentation</h3>
-                    <ul>
-                        <li>Official manual with structured sections and media placeholders</li>
-                        <li>Privacy policy documentation (local-only storage)</li>
-                        <li>Comprehensive inline code comments for open-source transparency</li>
-                        <li>Quick start guide and onboarding checklist</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Design Philosophy</h3>
-                    <ul>
-                        <li><strong>Scientific Foundation:</strong> Based on Ebbinghaus forgetting curves and modern spaced repetition research</li>
-                        <li><strong>Privacy-First:</strong> No user accounts, no cloud storage, no data tracking - everything stays on your device</li>
-                        <li><strong>Open Algorithm:</strong> Client-side scheduling logic is fully transparent and auditable</li>
-                        <li><strong>Musician-Centric:</strong> Designed for real-world practice workflows, not academic theory</li>
-                        <li><strong>Capacity:</strong> Tracks approximately 300 pieces - sufficient for professional repertoire management</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Known Limitations</h3>
-                    <ul>
-                        <li>Web version does not include playlist functionality (desktop only)</li>
-                        <li>Requires modern browser with localStorage and File System Access API support</li>
-                        <li>Clearing browser data will erase all profiles (manual backups essential)</li>
-                        <li>No automatic cloud sync - manual export/import required for cross-device usage</li>
-                        <li>Beta status: interface and features subject to change based on user feedback</li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- November 15, 2025 - Pre-Beta Development -->
-            <article class="release-entry">
-                <div class="release-version">
-                    <h2>Pre-Beta Development</h2>
-                </div>
-                <div class="release-date">Development Phase: June - November 2025</div>
-                
-                <div class="release-section">
-                    <h3>?? Development Milestones</h3>
-                    <ul>
-                        <li><strong>Algorithm Simplification:</strong> Transitioned to pure Ebbinghaus mathematics with Bayesian adaptive parameters (no machine learning)</li>
-                        <li><strong>Three-Layer Adaptive System:</strong> Integrated AdaptiveTauManager, MemoryStabilityManager, and PersonalizedMemoryCalibration</li>
-                        <li><strong>Stage-Aware MASTERED Growth:</strong> Gradual interval expansion (stages 3?4?5+) based on motor skill research</li>
-                        <li><strong>Retention Targets:</strong> Differential targets for Difficult (85%), Default (80%), Easy (70%), Mastered (65%)</li>
-                        <li><strong>Tau Clamping:</strong> t ? [1, 180] days; Intervals: [1, 365] days AND t = 5�t</li>
-                        <li><strong>Cross-Platform Architecture:</strong> Dual implementation strategy (C# WPF desktop + JavaScript web)</li>
-                        <li><strong>Data Isolation:</strong> Profile-based localStorage with <code>mp_</code> prefix convention</li>
-                    </ul>
-                </div>
-
-                <div class="release-section">
-                    <h3>?? Testing & Validation</h3>
-                    <ul>
-                        <li>Unit tests for core Ebbinghaus calculations</li>
-                        <li>Memory stability edge case validation</li>
-                        <li>Calibration convergence testing across difficulty levels</li>
-                        <li>localStorage quota management verification</li>
-                        <li>File System Access API compatibility testing</li>
-                    </ul>
-                </div>
-            </article>
-
-        </main>
-
-        <footer class="release-footer">
-            <p>� 2025 Partura Music - Frank De Baere. All rights reserved.</p>
-            <p>
-                <a href="moduspractica-manual.html" style="color: #b45722;">Manual</a> &bull;
-                <a href="moduspractica-qa.html" style="color: #b45722;">Q&A</a> &bull;
-                For feature requests or bug reports, contact <a href="mailto:contact@parturamusic.be" style="color: #b45722;">contact@parturamusic.be</a>
-            </p>
-        </footer>
+            <div class="release-section">
+                <h3>🚀 Major Release</h3>
+                <ul>
+                    <li><strong>Ebbinghaus Memory Engine:</strong> Scientifically-based spaced repetition algorithm</li>
+                    <li><strong>Profile Management:</strong> Multi-user support with isolated data per profile</li>
+                    <li><strong>Practice Sessions:</strong> Complete practice tracking with metrics and statistics</li>
+                    <li><strong>Data Export/Import:</strong> Backup functionality for data portability</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 </html>

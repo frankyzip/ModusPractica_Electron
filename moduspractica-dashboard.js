@@ -662,29 +662,32 @@ class ModusPracticaDashboard {
         
         // Check if there's practice today or yesterday (streak can continue from yesterday)
         const mostRecentDate = sortedDates[0].split('-').map(Number);
-        const mostRecent = new Date(mostRecentDate[0], mostRecentDate[1], mostRecentDate[2]);
+        // Timezone-safe: parse most recent date
+        const mostRecent = parseDateYMD(`${mostRecentDate[0]}-${String(mostRecentDate[1]+1).padStart(2,'0')}-${String(mostRecentDate[2]).padStart(2,'0')}`);
+        const todayDate = getTodayLocal();
         
-        const daysDiff = Math.floor((today - mostRecent) / (1000 * 60 * 60 * 24));
+        const daysDiff = daysBetween(mostRecent, todayDate);
         
         // If last practice was more than 1 day ago, streak is broken
         if (daysDiff > 1) return 0;
 
-        // Count consecutive days
+        // Count consecutive days using timezone-safe comparison
         let streak = 0;
-        let expectedDate = new Date(today);
+        let expectedDate = todayDate;
         
         // If no practice today, start from yesterday
         if (daysDiff === 1) {
-            expectedDate.setDate(expectedDate.getDate() - 1);
+            expectedDate = addDays(todayDate, -1);
         }
 
         for (let i = 0; i < sortedDates.length; i++) {
             const dateParts = sortedDates[i].split('-').map(Number);
-            const practiceDate = new Date(dateParts[0], dateParts[1], dateParts[2]);
+            const dateStr = `${dateParts[0]}-${String(dateParts[1]+1).padStart(2,'0')}-${String(dateParts[2]).padStart(2,'0')}`;
+            const practiceDate = parseDateYMD(dateStr);
             
-            if (practiceDate.getTime() === expectedDate.getTime()) {
+            if (isSameDay(practiceDate, expectedDate)) {
                 streak++;
-                expectedDate.setDate(expectedDate.getDate() - 1);
+                expectedDate = addDays(expectedDate, -1);
             } else {
                 break;
             }
@@ -705,11 +708,12 @@ class ModusPracticaDashboard {
             return true;
         }
         
-        const nextPracticeDate = new Date(section.nextPracticeDate);
-        nextPracticeDate.setHours(0, 0, 0, 0);
+        // Timezone-safe: compare date-only
+        const nextPracticeDate = toDateOnly(section.nextPracticeDate);
+        const todayDate = toDateOnly(today);
         
         // Due if scheduled date is today or earlier
-        return nextPracticeDate <= today;
+        return nextPracticeDate <= todayDate;
     }
 
     renderPiecesList() {
@@ -1057,8 +1061,13 @@ class ModusPracticaDashboard {
      * Buckets: overdue (scheduled < date), due (scheduled === date), completed (lastPracticeDate === date).
      */
     getAgendaBucketsForDate(targetDate) {
-        const day = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
+        const day = toDateOnly(targetDate);
+        if (!day || Number.isNaN(day.getTime())) {
+            console.warn('⚠️ Invalid target date supplied to getAgendaBucketsForDate', targetDate);
+            return { overdueSections: [], dueSections: [], completedSections: [] };
+        }
 
+        const dayTime = day.getTime();
         const overdueSections = [];
         const dueSections = [];
         const completedSections = [];
@@ -1068,44 +1077,38 @@ class ModusPracticaDashboard {
             if (!piece.barSections) return;
 
             piece.barSections.forEach(section => {
-                // Skip only paused or inactive sections for scheduling
                 if (section.isPaused || section.lifecycleState === 2) {
                     return;
                 }
 
                 let isCompletedOnDay = false;
                 if (section.lastPracticeDate) {
-                    const lastDateObj = new Date(section.lastPracticeDate);
-                    const lastDate = new Date(lastDateObj.getFullYear(), lastDateObj.getMonth(), lastDateObj.getDate());
-                    if (lastDate.getTime() === day.getTime()) {
+                    const lastPractice = toDateOnly(section.lastPracticeDate);
+                    if (lastPractice && !Number.isNaN(lastPractice.getTime()) && lastPractice.getTime() === dayTime) {
                         completedSections.push({
                             piece,
                             section,
-                            scheduledDate: lastDate
+                            scheduledDate: lastPractice
                         });
                         isCompletedOnDay = true;
                     }
                 }
 
-                // Als de sectie op die dag is voltooid, tonen we ze niet nog eens als due/overdue
                 if (isCompletedOnDay) return;
 
-                if (section.nextPracticeDate || section.nextReviewDate) {
-                    const nextDateStr = section.nextPracticeDate || section.nextReviewDate;
-                    const nextDateObj = new Date(nextDateStr);
-                    const nextDate = new Date(nextDateObj.getFullYear(), nextDateObj.getMonth(), nextDateObj.getDate());
+                const nextDateStr = section.nextPracticeDate || section.nextReviewDate;
+                if (!nextDateStr) return;
 
-                    const item = {
-                        piece,
-                        section,
-                        scheduledDate: nextDate
-                    };
+                const nextDate = toDateOnly(nextDateStr);
+                if (!nextDate || Number.isNaN(nextDate.getTime())) return;
 
-                    if (nextDate.getTime() === day.getTime()) {
-                        dueSections.push(item);
-                    } else if (nextDate < day) {
-                        overdueSections.push(item);
-                    }
+                const scheduledDate = nextDate.getTime();
+                const item = { piece, section, scheduledDate: nextDate };
+
+                if (scheduledDate === dayTime) {
+                    dueSections.push(item);
+                } else if (scheduledDate < dayTime) {
+                    overdueSections.push(item);
                 }
             });
         });
@@ -1175,6 +1178,16 @@ class ModusPracticaDashboard {
 
             return true;
         });
+
+        // If the title filter points to a piece that no longer exists (e.g. after import), reset it
+        if (result.length === 0 && titleFilter) {
+            const stillExists = this.musicPieces.some(piece => piece.id === titleFilter);
+            if (!stillExists) {
+                console.warn('🎯 Clearing stale title filter that referenced a removed piece.');
+                this.selectedTitleFilter = null;
+                return this.applyPieceFilters();
+            }
+        }
 
         // Sorting
         result.sort((a, b) => {
@@ -2774,24 +2787,15 @@ ModusPracticaDashboard.prototype.openCalendarWindow = function() {
 ModusPracticaDashboard.prototype.startDailyInterleavedReview = function() {
     console.log('🔀 Starting Daily Interleaved Review...');
     
-    // Get today's date (normalized to midnight)
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    // Timezone-safe reference date
+    const today = getTodayLocal();
     
-    // Filter practice history for sessions completed today
+    // Filter practice history for sessions completed today (timezone-safe)
     const todaysSessions = (this.profileData.practiceHistory || []).filter(session => {
         if (session.isDeleted) return false;
-        
-        const sessionDateObj = new Date(session.date);
-        const sessionDate = new Date(
-            sessionDateObj.getFullYear(),
-            sessionDateObj.getMonth(),
-            sessionDateObj.getDate()
-        );
-        
-        return sessionDate.getTime() === today.getTime();
+        return isSameDay(session.date, today);
     });
-    
+
     // Extract unique barSectionIds
     const uniqueSectionIds = [...new Set(todaysSessions.map(s => s.barSectionId))].filter(id => id);
     
@@ -2876,3 +2880,35 @@ let app;
 document.addEventListener('DOMContentLoaded', () => {
     app = new ModusPracticaDashboard();
 });
+
+// Debug helper for console inspection: type debugDashboard() to inspect state
+window.debugDashboard = function() {
+    if (!app) {
+        console.warn('Dashboard app not initialized yet.');
+        return;
+    }
+    console.log('=== DASHBOARD DEBUG STATE ===');
+    console.log('Current profile:', app.currentProfile);
+    console.log('Music pieces loaded:', app.musicPieces ? app.musicPieces.length : 'n/a');
+    if (Array.isArray(app.musicPieces)) {
+        app.musicPieces.slice(0, 5).forEach((piece, index) => {
+            console.log(`  Piece[${index}]:`, {
+                id: piece.id,
+                title: piece.title,
+                sections: Array.isArray(piece.barSections) ? piece.barSections.length : 0,
+                lifecycleState: piece.lifecycleState,
+                isPaused: piece.isPaused
+            });
+        });
+    }
+    console.log('Filtered pieces:', app.filteredPieces ? app.filteredPieces.length : 'n/a');
+    console.log('Selected filters:', {
+        searchQuery: app.searchQuery,
+        selectedTitleFilter: app.selectedTitleFilter,
+        selectedColorFilter: app.selectedColorFilter,
+        selectedSortMode: app.selectedSortMode
+    });
+    console.log('First filtered piece:', app.filteredPieces && app.filteredPieces[0]);
+    console.log('profileData statistics:', app.profileData ? app.profileData.statistics : 'n/a');
+    console.log('Practice history entries:', app.profileData && Array.isArray(app.profileData.practiceHistory) ? app.profileData.practiceHistory.length : 'n/a');
+};

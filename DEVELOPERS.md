@@ -7,7 +7,7 @@
 **Author:** Frank De Baere  
 **Organization:** Partura Music™  
 **Project Duration:** 2024-Present  
-**Current Version:** 2.0.0
+**Current Version:** 2.0.1 (build 20251218)
 
 ---
 
@@ -263,7 +263,8 @@
 
 | Version | Date      | Status  | Notes                               |
 | ------- | --------- | ------- | ----------------------------------- |
-| 2.0.0   | Dec 2025  | Current | Electron port, open source release  |
+| 2.0.1   | Dec 2025  | Current | Timezone fix, global compatibility  |
+| 2.0.0   | Dec 2025  |         | Electron port, open source release  |
 | 1.x     | 2024      | Archive | C# desktop version (reference code) |
 | 0.x     | 2023-2024 | Archive | Early prototypes and research phase |
 

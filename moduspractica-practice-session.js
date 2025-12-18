@@ -455,9 +455,9 @@ function renderInterleavedSessionInfo() {
     const zoneName = getMemoryZoneName(stage);
     document.getElementById('memoryZone').textContent = zoneName;
     
-    // Last practice
+    // Last practice (timezone-safe display)
     const lastPractice = currentSection.lastPracticeDate 
-        ? new Date(currentSection.lastPracticeDate).toLocaleDateString(undefined) 
+        ? toDateOnly(currentSection.lastPracticeDate).toLocaleDateString(undefined) 
         : 'Never';
     document.getElementById('lastPractice').textContent = lastPractice;
     
@@ -650,8 +650,9 @@ function renderSessionInfo() {
         }
     }
     
+    // Last practice (timezone-safe display)
     const lastPractice = currentSection.lastPracticeDate 
-        ? new Date(currentSection.lastPracticeDate).toLocaleDateString(undefined) 
+        ? toDateOnly(currentSection.lastPracticeDate).toLocaleDateString(undefined) 
         : 'Never';
     document.getElementById('lastPractice').textContent = lastPractice;
 
@@ -1627,23 +1628,21 @@ function saveEvaluation() {
 
 // Update section after practice
 function updateSectionAfterPractice(session) {
-    // Calculate actual interval (for overdue tracking)
+    // Calculate actual interval (for overdue tracking) - timezone-safe
     let actualIntervalDays = 0;
-    const today = new Date();
-    const todayNormalized = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const todayNormalized = getTodayLocal();
     
     if (currentSection.nextReviewDate) {
-        const scheduledDateObj = new Date(currentSection.nextReviewDate);
-        const scheduledDate = new Date(scheduledDateObj.getFullYear(), scheduledDateObj.getMonth(), scheduledDateObj.getDate());
-        actualIntervalDays = Math.max(0, (todayNormalized - scheduledDate) / (1000 * 60 * 60 * 24));
+        const scheduledDate = toDateOnly(currentSection.nextReviewDate);
+        actualIntervalDays = Math.max(0, daysBetween(scheduledDate, todayNormalized));
         
         if (actualIntervalDays > 0) {
             console.log(`[Overdue] Section was ${actualIntervalDays.toFixed(0)} day(s) overdue - this will be factored into next interval calculation`);
         }
     }
     
-    // Update last practice date
-    currentSection.lastPracticeDate = session.date;
+    // Update last practice date (timezone-safe storage)
+    currentSection.lastPracticeDate = normalizeDateForStorage(session.date);
 
     // Update target repetitions if changed during session
     if (targetRepetitions !== currentSection.targetRepetitions) {
@@ -1695,9 +1694,9 @@ function updateSectionAfterPractice(session) {
         console.log(`[Ebbinghaus] Stage ${currentStage}: Calculated ${intervalDays} days (actual interval: ${actualIntervalDays.toFixed(1)} days)`);
     }
     
-    const nextDate = new Date();
-    nextDate.setDate(nextDate.getDate() + Math.round(intervalDays));
-    currentSection.nextReviewDate = nextDate.toISOString();
+    // Calculate next review date (timezone-safe)
+    const nextDate = addDays(getTodayLocal(), Math.round(intervalDays));
+    currentSection.nextReviewDate = normalizeDateForStorage(nextDate);
 
     // Update stage if target repetitions reached (but NOT for incomplete sessions)
     if (session.sessionOutcome !== 'Incomplete' && currentSection.completedRepetitions >= currentSection.targetRepetitions) {

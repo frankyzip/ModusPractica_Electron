@@ -143,8 +143,7 @@ class ModusPracticaCalendar {
         // Initialize nextReviewDate for sections that don't have one
         // This ensures all active sections appear in the calendar
         let needsSave = false;
-        const now = new Date();
-        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const today = getTodayLocal();
         
         for (const piece of this.musicPieces) {
             if (!piece.barSections) continue;
@@ -153,9 +152,9 @@ class ModusPracticaCalendar {
                 // Skip inactive sections (check both string and numeric values for backward compatibility)
                 if (section.lifecycleState === 'Inactive' || section.lifecycleState === 2) continue;
                 
-                // If no nextReviewDate, set it to today
+                // If no nextReviewDate, set it to today (timezone-safe)
                 if (!section.nextReviewDate) {
-                    section.nextReviewDate = today.toISOString();
+                    section.nextReviewDate = normalizeDateForStorage(today);
                     needsSave = true;
                     console.log(`✨ Initialized nextReviewDate for section: ${piece.title} - ${section.barRange}`);
                 }
@@ -225,15 +224,13 @@ class ModusPracticaCalendar {
                     lifecycleStateName = section.lifecycleState;
                 }
                 
-                // Determine status based on date only
-                const reviewDate = new Date(section.nextReviewDate);
-                const now = new Date();
-                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-                const reviewDay = new Date(reviewDate.getFullYear(), reviewDate.getMonth(), reviewDate.getDate());
+                // Determine status based on date only (timezone-safe)
+                const reviewDate = toDateOnly(section.nextReviewDate);
+                const today = getTodayLocal();
                 
                 let status = 'Planned';
-                if (reviewDay < today) status = 'Overdue';
-                else if (reviewDay.getTime() === today.getTime()) status = 'Due Today';
+                if (isPastDate(reviewDate)) status = 'Overdue';
+                else if (isToday(reviewDate)) status = 'Due Today';
 
                 this.scheduledSessions.push({
                     id: section.id,

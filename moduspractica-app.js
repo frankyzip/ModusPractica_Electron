@@ -603,30 +603,93 @@ class ModusPracticaApp {
 
     async getProfileData(profileId) {
         const dataJson = localStorage.getItem(this.storagePrefix + profileId + '_data');
-        if (dataJson) {
-            return JSON.parse(dataJson);
-        }
+        let data = null;
         
-        // Try to restore from filesystem backup if running in Electron
-        if (window.electronAPI && window.electronAPI.loadBackupData) {
-            try {
-                const result = await window.electronAPI.loadBackupData(`${profileId}_data`);
-                if (result.success && result.data) {
-                    console.log(`✅ Restored profile data for ${profileId} from filesystem backup`);
-                    // Save back to localStorage
-                    this.saveProfileData(profileId, result.data);
-                    return result.data;
+        if (dataJson) {
+            data = JSON.parse(dataJson);
+        } else {
+            // Try to restore from filesystem backup if running in Electron
+            if (window.electronAPI && window.electronAPI.loadBackupData) {
+                try {
+                    const result = await window.electronAPI.loadBackupData(`${profileId}_data`);
+                    if (result.success && result.data) {
+                        console.log(`✅ Restored profile data for ${profileId} from filesystem backup`);
+                        data = result.data;
+                    }
+                } catch (err) {
+                    console.error(`❌ Error loading profile data backup for ${profileId}:`, err);
                 }
-            } catch (err) {
-                console.error(`❌ Error loading profile data backup for ${profileId}:`, err);
             }
         }
         
-        return null;
+        // Timezone-safe data migration for legacy profiles
+        if (data && data.musicPieces) {
+            let migrationNeeded = false;
+            
+            for (const piece of data.musicPieces) {
+                if (!piece.barSections) continue;
+                
+                for (const section of piece.barSections) {
+                    // Migrate nextReviewDate and nextPracticeDate to timezone-safe format
+                    if (section.nextReviewDate) {
+                        const normalized = normalizeDateForStorage(section.nextReviewDate);
+                        if (normalized !== section.nextReviewDate) {
+                            section.nextReviewDate = normalized;
+                            migrationNeeded = true;
+                        }
+                    }
+                    if (section.nextPracticeDate) {
+                        const normalized = normalizeDateForStorage(section.nextPracticeDate);
+                        if (normalized !== section.nextPracticeDate) {
+                            section.nextPracticeDate = normalized;
+                            migrationNeeded = true;
+                        }
+                    }
+                    if (section.lastPracticeDate) {
+                        const normalized = normalizeDateForStorage(section.lastPracticeDate);
+                        if (normalized !== section.lastPracticeDate) {
+                            section.lastPracticeDate = normalized;
+                            migrationNeeded = true;
+                        }
+                    }
+                }
+            }
+            
+            // Migrate practice history dates
+            if (data.practiceHistory) {
+                for (const session of data.practiceHistory) {
+                    if (session.date && !session.isDeleted) {
+                        const normalized = normalizeDateForStorage(session.date);
+                        if (normalized !== session.date) {
+                            session.date = normalized;
+                            migrationNeeded = true;
+                        }
+                    }
+                }
+            }
+            
+            // Save migrated data back
+            if (migrationNeeded) {
+                console.log(`🔄 Migrated profile ${profileId} to timezone-safe date format`);
+                this.saveProfileData(profileId, data);
+            }
+        }
+        
+        return data;
     }
 
     saveProfileData(profileId, data) {
-        localStorage.setItem(this.storagePrefix + profileId + '_data', JSON.stringify(data));
+        try {
+            const key = this.storagePrefix + profileId + '_data';
+            const pieceCount = data && data.musicPieces ? data.musicPieces.length : 0;
+            const historyCount = data && data.practiceHistory ? data.practiceHistory.length : 0;
+            console.log(`💾 Saving profile data for ${profileId}:`, { pieces: pieceCount, history: historyCount, key });
+            localStorage.setItem(key, JSON.stringify(data));
+            console.log(`✅ Saved profile data for ${profileId} (localStorage size: ${localStorage.getItem(key)?.length || 0} chars)`);
+        } catch (error) {
+            console.error(`❌ Failed to save profile data for ${profileId}:`, error);
+            throw error;
+        }
         
         // Also save to filesystem backup if running in Electron
         if (window.electronAPI && window.electronAPI.saveBackupData) {
@@ -672,6 +735,8 @@ class ModusPracticaApp {
         const editBtn = document.getElementById('edit-profile-btn');
         const deleteBtn = document.getElementById('delete-profile-btn');
 
+        console.log('🎨 Updating UI. Current profile:', this.currentProfile ? this.currentProfile.name : 'none');
+
         if (this.currentProfile) {
             // Only enable start button if profile has been saved to file
             startBtn.disabled = !this.currentProfileSaved;
@@ -701,6 +766,8 @@ class ModusPracticaApp {
             const profileData = await this.getProfileData(this.currentProfile.id);
             const pieceCount = profileData ? profileData.musicPieces.length : 0;
             document.getElementById('info-pieces').textContent = pieceCount;
+            
+            console.log(`✅ UI updated. Pieces: ${pieceCount}, Profile saved: ${this.currentProfileSaved}`);
         } else {
             startBtn.disabled = true;
             profileInfo.style.display = 'none';
@@ -947,6 +1014,13 @@ class ModusPracticaApp {
 
                 console.log('Data replaced successfully');
                 if (window.MPLog) MPLog.info('Data import completed (replace)', { profileCount: this.profiles.length });
+                
+                // Show success message
+                alert(
+                    `✅ Data successfully imported!\n\n` +
+                    `${this.profiles.length} profile(s) restored.\n\n` +
+                    `All previous data has been replaced.`
+                );
             } else {
                 // Merge data
                 let importedCount = 0;
@@ -984,9 +1058,43 @@ class ModusPracticaApp {
                 );
             }
 
-            // Refresh UI
+            // Refresh UI - this will show all profiles in the dropdown
             this.populateProfileSelect();
             this.hideError();
+            
+            console.log(`✅ Import complete. Total profiles: ${this.profiles.length}`);
+            console.log('Profiles:', this.profiles.map(p => ({ id: p.id, name: p.name })));
+            
+            // Auto-select the first imported profile if we have any profiles
+            if (this.profiles.length > 0) {
+                const profileSelect = document.getElementById('profile-select');
+                console.log('Profile select element:', profileSelect);
+                console.log('Options in select:', profileSelect.options.length);
+                
+                // Select the first profile
+                const firstProfile = this.profiles[0];
+                profileSelect.value = firstProfile.id;
+                
+                console.log(`🔄 Auto-selecting profile: ${firstProfile.name} (${firstProfile.id})`);
+                console.log('Selected value in dropdown:', profileSelect.value);
+                
+                // Check if profile data exists
+                const profileData = await this.getProfileData(firstProfile.id);
+                console.log('Profile data exists:', !!profileData);
+                if (profileData) {
+                    console.log('Music pieces:', profileData.musicPieces ? profileData.musicPieces.length : 0);
+                    console.log('Practice history:', profileData.practiceHistory ? profileData.practiceHistory.length : 0);
+                }
+                
+                // Load the profile data properly
+                await this.selectProfile(firstProfile.id);
+                
+                console.log('✅ Profile loaded successfully');
+                console.log('Current profile after select:', this.currentProfile);
+                console.log('Profile info display:', document.getElementById('profile-info').style.display);
+            } else {
+                console.warn('⚠️ No profiles found after import');
+            }
             
             // Reset file input
             document.getElementById('import-file').value = '';
@@ -1031,3 +1139,33 @@ let app;
 document.addEventListener('DOMContentLoaded', () => {
     app = new ModusPracticaApp();
 });
+
+// Debug helper - call from console: debugApp()
+window.debugApp = function() {
+    console.log('=== DEBUG APP STATE ===');
+    console.log('App instance:', app);
+    console.log('Profiles:', app.profiles);
+    console.log('Current profile:', app.currentProfile);
+    console.log('Current profile saved:', app.currentProfileSaved);
+    console.log('Profile select value:', document.getElementById('profile-select').value);
+    console.log('Profile info display:', document.getElementById('profile-info').style.display);
+    
+    if (app.currentProfile) {
+        app.getProfileData(app.currentProfile.id).then(data => {
+            console.log('Current profile data:', data);
+            if (data) {
+                console.log('  - Music pieces:', data.musicPieces.length);
+                console.log('  - Practice history:', data.practiceHistory ? data.practiceHistory.length : 0);
+            }
+        });
+    }
+    
+    // List all localStorage keys
+    console.log('LocalStorage keys:');
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('mp_')) {
+            console.log(`  - ${key}`);
+        }
+    }
+};
