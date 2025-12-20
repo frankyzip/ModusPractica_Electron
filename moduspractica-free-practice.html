@@ -205,9 +205,97 @@
             color: var(--text-secondary);
             line-height: 1.5;
         }
+
+        /* Custom Dialog Overlay */
+        .dialog-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dialog-overlay.active {
+            display: flex;
+        }
+
+        .dialog-box {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .dialog-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .dialog-message {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+
+        .dialog-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .dialog-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .dialog-btn-primary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .dialog-btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .dialog-btn-secondary {
+            background: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .dialog-btn-secondary:hover {
+            background: #ddd;
+        }
     </style>
 </head>
 <body>
+    <!-- Custom Dialog Overlay -->
+    <div class="dialog-overlay" id="dialogOverlay">
+        <div class="dialog-box">
+            <div class="dialog-title" id="dialogTitle">Dialog</div>
+            <div class="dialog-message" id="dialogMessage">Message</div>
+            <div class="dialog-buttons" id="dialogButtons">
+                <button class="dialog-btn dialog-btn-primary" id="dialogOk">OK</button>
+            </div>
+        </div>
+    </div>
+
     <div class="timer-container">
         <h1 class="timer-title">🎵 Free Practice</h1>
         <p class="timer-subtitle">Practice without schedule constraints</p>

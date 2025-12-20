@@ -3,6 +3,44 @@
 // Copyright © 2025 Frank De Baere - All Rights Reserved
 // ============================================================================
 
+// Custom Dialog Functions
+function showDialog(title, message, buttons = ['OK']) {
+    return new Promise((resolve) => {
+        const overlay = document.getElementById('dialogOverlay');
+        const titleEl = document.getElementById('dialogTitle');
+        const messageEl = document.getElementById('dialogMessage');
+        const buttonsEl = document.getElementById('dialogButtons');
+
+        titleEl.textContent = title;
+        messageEl.textContent = message;
+        
+        // Clear existing buttons
+        buttonsEl.innerHTML = '';
+        
+        // Create buttons
+        buttons.forEach((buttonText, index) => {
+            const button = document.createElement('button');
+            button.textContent = buttonText;
+            button.className = index === 0 ? 'dialog-btn dialog-btn-primary' : 'dialog-btn dialog-btn-secondary';
+            button.addEventListener('click', () => {
+                overlay.classList.remove('active');
+                resolve(buttonText);
+            });
+            buttonsEl.appendChild(button);
+        });
+        
+        overlay.classList.add('active');
+    });
+}
+
+function showAlert(message, title = 'ModusPractica') {
+    return showDialog(title, message, ['OK']);
+}
+
+function showConfirm(message, title = 'ModusPractica') {
+    return showDialog(title, message, ['Yes', 'No']);
+}
+
 class FreePracticeTimer {
     constructor() {
         this.startTime = null;
@@ -121,10 +159,11 @@ class FreePracticeTimer {
         console.log('⏸️ Timer paused at', this.formatTime(this.elapsedTime));
     }
 
-    reset() {
+    async reset() {
         // Confirm if timer has significant time
         if (this.elapsedTime > 60000) { // More than 1 minute
-            if (!confirm('Are you sure you want to reset the timer? Your current time will be lost.')) {
+            const result = await showConfirm('Are you sure you want to reset the timer? Your current time will be lost.', 'Reset Timer');
+            if (result !== 'Yes') {
                 return;
             }
         }
@@ -149,7 +188,8 @@ class FreePracticeTimer {
 
         // Check if there's time to save
         if (this.elapsedTime === 0) {
-            if (confirm('No time recorded. Close without saving?')) {
+            const result = await showConfirm('No time recorded. Close without saving?', 'Close Window');
+            if (result === 'Yes') {
                 window.close();
             }
             return;
@@ -157,14 +197,14 @@ class FreePracticeTimer {
 
         // Save the practice time
         if (await this.savePracticeTime()) {
-            alert(`Practice time saved: ${this.formatTime(this.elapsedTime)}\n\nYour progress has been recorded!`);
+            await showAlert(`Practice time saved: ${this.formatTime(this.elapsedTime)}\n\nYour progress has been recorded!`, '✅ Success');
             window.close();
         }
     }
 
     async savePracticeTime() {
         if (!this.currentProfile) {
-            alert('No active profile found. Please select a profile first.');
+            await showAlert('No active profile found. Please select a profile first.', '⚠️ No Profile');
             return false;
         }
 
@@ -227,7 +267,7 @@ class FreePracticeTimer {
                     try {
                         storageQuotaManager.safeSetItem(dataKey, JSON.stringify(profileData));
                     } catch (retryError) {
-                        alert('⚠️ Opslag vol! Exporteer je data en ruim oude profielen op.');
+                        await showAlert('Opslag vol! Exporteer je data en ruim oude profielen op.', '⚠️ Storage Full');
                         throw retryError;
                     }
                 }
@@ -246,7 +286,7 @@ class FreePracticeTimer {
             return true;
         } catch (error) {
             console.error('❌ Error saving practice time:', error);
-            alert('Failed to save practice time. Please try again.');
+            await showAlert('Failed to save practice time. Please try again.', '❌ Save Error');
             return false;
         }
     }
@@ -307,7 +347,7 @@ class FreePracticeTimer {
         }
     }
 
-    saveManualTime() {
+    async saveManualTime() {
         if (!this.isManuallyEditing) return;
         
         this.isManuallyEditing = false;
@@ -318,7 +358,7 @@ class FreePracticeTimer {
         const parts = timeText.split(':');
         
         if (parts.length !== 3) {
-            alert('Invalid time format. Please use HH:MM:SS (e.g., 00:15:30)');
+            await showAlert('Invalid time format. Please use HH:MM:SS (e.g., 00:15:30)', '⚠️ Invalid Format');
             this.updateDisplay();
             return;
         }
@@ -329,7 +369,7 @@ class FreePracticeTimer {
         
         // Validate ranges
         if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59 || seconds < 0 || seconds > 59) {
-            alert('Invalid time values. Hours: 0-23, Minutes: 0-59, Seconds: 0-59');
+            await showAlert('Invalid time values. Hours: 0-23, Minutes: 0-59, Seconds: 0-59', '⚠️ Invalid Time');
             this.updateDisplay();
             return;
         }

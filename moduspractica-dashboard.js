@@ -976,9 +976,9 @@ class ModusPracticaDashboard {
         // Show overdue sections first (single-line layout)
         overdueSections.forEach(item => {
             const daysLate = Math.floor((today - item.scheduledDate) / (1000 * 60 * 60 * 24));
-            // Status-based kleur: rood voor nog te oefenen (overdue)
-            const statusColor = 'var(--danger-color)';
-            const bgColor = '#fff0f0';
+            // Use piece's own color instead of status-based color
+            const statusColor = item.piece.colorValue || '#F08080';
+            const bgColor = this.hexToRgba(statusColor, 0.18);
             const titleText = this.escapeHtml(item.piece.title);
             const rangeText = this.escapeHtml(item.section.barRange || `${item.section.startBar}-${item.section.endBar}`);
             const descText = item.section.description ? ' - ' + this.escapeHtml(item.section.description) : '';
@@ -1000,9 +1000,9 @@ class ModusPracticaDashboard {
         
         // Show today's sections (single-line layout)
         dueTodaySections.forEach(item => {
-            // Status-based kleur: oranje voor vandaag (due today)
-            const statusColor = 'var(--warning-color)';
-            const bgColor = '#fff7ed';
+            // Use piece's own color instead of status-based color
+            const statusColor = item.piece.colorValue || '#F08080';
+            const bgColor = this.hexToRgba(statusColor, 0.18);
             const titleText = this.escapeHtml(item.piece.title);
             const rangeText = this.escapeHtml(item.section.barRange || `${item.section.startBar}-${item.section.endBar}`);
             const descText = item.section.description ? ' - ' + this.escapeHtml(item.section.description) : '';
@@ -1021,9 +1021,9 @@ class ModusPracticaDashboard {
 
         // Show completed sections (single-line layout)
         completedTodaySections.forEach(item => {
-            // Status-based kleur: groen voor gedane chunks
-            const statusColor = 'var(--success-color)';
-            const bgColor = '#f0fff4';
+            // Use piece's own color instead of status-based color
+            const statusColor = item.piece.colorValue || '#F08080';
+            const bgColor = this.hexToRgba(statusColor, 0.18);
             const titleText = this.escapeHtml(item.piece.title);
             const rangeText = this.escapeHtml(item.section.barRange || `${item.section.startBar}-${item.section.endBar}`);
             const descText = item.section.description ? ' - ' + this.escapeHtml(item.section.description) : '';
@@ -2146,6 +2146,30 @@ class ModusPracticaDashboard {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
+    }
+
+    getLighterColorVariant(hexColor, lightness = 0.95) {
+        // Convert hex to RGB
+        let r = 0, g = 0, b = 0;
+        if (hexColor.startsWith('#')) {
+            hexColor = hexColor.substring(1);
+        }
+        if (hexColor.length === 3) {
+            r = parseInt(hexColor[0] + hexColor[0], 16);
+            g = parseInt(hexColor[1] + hexColor[1], 16);
+            b = parseInt(hexColor[2] + hexColor[2], 16);
+        } else if (hexColor.length === 6) {
+            r = parseInt(hexColor.substring(0, 2), 16);
+            g = parseInt(hexColor.substring(2, 4), 16);
+            b = parseInt(hexColor.substring(4, 6), 16);
+        }
+        
+        // Mix with white to create lighter variant
+        r = Math.round(r + (255 - r) * lightness);
+        g = Math.round(g + (255 - g) * lightness);
+        b = Math.round(b + (255 - b) * lightness);
+        
+        return `rgb(${r}, ${g}, ${b})`;
     }
 
     formatShortDateDisplay(date) {

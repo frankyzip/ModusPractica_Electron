@@ -3,7 +3,7 @@
 **Smart Music Practice Management System**
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](./LICENSE-AGPL)
-[![GitHub Release](https://img.shields.io/badge/Version-2.0.1-brightgreen)]()
+[![GitHub Release](https://img.shields.io/badge/Version-2.0.2-brightgreen)]()
 [![Built with Electron](https://img.shields.io/badge/Built%20with-Electron-47848F?logo=electron&logoColor=white)]()
 
 ModusPractica is an advanced, scientifically-grounded music practice management system based on the Ebbinghaus memory curve and spaced repetition learning. It uses adaptive algorithms to optimize learning intervals and practice intensity for individual musicians.

@@ -152,7 +152,17 @@ function loadSections() {
     activeSections.forEach(section => {
         const sectionItem = document.createElement('div');
         sectionItem.className = 'section-item';
-        sectionItem.textContent = section.barRange || section.range || 'Unknown range';
+        
+        // Show both range and description
+        const range = section.barRange || section.range || 'Unknown range';
+        const description = section.description || '';
+        
+        if (description) {
+            sectionItem.innerHTML = `<div style="font-weight: 500;">${range}</div><div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">${description}</div>`;
+        } else {
+            sectionItem.textContent = range;
+        }
+        
         sectionItem.dataset.sectionId = section.id;
         sectionItem.onclick = () => selectSection(section.id);
         sectionList.appendChild(sectionItem);
